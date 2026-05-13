@@ -2,168 +2,186 @@ import { useMemo } from 'react';
 import { motion } from 'motion/react';
 
 export default function InfinityScene() {
-  // Generate particles that follow the Logo's specific asymmetrical "Twisted Teardrop" geometry
-  const particles = useMemo(() => {
-    const colors = ['#00f0f0', '#0070b0', '#f05060', '#f09010', '#f0f070'];
-    
-    return Array.from({ length: 400 }).map((_, i) => {
-      const t = (i / 400) * Math.PI * 2;
-      
-      // Asymmetrical Infinity Formula inspired by the Oneverce Logo
-      // Left loop is tighter (cyan), Right loop is bulbous and large (pink/orange)
-      const isLeft = Math.cos(t) < 0;
-      const horizontalScale = isLeft ? 380 : 550; 
-      const verticalScale = isLeft ? 220 : 320;
-      
-      const x = (horizontalScale * Math.cos(t)) / (1 + Math.sin(t) * Math.sin(t));
-      const y = (verticalScale * Math.sin(t) * Math.cos(t)) / (1 + Math.sin(t) * Math.sin(t));
-      
-      // Depth variation with a "twist" at the intersection
-      const z = Math.sin(t * 2) * 150;
-
-      const colorIndex = Math.floor((t / (Math.PI * 2)) * colors.length);
-      const color = colors[colorIndex] || colors[0];
-      const isStardust = Math.random() > 0.85;
-
-      return {
-        id: i,
-        x,
-        y,
-        z,
-        delay: Math.random() * 5,
-        duration: 3 + Math.random() * 4,
-        size: isStardust ? 1 : 2 + Math.random() * 3,
-        color: isStardust ? '#ffffff' : color,
-        opacity: isStardust ? 0.3 : 0.6 + Math.random() * 0.4,
-      };
-    });
+  // Static Stardust Field (Immersive Environment)
+  const stardust = useMemo(() => {
+    return Array.from({ length: 200 }).map((_, i) => ({
+      id: i,
+      x: (Math.random() - 0.5) * 2200,
+      y: (Math.random() - 0.5) * 1300,
+      size: Math.random() * 2.5,
+      opacity: Math.random() * 0.7,
+      delay: Math.random() * 5,
+      color: i % 12 === 0 ? '#00f0f0' : i % 20 === 0 ? '#f05060' : '#ffffff', // Mix in brand colors
+      duration: 2 + Math.random() * 4,
+    }));
   }, []);
 
   return (
-    <div className="relative w-full h-full flex items-center justify-center overflow-visible perspective-[3000px] pointer-events-none">
-      {/* Brand Ambient Glow */}
+    <div className="relative w-full h-full flex items-center justify-center overflow-visible perspective-[2000px] pointer-events-none">
+      {/* 1. Deep Space Ambient Nebula */}
       <div className="absolute inset-0 flex items-center justify-center z-0">
-        <div className="absolute w-[1500px] h-[800px] bg-[#00f0f0]/[0.04] rounded-[100%] blur-[220px] animate-pulse" />
+        <div className="absolute w-[1800px] h-[1000px] bg-[#00f0f0]/[0.015] rounded-[100%] blur-[250px] animate-pulse" />
+      </div>
+
+      {/* 2. Stardust Field (Parallax Environment) */}
+      <div className="absolute inset-0 z-[1]">
+        {stardust.map((star) => (
+          <motion.div
+            key={star.id}
+            initial={{ opacity: 0 }}
+            animate={{ 
+              opacity: [star.opacity, star.opacity * 1.5, star.opacity],
+              scale: [1, 1.2, 1],
+            }}
+            transition={{ duration: star.duration, repeat: Infinity, delay: star.delay }}
+            className="absolute rounded-full"
+            style={{
+              width: star.size,
+              height: star.size,
+              left: `calc(50% + ${star.x}px)`,
+              top: `calc(50% + ${star.y}px)`,
+              backgroundColor: star.color,
+              boxShadow: star.color !== '#ffffff' ? `0 0 12px ${star.color}` : `0 0 6px rgba(255,255,255,0.4)`,
+            }}
+          />
+        ))}
       </div>
 
       <motion.div 
-        className="relative flex items-center justify-center transform-style-preserve-3d scale-[0.5] md:scale-100 will-change-transform z-10"
+        className="relative flex items-center justify-center transform-style-preserve-3d scale-[0.38] sm:scale-[0.55] md:scale-[0.85] will-change-transform z-10"
         animate={{ 
-          rotateX: [15, 22, 15], 
-          rotateY: [-8, 8, -8],
-          rotateZ: [0, 2, 0]
+          rotateX: [12, 18, 12], 
+          rotateY: [-6, 6, -6],
         }}
-        transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+        transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
       >
         
-        {/* Brand-Accurate Asymmetrical Twisted Path */}
-        <svg 
-          viewBox="-600 -400 1200 800" 
-          className="absolute inset-0 w-[1200px] h-[800px] overflow-visible mix-blend-screen z-20"
-          style={{ top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
-        >
-          <defs>
-            <linearGradient id="logo-ribbon-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#00f0f0" />
-              <stop offset="30%" stopColor="#0070b0" />
-              <stop offset="60%" stopColor="#f05060" />
-              <stop offset="100%" stopColor="#f0f070" />
-            </linearGradient>
-          </defs>
-          
-          {/* Main "Twisted Ribbon" Path - Custom Bezier to match logo geometry */}
-          <motion.path
-            d="M 0,0 C 150,-350 550,-350 550,0 C 550,350 150,350 0,0 C -120,-280 -400,-280 -400,0 C -400,280 -120,280 0,0 Z"
-            fill="none"
-            stroke="url(#logo-ribbon-gradient)"
-            strokeWidth="5"
-            strokeLinecap="round"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 0.8 }}
-            transition={{ duration: 3, ease: "easeOut" }}
-            className="drop-shadow-[0_0_25px_rgba(0,240,240,0.4)]"
-          />
-          
-          {/* Subtle Inner Glow Layer */}
-          <motion.path
-            d="M 0,0 C 150,-350 550,-350 550,0 C 550,350 150,350 0,0 C -120,-280 -400,-280 -400,0 C -400,280 -120,280 0,0 Z"
-            fill="none"
-            stroke="#ffffff"
-            strokeWidth="1"
-            strokeOpacity="0.3"
-            strokeDasharray="10 20"
-            animate={{ strokeDashoffset: -100 }}
-            transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-          />
-        </svg>
+        {/* 3. The Volumetric Ribbon (One Flow Architecture) */}
+        <div className="relative w-[1400px] h-[1000px] flex items-center justify-center transform-style-preserve-3d">
+          <svg 
+            viewBox="-700 -500 1400 1000" 
+            className="absolute inset-0 w-full h-full overflow-visible mix-blend-screen"
+          >
+            <defs>
+              {/* Glossy Rainbow Gradient matching logo exactly */}
+              <linearGradient id="ribbon-grad-v1" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#00f0f0" />
+                <stop offset="25%" stopColor="#0070b0" />
+                <stop offset="50%" stopColor="#9333ea" />
+                <stop offset="75%" stopColor="#f05060" />
+                <stop offset="100%" stopColor="#f09010" />
+              </linearGradient>
 
-        {/* Brand Elements: The Planet (Saturn-like in Left Loop) */}
-        <div className="absolute -translate-x-[280px] -translate-y-[140px] z-30 transform-style-preserve-3d">
-           {/* Planet Sphere */}
-           <motion.div 
-             animate={{ y: [-10, 10, -10], rotate: [0, 5, 0] }}
-             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-             className="relative w-24 h-24 rounded-full bg-gradient-to-br from-[#00f0f0] via-[#0070b0] to-black shadow-[inset_-10px_-10px_20px_rgba(0,0,0,0.8),0_0_40px_rgba(0,240,240,0.4)]"
-           >
-              {/* Planet Ring */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-10 border-2 border-[#00f0f0]/40 rounded-[100%] rotate-[25deg] blur-[1px]" />
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-36 h-8 border border-white/20 rounded-[100%] rotate-[25deg]" />
-           </motion.div>
+              {/* Inner Depth Gradient (Shadow Side) */}
+              <linearGradient id="ribbon-inner-shadow" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#003030" />
+                <stop offset="50%" stopColor="#1a0035" />
+                <stop offset="100%" stopColor="#301500" />
+              </linearGradient>
+
+              <filter id="ribbon-glow-v2" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="18" result="blur" />
+                <feComposite in="SourceGraphic" in2="blur" operator="over" />
+              </filter>
+            </defs>
+
+            {/* Path: Asymmetrical Teardrop Infinity */}
+            <motion.path
+              id="infinity-path"
+              d="M 0,0 C 200,-420 620,-420 620,0 C 620,420 200,420 0,0 C -150,300 -450,300 -450,0 C -450,-300 -150,-300 0,0"
+              fill="none"
+              stroke="transparent"
+            />
+
+            {/* Layer A: Massive Structural Underglow */}
+            <motion.path
+              d="M 0,0 C 200,-420 620,-420 620,0 C 620,420 200,420 0,0 C -150,300 -450,300 -450,0 C -450,-300 -150,-300 0,0"
+              fill="none"
+              stroke="url(#ribbon-grad-v1)"
+              strokeWidth="110"
+              strokeOpacity="0.06"
+              className="blur-[70px]"
+            />
+
+            {/* Layer B: The Volumetric Body (Outer Shell) */}
+            <motion.path
+              d="M 0,0 C 200,-420 620,-420 620,0 C 620,420 200,420 0,0 C -150,300 -450,300 -450,0 C -450,-300 -150,-300 0,0"
+              fill="none"
+              stroke="url(#ribbon-grad-v1)"
+              strokeWidth="55"
+              strokeLinecap="round"
+              initial={{ pathLength: 0 }}
+              animate={{ pathLength: 1 }}
+              transition={{ duration: 4, ease: "easeInOut" }}
+              filter="url(#ribbon-glow-v2)"
+            />
+
+            {/* Layer C: The Matte Depth Core */}
+            <motion.path
+              d="M 0,0 C 200,-420 620,-420 620,0 C 620,420 200,420 0,0 C -150,300 -450,300 -450,0 C -450,-300 -150,-300 0,0"
+              fill="none"
+              stroke="url(#ribbon-inner-shadow)"
+              strokeWidth="24"
+              strokeLinecap="round"
+              strokeOpacity="0.7"
+              className="blur-[3px]"
+            />
+
+            {/* Layer D: Liquid Gloss Shimmer */}
+            <motion.path
+              d="M 0,0 C 200,-420 620,-420 620,0 C 620,420 200,420 0,0 C -150,300 -450,300 -450,0 C -450,-300 -150,-300 0,0"
+              fill="none"
+              stroke="#ffffff"
+              strokeWidth="5"
+              strokeOpacity="0.35"
+              strokeLinecap="round"
+              strokeDasharray="12 400"
+              animate={{ strokeDashoffset: -2000 }}
+              transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+              className="blur-[1px]"
+            />
+          </svg>
+
+          {/* 4. The Saturn Planet (High-Fidelity) */}
+          <div className="absolute -translate-x-[300px] -translate-y-[150px] z-30 transform-style-preserve-3d">
+            <motion.div 
+              animate={{ 
+                rotateZ: [0, 6, 0],
+                y: [-10, 10, -10]
+              }}
+              transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+              className="relative w-48 h-48"
+            >
+              {/* Glossy Sphere */}
+              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#00f0f0] via-[#0070b0] to-[#010101] shadow-[inset_-25px_-25px_50px_rgba(0,0,0,1),0_0_100px_rgba(0,240,240,0.5)] overflow-hidden">
+                <div className="absolute top-[12%] left-[18%] w-1/2 h-1/2 bg-white/25 rounded-full blur-[25px]" />
+              </div>
+              
+              {/* Dynamic Planet Rings (Chromatic Effect) */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] h-[80px] border-[5px] border-[#00f0f0]/40 rounded-[100%] rotate-[24deg] blur-[0.5px] shadow-[0_0_40px_rgba(0,240,240,0.4)]" />
+              <div className="absolute top-1/2 left-1/2 -translate-x-[50.5%] -translate-y-[50.5%] w-[340px] h-[80px] border border-[#f05060]/20 rounded-[100%] rotate-[24.2deg] blur-[1px]" />
+              
+              {/* Orbital Ring Pulse */}
+              <motion.div 
+                animate={{ rotate: 360 }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[330px] h-[75px] border border-white/20 rounded-[100%] rotate-[24deg] border-dashed"
+              />
+            </motion.div>
+          </div>
         </div>
 
-        {/* Orbiting Logo Particles */}
-        <div className="absolute inset-0 flex items-center justify-center z-40 transform-style-preserve-3d">
-          {particles.map((p) => (
-            <motion.div
-              key={`particle-${p.id}`}
-              className="absolute rounded-full"
-              style={{
-                width: p.size,
-                height: p.size,
-                backgroundColor: p.color,
-                boxShadow: `0 0 ${p.size * 6}px ${p.color}`,
-                top: '50%',
-                left: '50%',
-                marginLeft: p.x,
-                marginTop: p.y,
-                transform: `translateZ(${p.z}px)`,
-                opacity: p.opacity,
-              }}
-              animate={{ 
-                opacity: [p.opacity, p.opacity * 1.5, p.opacity], 
-                scale: [1, 1.4, 1],
-              }}
-              transition={{ 
-                duration: p.duration, 
-                repeat: Infinity, 
-                ease: "easeInOut", 
-                delay: p.delay 
-              }}
-            />
-          ))}
-          
-          {/* Loop Energy Singularities (Asymmetrical) */}
-          <div className="absolute flex items-center justify-center transform-style-preserve-3d">
-             {/* Large Right Singularity */}
-             <div className="absolute translate-x-[280px]">
-                <motion.div 
-                  animate={{ scale: [1, 1.3, 1], opacity: [0.2, 0.5, 0.2] }}
-                  transition={{ duration: 5, repeat: Infinity }}
-                  className="w-80 h-80 bg-[#f05060]/10 rounded-full blur-[100px]"
-                />
-             </div>
-             
-             {/* Small Left Singularity (Behind Planet) */}
-             <div className="absolute -translate-x-[280px]">
-                <motion.div 
-                  animate={{ scale: [0.8, 1.2, 0.8], opacity: [0.2, 0.4, 0.2] }}
-                  transition={{ duration: 4, repeat: Infinity }}
-                  className="w-64 h-64 bg-[#00f0f0]/10 rounded-full blur-[80px]"
-                />
-             </div>
-          </div>
+        {/* 5. Focal Atmospheric Singularities */}
+        <div className="absolute flex items-center justify-center transform-style-preserve-3d pointer-events-none">
+          <div className="absolute translate-x-[350px] w-[1000px] h-[700px] bg-[#f05060]/[0.05] rounded-full blur-[180px]" />
+          <div className="absolute -translate-x-[350px] w-[800px] h-[600px] bg-[#00f0f0]/[0.08] rounded-full blur-[180px]" />
         </div>
       </motion.div>
     </div>
   );
 }
+
+
+
+
+

@@ -59,18 +59,29 @@ export default function Contact() {
                 Establish a direct link with the <span className="text-white font-semibold">Oneverce</span> technical team. We'll synchronize on your mission within 24 hours.
               </p>
 
-              <div className="space-y-6 pt-8 border-t border-white/5">
+              <div className="space-y-8 pt-8 border-t border-white/5">
                 {[
-                  { label: 'Uplink_Email', value: 'contact@oneverce.com', icon: <Mail size={18} className="text-blue-500" /> },
-                  { label: 'Secure_Signal', value: '+91 84012 86822', icon: <Phone size={18} className="text-purple-500" /> }
-                ].map((item, i) => (
-                  <div key={i} className="flex items-center gap-5 group cursor-pointer">
-                    <div className="w-12 h-12 rounded-2xl bg-white/[0.03] border border-white/5 flex items-center justify-center text-zinc-500 group-hover:text-white group-hover:border-white/20 transition-all duration-500">
-                      {item.icon}
+                  { name: 'POOJAN', email: 'poojanshrivastav21@gmail.com', phone: '+91 9023362134', accent: 'purple' },
+                  { name: 'VANSH', email: 'prajapativansh512@gmail.com', phone: '+91 84012 86822', accent: 'blue' }
+                ].map((member, i) => (
+                  <div key={i} className="space-y-4">
+                    <div className="flex items-center gap-3">
+                      <div className={`w-1.5 h-1.5 rounded-full ${member.accent === 'blue' ? 'bg-blue-500' : 'bg-purple-500'}`} />
+                      <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white">{member.name} // FOUNDER</span>
                     </div>
-                    <div>
-                      <div className="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.4em] mb-1 group-hover:text-zinc-400 transition-colors">{item.label}</div>
-                      <div className="text-lg font-bold text-zinc-200 group-hover:text-white transition-colors">{item.value}</div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <a href={`mailto:${member.email}`} className="flex items-center gap-4 group cursor-pointer">
+                        <div className="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/5 flex items-center justify-center text-zinc-500 group-hover:text-white group-hover:border-white/20 transition-all duration-500">
+                          <Mail size={16} />
+                        </div>
+                        <div className="text-sm font-bold text-zinc-400 group-hover:text-white transition-colors lowercase tracking-wider">{member.email}</div>
+                      </a>
+                      <a href={`tel:${member.phone.replace(/\s+/g, '')}`} className="flex items-center gap-4 group cursor-pointer">
+                        <div className="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/5 flex items-center justify-center text-zinc-500 group-hover:text-white group-hover:border-white/20 transition-all duration-500">
+                          <Phone size={16} />
+                        </div>
+                        <div className="text-sm font-bold text-zinc-400 group-hover:text-white transition-colors tracking-wider">{member.phone}</div>
+                      </a>
                     </div>
                   </div>
                 ))}
@@ -83,12 +94,12 @@ export default function Contact() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="glass-card rounded-[3.5rem] overflow-hidden border border-white/5 shadow-2xl"
+              className="glass-card rounded-[2.5rem] md:rounded-[3.5rem] overflow-hidden border border-white/5 shadow-2xl"
             >
-              <div className="p-10 md:p-16 min-h-[500px]">
+              <div className="p-8 md:p-16 min-h-[450px]">
                 {!isSuccess ? (
-                  <form onSubmit={handleSubmit} className="space-y-12">
-                    <div className="flex justify-between items-center mb-16">
+                  <form onSubmit={handleSubmit} className="space-y-10">
+                    <div className="flex justify-between items-center mb-12">
                       <div className="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.4em]">Step {step} of 3</div>
                       <div className="flex gap-2">
                         {[1, 2, 3].map(i => (
@@ -104,26 +115,26 @@ export default function Contact() {
                           initial={{ opacity: 0, x: 20 }}
                           animate={{ opacity: 1, x: 0 }}
                           exit={{ opacity: 0, x: -20 }}
-                          className="space-y-10"
+                          className="space-y-8"
                         >
-                          <div className="space-y-6">
+                          <div className="space-y-4">
                             <label className="text-xs font-bold text-zinc-500 uppercase tracking-widest">Full Name</label>
                             <input
                               type="text"
                               required
                               placeholder="John Doe"
-                              className="w-full bg-white/[0.02] border border-white/10 rounded-2xl px-8 py-6 text-xl focus:border-blue-500/50 outline-none transition-all placeholder:text-zinc-800 text-white"
+                              className="w-full bg-white/[0.02] border border-white/10 rounded-2xl px-6 py-5 text-lg md:text-xl focus:border-blue-500/50 outline-none transition-all placeholder:text-zinc-800 text-white"
                               value={formData.name}
                               onChange={e => setFormData({ ...formData, name: e.target.value })}
                             />
                           </div>
-                          <div className="space-y-6">
+                          <div className="space-y-4">
                             <label className="text-xs font-bold text-zinc-500 uppercase tracking-widest">Email Address</label>
                             <input
                               type="email"
                               required
                               placeholder="john@example.com"
-                              className="w-full bg-white/[0.02] border border-white/10 rounded-2xl px-8 py-6 text-xl focus:border-blue-500/50 outline-none transition-all placeholder:text-zinc-800 text-white"
+                              className="w-full bg-white/[0.02] border border-white/10 rounded-2xl px-6 py-5 text-lg md:text-xl focus:border-blue-500/50 outline-none transition-all placeholder:text-zinc-800 text-white"
                               value={formData.email}
                               onChange={e => setFormData({ ...formData, email: e.target.value })}
                             />
@@ -137,17 +148,17 @@ export default function Contact() {
                           initial={{ opacity: 0, x: 20 }}
                           animate={{ opacity: 1, x: 0 }}
                           exit={{ opacity: 0, x: -20 }}
-                          className="space-y-10"
+                          className="space-y-8"
                         >
-                          <div className="space-y-6">
+                          <div className="space-y-4">
                             <label className="text-xs font-bold text-zinc-500 uppercase tracking-widest">Budget Tier</label>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                               {['$2k - $5k', '$5k - $15k', '$15k+', 'Custom R&D'].map(tier => (
                                 <button
                                   key={tier}
                                   type="button"
                                   onClick={() => setFormData({ ...formData, budget: tier })}
-                                  className={`px-8 py-6 rounded-2xl border text-sm font-bold uppercase tracking-widest transition-all ${
+                                  className={`px-6 py-5 rounded-2xl border text-[10px] md:text-xs font-bold uppercase tracking-widest transition-all ${
                                     formData.budget === tier 
                                     ? 'bg-blue-600 border-blue-500 text-white shadow-xl shadow-blue-500/20' 
                                     : 'bg-white/[0.02] border-white/10 text-zinc-500 hover:border-white/20'
@@ -167,15 +178,15 @@ export default function Contact() {
                           initial={{ opacity: 0, x: 20 }}
                           animate={{ opacity: 1, x: 0 }}
                           exit={{ opacity: 0, x: -20 }}
-                          className="space-y-10"
+                          className="space-y-8"
                         >
-                          <div className="space-y-6">
+                          <div className="space-y-4">
                             <label className="text-xs font-bold text-zinc-500 uppercase tracking-widest">Project Details</label>
                             <textarea
                               required
-                              rows={6}
+                              rows={5}
                               placeholder="Tell us about your project goals..."
-                              className="w-full bg-white/[0.02] border border-white/10 rounded-3xl px-8 py-6 text-xl focus:border-blue-500/50 outline-none transition-all placeholder:text-zinc-800 text-white resize-none"
+                              className="w-full bg-white/[0.02] border border-white/10 rounded-2xl md:rounded-3xl px-6 py-5 text-lg md:text-xl focus:border-blue-500/50 outline-none transition-all placeholder:text-zinc-800 text-white resize-none"
                               value={formData.details}
                               onChange={e => setFormData({ ...formData, details: e.target.value })}
                             />
@@ -184,15 +195,15 @@ export default function Contact() {
                       )}
                     </AnimatePresence>
 
-                    <div className="flex items-center justify-between pt-12">
+                    <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-10">
                       <button
                         type="button"
                         onClick={prevStep}
-                        className={`text-xs font-bold uppercase tracking-widest transition-all ${
+                        className={`text-[10px] font-bold uppercase tracking-[0.3em] transition-all ${
                           step === 1 ? 'opacity-0 pointer-events-none' : 'text-zinc-500 hover:text-white'
                         }`}
                       >
-                        Back
+                        Previous_Phase
                       </button>
 
                       {step < 3 ? (
@@ -200,9 +211,9 @@ export default function Contact() {
                           <button
                             type="button"
                             onClick={nextStep}
-                            className="flex items-center gap-4 bg-white text-black px-12 py-6 rounded-full font-bold uppercase tracking-widest text-xs hover:scale-105 transition-all shadow-2xl"
+                            className="w-full sm:w-auto flex items-center justify-center gap-4 bg-white text-black px-10 py-5 rounded-full font-bold uppercase tracking-widest text-[10px] hover:scale-105 transition-all shadow-2xl"
                           >
-                            Next Step <ArrowUpRight size={16} />
+                            Advance <ArrowUpRight size={14} />
                           </button>
                         </Magnetic>
                       ) : (
@@ -210,12 +221,12 @@ export default function Contact() {
                           <button
                             type="submit"
                             disabled={isTransmitting}
-                            className="flex items-center gap-4 bg-blue-600 text-white px-14 py-6 rounded-full font-bold uppercase tracking-widest text-xs hover:scale-105 transition-all disabled:opacity-50 shadow-2xl"
+                            className="w-full sm:w-auto flex items-center justify-center gap-4 bg-blue-600 text-white px-12 py-5 rounded-full font-bold uppercase tracking-widest text-[10px] hover:scale-105 transition-all disabled:opacity-50 shadow-2xl shadow-blue-500/20"
                           >
                             {isTransmitting ? (
-                              <>Sending... <Loader2 size={16} className="animate-spin" /></>
+                              <>Uplinking... <Loader2 size={14} className="animate-spin" /></>
                             ) : (
-                              <>Send Message <Zap size={16} fill="currentColor" /></>
+                              <>Transmit Signal <Zap size={14} fill="currentColor" /></>
                             )}
                           </button>
                         </Magnetic>
@@ -224,25 +235,25 @@ export default function Contact() {
                   </form>
                 ) : (
                   <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
+                    initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    className="flex flex-col items-center justify-center py-20 text-center space-y-10"
+                    className="flex flex-col items-center justify-center py-12 md:py-20 text-center space-y-8"
                   >
-                    <div className="w-24 h-24 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-400 relative">
+                    <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-400 relative">
                       <div className="absolute inset-0 bg-blue-500/20 blur-3xl rounded-full animate-pulse" />
-                      <CheckCircle2 size={48} />
+                      <CheckCircle2 size={40} className="md:size-[48px]" />
                     </div>
                     <div className="space-y-4">
-                      <h3 className="text-4xl font-bold tracking-tighter text-white">Message Sent</h3>
-                      <p className="text-zinc-500 text-lg font-medium max-w-sm mx-auto">
-                        Your inquiry has been received. We'll get back to you shortly.
+                      <h3 className="text-3xl md:text-4xl font-bold tracking-tighter text-white uppercase">Uplink Success</h3>
+                      <p className="text-zinc-500 text-base md:text-lg font-medium max-w-sm mx-auto">
+                        Your mission profile has been received. Our technical team will synchronize shortly.
                       </p>
                     </div>
                     <button
                       onClick={() => { setIsSuccess(false); setStep(1); }}
-                      className="text-xs font-bold text-blue-400 uppercase tracking-widest hover:text-white transition-colors"
+                      className="text-[10px] font-bold text-blue-400 uppercase tracking-[0.3em] hover:text-white transition-colors"
                     >
-                      Send Another
+                      Establish_New_Link
                     </button>
                   </motion.div>
                 )}
