@@ -47,7 +47,7 @@ export default function Hero() {
       </div>
 
       {/* 2. The Infinity Core (One Flow) */}
-      <div className="absolute inset-0 z-10 opacity-90 scale-110">
+      <div className="absolute inset-0 z-10 opacity-90">
         <InfinityScene mouseX={mouseX} mouseY={mouseY} />
       </div>
 
@@ -102,7 +102,7 @@ export default function Hero() {
             initial={{ opacity: 0, scale: 0.95, filter: 'blur(20px)' }}
             animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
             transition={{ duration: 1.6, ease: "easeOut" }}
-            className="text-5xl sm:text-7xl md:text-9xl lg:text-[12rem] font-bold tracking-tighter text-white select-none relative z-10 leading-[0.9] md:leading-[0.8] drop-shadow-[0_0_40px_rgba(255,255,255,0.15)]"
+            className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-[-0.04em] uppercase text-white select-none relative z-10 leading-[0.85] drop-shadow-[0_0_40px_rgba(255,255,255,0.15)]"
           >
             Oneverce
           </motion.h1>
@@ -112,7 +112,7 @@ export default function Hero() {
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
             transition={{ duration: 2, delay: 0.8, ease: "circOut" }}
-            className="absolute -bottom-4 md:-bottom-6 left-1/2 -translate-x-1/2 w-[90%] md:w-4/5 h-[3px] md:h-[5px] bg-gradient-to-r from-transparent via-[#00f0f0] via-[#9333ea] to-transparent shadow-[0_8px_30px_rgba(0,240,240,0.4)]" 
+            className="absolute -bottom-4 md:-bottom-6 left-1/2 -translate-x-1/2 w-[90%] md:w-4/5 h-[2px] md:h-[4px] bg-gradient-to-r from-transparent via-[#00f0f0] via-[#9333ea] to-transparent shadow-[0_8px_30px_rgba(0,240,240,0.3)]" 
           />
         </div>
 
@@ -121,9 +121,9 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.2, delay: 1.2 }}
-          className="max-w-3xl text-sm sm:text-base md:text-2xl text-white/30 font-light tracking-wide leading-relaxed mb-12 md:mb-20 px-4"
+          className="text-zinc-500 text-sm md:text-lg lg:text-xl max-w-2xl mx-auto leading-relaxed font-medium tracking-tight mb-12"
         >
-          We engineer <span className="text-white/70 font-medium italic">high-fidelity digital infrastructure</span> for organizations that demand total dominance.
+          We engineer <span className="text-white italic">high-fidelity digital infrastructure</span> for organizations that demand total dominance.
         </motion.p>
 
         {/* Action Array */}
