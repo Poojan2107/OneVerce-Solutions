@@ -4,13 +4,25 @@ import Tilt from './Tilt';
 
 const projects = [
   {
+    title: 'ParArc Design Studio',
+    category: 'Architecture · Premium Portfolio',
+    image: '/assets/pararc_studio.png',
+    tech: ['Architecture', 'Interior', 'Landscape', 'Urban'],
+    metrics: { Dialogue: 'Contextual', Form: 'Pure', Response: 'Sustainable' },
+    description: 'High-fidelity architectural showcase for ParArc Design Studio. Engineered to mirror the studio\'s philosophy of "Architecture as a Dialogue," utilizing a surgical grayscale aesthetic and cinematic transitions to highlight contextual masterpieces.',
+    liveLink: 'https://pararcdesignstudio.in/',
+    githubLink: '',
+    accent: 'emerald',
+    accentColor: 'rgb(16,185,129)',
+  },
+  {
     title: 'NeuralCredit',
     category: 'FinTech · Enterprise Platform',
     image: '/assets/neural_credit.png',
     tech: ['React', 'Python', 'Node.js', 'AI Engine'],
     metrics: { verification: '<2s', uptime: '99.9%', alerts: 'Real-time' },
     description: 'Enterprise FinTech command center. Persistent AI integration, biometric verification, and real-time governance controls.',
-    liveLink: '#',
+    liveLink: 'https://neural-credit.onrender.com/',
     githubLink: 'https://github.com/Poojaa2004/NeuralCredit',
     accent: 'blue',
     accentColor: 'rgb(59,130,246)',
@@ -34,7 +46,7 @@ const projects = [
     tech: ['Next.js', 'PostgreSQL', 'Stripe', 'Framer'],
     metrics: { conversion: '4.2x', speed: 'Sub-second', seo: '#1 Local' },
     description: 'Immersive booking platform for luxury outdoor experiences. Engineered for pixel perfection and seamless checkout flows.',
-    liveLink: '#',
+    liveLink: 'https://travelling-tent.onrender.com/',
     githubLink: 'https://github.com/Poojaa2004/Travelling-Tent',
     accent: 'red',
     accentColor: 'rgb(239,68,68)',
@@ -57,24 +69,28 @@ const accentClasses: Record<string, string> = {
   blue: 'bg-blue-500',
   purple: 'bg-purple-500',
   red: 'bg-red-500',
+  emerald: 'bg-emerald-500',
 };
 
 const accentBorderClasses: Record<string, string> = {
   blue: 'border-blue-500/30 group-hover:border-blue-500/60',
   purple: 'border-purple-500/30 group-hover:border-purple-500/60',
   red: 'border-red-500/30 group-hover:border-red-500/60',
+  emerald: 'border-emerald-500/30 group-hover:border-emerald-500/60',
 };
 
 const accentTextClasses: Record<string, string> = {
   blue: 'text-blue-400',
   purple: 'text-purple-400',
   red: 'text-red-400',
+  emerald: 'text-emerald-400',
 };
 
 const accentGlowClasses: Record<string, string> = {
   blue: 'group-hover:shadow-[0_0_60px_rgba(59,130,246,0.08)]',
   purple: 'group-hover:shadow-[0_0_60px_rgba(168,85,247,0.08)]',
   red: 'group-hover:shadow-[0_0_60px_rgba(239,68,68,0.08)]',
+  emerald: 'group-hover:shadow-[0_0_60px_rgba(16,185,129,0.08)]',
 };
 
 export default function FeaturedWork() {

@@ -47,12 +47,12 @@ export default function Hero() {
       </div>
 
       {/* 2. The Infinity Core (One Flow) */}
-      <div className="absolute inset-0 z-10 opacity-90 -translate-x-[2vw]">
+      <div className="absolute inset-0 z-10 opacity-90 -translate-x-[2vw] scale-[0.6] sm:scale-[0.8] md:scale-100 transition-transform duration-1000">
         <InfinityScene mouseX={mouseX} mouseY={mouseY} />
       </div>
 
       {/* 3. Cinematic Interface HUD */}
-      <div className="absolute inset-0 z-20 pointer-events-none p-10 md:pt-40 md:pb-20 md:px-20 hidden sm:flex flex-col justify-between">
+      <div className="absolute inset-0 z-20 pointer-events-none p-10 md:pt-40 md:pb-20 md:px-20 hidden lg:flex flex-col justify-between">
         <div className="flex justify-between items-start opacity-30 uppercase tracking-[0.4em] text-[9px] font-mono">
           <div className="space-y-2">
             <p className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-[#00f0f0] animate-pulse" /> Status: Operational</p>
@@ -80,7 +80,7 @@ export default function Hero() {
       {/* 4. The Hero Content */}
       <motion.div 
         style={{ rotateX, rotateY, x: textX, y: textY }}
-        className="relative z-30 flex flex-col items-center text-center px-6 max-w-7xl mx-auto transform-style-preserve-3d"
+        className="relative z-30 flex flex-col items-center text-center px-6 max-w-7xl mx-auto transform-style-preserve-3d pt-20 md:pt-0"
       >
         
         {/* Identity Badge */}
@@ -88,10 +88,10 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="mb-8 md:mb-12 flex items-center gap-3 px-5 py-2 rounded-full border border-white/10 bg-white/05 backdrop-blur-md shadow-[0_0_30px_rgba(0,0,0,0.5)]"
+          className="mb-6 md:mb-12 flex items-center gap-3 px-4 py-1.5 md:px-5 md:py-2 rounded-full border border-white/10 bg-white/05 backdrop-blur-md shadow-[0_0_30px_rgba(0,0,0,0.5)]"
         >
           <div className="w-1.5 h-1.5 rounded-full bg-[#00f0f0] animate-pulse shadow-[0_0_15px_#00f0f0]" />
-          <span className="text-[8px] md:text-xs font-mono uppercase tracking-[0.4em] md:tracking-[0.6em] text-white/80 whitespace-nowrap">
+          <span className="text-[7px] md:text-xs font-mono uppercase tracking-[0.3em] md:tracking-[0.6em] text-white/80 whitespace-nowrap">
             Next Generation Studio
           </span>
         </motion.div>
@@ -102,7 +102,7 @@ export default function Hero() {
             initial={{ opacity: 0, scale: 0.95, filter: 'blur(20px)' }}
             animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
             transition={{ duration: 1.6, ease: "easeOut" }}
-            className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-[-0.04em] uppercase text-white select-none relative z-10 leading-[0.85] drop-shadow-[0_0_40px_rgba(255,255,255,0.15)]"
+            className="text-4xl sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-[-0.05em] sm:tracking-[-0.04em] uppercase text-white select-none relative z-10 leading-[0.95] md:leading-[0.85] drop-shadow-[0_0_40px_rgba(255,255,255,0.15)]"
           >
             Oneverce
           </motion.h1>
@@ -112,7 +112,7 @@ export default function Hero() {
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
             transition={{ duration: 2, delay: 0.8, ease: "circOut" }}
-            className="absolute -bottom-4 md:-bottom-6 left-1/2 -translate-x-1/2 w-[90%] md:w-4/5 h-[2px] md:h-[4px] bg-gradient-to-r from-transparent via-[#00f0ff] via-[#00ff9d] via-[#ffeb3b] via-[#ff5722] via-[#9c27b0] to-transparent shadow-[0_8px_30px_rgba(0,240,240,0.2)]" 
+            className="absolute -bottom-3 md:-bottom-6 left-1/2 -translate-x-1/2 w-[90%] md:w-4/5 h-[2px] md:h-[4px] bg-gradient-to-r from-transparent via-[#00f0ff] via-[#00ff9d] via-[#ffeb3b] via-[#ff5722] via-[#9c27b0] to-transparent shadow-[0_8px_30px_rgba(0,240,240,0.2)]" 
           />
         </div>
 
@@ -121,7 +121,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.2, delay: 1.2 }}
-          className="text-zinc-500 text-sm md:text-lg lg:text-xl max-w-2xl mx-auto leading-relaxed font-medium tracking-tight mb-12"
+          className="text-zinc-500 text-xs sm:text-sm md:text-lg lg:text-xl max-w-2xl mx-auto leading-relaxed font-medium tracking-tight mb-8 md:mb-12"
         >
           We engineer <span className="text-white italic">high-fidelity digital infrastructure</span> for organizations that demand total dominance.
         </motion.p>
@@ -131,12 +131,12 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.4 }}
-          className="flex flex-col md:flex-row items-center gap-8 md:gap-12 w-full md:w-auto"
+          className="flex flex-col md:flex-row items-center gap-6 md:gap-12 w-full md:w-auto"
         >
           {/* Surgical Industrial Action */}
           <a 
             href="#contact"
-            className="group relative px-10 md:px-14 py-5 md:py-6 overflow-hidden w-full md:w-auto text-center"
+            className="group relative px-8 md:px-14 py-4 md:py-6 overflow-hidden w-full md:w-auto text-center"
           >
             {/* Technical Frame */}
             <div className="absolute inset-0 bg-white group-hover:bg-[#00f0f0] transition-colors duration-500 clip-path-hero-btn" />
