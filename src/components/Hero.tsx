@@ -49,21 +49,15 @@ export default function Hero() {
             </span>
           </div>
 
-          {/* Artistic Typography with Glowing Echo */}
-          <div className="relative mb-12 w-full max-w-4xl mx-auto">
-            {/* Background glowing echo text */}
-            <div className="absolute inset-0 flex flex-col items-center justify-center opacity-30 blur-2xl pointer-events-none select-none mix-blend-screen">
-               <span className="text-transparent font-black" style={{ WebkitTextStroke: '4px #c084fc', fontSize: 'clamp(3rem, 8vw, 8rem)', lineHeight: 0.85 }}>Architecting</span>
-               <span className="text-transparent font-black mt-2" style={{ WebkitTextStroke: '4px #2dd4bf', fontSize: 'clamp(3rem, 8vw, 8rem)', lineHeight: 0.85 }}>Infinity Flow</span>
-            </div>
-
-            <h1 className="relative z-10 perspective-2000 uppercase text-center drop-shadow-2xl" style={{ wordBreak: 'keep-all' }}>
+          {/* Artistic Typography */}
+          <div className="relative mb-12 w-full max-w-5xl mx-auto px-4">
+            <h1 className="perspective-2000 uppercase text-center drop-shadow-2xl" style={{ wordBreak: 'keep-all' }}>
               <motion.span 
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 1.2 }}
                 className="text-white block font-black"
-                style={{ fontSize: 'clamp(3rem, 8vw, 8rem)', letterSpacing: '-0.02em', lineHeight: 0.9 }}
+                style={{ fontSize: 'clamp(2rem, 6vw, 5rem)', letterSpacing: '-0.02em', lineHeight: 1.0 }}
               >
                 Architecting
               </motion.span>
@@ -72,7 +66,7 @@ export default function Hero() {
                 animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
                 transition={{ delay: 0.4, duration: 1.2, type: "spring" }}
                 className="bg-gradient-to-r from-fuchsia-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent block font-black mt-2"
-                style={{ fontSize: 'clamp(3rem, 8vw, 8rem)', letterSpacing: '-0.03em', lineHeight: 0.9, wordBreak: 'normal' }}
+                style={{ fontSize: 'clamp(2.5rem, 7vw, 6rem)', letterSpacing: '-0.03em', lineHeight: 1.0, wordBreak: 'normal' }}
               >
                 Infinity Flow
               </motion.span>
