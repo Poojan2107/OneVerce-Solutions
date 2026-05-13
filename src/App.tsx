@@ -3,7 +3,6 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Problem from './components/Problem';
 import Services from './components/Services';
-import AuditTool from './components/AuditTool';
 import FeaturedWork from './components/FeaturedWork';
 import CTA from './components/CTA';
 import Team from './components/Team';
@@ -73,10 +72,6 @@ export default function App() {
 
                 <RevealSection>
                   <Services />
-                </RevealSection>
-                
-                <RevealSection>
-                  <AuditTool />
                 </RevealSection>
                 
                 <RevealSection>
