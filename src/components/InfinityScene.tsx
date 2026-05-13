@@ -71,20 +71,20 @@ export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
             className="absolute inset-0 w-full h-full overflow-visible mix-blend-screen"
           >
             <defs>
-              {/* Official Full Spectrum Rainbow Gradient */}
-              <linearGradient id="ribbon-grad-v1" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#00f0ff" /> {/* Cyan */}
-                <stop offset="20%" stopColor="#00ff9d" /> {/* Teal/Green */}
-                <stop offset="40%" stopColor="#ffeb3b" /> {/* Yellow */}
-                <stop offset="60%" stopColor="#ff5722" /> {/* Orange/Red */}
-                <stop offset="80%" stopColor="#e91e63" /> {/* Pink */}
-                <stop offset="100%" stopColor="#9c27b0" /> {/* Purple */}
+              {/* Official Full Spectrum Rainbow Gradient - Spatial Precision */}
+              <linearGradient id="ribbon-grad-v1" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#00f0ff" /> {/* Left: Cyan */}
+                <stop offset="25%" stopColor="#00ffbb" /> {/* Left-Mid: Teal/Green */}
+                <stop offset="50%" stopColor="#ffea00" /> {/* Center-Top: Yellow */}
+                <stop offset="75%" stopColor="#ff5a00" /> {/* Right-Top: Orange/Red */}
+                <stop offset="100%" stopColor="#d600ff" /> {/* Right-Bottom: Purple/Pink */}
               </linearGradient>
 
               {/* Inner Depth Gradient (Shadow Side) */}
-              <linearGradient id="ribbon-inner-shadow" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#001520" />
-                <stop offset="100%" stopColor="#150020" />
+              <linearGradient id="ribbon-inner-shadow" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#002a35" />
+                <stop offset="50%" stopColor="#352a00" />
+                <stop offset="100%" stopColor="#2a0035" />
               </linearGradient>
 
               <filter id="ribbon-glow-v2" x="-50%" y="-50%" width="200%" height="200%">
@@ -161,8 +161,8 @@ export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
               className="relative w-48 h-48"
             >
               {/* Glossy Sphere */}
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#00f0f0] via-[#0070b0] to-[#010101] shadow-[inset_-25px_-25px_50px_rgba(0,0,0,1),0_0_100px_rgba(0,240,240,0.5)] overflow-hidden">
-                <div className="absolute top-[12%] left-[18%] w-1/2 h-1/2 bg-white/25 rounded-full blur-[25px]" />
+              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#00f0ff] via-[#00b0d0] to-[#010101] shadow-[inset_-25px_-25px_50px_rgba(0,0,0,1),0_0_100px_rgba(0,240,255,0.4)] overflow-hidden">
+                <div className="absolute top-[12%] left-[18%] w-1/2 h-1/2 bg-white/30 rounded-full blur-[20px]" />
               </div>
               
               {/* Dynamic Planet Rings (Chromatic Effect) */}
