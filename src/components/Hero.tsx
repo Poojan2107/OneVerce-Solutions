@@ -34,7 +34,7 @@ export default function Hero() {
       <div 
         className="absolute inset-0 z-[1] pointer-events-none transition-opacity duration-500 opacity-50 group-hover:opacity-100"
         style={{
-          background: `radial-gradient(1200px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(59, 130, 246, 0.08), transparent 40%)`
+          background: `radial-gradient(1200px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(0, 190, 248, 0.08), transparent 40%)`
         }}
       />
 
@@ -66,11 +66,11 @@ export default function Hero() {
             
             {/* Ambient Inner Lighting for Glass Panel */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-blue-500/30 to-transparent" />
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-[#00bef8]/30 to-transparent" />
             <div className="absolute inset-0 bg-gradient-to-b from-white/[0.03] to-transparent pointer-events-none" />
 
-            <div className="inline-flex items-center gap-2.5 px-6 py-2.5 rounded-full bg-black/40 border border-white/10 backdrop-blur-xl mb-6 md:mb-10 group/badge shadow-[0_0_30px_rgba(59,130,246,0.1)]">
-               <Zap size={14} className="text-blue-400 group-hover/badge:scale-110 transition-transform duration-300" />
+            <div className="inline-flex items-center gap-2.5 px-6 py-2.5 rounded-full bg-black/40 border border-white/10 backdrop-blur-xl mb-6 md:mb-10 group/badge shadow-[0_0_30px_rgba(0,190,248,0.1)]">
+               <Zap size={14} className="text-[#00bef8] group-hover/badge:scale-110 transition-transform duration-300" />
                <span className="text-zinc-300 font-medium uppercase tracking-[0.3em] text-[10px]">
                  Architecture By <span className="text-white font-bold">Oneverce</span>
                </span>
@@ -84,8 +84,13 @@ export default function Hero() {
                 Engineering
               </motion.span>
               <motion.span 
-                className="bg-gradient-to-r from-blue-300 via-indigo-300 to-cyan-300 bg-clip-text text-transparent block font-black mt-2"
-                style={{ fontSize: 'clamp(3rem, 7vw, 7rem)', letterSpacing: '-0.03em', lineHeight: 0.9 }}
+                className="bg-clip-text text-transparent block font-black mt-2"
+                style={{ 
+                  backgroundImage: 'linear-gradient(to right, #007fa8, #00bef8, #fcfd79, #00bef8)',
+                  fontSize: 'clamp(3rem, 7vw, 7rem)', 
+                  letterSpacing: '-0.03em', 
+                  lineHeight: 0.9 
+                }}
               >
                 The Infinite
               </motion.span>
@@ -95,7 +100,7 @@ export default function Hero() {
             <div className="relative w-full h-[250px] md:h-[400px] -mt-8 md:-mt-12 -mb-6 md:-mb-10 z-10 flex items-center justify-center pointer-events-auto">
                <InfinityScene />
                {/* Center glowing core to anchor the logo */}
-               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-blue-600/15 rounded-full blur-[60px] animate-pulse" />
+               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-[#00bef8]/15 rounded-full blur-[60px] animate-pulse" />
             </div>
 
             <p className="text-zinc-400 text-lg md:text-xl leading-relaxed font-normal tracking-wide max-w-2xl text-center relative z-30 mb-10">
@@ -113,7 +118,7 @@ export default function Hero() {
                 </button>
               </Magnetic>
               <Magnetic>
-                <button className="w-16 h-16 rounded-full border border-white/20 bg-black/40 backdrop-blur-xl flex items-center justify-center text-white hover:bg-white hover:text-black hover:scale-110 transition-all duration-500 shadow-[0_0_30px_rgba(59,130,246,0.2)] group/play relative">
+                <button className="w-16 h-16 rounded-full border border-white/20 bg-black/40 backdrop-blur-xl flex items-center justify-center text-white hover:bg-white hover:text-black hover:scale-110 transition-all duration-500 shadow-[0_0_30px_rgba(0,190,248,0.2)] group/play relative">
                   <div className="w-0 h-0 border-t-[6px] border-t-transparent border-l-[10px] border-l-current border-b-[6px] border-b-transparent ml-0.5 z-10" />
                 </button>
               </Magnetic>
