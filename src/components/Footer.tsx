@@ -54,7 +54,6 @@ export default function Footer() {
               <ul className="space-y-4 text-[10px] font-bold uppercase text-zinc-400 tracking-widest">
                 <li><a href="#services" className="hover:text-white transition-colors">Capabilities</a></li>
                 <li><a href="#work" className="hover:text-white transition-colors">Work</a></li>
-                <li><a href="#audit" className="hover:text-white transition-colors">Audit</a></li>
                 <li><a href="#team" className="hover:text-white transition-colors">Team</a></li>
               </ul>
             </div>
