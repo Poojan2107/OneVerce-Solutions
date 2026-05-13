@@ -17,13 +17,14 @@ import Stats from './components/Stats';
 import WhyChooseUs from './components/WhyChooseUs';
 import Process from './components/Process';
 import SocialProof from './components/SocialProof';
+import SmoothScroll from './components/SmoothScroll';
 
 const RevealSection = ({ children, className }: { children: React.ReactNode, className?: string }) => (
   <motion.div
-    initial={{ opacity: 0, y: 50 }}
+    initial={{ opacity: 0, y: 40 }}
     whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true, margin: "-100px" }}
-    transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+    viewport={{ once: true, margin: "-15%" }}
+    transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
     style={{ willChange: 'transform, opacity' }}
     className={className}
   >
@@ -34,72 +35,76 @@ const RevealSection = ({ children, className }: { children: React.ReactNode, cla
 export default function App() {
   return (
     <div className="relative min-h-screen bg-[#050505] text-white overflow-x-hidden selection:bg-white/10">
+      <SmoothScroll />
+      
       {/* Persistent System Overlays */}
       <Spotlight />
       <CustomCursor />
       <ScrollToTop />
       <div className="vignette" />
       <div className="fixed inset-0 pointer-events-none bg-noise opacity-5 z-[100] mix-blend-overlay" />
-      <div className="fixed inset-0 pointer-events-none bg-scanlines opacity-20 z-[100]" />
+      <div className="fixed inset-0 pointer-events-none bg-scanlines opacity-10 z-[100]" />
       
       <div className="relative z-10">
         <Navbar />
         <main>
           <AnimatePresence mode="wait">
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1 }}
+              initial={{ opacity: 0, scale: 1.05 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
             >
               <Hero />
               
-              <RevealSection>
-                <Stats />
-              </RevealSection>
+              <div className="space-y-0">
+                <RevealSection>
+                  <Stats />
+                </RevealSection>
 
-              <RevealSection>
-                <Problem />
-              </RevealSection>
-              
-              <RevealSection>
-                <WhyChooseUs />
-              </RevealSection>
+                <RevealSection>
+                  <Problem />
+                </RevealSection>
+                
+                <RevealSection>
+                  <WhyChooseUs />
+                </RevealSection>
 
-              <RevealSection>
-                <Services />
-              </RevealSection>
-              
-              <RevealSection>
-                <AuditTool />
-              </RevealSection>
-              
-              <RevealSection>
-                <Process />
-              </RevealSection>
+                <RevealSection>
+                  <Services />
+                </RevealSection>
+                
+                <RevealSection>
+                  <AuditTool />
+                </RevealSection>
+                
+                <RevealSection>
+                  <Process />
+                </RevealSection>
 
-              <RevealSection>
-                <FeaturedWork />
-              </RevealSection>
-              
-              <RevealSection>
-                <SocialProof />
-              </RevealSection>
+                <RevealSection>
+                  <FeaturedWork />
+                </RevealSection>
+                
+                <RevealSection>
+                  <SocialProof />
+                </RevealSection>
 
-              <RevealSection>
-                <CTA />
-              </RevealSection>
-              
-              <RevealSection>
-                <Team />
-              </RevealSection>
-              
-              <RevealSection>
-                <FAQ />
-              </RevealSection>
-              
-              <RevealSection>
-                <Contact />
-              </RevealSection>
+                <RevealSection>
+                  <CTA />
+                </RevealSection>
+                
+                <RevealSection>
+                  <Team />
+                </RevealSection>
+                
+                <RevealSection>
+                  <FAQ />
+                </RevealSection>
+                
+                <RevealSection>
+                  <Contact />
+                </RevealSection>
+              </div>
             </motion.div>
           </AnimatePresence>
         </main>

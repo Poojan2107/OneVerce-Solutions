@@ -8,8 +8,7 @@ export default function Team() {
       name: 'Vansh Prajapati',
       role: 'Founding Engineer',
       specialization: 'Digital Architecture',
-      image: '/assets/vansh.png',
-      bio: 'B.Tech AI Engineer architecting high-velocity conversion engines through engineered automation and custom logic.',
+      bio: 'Architect of high-velocity conversion engines, blending technical logic with surgical precision to dominate digital spaces.',
       accent: 'blue',
       social: [
         { label: 'LinkedIn', href: 'https://www.linkedin.com/in/vansh-prajapati-6a1b2b2b1/' },
@@ -20,8 +19,7 @@ export default function Team() {
       name: 'Poojan Shrivastav',
       role: 'Founding Architect',
       specialization: 'Experience Strategy',
-      image: '/assets/poojan.png',
-      bio: 'B.Tech AI Engineer focused on the intersection of technical fidelity and conversion-optimized digital experiences.',
+      bio: 'Master of experience strategy, synthesizing aesthetic authority with algorithmic performance to build the next generation of digital infrastructure.',
       accent: 'purple',
       social: [
         { label: 'LinkedIn', href: 'https://www.linkedin.com/in/poojan-shrivastav-6a1b2b2b1/' },
@@ -71,28 +69,18 @@ export default function Team() {
             >
               <Tilt>
                 <div className={`glass-card p-10 md:p-14 rounded-[3rem] border border-white/5 transition-all duration-700 h-full flex flex-col group/card preserve-3d relative overflow-hidden ${
-                  member.accent === 'blue' ? 'hover:border-blue-500/30' : 'hover:border-purple-500/30'
-                }`}>
+                   member.accent === 'blue' ? 'hover:border-blue-500/30' : 'hover:border-purple-500/30'
+                 }`}>
                   {/* Decorative Industrial Elements */}
                   <div className="absolute top-0 right-0 w-32 h-32 bg-blueprint opacity-10 pointer-events-none" />
                   <div className="absolute bottom-0 left-0 w-24 h-24 border-l border-b border-white/5 pointer-events-none" />
                   
-                  <div className="flex flex-col md:flex-row items-start md:items-center gap-8 mb-16 relative">
-                    <div className="relative group/avatar flex-shrink-0">
-                      <div className={`absolute -inset-2 rounded-[2.5rem] blur-xl opacity-0 group-hover/card:opacity-20 transition-opacity duration-700 ${
-                        member.accent === 'blue' ? 'bg-blue-500' : 'bg-purple-500'
-                      }`} />
-                      <div className="w-32 h-32 rounded-[2.2rem] overflow-hidden border border-white/10 relative z-10 bg-zinc-950">
-                        <img src={member.image} alt={member.name} className="w-full h-full object-cover grayscale contrast-125 group-hover/card:grayscale-0 group-hover/card:contrast-100 transition-all duration-700 opacity-70 group-hover/card:opacity-100" />
-                        <div className="absolute inset-0 bg-scanlines opacity-20 pointer-events-none" />
-                      </div>
-                    </div>
-                    
+                  <div className="flex flex-col items-start gap-4 mb-16 relative">
                     <div className="space-y-2">
                       <div className={`text-[10px] font-bold uppercase tracking-[0.5em] ${
                         member.accent === 'blue' ? 'text-blue-500' : 'text-purple-500'
                       }`}>{member.role}</div>
-                      <h3 className="text-2xl md:text-3xl lg:text-4xl font-black tracking-tighter text-white uppercase leading-[0.95] break-words">{member.name}</h3>
+                      <h3 className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tighter text-white uppercase leading-[0.95] break-words">{member.name}</h3>
                     </div>
                   </div>
 

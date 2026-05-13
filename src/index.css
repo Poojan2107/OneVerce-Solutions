@@ -206,3 +206,22 @@ body::after {
 .animate-spin-slow {
   animation: spin-slow 20s linear infinite;
 }
+
+@layer utilities {
+  .clip-path-hero-btn {
+    clip-path: polygon(
+      0% 20%, 
+      5% 0%, 
+      95% 0%, 
+      100% 20%, 
+      100% 80%, 
+      95% 100%, 
+      5% 100%, 
+      0% 80%
+    );
+  }
+
+  .glow-sm {
+    text-shadow: 0 0 10px currentColor;
+  }
+}

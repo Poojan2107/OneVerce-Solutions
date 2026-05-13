@@ -1,150 +1,169 @@
+import { motion, useMotionValue, useSpring, useTransform } from 'motion/react';
 import { useEffect, useRef } from 'react';
-import { motion } from 'motion/react';
-import { ArrowRight, Zap, Sparkles } from 'lucide-react';
-import LogoScene from './LogoScene';
 import InfinityScene from './InfinityScene';
-import Magnetic from './Magnetic';
 
 export default function Hero() {
-  const sectionRef = useRef<HTMLElement>(null);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
 
-  // Dynamic Spotlight Effect tracking mouse movement
+  const springX = useSpring(mouseX, { stiffness: 100, damping: 30 });
+  const springY = useSpring(mouseY, { stiffness: 100, damping: 30 });
+
+  const rotateX = useTransform(springY, [-500, 500], [5, -5]);
+  const rotateY = useTransform(springX, [-500, 500], [-5, 5]);
+  const textX = useTransform(springX, [-500, 500], [8, -8]);
+  const textY = useTransform(springY, [-500, 500], [8, -8]);
+
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      if (!sectionRef.current) return;
-      const { clientX, clientY } = e;
-      const { left, top } = sectionRef.current.getBoundingClientRect();
-      const x = clientX - left;
-      const y = clientY - top;
-      sectionRef.current.style.setProperty('--mouse-x', `${x}px`);
-      sectionRef.current.style.setProperty('--mouse-y', `${y}px`);
+      mouseX.set(e.clientX - window.innerWidth / 2);
+      mouseY.set(e.clientY - window.innerHeight / 2);
     };
-
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
+  }, [mouseX, mouseY]);
 
   return (
-    <section 
-      id="home" 
-      ref={sectionRef}
-      className="min-h-screen relative flex items-center justify-center pt-32 pb-32 overflow-hidden bg-[#050505] group"
-    >
-      {/* Background Layer: 3D Infinity Animation */}
-      <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none overflow-hidden scale-110">
-        <div className="absolute inset-0 bg-black/40 z-10" /> {/* Subtle overlay for text contrast */}
+    <section className="relative min-h-screen w-full bg-[#020202] flex flex-col items-center justify-center overflow-hidden">
+      {/* 0. Cinematic Noise Grain Overlay */}
+      <div className="absolute inset-0 z-50 pointer-events-none opacity-[0.03] mix-blend-overlay">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+          <filter id="noiseFilter">
+            <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
+          </filter>
+          <rect width="100%" height="100%" filter="url(#noiseFilter)" />
+        </svg>
+      </div>
+
+      {/* 1. Surgical Infrastructure Grid */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
+        
+        {/* Technical Perspective Floor */}
+        <div 
+          className="absolute bottom-0 w-full h-[45vh] bg-[linear-gradient(to_right,#00f0f003_1px,transparent_1px),linear-gradient(to_bottom,#00f0f003_1px,transparent_1px)] bg-[size:60px_60px]" 
+          style={{ transform: 'perspective(1200px) rotateX(72deg) scale(2.8)', transformOrigin: 'bottom' }}
+        />
+      </div>
+
+      {/* 2. The Infinity Core (One Flow) */}
+      <div className="absolute inset-0 z-10 opacity-90 scale-110">
         <InfinityScene />
       </div>
 
-      {/* Dynamic Spotlight that follows the mouse */}
-      <div 
-        className="absolute inset-0 z-[1] pointer-events-none transition-opacity duration-500 opacity-50 group-hover:opacity-100"
-        style={{
-          background: `radial-gradient(1200px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(0, 240, 240, 0.05), transparent 40%)`
-        }}
-      />
+      {/* 3. Cinematic Interface HUD */}
+      <div className="absolute inset-0 z-20 pointer-events-none p-6 md:p-20 hidden sm:flex flex-col justify-between">
+        <div className="flex justify-between items-start opacity-40 uppercase tracking-[0.4em] text-[9px] font-mono">
+          <div className="space-y-2">
+            <p className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-[#00f0f0] animate-pulse" /> Status: Operational</p>
+            <p className="text-white/40">Core_Engine: Neural_X1</p>
+          </div>
+          <div className="text-right space-y-1">
+            <p className="text-[#00f0f0]">Security_Auth: Passed</p>
+            <p className="opacity-50">V_024.9.1</p>
+          </div>
+        </div>
 
-      {/* Massive Hollow Background Text - Drifting slightly */}
+        <div className="flex justify-between items-end opacity-40 uppercase tracking-[0.4em] text-[9px] font-mono">
+          <div className="space-y-1">
+            <p>Lat: 0.002ms // Flux: Stable</p>
+            <p className="text-white/40 font-bold">Systems Architecture Studio</p>
+          </div>
+          <div className="relative group pointer-events-auto cursor-none">
+             <div className="border border-white/20 px-4 py-2 backdrop-blur-xl hover:border-[#00f0f0] transition-all duration-500 group-hover:bg-[#00f0f0]/10">
+               <p className="group-hover:text-white transition-colors">Venture_Access_Protocol</p>
+             </div>
+          </div>
+        </div>
+      </div>
+
+      {/* 4. The Hero Content */}
       <motion.div 
-        animate={{ x: [-10, 10, -10], y: [-5, 5, -5] }}
-        transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-        className="absolute inset-0 flex items-center justify-center z-[2] pointer-events-none select-none overflow-hidden"
+        style={{ rotateX, rotateY, x: textX, y: textY }}
+        className="relative z-30 flex flex-col items-center text-center px-6 max-w-7xl mx-auto pt-32 md:pt-48 transform-style-preserve-3d"
       >
-        <h2 
-          className="text-transparent font-black whitespace-nowrap opacity-[0.03] mix-blend-overlay"
-          style={{ 
-            fontSize: 'clamp(15rem, 40vw, 45rem)', 
-            WebkitTextStroke: '1px rgba(255,255,255,0.8)',
-            transform: 'rotate(-5deg)'
-          }}
+        
+        {/* Identity Badge */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="mb-8 md:mb-12 flex items-center gap-3 px-5 py-2 rounded-full border border-white/10 bg-white/05 backdrop-blur-md shadow-[0_0_30px_rgba(0,0,0,0.5)]"
         >
-          ONEVERCE
-        </h2>
+          <div className="w-1.5 h-1.5 rounded-full bg-[#00f0f0] animate-pulse shadow-[0_0_15px_#00f0f0]" />
+          <span className="text-[8px] md:text-xs font-mono uppercase tracking-[0.4em] md:tracking-[0.6em] text-white/80 whitespace-nowrap">
+            Next Generation Studio
+          </span>
+        </motion.div>
+
+        {/* Primary Headline */}
+        <div className="relative mb-6 md:mb-10 group">
+          <motion.h1
+            initial={{ opacity: 0, scale: 0.95, filter: 'blur(20px)' }}
+            animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+            transition={{ duration: 1.6, ease: "easeOut" }}
+            className="text-5xl sm:text-7xl md:text-9xl lg:text-[12rem] font-bold tracking-tighter text-white select-none relative z-10 leading-[0.9] md:leading-[0.8] drop-shadow-[0_0_40px_rgba(255,255,255,0.15)]"
+          >
+            Oneverce
+          </motion.h1>
+          
+          {/* Vibrant Logo Underline */}
+          <motion.div 
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 2, delay: 0.8, ease: "circOut" }}
+            className="absolute -bottom-4 md:-bottom-6 left-1/2 -translate-x-1/2 w-[90%] md:w-4/5 h-[3px] md:h-[5px] bg-gradient-to-r from-transparent via-[#00f0f0] via-[#9333ea] via-[#f05060] via-[#f09010] to-transparent shadow-[0_8px_30px_rgba(0,240,240,0.4)]" 
+          />
+        </div>
+
+        {/* Supporting Narrative */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.2, delay: 1.2 }}
+          className="max-w-3xl text-sm sm:text-base md:text-2xl text-white/30 font-light tracking-wide leading-relaxed mb-12 md:mb-20 px-4"
+        >
+          We engineer <span className="text-white/70 font-medium italic">high-fidelity digital infrastructure</span> for organizations that demand total dominance.
+        </motion.p>
+
+        {/* Action Array */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.4 }}
+          className="flex flex-col md:flex-row items-center gap-8 md:gap-12 w-full md:w-auto"
+        >
+          {/* Surgical Industrial Action */}
+          <a 
+            href="#contact"
+            className="group relative px-10 md:px-14 py-5 md:py-6 overflow-hidden w-full md:w-auto text-center"
+          >
+            {/* Technical Frame */}
+            <div className="absolute inset-0 bg-white group-hover:bg-[#00f0f0] transition-colors duration-500 clip-path-hero-btn" />
+            
+            {/* Internal Scanning Beam */}
+            <motion.div 
+              animate={{ x: ['-100%', '200%'] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+              className="absolute inset-0 bg-gradient-to-r from-transparent via-black/10 to-transparent skew-x-12"
+            />
+
+            <span className="relative z-10 text-black font-black text-[10px] md:text-xs tracking-[0.4em] uppercase">
+              Initiate Venture
+            </span>
+          </a>
+          
+          <button className="group flex items-center justify-center gap-4 md:gap-5 text-white/20 hover:text-white transition-all duration-500 uppercase tracking-[0.3em] md:tracking-[0.4em] text-[9px] md:text-[10px] font-bold font-mono">
+            <span className="w-12 md:w-16 h-[1px] bg-white/10 group-hover:w-20 md:group-hover:w-24 group-hover:bg-[#00f0f0] transition-all duration-700" />
+            Sector_Archive // 024
+          </button>
+        </motion.div>
       </motion.div>
 
-      <div className="max-w-7xl mx-auto px-4 md:px-12 relative z-10 w-full flex flex-col items-center text-center">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-          className="w-full"
-        >
-          {/* Main Content Overlay */}
-          <div className="relative flex flex-col items-center justify-center w-full py-20">
-            
-            {/* Top Label with glow */}
-            <motion.div 
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 1 }}
-              className="inline-flex items-center gap-2.5 px-6 py-2.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-xl mb-8 group/badge shadow-[0_0_30px_rgba(0,240,240,0.1)]"
-            >
-               <Zap size={14} className="text-[#00f0f0] animate-pulse" />
-               <span className="text-zinc-400 font-medium uppercase tracking-[0.4em] text-[10px]">
-                 Architecture By <span className="text-white font-bold">Oneverce</span>
-               </span>
-            </motion.div>
-            
-            <h1 className="uppercase text-center mb-8 relative z-20 pointer-events-none" style={{ wordBreak: 'keep-all' }}>
-              <motion.span 
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                className="text-white block font-black mb-2"
-                style={{ fontSize: 'clamp(3rem, 8vw, 8rem)', letterSpacing: '-0.02em', lineHeight: 0.85 }}
-              >
-                Engineering
-              </motion.span>
-              <motion.span 
-                initial={{ opacity: 0, y: 60 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.8, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                className="bg-clip-text text-transparent block font-black pb-4"
-                style={{ 
-                  backgroundImage: 'linear-gradient(to right, #00f0f0, #0070b0, #f05060, #f09010, #f0f070)',
-                  fontSize: 'clamp(4rem, 10vw, 11rem)', 
-                  letterSpacing: '-0.04em', 
-                  lineHeight: 0.85,
-                  filter: 'drop-shadow(0 0 30px rgba(240,80,96,0.3))'
-                }}
-              >
-                The Infinite
-              </motion.span>
-            </h1>
-
-            <motion.p 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.2, duration: 1 }}
-              className="text-zinc-400 text-lg md:text-2xl leading-relaxed font-light tracking-wide max-w-3xl text-center relative z-30 mb-12"
-            >
-              We engineer digital infrastructure designed for <span className="text-white font-bold">limitless scale</span>. 
-              We architect your brand's universe through surgical technical precision.
-            </motion.p>
-            
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.4, duration: 1 }}
-              className="flex items-center justify-center relative z-30"
-            >
-              <Magnetic>
-                <button 
-                  onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="px-14 py-6 bg-white text-black rounded-full font-bold text-sm hover:scale-105 transition-all active:scale-95 shadow-[0_0_50px_rgba(255,255,255,0.3)] flex items-center gap-4 group/btn relative overflow-hidden"
-                >
-                  <span className="relative z-10 uppercase tracking-[0.25em] text-[11px] font-black">Initialize Project</span>
-                  <ArrowRight size={18} className="relative z-10 group-hover/btn:translate-x-2 transition-transform duration-500" />
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-black/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-                </button>
-              </Magnetic>
-            </motion.div>
-
-          </div>
-        </motion.div>
-      </div>
-      {/* Atmospheric Bottom Mask */}
-      <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-[#050505] via-[#050505]/50 to-transparent pointer-events-none z-[5]" />
+      {/* Atmospheric Light Leaks (Cinematic Bloom) */}
+      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#0070b0]/05 rounded-full blur-[200px] mix-blend-overlay pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[800px] h-[800px] bg-[#f05060]/05 rounded-full blur-[200px] mix-blend-overlay pointer-events-none" />
     </section>
   );
 }
+

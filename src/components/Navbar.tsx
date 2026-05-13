@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Menu, X, Terminal, Cpu, Zap, ArrowRight } from 'lucide-react';
+import { Menu, X, ArrowRight } from 'lucide-react';
 import Magnetic from './Magnetic';
 
 const navLinks = [
@@ -16,7 +16,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 50);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -24,11 +24,20 @@ export default function Navbar() {
 
   return (
     <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
-        isScrolled ? 'py-4 bg-[#050505]/80 backdrop-blur-2xl border-b border-white/[0.05]' : 'py-8 bg-transparent'
+        className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-700 ease-[0.16,1,0.3,1] ${
+        isScrolled ? 'py-4' : 'py-8'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
+      {/* Surgical Background Frame */}
+      <div 
+        className={`absolute inset-0 transition-all duration-700 ease-[0.16,1,0.3,1] ${
+          isScrolled 
+            ? 'bg-[#050505]/40 backdrop-blur-2xl border-b border-white/[0.05] opacity-100' 
+            : 'opacity-0 pointer-events-none'
+        }`} 
+      />
+
+      <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between relative z-10">
         <Magnetic>
           <a href="#home" className="flex items-center gap-4 group">
             <div className="relative">
@@ -36,34 +45,56 @@ export default function Navbar() {
                  <img 
                    src="https://res.cloudinary.com/daheghidk/image/upload/v1775229314/logooneverce_l3ckqq.jpg" 
                    alt="Oneverce" 
-                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                 />
+                 {/* Internal scanning light on logo */}
+                 <motion.div 
+                    animate={{ y: ['-100%', '100%'] }}
+                    transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                    className="absolute inset-0 bg-gradient-to-b from-transparent via-[#00f0f0]/20 to-transparent pointer-events-none"
                  />
               </div>
             </div>
-            <span className="text-2xl font-bold tracking-tighter uppercase text-white">Oneverce</span>
+            <div className="flex flex-col">
+              <span className="text-xl font-bold tracking-tighter uppercase text-white leading-none">Oneverce</span>
+              <span className="text-[7px] uppercase tracking-[0.6em] text-[#00f0f0] font-mono opacity-60">Systems_Studio</span>
+            </div>
           </a>
         </Magnetic>
 
         {/* Desktop Links */}
-        <div className="hidden md:flex items-center gap-12">
+        <div className="hidden md:flex items-center gap-8 flex-shrink-0">
           {navLinks.map((link) => (
             <Magnetic key={link.name}>
               <a
                 href={link.href}
-                className="text-[10px] font-bold text-zinc-500 hover:text-white uppercase tracking-[0.4em] transition-all relative group py-2"
+                className="text-[9px] font-bold text-white/40 hover:text-white uppercase tracking-[0.5em] transition-all relative group py-2 whitespace-nowrap"
               >
                 {link.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-px bg-white group-hover:w-full transition-all duration-500" />
+                <span className="absolute -bottom-1 left-0 w-0 h-px bg-[#00f0f0] group-hover:w-full transition-all duration-500 shadow-[0_0_8px_#00f0f0]" />
               </a>
             </Magnetic>
           ))}
+          
           <Magnetic>
             <a
               href="#contact"
-              className="px-8 py-3 bg-white text-black text-[10px] font-bold uppercase tracking-widest hover:scale-105 transition-all rounded-full flex items-center gap-2 shadow-2xl ml-4"
+              className="group relative px-8 py-3 overflow-hidden rounded-full transition-transform hover:scale-105 active:scale-95 flex-shrink-0 whitespace-nowrap"
             >
-              Start Project
-              <ArrowRight size={14} />
+              {/* Technical Button Frame */}
+              <div className="absolute inset-0 bg-white group-hover:bg-[#00f0f0] transition-colors duration-500" />
+              
+              {/* Internal Scan Beam */}
+              <motion.div 
+                animate={{ x: ['-100%', '200%'] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-black/10 to-transparent skew-x-12"
+              />
+
+              <div className="relative flex items-center gap-2 text-black text-[9px] font-black uppercase tracking-widest whitespace-nowrap">
+                Initiate Project
+                <ArrowRight size={12} strokeWidth={3} />
+              </div>
             </a>
           </Magnetic>
         </div>
@@ -81,17 +112,18 @@ export default function Navbar() {
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="absolute top-full left-0 right-0 bg-[#050505]/95 backdrop-blur-3xl border-b border-white/[0.05] overflow-hidden md:hidden"
+            initial={{ opacity: 0, y: -20, filter: 'blur(10px)' }}
+            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            exit={{ opacity: 0, y: -20, filter: 'blur(10px)' }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="absolute top-full left-0 right-0 bg-[#050505]/95 backdrop-blur-3xl border-b border-white/[0.05] overflow-hidden md:hidden z-[90]"
           >
             <div className="p-12 flex flex-col gap-8 text-center">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
-                  className="text-sm font-bold text-zinc-500 uppercase tracking-[0.4em] hover:text-white"
+                  className="text-[10px] font-bold text-white/40 uppercase tracking-[0.5em] hover:text-white transition-colors"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {link.name}
@@ -99,10 +131,10 @@ export default function Navbar() {
               ))}
               <a
                 href="#contact"
-                className="bg-white text-black py-5 rounded-full font-bold uppercase tracking-widest text-[10px]"
+                className="bg-white text-black py-5 rounded-full font-black uppercase tracking-[0.3em] text-[10px]"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Start Project
+                Initiate_Protocol
               </a>
             </div>
           </motion.div>
