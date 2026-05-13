@@ -28,109 +28,132 @@ export default function Hero() {
     <section 
       id="home" 
       ref={sectionRef}
-      className="min-h-screen relative flex items-center justify-center pt-32 md:pt-48 pb-32 overflow-hidden bg-[#050505] bg-blueprint group"
+      className="min-h-screen relative flex items-center justify-center pt-32 pb-32 overflow-hidden bg-[#050505] group"
     >
+      {/* Background Layer: 3D Infinity Animation */}
+      <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none overflow-hidden scale-110">
+        <div className="absolute inset-0 bg-black/40 z-10" /> {/* Subtle overlay for text contrast */}
+        <InfinityScene />
+      </div>
+
       {/* Dynamic Spotlight that follows the mouse */}
       <div 
         className="absolute inset-0 z-[1] pointer-events-none transition-opacity duration-500 opacity-50 group-hover:opacity-100"
         style={{
-          background: `radial-gradient(1200px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(0, 190, 248, 0.08), transparent 40%)`
+          background: `radial-gradient(1200px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(0, 240, 240, 0.05), transparent 40%)`
         }}
       />
 
-      <LogoScene />
-      
-      {/* Massive Hollow Background Text */}
-      <div className="absolute inset-0 flex items-center justify-center z-0 pointer-events-none select-none overflow-hidden">
+      {/* Massive Hollow Background Text - Drifting slightly */}
+      <motion.div 
+        animate={{ x: [-10, 10, -10], y: [-5, 5, -5] }}
+        transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+        className="absolute inset-0 flex items-center justify-center z-[2] pointer-events-none select-none overflow-hidden"
+      >
         <h2 
-          className="text-transparent font-black whitespace-nowrap opacity-10 mix-blend-overlay"
+          className="text-transparent font-black whitespace-nowrap opacity-[0.03] mix-blend-overlay"
           style={{ 
-            fontSize: 'clamp(10rem, 30vw, 30rem)', 
-            WebkitTextStroke: '2px rgba(255,255,255,0.8)',
-            transform: 'translateY(-10%)'
+            fontSize: 'clamp(15rem, 40vw, 45rem)', 
+            WebkitTextStroke: '1px rgba(255,255,255,0.8)',
+            transform: 'rotate(-5deg)'
           }}
         >
           ONEVERCE
         </h2>
-      </div>
+      </motion.div>
 
-      <div className="max-w-7xl mx-auto px-4 md:px-12 relative z-20 w-full flex flex-col items-center text-center">
+      <div className="max-w-7xl mx-auto px-4 md:px-12 relative z-10 w-full flex flex-col items-center text-center">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          className="w-full flex justify-center"
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+          className="w-full"
         >
-          {/* Ultra-Premium Glass Panel Container */}
-          <div className="relative flex flex-col items-center justify-center w-full max-w-5xl mx-auto px-4 md:px-12 py-12 md:py-16 rounded-[2.5rem] md:rounded-[4rem] border border-white/[0.04] bg-[#050505]/40 backdrop-blur-3xl shadow-[0_0_100px_rgba(0,0,0,0.9),inset_0_0_50px_rgba(255,255,255,0.01)] overflow-hidden transition-all duration-1000">
+          {/* Main Content Overlay */}
+          <div className="relative flex flex-col items-center justify-center w-full py-20">
             
-            {/* Ambient Inner Lighting for Glass Panel */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-[#00f0f0]/20 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-b from-white/[0.02] to-transparent pointer-events-none" />
-
-            <div className="inline-flex items-center gap-2.5 px-6 py-2.5 rounded-full bg-black/40 border border-white/5 backdrop-blur-xl mb-6 md:mb-8 group/badge shadow-[0_0_30px_rgba(0,240,240,0.1)]">
-               <Zap size={14} className="text-[#00f0f0] group-hover/badge:scale-110 transition-transform duration-300" />
-               <span className="text-zinc-300 font-medium uppercase tracking-[0.3em] text-[10px]">
+            {/* Top Label with glow */}
+            <motion.div 
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 1 }}
+              className="inline-flex items-center gap-2.5 px-6 py-2.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-xl mb-8 group/badge shadow-[0_0_30px_rgba(0,240,240,0.1)]"
+            >
+               <Zap size={14} className="text-[#00f0f0] animate-pulse" />
+               <span className="text-zinc-400 font-medium uppercase tracking-[0.4em] text-[10px]">
                  Architecture By <span className="text-white font-bold">Oneverce</span>
                </span>
-            </div>
+            </motion.div>
             
-            <h1 className="perspective-2000 uppercase text-center drop-shadow-2xl mb-2 relative z-20" style={{ wordBreak: 'keep-all' }}>
+            <h1 className="uppercase text-center mb-8 relative z-20 pointer-events-none" style={{ wordBreak: 'keep-all' }}>
               <motion.span 
-                className="text-white block font-black"
-                style={{ fontSize: 'clamp(2.5rem, 6vw, 6rem)', letterSpacing: '-0.02em', lineHeight: 0.9 }}
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                className="text-white block font-black mb-2"
+                style={{ fontSize: 'clamp(3rem, 8vw, 8rem)', letterSpacing: '-0.02em', lineHeight: 0.85 }}
               >
                 Engineering
               </motion.span>
               <motion.span 
-                className="bg-clip-text text-transparent block font-black mt-2"
+                initial={{ opacity: 0, y: 60 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.8, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                className="bg-clip-text text-transparent block font-black pb-4"
                 style={{ 
                   backgroundImage: 'linear-gradient(to right, #00f0f0, #0070b0, #f05060, #f09010, #f0f070)',
-                  fontSize: 'clamp(3rem, 7vw, 7rem)', 
-                  letterSpacing: '-0.03em', 
-                  lineHeight: 0.9,
-                  filter: 'drop-shadow(0 0 20px rgba(240,80,96,0.2))'
+                  fontSize: 'clamp(4rem, 10vw, 11rem)', 
+                  letterSpacing: '-0.04em', 
+                  lineHeight: 0.85,
+                  filter: 'drop-shadow(0 0 30px rgba(240,80,96,0.3))'
                 }}
               >
                 The Infinite
               </motion.span>
             </h1>
 
-            {/* 3D Infinity Logo Centerpiece */}
-            <div className="relative w-full h-[250px] md:h-[400px] -mt-8 md:-mt-12 -mb-6 md:-mb-10 z-10 flex items-center justify-center pointer-events-auto">
-               <InfinityScene />
-               {/* Center glowing core to anchor the logo */}
-               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-[#00f0f0]/10 rounded-full blur-[60px] animate-pulse" />
-            </div>
-
-            <p className="text-zinc-400 text-lg md:text-xl leading-relaxed font-normal tracking-wide max-w-2xl text-center relative z-30 mb-10">
-              We engineer digital infrastructure designed for limitless scale. We don't just build websites; we architect your <span className="text-white font-bold">brand's universe</span>.
-            </p>
+            <motion.p 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.2, duration: 1 }}
+              className="text-zinc-400 text-lg md:text-2xl leading-relaxed font-light tracking-wide max-w-3xl text-center relative z-30 mb-12"
+            >
+              We engineer digital infrastructure designed for <span className="text-white font-bold">limitless scale</span>. 
+              We architect your brand's universe through surgical technical precision.
+            </motion.p>
             
-            <div className="flex flex-wrap items-center justify-center gap-6 relative z-30">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.4, duration: 1 }}
+              className="flex flex-wrap items-center justify-center gap-8 relative z-30"
+            >
               <Magnetic>
                 <button 
                   onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="px-10 py-5 bg-white text-black rounded-full font-bold text-sm hover:scale-105 transition-all active:scale-95 shadow-[0_0_40px_rgba(255,255,255,0.2)] flex items-center gap-4 group/btn relative overflow-hidden"
+                  className="px-12 py-6 bg-white text-black rounded-full font-bold text-sm hover:scale-105 transition-all active:scale-95 shadow-[0_0_50px_rgba(255,255,255,0.3)] flex items-center gap-4 group/btn relative overflow-hidden"
                 >
-                  <span className="relative z-10 uppercase tracking-[0.2em] text-[11px] font-bold">Initialize Project</span>
-                  <ArrowRight size={16} className="relative z-10 group-hover/btn:translate-x-2 transition-transform duration-500" />
+                  <span className="relative z-10 uppercase tracking-[0.25em] text-[11px] font-black">Initialize Project</span>
+                  <ArrowRight size={18} className="relative z-10 group-hover/btn:translate-x-2 transition-transform duration-500" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-black/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
                 </button>
               </Magnetic>
+              
               <Magnetic>
-                <button className="w-16 h-16 rounded-full border border-white/20 bg-black/40 backdrop-blur-xl flex items-center justify-center text-white hover:bg-white hover:text-black hover:scale-110 transition-all duration-500 shadow-[0_0_30px_rgba(0,190,248,0.2)] group/play relative">
-                  <div className="w-0 h-0 border-t-[6px] border-t-transparent border-l-[10px] border-l-current border-b-[6px] border-b-transparent ml-0.5 z-10" />
+                <button className="flex items-center gap-4 group/play">
+                  <div className="w-16 h-16 rounded-full border border-white/20 bg-white/5 backdrop-blur-xl flex items-center justify-center text-white group-hover:bg-white group-hover:text-black transition-all duration-500 shadow-[0_0_30px_rgba(0,240,240,0.2)]">
+                    <div className="w-0 h-0 border-t-[6px] border-t-transparent border-l-[10px] border-l-current border-b-[6px] border-b-transparent ml-1" />
+                  </div>
+                  <span className="text-xs uppercase tracking-[0.3em] font-bold text-white/50 group-hover:text-white transition-colors">Play Reel</span>
                 </button>
               </Magnetic>
-            </div>
+            </motion.div>
 
           </div>
         </motion.div>
       </div>
-
       {/* Atmospheric Bottom Mask */}
-      <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-[#050505] via-[#050505]/80 to-transparent pointer-events-none z-[5]" />
+      <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-[#050505] via-[#050505]/50 to-transparent pointer-events-none z-[5]" />
     </section>
   );
 }

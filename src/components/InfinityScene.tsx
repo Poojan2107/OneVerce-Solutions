@@ -2,21 +2,20 @@ import { useMemo } from 'react';
 import { motion } from 'motion/react';
 
 export default function InfinityScene() {
-  // Generate 300 ultra-dense particles for a high-fidelity 3D Lemniscate
+  // Generate 600 ultra-dense particles for a high-fidelity 3D background vortex
   const particles = useMemo(() => {
     const colors = ['#00f0f0', '#0070b0', '#f05060', '#f09010', '#f0f070'];
     
-    return Array.from({ length: 300 }).map((_, i) => {
-      const t = (i / 300) * Math.PI * 2;
-      // Mathematical Lemniscate of Bernoulli - scaled up massively
-      const scale = 350;
+    return Array.from({ length: 600 }).map((_, i) => {
+      const t = (i / 600) * Math.PI * 2;
+      // Lemniscate of Bernoulli - scaled for background immersion
+      const scale = 500;
       const x = (scale * Math.cos(t)) / (1 + Math.sin(t) * Math.sin(t));
       const y = (scale * Math.sin(t) * Math.cos(t)) / (1 + Math.sin(t) * Math.sin(t));
       
-      // Extreme 3D depth wave
-      const z = Math.sin(t * 2) * 100;
+      // Dynamic depth variation
+      const z = Math.sin(t * 3) * 150;
 
-      // Color assigned based on position in loop to create a continuous gradient look
       const colorIndex = Math.floor((t / (Math.PI * 2)) * colors.length);
       const color = colors[colorIndex] || colors[0];
 
@@ -25,60 +24,67 @@ export default function InfinityScene() {
         x,
         y,
         z,
-        delay: Math.random() * 3,
-        duration: 2 + Math.random() * 3,
-        size: Math.random() > 0.9 ? 4 : 1.5 + Math.random() * 1.5, // Occasional large bright stars
-        color: Math.random() > 0.9 ? '#ffffff' : color, // Add some pure white sparklers
+        delay: Math.random() * 5,
+        duration: 3 + Math.random() * 4,
+        size: Math.random() > 0.95 ? 5 : 1 + Math.random() * 2,
+        color: Math.random() > 0.9 ? '#ffffff' : color,
       };
     });
   }, []);
 
   return (
-    <div className="relative w-full h-full flex items-center justify-center overflow-visible perspective-[2000px] pointer-events-none">
+    <div className="relative w-full h-full flex items-center justify-center overflow-visible perspective-[3000px] pointer-events-none">
       {/* Deep Atmospheric Bloom Core */}
       <div className="absolute inset-0 flex items-center justify-center z-0">
-        <div className="absolute w-[1000px] h-[500px] bg-[#00f0f0]/[0.03] rounded-[100%] blur-[150px] animate-pulse mix-blend-screen" />
+        <div className="absolute w-[1200px] h-[600px] bg-[#00f0f0]/[0.02] rounded-[100%] blur-[180px] animate-pulse" />
       </div>
 
       <motion.div 
-        className="relative flex items-center justify-center transform-style-preserve-3d scale-[0.45] md:scale-100 will-change-transform z-10"
-        animate={{ rotateX: [15, 25, 15], rotateY: [-20, 20, -20], rotateZ: [-2, 2, -2] }}
-        transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+        className="relative flex items-center justify-center transform-style-preserve-3d scale-110 will-change-transform z-10"
+        animate={{ 
+          rotateX: [10, 20, 10], 
+          rotateY: [-30, 30, -30], 
+          rotateZ: [0, 360] 
+        }}
+        transition={{ 
+          rotateX: { duration: 15, repeat: Infinity, ease: "easeInOut" },
+          rotateY: { duration: 25, repeat: Infinity, ease: "easeInOut" },
+          rotateZ: { duration: 120, repeat: Infinity, ease: "linear" }
+        }}
       >
         
-        {/* Core Glowing SVG Path to anchor the particles */}
+        {/* Core Glowing SVG Path */}
         <svg 
-          viewBox="-400 -200 800 400" 
-          className="absolute inset-0 w-[800px] h-[400px] overflow-visible mix-blend-screen opacity-50 z-10"
+          viewBox="-600 -300 1200 600" 
+          className="absolute inset-0 w-[1200px] h-[600px] overflow-visible mix-blend-screen opacity-30 z-10"
           style={{ top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
         >
           <motion.path
-            d="M 0,0 C 150,-200 350,-200 350,0 C 350,200 150,200 0,0 C -150,-200 -350,-200 -350,0 C -350,200 -150,200 0,0 Z"
+            d="M 0,0 C 200,-300 500,-300 500,0 C 500,300 200,300 0,0 C -200,-300 -500,-300 -500,0 C -500,300 -200,300 0,0 Z"
             fill="none"
-            stroke="url(#brand-glow)"
-            strokeWidth="3"
-            initial={{ strokeDasharray: "2000", strokeDashoffset: "2000" }}
+            stroke="url(#brand-glow-vortex)"
+            strokeWidth="2"
+            initial={{ strokeDasharray: "3000", strokeDashoffset: "3000" }}
             animate={{ strokeDashoffset: "0" }}
-            transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-            className="drop-shadow-[0_0_15px_rgba(0,240,240,0.4)]"
+            transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
           />
           <defs>
-            <linearGradient id="brand-glow" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#00f0f0" stopOpacity="0.8" />
-              <stop offset="25%" stopColor="#0070b0" stopOpacity="0.8" />
-              <stop offset="50%" stopColor="#f05060" stopOpacity="0.8" />
-              <stop offset="75%" stopColor="#f09010" stopOpacity="0.8" />
-              <stop offset="100%" stopColor="#f0f070" stopOpacity="0.8" />
+            <linearGradient id="brand-glow-vortex" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#00f0f0" stopOpacity="0.5" />
+              <stop offset="25%" stopColor="#0070b0" stopOpacity="0.5" />
+              <stop offset="50%" stopColor="#f05060" stopOpacity="0.5" />
+              <stop offset="75%" stopColor="#f09010" stopOpacity="0.5" />
+              <stop offset="100%" stopColor="#f0f070" stopOpacity="0.5" />
             </linearGradient>
           </defs>
         </svg>
 
-        {/* Orbiting Logo Particles */}
+        {/* Dense Background Particles */}
         <div className="absolute inset-0 flex items-center justify-center z-30 transform-style-preserve-3d">
           {particles.map((p) => (
             <motion.div
               key={`particle-${p.id}`}
-              className="absolute rounded-full shadow-[0_0_25px_currentColor]"
+              className="absolute rounded-full shadow-[0_0_15px_currentColor]"
               style={{
                 width: p.size,
                 height: p.size,
@@ -91,9 +97,8 @@ export default function InfinityScene() {
                 transform: `translateZ(${p.z}px)`,
               }}
               animate={{ 
-                opacity: [0.3, 1, 0.3], 
-                scale: [0.8, 2, 0.8],
-                boxShadow: ['0 0 10px currentColor', '0 0 40px currentColor', '0 0 10px currentColor']
+                opacity: [0.2, 0.8, 0.2], 
+                scale: [0.5, 1.5, 0.5],
               }}
               transition={{ 
                 duration: p.duration, 
@@ -104,25 +109,8 @@ export default function InfinityScene() {
             />
           ))}
           
-          {/* Intense Singularities inside the loops */}
-          <motion.div 
-             animate={{ opacity: [0.5, 0.9, 0.5], scale: [0.9, 1.4, 0.9] }}
-             transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-             className="absolute w-40 h-40 bg-[#00f0f0]/30 rounded-full blur-[40px] mix-blend-screen"
-             style={{ transform: 'translateX(-175px)' }}
-          />
-          <motion.div 
-             animate={{ opacity: [0.5, 0.9, 0.5], scale: [0.9, 1.4, 0.9] }}
-             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-             className="absolute w-40 h-40 bg-[#f05060]/20 rounded-full blur-[40px] mix-blend-screen"
-             style={{ transform: 'translateX(175px)' }}
-          />
-          {/* Central Singularity */}
-          <motion.div 
-             animate={{ opacity: [0.6, 1, 0.6], scale: [0.8, 1.2, 0.8] }}
-             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-             className="absolute w-24 h-24 bg-white/30 rounded-full blur-[30px] mix-blend-screen"
-          />
+          {/* Energy Singularities */}
+          <div className="absolute w-[600px] h-[600px] bg-gradient-to-r from-[#00f0f0]/10 via-transparent to-[#f05060]/10 blur-[100px] rounded-full transform-style-preserve-3d" />
         </div>
       </motion.div>
     </div>
