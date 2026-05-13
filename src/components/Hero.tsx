@@ -62,15 +62,15 @@ export default function Hero() {
           className="w-full flex justify-center"
         >
           {/* Ultra-Premium Glass Panel Container */}
-          <div className="relative flex flex-col items-center justify-center w-full max-w-5xl mx-auto px-6 md:px-12 py-12 md:py-20 rounded-[2.5rem] md:rounded-[4rem] border border-white/[0.08] bg-black/20 backdrop-blur-3xl shadow-[0_0_80px_rgba(0,0,0,0.8),inset_0_0_40px_rgba(255,255,255,0.02)] overflow-hidden">
+          <div className="relative flex flex-col items-center justify-center w-full max-w-5xl mx-auto px-4 md:px-12 py-12 md:py-16 rounded-[2.5rem] md:rounded-[4rem] border border-white/[0.04] bg-[#050505]/40 backdrop-blur-3xl shadow-[0_0_100px_rgba(0,0,0,0.9),inset_0_0_50px_rgba(255,255,255,0.01)] overflow-hidden transition-all duration-1000">
             
             {/* Ambient Inner Lighting for Glass Panel */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-[#00bef8]/30 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-b from-white/[0.03] to-transparent pointer-events-none" />
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-[#00f0f0]/20 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-b from-white/[0.02] to-transparent pointer-events-none" />
 
-            <div className="inline-flex items-center gap-2.5 px-6 py-2.5 rounded-full bg-black/40 border border-white/10 backdrop-blur-xl mb-6 md:mb-10 group/badge shadow-[0_0_30px_rgba(0,190,248,0.1)]">
-               <Zap size={14} className="text-[#00bef8] group-hover/badge:scale-110 transition-transform duration-300" />
+            <div className="inline-flex items-center gap-2.5 px-6 py-2.5 rounded-full bg-black/40 border border-white/5 backdrop-blur-xl mb-6 md:mb-8 group/badge shadow-[0_0_30px_rgba(0,240,240,0.1)]">
+               <Zap size={14} className="text-[#00f0f0] group-hover/badge:scale-110 transition-transform duration-300" />
                <span className="text-zinc-300 font-medium uppercase tracking-[0.3em] text-[10px]">
                  Architecture By <span className="text-white font-bold">Oneverce</span>
                </span>
@@ -86,10 +86,11 @@ export default function Hero() {
               <motion.span 
                 className="bg-clip-text text-transparent block font-black mt-2"
                 style={{ 
-                  backgroundImage: 'linear-gradient(to right, #007fa8, #00bef8, #fcfd79, #00bef8)',
+                  backgroundImage: 'linear-gradient(to right, #00f0f0, #0070b0, #f05060, #f09010, #f0f070)',
                   fontSize: 'clamp(3rem, 7vw, 7rem)', 
                   letterSpacing: '-0.03em', 
-                  lineHeight: 0.9 
+                  lineHeight: 0.9,
+                  filter: 'drop-shadow(0 0 20px rgba(240,80,96,0.2))'
                 }}
               >
                 The Infinite
@@ -100,7 +101,7 @@ export default function Hero() {
             <div className="relative w-full h-[250px] md:h-[400px] -mt-8 md:-mt-12 -mb-6 md:-mb-10 z-10 flex items-center justify-center pointer-events-auto">
                <InfinityScene />
                {/* Center glowing core to anchor the logo */}
-               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-[#00bef8]/15 rounded-full blur-[60px] animate-pulse" />
+               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-[#00f0f0]/10 rounded-full blur-[60px] animate-pulse" />
             </div>
 
             <p className="text-zinc-400 text-lg md:text-xl leading-relaxed font-normal tracking-wide max-w-2xl text-center relative z-30 mb-10">
