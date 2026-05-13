@@ -18,6 +18,7 @@ import WhyChooseUs from './components/WhyChooseUs';
 import Process from './components/Process';
 import SocialProof from './components/SocialProof';
 import SmoothScroll from './components/SmoothScroll';
+import Preloader from './components/Preloader';
 
 const RevealSection = ({ children, className }: { children: React.ReactNode, className?: string }) => (
   <motion.div
@@ -35,6 +36,7 @@ const RevealSection = ({ children, className }: { children: React.ReactNode, cla
 export default function App() {
   return (
     <div className="relative min-h-screen bg-[#050505] text-white overflow-x-hidden selection:bg-white/10">
+      <Preloader />
       <SmoothScroll />
       
       {/* Persistent System Overlays */}
