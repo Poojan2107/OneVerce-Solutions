@@ -69,15 +69,15 @@ export default function Contact() {
                       <div className={`w-1.5 h-1.5 rounded-full ${member.accent === 'blue' ? 'bg-blue-500' : 'bg-purple-500'}`} />
                       <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white">{member.name} // FOUNDER</span>
                     </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <a href={`mailto:${member.email}`} className="flex items-center gap-4 group cursor-pointer">
-                        <div className="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/5 flex items-center justify-center text-zinc-500 group-hover:text-white group-hover:border-white/20 transition-all duration-500">
+                    <div className="flex flex-col gap-5">
+                      <a href={`mailto:${member.email}`} className="flex items-center gap-4 group cursor-pointer w-fit">
+                        <div className="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/5 flex items-center justify-center text-zinc-500 group-hover:text-[#00f0ff] group-hover:border-[#00f0ff]/30 transition-all duration-500">
                           <Mail size={16} />
                         </div>
                         <div className="text-sm font-bold text-zinc-400 group-hover:text-white transition-colors lowercase tracking-wider">{member.email}</div>
                       </a>
-                      <a href={`tel:${member.phone.replace(/\s+/g, '')}`} className="flex items-center gap-4 group cursor-pointer">
-                        <div className="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/5 flex items-center justify-center text-zinc-500 group-hover:text-white group-hover:border-white/20 transition-all duration-500">
+                      <a href={`tel:${member.phone.replace(/\s+/g, '')}`} className="flex items-center gap-4 group cursor-pointer w-fit">
+                        <div className="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/5 flex items-center justify-center text-zinc-500 group-hover:text-[#00f0ff] group-hover:border-[#00f0ff]/30 transition-all duration-500">
                           <Phone size={16} />
                         </div>
                         <div className="text-sm font-bold text-zinc-400 group-hover:text-white transition-colors tracking-wider">{member.phone}</div>
