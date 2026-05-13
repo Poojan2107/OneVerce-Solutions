@@ -39,67 +39,94 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          className="max-w-5xl will-change-transform flex flex-col items-center"
+          className="w-full flex justify-center"
         >
-          {/* Artistic Floating Badge */}
-          <div className="inline-flex items-center gap-2.5 px-6 py-2.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-3xl mb-10 group cursor-pointer hover:bg-white/10 hover:border-white/20 transition-all duration-500 shadow-[0_0_30px_rgba(255,255,255,0.05)]">
-            <Sparkles size={14} className="text-fuchsia-400 animate-pulse" />
-            <span className="text-zinc-300 font-medium uppercase tracking-[0.3em] text-[10px]">
-              Creative Systems <span className="text-white font-bold">V2.0</span>
-            </span>
-          </div>
-
-          {/* Artistic Typography */}
-          <div className="relative mb-12 w-full max-w-5xl mx-auto px-4">
-            <h1 className="perspective-2000 uppercase text-center drop-shadow-2xl" style={{ wordBreak: 'keep-all' }}>
-              <motion.span 
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, duration: 1.2 }}
-                className="text-white block font-black"
-                style={{ fontSize: 'clamp(2rem, 6vw, 5rem)', letterSpacing: '-0.02em', lineHeight: 1.0 }}
-              >
-                Architecting
-              </motion.span>
-              <motion.span 
-                initial={{ opacity: 0, scale: 0.9, filter: 'blur(20px)' }}
-                animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-                transition={{ delay: 0.4, duration: 1.2, type: "spring" }}
-                className="bg-gradient-to-r from-fuchsia-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent block font-black mt-2"
-                style={{ fontSize: 'clamp(2.5rem, 7vw, 6rem)', letterSpacing: '-0.03em', lineHeight: 1.0, wordBreak: 'normal' }}
-              >
-                Infinity Flow
-              </motion.span>
-            </h1>
-          </div>
- 
-          {/* Soft Creative Subheadline */}
-          <div className="relative max-w-2xl mx-auto mb-16 px-4">
-            <p className="text-zinc-400 text-lg md:text-xl leading-relaxed font-normal tracking-wide text-center">
-              We fuse deep engineering with <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-300 to-cyan-300 font-bold">eccentric digital artistry</span>. Stop building websites and start architecting universes.
-            </p>
-          </div>
-
-          {/* Playful Floating Interactions */}
-          <div className="flex flex-col md:flex-row items-center justify-center gap-6">
-            <Magnetic>
-              <button 
-                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                className="px-8 py-4 bg-gradient-to-r from-fuchsia-600 to-cyan-600 text-white rounded-full font-bold text-sm hover:scale-105 transition-all active:scale-95 shadow-[0_0_40px_rgba(192,132,252,0.4)] flex items-center gap-4 group relative overflow-hidden"
-              >
-                <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <span className="relative z-10 uppercase tracking-[0.2em] text-[11px] font-bold">Start The Journey</span>
-                <ArrowRight size={16} className="relative z-10 group-hover:translate-x-2 transition-transform duration-500" />
-              </button>
-            </Magnetic>
+          {/* Asymmetric Creative Layout */}
+          <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-12 lg:gap-20 w-full max-w-7xl items-center">
             
-            <div className="flex items-center gap-4">
-              <Magnetic>
-                <button className="w-14 h-14 rounded-full border border-white/10 bg-white/5 backdrop-blur-xl flex items-center justify-center text-white hover:bg-white hover:text-black hover:scale-110 transition-all duration-500 shadow-[0_0_20px_rgba(45,212,191,0.15)] group relative">
-                  <div className="w-0 h-0 border-t-[6px] border-t-transparent border-l-[10px] border-l-current border-b-[6px] border-b-transparent ml-0.5 z-10" />
-                </button>
-              </Magnetic>
+            {/* Left Column: Text */}
+            <div className="flex flex-col items-start text-left">
+              <div className="inline-flex items-center gap-2.5 px-6 py-2.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-3xl mb-8 group shadow-[0_0_30px_rgba(255,255,255,0.05)]">
+                 <Sparkles size={14} className="text-fuchsia-400 animate-pulse" />
+                 <span className="text-zinc-300 font-medium uppercase tracking-[0.3em] text-[10px]">
+                   Creative Systems <span className="text-white font-bold">V2.0</span>
+                 </span>
+              </div>
+              
+              <h1 className="perspective-2000 uppercase text-left drop-shadow-2xl mb-8" style={{ wordBreak: 'keep-all' }}>
+                <motion.span 
+                  className="text-white block font-black"
+                  style={{ fontSize: 'clamp(3rem, 6vw, 6rem)', letterSpacing: '-0.02em', lineHeight: 0.9 }}
+                >
+                  Architecting
+                </motion.span>
+                <motion.span 
+                  className="bg-gradient-to-r from-fuchsia-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent block font-black mt-2"
+                  style={{ fontSize: 'clamp(3.5rem, 7vw, 7rem)', letterSpacing: '-0.03em', lineHeight: 0.9 }}
+                >
+                  Infinity Flow
+                </motion.span>
+              </h1>
+
+              <p className="text-zinc-400 text-lg leading-relaxed font-normal tracking-wide max-w-lg mb-10">
+                We fuse deep engineering with <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-300 to-cyan-300 font-bold">eccentric digital artistry</span>. Stop building websites and start architecting universes.
+              </p>
+              
+              <div className="flex flex-wrap items-center gap-6">
+                <Magnetic>
+                  <button 
+                    onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                    className="px-8 py-4 bg-gradient-to-r from-fuchsia-600 to-cyan-600 text-white rounded-full font-bold text-sm hover:scale-105 transition-all active:scale-95 shadow-[0_0_40px_rgba(192,132,252,0.4)] flex items-center gap-4 group relative overflow-hidden"
+                  >
+                    <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <span className="relative z-10 uppercase tracking-[0.2em] text-[11px] font-bold">Start The Journey</span>
+                    <ArrowRight size={16} className="relative z-10 group-hover:translate-x-2 transition-transform duration-500" />
+                  </button>
+                </Magnetic>
+                <Magnetic>
+                  <button className="w-14 h-14 rounded-full border border-white/10 bg-white/5 backdrop-blur-xl flex items-center justify-center text-white hover:bg-white hover:text-black hover:scale-110 transition-all duration-500 shadow-[0_0_20px_rgba(45,212,191,0.15)] group relative">
+                    <div className="w-0 h-0 border-t-[6px] border-t-transparent border-l-[10px] border-l-current border-b-[6px] border-b-transparent ml-0.5 z-10" />
+                  </button>
+                </Magnetic>
+              </div>
             </div>
+
+            {/* Right Column: Interactive Glass OS Widget */}
+            <Magnetic>
+              <div className="relative w-full aspect-square md:aspect-[4/3] rounded-[2.5rem] border border-white/10 bg-white/5 backdrop-blur-3xl p-8 flex flex-col justify-between overflow-hidden group shadow-2xl">
+                 {/* Ambient inner glow */}
+                 <div className="absolute inset-0 bg-gradient-to-br from-fuchsia-500/20 via-transparent to-cyan-500/20 opacity-50 group-hover:opacity-100 transition-opacity duration-700" />
+                 
+                 {/* Geometric decorative elements */}
+                 <div className="absolute -top-10 -right-10 w-40 h-40 bg-fuchsia-500/20 rounded-full blur-3xl group-hover:bg-fuchsia-500/40 transition-colors duration-700" />
+                 <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-cyan-500/20 rounded-full blur-3xl group-hover:bg-cyan-500/40 transition-colors duration-700" />
+
+                 <div className="flex justify-between items-start relative z-10">
+                    <div className="w-14 h-14 rounded-2xl border border-white/20 flex items-center justify-center bg-black/40 backdrop-blur-md shadow-inner">
+                       <Zap size={24} className="text-cyan-400 group-hover:scale-110 transition-transform duration-500" />
+                    </div>
+                    <div className="text-right">
+                       <span className="block text-[10px] text-zinc-500 uppercase tracking-[0.3em] font-mono mb-1">System Load</span>
+                       <span className="block text-2xl font-black text-white font-mono">99.9%</span>
+                    </div>
+                 </div>
+
+                 <div className="relative z-10 flex flex-col gap-6">
+                    <h3 className="text-3xl font-black text-white leading-[1.1] tracking-tight">Beyond Traditional<br/><span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-cyan-400">Boundaries</span></h3>
+                    
+                    <div className="flex flex-col gap-2">
+                      <div className="flex justify-between text-[10px] font-mono text-zinc-400 uppercase tracking-widest">
+                        <span>Creative Capacity</span>
+                        <span className="text-fuchsia-400">MAXIMUM</span>
+                      </div>
+                      <div className="h-1.5 w-full bg-black/50 rounded-full overflow-hidden border border-white/5">
+                         <div className="h-full bg-gradient-to-r from-fuchsia-500 to-cyan-500 w-[90%] rounded-full animate-pulse shadow-[0_0_10px_rgba(45,212,191,0.5)]" />
+                      </div>
+                    </div>
+                 </div>
+              </div>
+            </Magnetic>
+
           </div>
         </motion.div>
       </div>
