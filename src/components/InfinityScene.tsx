@@ -22,7 +22,7 @@ export default function InfinityScene() {
         delay: Math.random() * 3,
         duration: 2 + Math.random() * 3,
         size: Math.random() > 0.9 ? 4 : 1.5 + Math.random() * 1.5, // Occasional large bright stars
-        color: i % 5 === 0 ? '#60a5fa' : i % 5 === 1 ? '#3b82f6' : i % 5 === 2 ? '#2563eb' : i % 5 === 3 ? '#93c5fd' : '#ffffff',
+        color: i % 5 === 0 ? '#00bef8' : i % 5 === 1 ? '#007fa8' : i % 5 === 2 ? '#fcfd79' : i % 5 === 3 ? '#e0fcfb' : '#ffffff',
       };
     });
   }, []);
@@ -31,7 +31,7 @@ export default function InfinityScene() {
     <div className="relative w-full h-full flex items-center justify-center overflow-visible perspective-[2000px] pointer-events-none">
       {/* Deep Atmospheric Bloom Core */}
       <div className="absolute inset-0 flex items-center justify-center z-0">
-        <div className="absolute w-[1000px] h-[500px] bg-blue-600/[0.05] rounded-[100%] blur-[150px] animate-pulse mix-blend-screen" />
+        <div className="absolute w-[1000px] h-[500px] bg-[#00bef8]/[0.05] rounded-[100%] blur-[150px] animate-pulse mix-blend-screen" />
       </div>
 
       <motion.div 
@@ -43,24 +43,25 @@ export default function InfinityScene() {
         {/* Core Glowing SVG Path to anchor the particles */}
         <svg 
           viewBox="-400 -200 800 400" 
-          className="absolute inset-0 w-[800px] h-[400px] overflow-visible mix-blend-screen opacity-40 z-10"
+          className="absolute inset-0 w-[800px] h-[400px] overflow-visible mix-blend-screen opacity-50 z-10"
           style={{ top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
         >
           <motion.path
             d="M 0,0 C 150,-200 350,-200 350,0 C 350,200 150,200 0,0 C -150,-200 -350,-200 -350,0 C -350,200 -150,200 0,0 Z"
             fill="none"
-            stroke="url(#blue-glow)"
+            stroke="url(#brand-glow)"
             strokeWidth="3"
             initial={{ strokeDasharray: "2000", strokeDashoffset: "2000" }}
             animate={{ strokeDashoffset: "0" }}
             transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-            className="drop-shadow-[0_0_15px_rgba(59,130,246,0.8)]"
+            className="drop-shadow-[0_0_15px_rgba(0,190,248,0.8)]"
           />
           <defs>
-            <linearGradient id="blue-glow" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.2" />
-              <stop offset="50%" stopColor="#60a5fa" stopOpacity="1" />
-              <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.2" />
+            <linearGradient id="brand-glow" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#007fa8" stopOpacity="0.2" />
+              <stop offset="33%" stopColor="#00bef8" stopOpacity="1" />
+              <stop offset="66%" stopColor="#fcfd79" stopOpacity="0.8" />
+              <stop offset="100%" stopColor="#007fa8" stopOpacity="0.2" />
             </linearGradient>
           </defs>
         </svg>
@@ -100,13 +101,13 @@ export default function InfinityScene() {
           <motion.div 
              animate={{ opacity: [0.5, 0.9, 0.5], scale: [0.9, 1.4, 0.9] }}
              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-             className="absolute w-40 h-40 bg-blue-500/40 rounded-full blur-[40px] mix-blend-screen"
+             className="absolute w-40 h-40 bg-[#00bef8]/40 rounded-full blur-[40px] mix-blend-screen"
              style={{ transform: 'translateX(-175px)' }}
           />
           <motion.div 
              animate={{ opacity: [0.5, 0.9, 0.5], scale: [0.9, 1.4, 0.9] }}
              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-             className="absolute w-40 h-40 bg-blue-400/40 rounded-full blur-[40px] mix-blend-screen"
+             className="absolute w-40 h-40 bg-[#fcfd79]/20 rounded-full blur-[40px] mix-blend-screen"
              style={{ transform: 'translateX(175px)' }}
           />
           {/* Central Singularity */}
