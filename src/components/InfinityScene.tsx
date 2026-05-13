@@ -2,87 +2,54 @@ import { useMemo } from 'react';
 import { motion } from 'motion/react';
 
 export default function InfinityScene() {
+  // Generate particles along a 3D Lemniscate (Infinity symbol)
   const particles = useMemo(() => {
-    return Array.from({ length: 40 }).map((_, i) => {
-      const radius = 100 + Math.random() * 250;
-      const angle = (i / 40) * Math.PI * 2;
+    return Array.from({ length: 150 }).map((_, i) => {
+      const t = (i / 150) * Math.PI * 2;
+      // Mathematical Lemniscate of Bernoulli
+      const scale = 300;
+      const x = (scale * Math.cos(t)) / (1 + Math.sin(t) * Math.sin(t));
+      const y = (scale * Math.sin(t) * Math.cos(t)) / (1 + Math.sin(t) * Math.sin(t));
+      
+      // Add slight 3D depth wave
+      const z = Math.sin(t * 2) * 50;
+
       return {
         id: i,
-        radius,
-        angle,
+        x,
+        y,
+        z,
         delay: Math.random() * 2,
-        duration: 10 + Math.random() * 15,
-        size: 1 + Math.random() * 2,
-        color: i % 3 === 0 ? '#3b82f6' : i % 3 === 1 ? '#a855f7' : '#ffffff',
+        duration: 3 + Math.random() * 4,
+        size: 1.5 + Math.random() * 3,
+        color: i % 4 === 0 ? '#60a5fa' : i % 4 === 1 ? '#3b82f6' : i % 4 === 2 ? '#2563eb' : '#ffffff',
       };
     });
   }, []);
 
   return (
     <div className="relative w-full h-full flex items-center justify-center overflow-visible perspective-[2000px] pointer-events-none">
-      {/* Deep Space Atmospheric Fog */}
+      {/* Deep Atmospheric Glow */}
       <div className="absolute inset-0 flex items-center justify-center z-0">
-        <div className="absolute w-[600px] h-[600px] bg-blue-600/[0.03] rounded-full blur-[150px] animate-pulse mix-blend-screen" />
-        <div className="absolute w-[400px] h-[400px] bg-indigo-900/[0.04] rounded-full blur-[100px] animate-pulse delay-1000 mix-blend-screen" />
+        <div className="absolute w-[800px] h-[400px] bg-blue-600/[0.04] rounded-[100%] blur-[120px] animate-pulse mix-blend-screen" />
       </div>
 
-      <div className="relative w-[1000px] h-[1000px] flex items-center justify-center transform-style-preserve-3d scale-[0.5] md:scale-100 will-change-transform z-10">
+      <motion.div 
+        className="relative flex items-center justify-center transform-style-preserve-3d scale-[0.4] md:scale-100 will-change-transform z-10"
+        animate={{ rotateX: [20, 30, 20], rotateY: [-15, 15, -15], rotateZ: [-5, 5, -5] }}
+        transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+      >
         
-        {/* Core Singularity */}
-        <div className="absolute z-40 flex items-center justify-center">
-          <div className="w-8 h-8 bg-white rounded-full shadow-[0_0_80px_rgba(255,255,255,1),0_0_150px_rgba(59,130,246,0.8)] z-50" />
-          <motion.div
-            animate={{ scale: [1, 1.4, 1], opacity: [0.6, 1, 0.6] }}
-            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute w-24 h-24 bg-blue-400 rounded-full blur-[30px] z-40 mix-blend-screen"
-          />
-          <motion.div
-            animate={{ scale: [1.2, 1.8, 1.2], opacity: [0.4, 0.8, 0.4], rotateZ: [0, 180, 360] }}
-            transition={{ duration: 7, repeat: Infinity, ease: "linear" }}
-            className="absolute w-40 h-40 bg-indigo-600 rounded-full blur-[50px] z-30 mix-blend-screen"
-          />
-        </div>
+        {/* The Infinity Path (Glowing Track) */}
+        <div className="absolute w-[600px] h-[300px] border border-blue-500/20 rounded-[100%] blur-[2px] opacity-30 mix-blend-screen" style={{ borderRadius: '50% 50% 50% 50% / 50% 50% 50% 50%', transform: 'scaleX(1.2)' }} />
+        <div className="absolute w-[600px] h-[300px] border border-white/10 rounded-[100%] opacity-20 mix-blend-screen" style={{ borderRadius: '50% 50% 50% 50% / 50% 50% 50% 50%', transform: 'scaleX(1.2)' }} />
 
-        {/* Cinematic Procedural Orbital Rings */}
-        <motion.div 
-          className="absolute inset-0 flex items-center justify-center transform-style-preserve-3d"
-          animate={{ rotateX: [65, 70, 65], rotateY: [-10, 10, -10] }}
-          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-        >
-          {[...Array(10)].map((_, i) => (
-            <motion.div
-              key={`ring-${i}`}
-              className="absolute rounded-full transform-style-preserve-3d"
-              style={{
-                width: 150 + i * 80,
-                height: 150 + i * 80,
-                border: i % 4 === 0 ? '2px solid rgba(59, 130, 246, 0.15)' : '1px solid rgba(255, 255, 255, 0.04)',
-                boxShadow: i % 3 === 0 ? 'inset 0 0 30px rgba(59,130,246,0.05), 0 0 20px rgba(59,130,246,0.02)' : 'none'
-              }}
-              animate={{ rotateZ: i % 2 === 0 ? 360 : -360 }}
-              transition={{ duration: 40 + i * 15, repeat: Infinity, ease: "linear" }}
-            >
-              {/* Data Nodes on Rings */}
-              {i % 2 === 0 && (
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-blue-300 rounded-full shadow-[0_0_15px_#3b82f6]" />
-              )}
-              {i % 3 === 0 && (
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-1 h-1 bg-white rounded-full shadow-[0_0_10px_#fff]" />
-              )}
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {/* Orbiting Particle Cloud */}
-        <motion.div 
-          className="absolute inset-0 flex items-center justify-center z-30 transform-style-preserve-3d"
-          animate={{ rotateZ: 360, rotateX: 60, rotateY: 20 }}
-          transition={{ rotateZ: { duration: 60, repeat: Infinity, ease: "linear" } }}
-        >
+        {/* Orbiting Logo Particles */}
+        <div className="absolute inset-0 flex items-center justify-center z-30 transform-style-preserve-3d">
           {particles.map((p) => (
             <motion.div
               key={`particle-${p.id}`}
-              className="absolute rounded-full shadow-[0_0_15px_currentColor]"
+              className="absolute rounded-full shadow-[0_0_20px_currentColor]"
               style={{
                 width: p.size,
                 height: p.size,
@@ -90,15 +57,39 @@ export default function InfinityScene() {
                 color: p.color,
                 top: '50%',
                 left: '50%',
-                marginLeft: Math.cos(p.angle) * p.radius,
-                marginTop: Math.sin(p.angle) * p.radius,
+                marginLeft: p.x,
+                marginTop: p.y,
+                transform: `translateZ(${p.z}px)`,
               }}
-              animate={{ opacity: [0.1, 0.9, 0.1], scale: [0.5, 1.5, 0.5] }}
-              transition={{ duration: p.duration, repeat: Infinity, ease: "easeInOut", delay: p.delay }}
+              animate={{ 
+                opacity: [0.2, 1, 0.2], 
+                scale: [0.8, 1.5, 0.8],
+                boxShadow: ['0 0 10px currentColor', '0 0 30px currentColor', '0 0 10px currentColor']
+              }}
+              transition={{ 
+                duration: p.duration, 
+                repeat: Infinity, 
+                ease: "easeInOut", 
+                delay: p.delay 
+              }}
             />
           ))}
-        </motion.div>
-      </div>
+          
+          {/* Energy Cores inside the loops */}
+          <motion.div 
+             animate={{ opacity: [0.3, 0.8, 0.3], scale: [0.8, 1.2, 0.8] }}
+             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+             className="absolute w-32 h-32 bg-blue-500/30 rounded-full blur-[40px] mix-blend-screen"
+             style={{ transform: 'translateX(-150px)' }}
+          />
+          <motion.div 
+             animate={{ opacity: [0.3, 0.8, 0.3], scale: [0.8, 1.2, 0.8] }}
+             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+             className="absolute w-32 h-32 bg-blue-400/30 rounded-full blur-[40px] mix-blend-screen"
+             style={{ transform: 'translateX(150px)' }}
+          />
+        </div>
+      </motion.div>
     </div>
   );
 }
