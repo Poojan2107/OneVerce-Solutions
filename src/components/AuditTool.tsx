@@ -93,9 +93,19 @@ export default function AuditTool() {
       }
 
       setResult(text.replace(/\[SCORES\].*?\[\/SCORES\]/s, '').trim());
-    } catch (err) {
-      console.error(err);
-      setError('System connection failure. Our intelligence engine is currently under maintenance or the provided URL is unreachable.');
+    } catch (err: any) {
+      console.error('Audit Error:', err);
+      const errorMessage = err?.message || '';
+      
+      if (errorMessage.includes('API_KEY_INVALID')) {
+        setError('Invalid API Key. Please verify your VITE_GEMINI_API_KEY in the environment settings.');
+      } else if (errorMessage.includes('safety')) {
+        setError('The audit was blocked by AI safety filters. Please try a different URL.');
+      } else if (errorMessage.includes('fetch')) {
+        setError('Network failure. Please check your internet connection or verify if the Gemini API is accessible in your region.');
+      } else {
+        setError(`System Error: ${errorMessage || 'Our intelligence engine is currently under maintenance or the provided URL is unreachable.'}`);
+      }
     } finally {
       setIsAnalyzing(false);
       setProgress(100);
@@ -186,15 +196,15 @@ export default function AuditTool() {
                     )}
                     <form onSubmit={handleAudit} className="space-y-6">
                       <div className="relative group">
-                        <div className="absolute inset-y-0 left-8 flex items-center text-zinc-700 group-focus-within:text-blue-500 transition-colors">
-                          <Globe size={24} />
+                        <div className="absolute inset-y-0 left-4 md:left-8 flex items-center text-zinc-700 group-focus-within:text-blue-500 transition-colors">
+                          <Globe size={24} className="scale-75 md:scale-100" />
                         </div>
                         <input
                           type="text"
                           value={url}
                           onChange={(e) => setUrl(e.target.value)}
                           placeholder="domain.com"
-                          className="w-full bg-white/[0.02] border border-white/10 rounded-[2rem] px-20 py-8 text-2xl focus:border-blue-500/30 outline-none transition-all placeholder:text-zinc-800 text-white"
+                          className="w-full bg-white/[0.02] border border-white/10 rounded-[2rem] px-10 md:px-20 py-6 md:py-8 text-lg md:text-2xl focus:border-blue-500/30 outline-none transition-all placeholder:text-zinc-800 text-white"
                         />
                       </div>
                       <button
