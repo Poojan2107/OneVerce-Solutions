@@ -62,41 +62,41 @@ export default function Navbar() {
           </a>
         </Magnetic>
 
-        {/* Desktop Links */}
-        <div className="hidden md:flex items-center gap-8 flex-shrink-0">
-          {navLinks.map((link) => (
-            <Magnetic key={link.name}>
-              <a
-                href={link.href}
-                className="text-[9px] font-bold text-white/40 hover:text-white uppercase tracking-[0.5em] transition-all relative group py-2 whitespace-nowrap"
-              >
-                {link.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-px bg-[#00f0f0] group-hover:w-full transition-all duration-500 shadow-[0_0_8px_#00f0f0]" />
-              </a>
-            </Magnetic>
-          ))}
+        {/* Desktop Links & CTA */}
+        <div className="hidden md:flex items-center gap-4 lg:gap-8 flex-shrink-0">
+          <div className="flex items-center gap-6 lg:gap-10 mr-4">
+            {navLinks.map((link) => (
+              <Magnetic key={link.name}>
+                <a
+                  href={link.href}
+                  className="text-[9px] font-bold text-white/40 hover:text-white uppercase tracking-[0.5em] transition-all relative group py-2 whitespace-nowrap"
+                >
+                  {link.name}
+                  <span className="absolute -bottom-1 left-0 w-0 h-px bg-[#00f0f0] group-hover:w-full transition-all duration-500 shadow-[0_0_8px_#00f0f0]" />
+                </a>
+              </Magnetic>
+            ))}
+          </div>
           
-          <Magnetic>
-            <a
-              href="#contact"
-              className="group relative px-8 py-3 overflow-hidden rounded-full transition-transform hover:scale-105 active:scale-95 flex-shrink-0 whitespace-nowrap"
-            >
-              {/* Technical Button Frame */}
-              <div className="absolute inset-0 bg-white group-hover:bg-[#00f0f0] transition-colors duration-500" />
-              
-              {/* Internal Scan Beam */}
-              <motion.div 
-                animate={{ x: ['-100%', '200%'] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-black/10 to-transparent skew-x-12"
-              />
+          <a
+            href="#contact"
+            className="group relative px-6 lg:px-8 py-3 overflow-hidden rounded-full transition-transform hover:scale-105 active:scale-95 flex-shrink-0 whitespace-nowrap min-w-fit block"
+          >
+            {/* Technical Button Frame */}
+            <div className="absolute inset-0 bg-white group-hover:bg-[#00f0f0] transition-colors duration-500" />
+            
+            {/* Internal Scan Beam */}
+            <motion.div 
+              animate={{ x: ['-100%', '200%'] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+              className="absolute inset-0 bg-gradient-to-r from-transparent via-black/10 to-transparent skew-x-12"
+            />
 
-              <div className="relative flex items-center gap-2 text-black text-[9px] font-black uppercase tracking-widest whitespace-nowrap">
-                Initiate Project
-                <ArrowRight size={12} strokeWidth={3} />
-              </div>
-            </a>
-          </Magnetic>
+            <div className="relative flex items-center gap-2 text-black text-[9px] font-black uppercase tracking-widest whitespace-nowrap">
+              Initiate Project
+              <ArrowRight size={12} strokeWidth={3} />
+            </div>
+          </a>
         </div>
 
         {/* Mobile Toggle */}
