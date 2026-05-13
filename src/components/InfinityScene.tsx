@@ -1,118 +1,119 @@
-import { useMemo } from 'react';
-import { motion } from 'motion/react';
+import { useEffect, useRef } from 'react';
 
 export default function InfinityScene() {
-  // Generate 600 ultra-dense particles for a high-fidelity 3D background vortex
-  const particles = useMemo(() => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d', { alpha: true });
+    if (!ctx) return;
+
+    let animationFrameId: number;
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    // Handle resize
+    const handleResize = () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    };
+    window.addEventListener('resize', handleResize);
+
     const colors = ['#00f0f0', '#0070b0', '#f05060', '#f09010', '#f0f070'];
     
-    return Array.from({ length: 600 }).map((_, i) => {
-      const t = (i / 600) * Math.PI * 2;
-      // Lemniscate of Bernoulli - scaled for background immersion
-      const scale = 500;
-      const x = (scale * Math.cos(t)) / (1 + Math.sin(t) * Math.sin(t));
-      const y = (scale * Math.sin(t) * Math.cos(t)) / (1 + Math.sin(t) * Math.sin(t));
-      
-      // Dynamic depth variation
-      const z = Math.sin(t * 3) * 150;
-
-      const colorIndex = Math.floor((t / (Math.PI * 2)) * colors.length);
-      const color = colors[colorIndex] || colors[0];
-
+    // Create 1000 high-performance particles
+    const particleCount = 1000;
+    const particles = Array.from({ length: particleCount }).map((_, i) => {
+      const offset = (i / particleCount) * Math.PI * 2;
       return {
-        id: i,
-        x,
-        y,
-        z,
-        delay: Math.random() * 5,
-        duration: 3 + Math.random() * 4,
-        size: Math.random() > 0.95 ? 5 : 1 + Math.random() * 2,
-        color: Math.random() > 0.9 ? '#ffffff' : color,
+        offset,
+        speed: 0.002 + Math.random() * 0.003,
+        size: Math.random() > 0.98 ? 3 : 0.8 + Math.random() * 1.2,
+        baseOpacity: 0.2 + Math.random() * 0.6,
+        color: colors[Math.floor((offset / (Math.PI * 2)) * colors.length)] || colors[0],
+        zOffset: Math.random() * Math.PI * 2
       };
     });
+
+    const draw = () => {
+      ctx.clearRect(0, 0, width, height);
+      
+      const time = Date.now() * 0.001;
+      const centerX = width / 2;
+      const centerY = height / 2;
+      
+      // Depth sorting is computationally expensive, but canvas drawing is fast
+      // Sort particles by Z to simulate real 3D depth layering
+      const sortedParticles = particles.map(p => {
+        const t = (time * p.speed * 200 + p.offset) % (Math.PI * 2);
+        
+        // Lemniscate of Bernoulli
+        const scale = 550;
+        const x = (scale * Math.cos(t)) / (1 + Math.sin(t) * Math.sin(t));
+        const y = (scale * Math.sin(t) * Math.cos(t)) / (1 + Math.sin(t) * Math.sin(t));
+        
+        // Complex 3D rotation and depth
+        const z = Math.sin(t * 3 + time * 0.5) * 150;
+        
+        // Apply a slow global rotation to the whole scene
+        const angle = time * 0.1;
+        const rotX = x * Math.cos(angle) - z * Math.sin(angle);
+        const rotZ = x * Math.sin(angle) + z * Math.cos(angle);
+        
+        // Perspective projection
+        const fov = 1000;
+        const pScale = fov / (fov + rotZ);
+        const finalX = centerX + rotX * pScale;
+        const finalY = centerY + y * pScale;
+        
+        return { ...p, finalX, finalY, pScale, rotZ };
+      }).sort((a, b) => b.rotZ - a.rotZ);
+
+      // Render particles
+      sortedParticles.forEach(p => {
+        const opacity = p.baseOpacity * p.pScale * (0.5 + Math.sin(time * 2 + p.offset) * 0.5);
+        
+        ctx.beginPath();
+        ctx.arc(p.finalX, p.finalY, p.size * p.pScale, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.globalAlpha = opacity;
+        ctx.fill();
+        
+        // Add subtle glow to larger particles
+        if (p.size > 2) {
+          ctx.shadowBlur = 15 * p.pScale;
+          ctx.shadowColor = p.color;
+        } else {
+          ctx.shadowBlur = 0;
+        }
+      });
+
+      // Subtle Background Core Glow
+      const gradient = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, 400);
+      gradient.addColorStop(0, 'rgba(0, 240, 240, 0.05)');
+      gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+      ctx.globalAlpha = 1;
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, width, height);
+
+      animationFrameId = requestAnimationFrame(draw);
+    };
+
+    draw();
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      cancelAnimationFrame(animationFrameId);
+    };
   }, []);
 
   return (
-    <div className="relative w-full h-full flex items-center justify-center overflow-visible perspective-[3000px] pointer-events-none">
-      {/* Deep Atmospheric Bloom Core */}
-      <div className="absolute inset-0 flex items-center justify-center z-0">
-        <div className="absolute w-[1200px] h-[600px] bg-[#00f0f0]/[0.02] rounded-[100%] blur-[180px] animate-pulse" />
-      </div>
-
-      <motion.div 
-        className="relative flex items-center justify-center transform-style-preserve-3d scale-110 will-change-transform z-10"
-        animate={{ 
-          rotateX: [10, 20, 10], 
-          rotateY: [-30, 30, -30], 
-          rotateZ: [0, 360] 
-        }}
-        transition={{ 
-          rotateX: { duration: 15, repeat: Infinity, ease: "easeInOut" },
-          rotateY: { duration: 25, repeat: Infinity, ease: "easeInOut" },
-          rotateZ: { duration: 120, repeat: Infinity, ease: "linear" }
-        }}
-      >
-        
-        {/* Core Glowing SVG Path */}
-        <svg 
-          viewBox="-600 -300 1200 600" 
-          className="absolute inset-0 w-[1200px] h-[600px] overflow-visible mix-blend-screen opacity-30 z-10"
-          style={{ top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
-        >
-          <motion.path
-            d="M 0,0 C 200,-300 500,-300 500,0 C 500,300 200,300 0,0 C -200,-300 -500,-300 -500,0 C -500,300 -200,300 0,0 Z"
-            fill="none"
-            stroke="url(#brand-glow-vortex)"
-            strokeWidth="2"
-            initial={{ strokeDasharray: "3000", strokeDashoffset: "3000" }}
-            animate={{ strokeDashoffset: "0" }}
-            transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-          />
-          <defs>
-            <linearGradient id="brand-glow-vortex" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#00f0f0" stopOpacity="0.5" />
-              <stop offset="25%" stopColor="#0070b0" stopOpacity="0.5" />
-              <stop offset="50%" stopColor="#f05060" stopOpacity="0.5" />
-              <stop offset="75%" stopColor="#f09010" stopOpacity="0.5" />
-              <stop offset="100%" stopColor="#f0f070" stopOpacity="0.5" />
-            </linearGradient>
-          </defs>
-        </svg>
-
-        {/* Dense Background Particles */}
-        <div className="absolute inset-0 flex items-center justify-center z-30 transform-style-preserve-3d">
-          {particles.map((p) => (
-            <motion.div
-              key={`particle-${p.id}`}
-              className="absolute rounded-full shadow-[0_0_15px_currentColor]"
-              style={{
-                width: p.size,
-                height: p.size,
-                backgroundColor: p.color,
-                color: p.color,
-                top: '50%',
-                left: '50%',
-                marginLeft: p.x,
-                marginTop: p.y,
-                transform: `translateZ(${p.z}px)`,
-              }}
-              animate={{ 
-                opacity: [0.2, 0.8, 0.2], 
-                scale: [0.5, 1.5, 0.5],
-              }}
-              transition={{ 
-                duration: p.duration, 
-                repeat: Infinity, 
-                ease: "easeInOut", 
-                delay: p.delay 
-              }}
-            />
-          ))}
-          
-          {/* Energy Singularities */}
-          <div className="absolute w-[600px] h-[600px] bg-gradient-to-r from-[#00f0f0]/10 via-transparent to-[#f05060]/10 blur-[100px] rounded-full transform-style-preserve-3d" />
-        </div>
-      </motion.div>
-    </div>
+    <canvas 
+      ref={canvasRef} 
+      className="absolute inset-0 w-full h-full pointer-events-none mix-blend-screen opacity-80"
+      style={{ filter: 'contrast(1.2) brightness(1.2)' }}
+    />
   );
 }

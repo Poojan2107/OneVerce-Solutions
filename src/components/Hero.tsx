@@ -126,25 +126,16 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.4, duration: 1 }}
-              className="flex flex-wrap items-center justify-center gap-8 relative z-30"
+              className="flex items-center justify-center relative z-30"
             >
               <Magnetic>
                 <button 
                   onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="px-12 py-6 bg-white text-black rounded-full font-bold text-sm hover:scale-105 transition-all active:scale-95 shadow-[0_0_50px_rgba(255,255,255,0.3)] flex items-center gap-4 group/btn relative overflow-hidden"
+                  className="px-14 py-6 bg-white text-black rounded-full font-bold text-sm hover:scale-105 transition-all active:scale-95 shadow-[0_0_50px_rgba(255,255,255,0.3)] flex items-center gap-4 group/btn relative overflow-hidden"
                 >
                   <span className="relative z-10 uppercase tracking-[0.25em] text-[11px] font-black">Initialize Project</span>
                   <ArrowRight size={18} className="relative z-10 group-hover/btn:translate-x-2 transition-transform duration-500" />
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-black/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-                </button>
-              </Magnetic>
-              
-              <Magnetic>
-                <button className="flex items-center gap-4 group/play">
-                  <div className="w-16 h-16 rounded-full border border-white/20 bg-white/5 backdrop-blur-xl flex items-center justify-center text-white group-hover:bg-white group-hover:text-black transition-all duration-500 shadow-[0_0_30px_rgba(0,240,240,0.2)]">
-                    <div className="w-0 h-0 border-t-[6px] border-t-transparent border-l-[10px] border-l-current border-b-[6px] border-b-transparent ml-1" />
-                  </div>
-                  <span className="text-xs uppercase tracking-[0.3em] font-bold text-white/50 group-hover:text-white transition-colors">Play Reel</span>
                 </button>
               </Magnetic>
             </motion.div>
