@@ -47,27 +47,27 @@ export default function Hero() {
       </div>
 
       {/* 2. The Infinity Core (One Flow) */}
-      <div className="absolute inset-0 z-10 opacity-90">
+      <div className="absolute inset-0 z-10 opacity-90 -translate-x-[2vw]">
         <InfinityScene mouseX={mouseX} mouseY={mouseY} />
       </div>
 
       {/* 3. Cinematic Interface HUD */}
-      <div className="absolute inset-0 z-20 pointer-events-none p-6 md:p-20 hidden sm:flex flex-col justify-between">
-        <div className="flex justify-between items-start opacity-40 uppercase tracking-[0.4em] text-[9px] font-mono">
+      <div className="absolute inset-0 z-20 pointer-events-none p-10 md:pt-40 md:pb-20 md:px-20 hidden sm:flex flex-col justify-between">
+        <div className="flex justify-between items-start opacity-30 uppercase tracking-[0.4em] text-[9px] font-mono">
           <div className="space-y-2">
             <p className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-[#00f0f0] animate-pulse" /> Status: Operational</p>
-            <p className="text-white/40">Core_Engine: Neural_X1</p>
+            <p className="text-white/40 font-bold">Core_Engine: Neural_X1</p>
           </div>
           <div className="text-right space-y-1">
-            <p className="text-[#00f0f0]">Security_Auth: Passed</p>
+            <p className="text-[#00f0f0] font-bold">Security_Auth: Passed</p>
             <p className="opacity-50">V_024.9.1</p>
           </div>
         </div>
 
-        <div className="flex justify-between items-end opacity-40 uppercase tracking-[0.4em] text-[9px] font-mono">
+        <div className="flex justify-between items-end opacity-30 uppercase tracking-[0.4em] text-[9px] font-mono">
           <div className="space-y-1">
-            <p>Lat: 0.002ms // Flux: Stable</p>
-            <p className="text-white/40 font-bold">Systems Architecture Studio</p>
+            <p className="font-bold text-white">Lat: 0.002ms // Flux: Stable</p>
+            <p className="text-white/40">Systems Architecture Studio</p>
           </div>
           <div className="relative group pointer-events-auto cursor-none">
              <div className="border border-white/20 px-4 py-2 backdrop-blur-xl hover:border-[#00f0f0] transition-all duration-500 group-hover:bg-[#00f0f0]/10">
