@@ -20,7 +20,7 @@ export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
       size: Math.random() * 2.5,
       opacity: Math.random() * 0.7,
       delay: Math.random() * 5,
-      color: i % 12 === 0 ? '#00f0f0' : i % 20 === 0 ? '#9333ea' : '#ffffff', // Mix in brand colors
+      color: i % 15 === 0 ? '#00f0ff' : i % 25 === 0 ? '#ffeb3b' : i % 35 === 0 ? '#ff5722' : '#ffffff', 
       duration: 2 + Math.random() * 4,
     }));
   }, []);
@@ -29,7 +29,7 @@ export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
     <div className="relative w-full h-full flex items-center justify-center overflow-visible perspective-[2000px] pointer-events-none">
       {/* 1. Deep Space Ambient Nebula */}
       <div className="absolute inset-0 flex items-center justify-center z-0">
-        <div className="absolute w-[1800px] h-[1000px] bg-[#00f0f0]/[0.015] rounded-[100%] blur-[250px] animate-pulse" />
+        <div className="absolute w-[1800px] h-[1000px] bg-white/[0.01] rounded-[100%] blur-[250px] animate-pulse" />
       </div>
 
       {/* 2. Stardust Field (Parallax Environment) */}
@@ -71,18 +71,20 @@ export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
             className="absolute inset-0 w-full h-full overflow-visible mix-blend-screen"
           >
             <defs>
-              {/* Glossy Rainbow Gradient matching logo exactly (Cyan and Purple focus) */}
+              {/* Official Full Spectrum Rainbow Gradient */}
               <linearGradient id="ribbon-grad-v1" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#00f0f0" />
-                <stop offset="40%" stopColor="#00c0ff" />
-                <stop offset="60%" stopColor="#9333ea" />
-                <stop offset="100%" stopColor="#6366f1" />
+                <stop offset="0%" stopColor="#00f0ff" /> {/* Cyan */}
+                <stop offset="20%" stopColor="#00ff9d" /> {/* Teal/Green */}
+                <stop offset="40%" stopColor="#ffeb3b" /> {/* Yellow */}
+                <stop offset="60%" stopColor="#ff5722" /> {/* Orange/Red */}
+                <stop offset="80%" stopColor="#e91e63" /> {/* Pink */}
+                <stop offset="100%" stopColor="#9c27b0" /> {/* Purple */}
               </linearGradient>
 
               {/* Inner Depth Gradient (Shadow Side) */}
               <linearGradient id="ribbon-inner-shadow" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#003030" />
-                <stop offset="100%" stopColor="#1a0035" />
+                <stop offset="0%" stopColor="#001520" />
+                <stop offset="100%" stopColor="#150020" />
               </linearGradient>
 
               <filter id="ribbon-glow-v2" x="-50%" y="-50%" width="200%" height="200%">

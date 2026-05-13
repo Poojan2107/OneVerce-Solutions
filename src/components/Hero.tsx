@@ -112,7 +112,7 @@ export default function Hero() {
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
             transition={{ duration: 2, delay: 0.8, ease: "circOut" }}
-            className="absolute -bottom-4 md:-bottom-6 left-1/2 -translate-x-1/2 w-[90%] md:w-4/5 h-[2px] md:h-[4px] bg-gradient-to-r from-transparent via-[#00f0f0] via-[#9333ea] to-transparent shadow-[0_8px_30px_rgba(0,240,240,0.3)]" 
+            className="absolute -bottom-4 md:-bottom-6 left-1/2 -translate-x-1/2 w-[90%] md:w-4/5 h-[2px] md:h-[4px] bg-gradient-to-r from-transparent via-[#00f0ff] via-[#00ff9d] via-[#ffeb3b] via-[#ff5722] via-[#9c27b0] to-transparent shadow-[0_8px_30px_rgba(0,240,240,0.2)]" 
           />
         </div>
 
