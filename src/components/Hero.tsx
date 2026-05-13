@@ -1,5 +1,5 @@
 import { motion, useMotionValue, useSpring, useTransform } from 'motion/react';
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import InfinityScene from './InfinityScene';
 
 export default function Hero() {
@@ -24,7 +24,7 @@ export default function Hero() {
   }, [mouseX, mouseY]);
 
   return (
-    <section className="relative min-h-screen w-full bg-[#020202] flex flex-col items-center justify-center overflow-hidden">
+    <section id="hero" className="relative min-h-screen w-full bg-[#020202] flex flex-col items-center justify-center overflow-hidden">
       {/* 0. Cinematic Noise Grain Overlay */}
       <div className="absolute inset-0 z-50 pointer-events-none opacity-[0.03] mix-blend-overlay">
         <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
@@ -48,7 +48,7 @@ export default function Hero() {
 
       {/* 2. The Infinity Core (One Flow) */}
       <div className="absolute inset-0 z-10 opacity-90 scale-110">
-        <InfinityScene />
+        <InfinityScene mouseX={mouseX} mouseY={mouseY} />
       </div>
 
       {/* 3. Cinematic Interface HUD */}
@@ -80,7 +80,7 @@ export default function Hero() {
       {/* 4. The Hero Content */}
       <motion.div 
         style={{ rotateX, rotateY, x: textX, y: textY }}
-        className="relative z-30 flex flex-col items-center text-center px-6 max-w-7xl mx-auto pt-32 md:pt-48 transform-style-preserve-3d"
+        className="relative z-30 flex flex-col items-center text-center px-6 max-w-7xl mx-auto transform-style-preserve-3d"
       >
         
         {/* Identity Badge */}
@@ -107,12 +107,12 @@ export default function Hero() {
             Oneverce
           </motion.h1>
           
-          {/* Vibrant Logo Underline */}
+          {/* Vibrant Logo Underline (Cyan/Purple focused) */}
           <motion.div 
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
             transition={{ duration: 2, delay: 0.8, ease: "circOut" }}
-            className="absolute -bottom-4 md:-bottom-6 left-1/2 -translate-x-1/2 w-[90%] md:w-4/5 h-[3px] md:h-[5px] bg-gradient-to-r from-transparent via-[#00f0f0] via-[#9333ea] via-[#f05060] via-[#f09010] to-transparent shadow-[0_8px_30px_rgba(0,240,240,0.4)]" 
+            className="absolute -bottom-4 md:-bottom-6 left-1/2 -translate-x-1/2 w-[90%] md:w-4/5 h-[3px] md:h-[5px] bg-gradient-to-r from-transparent via-[#00f0f0] via-[#9333ea] to-transparent shadow-[0_8px_30px_rgba(0,240,240,0.4)]" 
           />
         </div>
 
@@ -153,16 +153,19 @@ export default function Hero() {
             </span>
           </a>
           
-          <button className="group flex items-center justify-center gap-4 md:gap-5 text-white/20 hover:text-white transition-all duration-500 uppercase tracking-[0.3em] md:tracking-[0.4em] text-[9px] md:text-[10px] font-bold font-mono">
+          <a 
+            href="#featured-work"
+            className="group flex items-center justify-center gap-4 md:gap-5 text-white/20 hover:text-white transition-all duration-500 uppercase tracking-[0.3em] md:tracking-[0.4em] text-[9px] md:text-[10px] font-bold font-mono"
+          >
             <span className="w-12 md:w-16 h-[1px] bg-white/10 group-hover:w-20 md:group-hover:w-24 group-hover:bg-[#00f0f0] transition-all duration-700" />
             Sector_Archive // 024
-          </button>
+          </a>
         </motion.div>
       </motion.div>
 
       {/* Atmospheric Light Leaks (Cinematic Bloom) */}
       <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#0070b0]/05 rounded-full blur-[200px] mix-blend-overlay pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[800px] h-[800px] bg-[#f05060]/05 rounded-full blur-[200px] mix-blend-overlay pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[800px] h-[800px] bg-[#9333ea]/05 rounded-full blur-[200px] mix-blend-overlay pointer-events-none" />
     </section>
   );
 }

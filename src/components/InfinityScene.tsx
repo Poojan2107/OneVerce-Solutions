@@ -1,7 +1,16 @@
 import { useMemo } from 'react';
-import { motion } from 'motion/react';
+import { motion, MotionValue, useTransform } from 'motion/react';
 
-export default function InfinityScene() {
+interface InfinitySceneProps {
+  mouseX?: MotionValue<number>;
+  mouseY?: MotionValue<number>;
+}
+
+export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
+  // Synchronized Scene Tilting
+  const rotateX = useTransform(mouseY || new MotionValue(0), [-500, 500], [15, 10]);
+  const rotateY = useTransform(mouseX || new MotionValue(0), [-500, 500], [-10, 10]);
+
   // Static Stardust Field (Immersive Environment)
   const stardust = useMemo(() => {
     return Array.from({ length: 200 }).map((_, i) => ({
@@ -11,7 +20,7 @@ export default function InfinityScene() {
       size: Math.random() * 2.5,
       opacity: Math.random() * 0.7,
       delay: Math.random() * 5,
-      color: i % 12 === 0 ? '#00f0f0' : i % 20 === 0 ? '#f05060' : '#ffffff', // Mix in brand colors
+      color: i % 12 === 0 ? '#00f0f0' : i % 20 === 0 ? '#9333ea' : '#ffffff', // Mix in brand colors
       duration: 2 + Math.random() * 4,
     }));
   }, []);
@@ -48,12 +57,11 @@ export default function InfinityScene() {
       </div>
 
       <motion.div 
-        className="relative flex items-center justify-center transform-style-preserve-3d scale-[0.38] sm:scale-[0.55] md:scale-[0.85] will-change-transform z-10"
-        animate={{ 
-          rotateX: [12, 18, 12], 
-          rotateY: [-6, 6, -6],
+        className="relative flex items-center justify-center transform-style-preserve-3d scale-[0.4] sm:scale-[0.55] md:scale-[0.9] lg:scale-[1.1] will-change-transform z-10"
+        style={{ 
+          rotateX, 
+          rotateY,
         }}
-        transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
       >
         
         {/* 3. The Volumetric Ribbon (One Flow Architecture) */}
@@ -63,20 +71,18 @@ export default function InfinityScene() {
             className="absolute inset-0 w-full h-full overflow-visible mix-blend-screen"
           >
             <defs>
-              {/* Glossy Rainbow Gradient matching logo exactly */}
+              {/* Glossy Rainbow Gradient matching logo exactly (Cyan and Purple focus) */}
               <linearGradient id="ribbon-grad-v1" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stopColor="#00f0f0" />
-                <stop offset="25%" stopColor="#0070b0" />
-                <stop offset="50%" stopColor="#9333ea" />
-                <stop offset="75%" stopColor="#f05060" />
-                <stop offset="100%" stopColor="#f09010" />
+                <stop offset="40%" stopColor="#00c0ff" />
+                <stop offset="60%" stopColor="#9333ea" />
+                <stop offset="100%" stopColor="#6366f1" />
               </linearGradient>
 
               {/* Inner Depth Gradient (Shadow Side) */}
               <linearGradient id="ribbon-inner-shadow" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stopColor="#003030" />
-                <stop offset="50%" stopColor="#1a0035" />
-                <stop offset="100%" stopColor="#301500" />
+                <stop offset="100%" stopColor="#1a0035" />
               </linearGradient>
 
               <filter id="ribbon-glow-v2" x="-50%" y="-50%" width="200%" height="200%">
@@ -99,7 +105,7 @@ export default function InfinityScene() {
               fill="none"
               stroke="url(#ribbon-grad-v1)"
               strokeWidth="110"
-              strokeOpacity="0.06"
+              strokeOpacity="0.08"
               className="blur-[70px]"
             />
 
@@ -108,7 +114,7 @@ export default function InfinityScene() {
               d="M 0,0 C 200,-420 620,-420 620,0 C 620,420 200,420 0,0 C -150,300 -450,300 -450,0 C -450,-300 -150,-300 0,0"
               fill="none"
               stroke="url(#ribbon-grad-v1)"
-              strokeWidth="55"
+              strokeWidth="60"
               strokeLinecap="round"
               initial={{ pathLength: 0 }}
               animate={{ pathLength: 1 }}
@@ -121,9 +127,9 @@ export default function InfinityScene() {
               d="M 0,0 C 200,-420 620,-420 620,0 C 620,420 200,420 0,0 C -150,300 -450,300 -450,0 C -450,-300 -150,-300 0,0"
               fill="none"
               stroke="url(#ribbon-inner-shadow)"
-              strokeWidth="24"
+              strokeWidth="28"
               strokeLinecap="round"
-              strokeOpacity="0.7"
+              strokeOpacity="0.8"
               className="blur-[3px]"
             />
 
@@ -133,7 +139,7 @@ export default function InfinityScene() {
               fill="none"
               stroke="#ffffff"
               strokeWidth="5"
-              strokeOpacity="0.35"
+              strokeOpacity="0.4"
               strokeLinecap="round"
               strokeDasharray="12 400"
               animate={{ strokeDashoffset: -2000 }}
@@ -159,7 +165,7 @@ export default function InfinityScene() {
               
               {/* Dynamic Planet Rings (Chromatic Effect) */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] h-[80px] border-[5px] border-[#00f0f0]/40 rounded-[100%] rotate-[24deg] blur-[0.5px] shadow-[0_0_40px_rgba(0,240,240,0.4)]" />
-              <div className="absolute top-1/2 left-1/2 -translate-x-[50.5%] -translate-y-[50.5%] w-[340px] h-[80px] border border-[#f05060]/20 rounded-[100%] rotate-[24.2deg] blur-[1px]" />
+              <div className="absolute top-1/2 left-1/2 -translate-x-[50.5%] -translate-y-[50.5%] w-[340px] h-[80px] border border-[#9333ea]/20 rounded-[100%] rotate-[24.2deg] blur-[1px]" />
               
               {/* Orbital Ring Pulse */}
               <motion.div 
@@ -173,7 +179,7 @@ export default function InfinityScene() {
 
         {/* 5. Focal Atmospheric Singularities */}
         <div className="absolute flex items-center justify-center transform-style-preserve-3d pointer-events-none">
-          <div className="absolute translate-x-[350px] w-[1000px] h-[700px] bg-[#f05060]/[0.05] rounded-full blur-[180px]" />
+          <div className="absolute translate-x-[350px] w-[1000px] h-[700px] bg-[#9333ea]/[0.05] rounded-full blur-[180px]" />
           <div className="absolute -translate-x-[350px] w-[800px] h-[600px] bg-[#00f0f0]/[0.08] rounded-full blur-[180px]" />
         </div>
       </motion.div>
