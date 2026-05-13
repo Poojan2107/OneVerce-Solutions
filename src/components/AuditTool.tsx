@@ -59,7 +59,7 @@ export default function AuditTool() {
     }
 
     try {
-      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-latest" });
       
       const prompt = `
         You are a world-class UX Strategist and Conversion Rate Optimization (CRO) expert.
