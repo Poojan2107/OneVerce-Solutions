@@ -11,8 +11,7 @@ export default function Team() {
       bio: 'Architect of high-velocity conversion engines, blending technical logic with surgical precision to dominate digital spaces.',
       accent: 'blue',
       social: [
-        { label: 'LinkedIn', href: 'https://www.linkedin.com/in/vansh-prajapati-6a1b2b2b1/' },
-        { label: 'Instagram', href: 'https://www.instagram.com/oneverce/' }
+        { label: 'LinkedIn', href: 'https://www.linkedin.com/in/vansh-prajapati-6a1b2b2b1/' }
       ]
     },
     {
@@ -22,8 +21,7 @@ export default function Team() {
       bio: 'Master of experience strategy, synthesizing aesthetic authority with algorithmic performance to build the next generation of digital infrastructure.',
       accent: 'purple',
       social: [
-        { label: 'LinkedIn', href: 'https://www.linkedin.com/in/poojan-shrivastav-6a1b2b2b1/' },
-        { label: 'Instagram', href: 'https://www.instagram.com/oneverce/' }
+        { label: 'LinkedIn', href: 'https://www.linkedin.com/in/poojan-shrivastav-6a1b2b2b1/' }
       ]
     }
   ];
