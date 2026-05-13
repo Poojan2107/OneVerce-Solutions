@@ -6,7 +6,6 @@ import Magnetic from './Magnetic';
 const navLinks = [
   { name: 'Capabilities', href: '#services' },
   { name: 'Work', href: '#work' },
-  { name: 'Audit', href: '#audit' },
   { name: 'Team', href: '#team' },
 ];
 
