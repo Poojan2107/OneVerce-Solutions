@@ -34,7 +34,7 @@ export default function SocialProof() {
               Synchronizing our latest <span className="text-white font-semibold underline decoration-[#00f0ff]/30 decoration-2 underline-offset-4">architectural breakthroughs</span>, AI research, and high-fidelity production systems across the global grid.
             </p>
 
-            <div className="flex flex-wrap gap-8 mb-10">
+            <div className="flex flex-wrap gap-6 md:gap-8 mb-10">
               {socialStats.map((stat, i) => (
                 <div key={i} className="flex flex-col gap-3 group cursor-pointer">
                   <div className="flex items-center gap-3 text-zinc-700 text-[10px] font-bold uppercase tracking-[0.4em] group-hover:text-zinc-500 transition-colors">
