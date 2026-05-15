@@ -23,7 +23,7 @@ export default function CTA() {
               <Sparkles size={12} className="animate-pulse" /> Final Call to Impact
             </div>
             
-            <h2 className="heading-2xl text-white max-w-4xl mx-auto uppercase">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white max-w-4xl mx-auto uppercase leading-tight">
               Architect Your Operational Future.
             </h2>
             

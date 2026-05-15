@@ -46,10 +46,10 @@ export default function Team() {
               <div className="w-2 h-2 bg-blue-500 rounded-full" />
               <span className="text-zinc-500 font-bold uppercase tracking-[0.4em] text-[10px]">Strategic Founders</span>
             </div>
-            <h2 className="heading-xl text-white uppercase mb-8">
+            <h2 className="text-4xl sm:text-7xl lg:text-8xl text-white uppercase mb-8 font-black tracking-tighter">
               The Architects
             </h2>
-            <p className="text-zinc-400 text-xl max-w-2xl mx-auto leading-loose font-medium tracking-wide">
+            <p className="text-zinc-400 text-base sm:text-xl max-w-2xl mx-auto leading-relaxed font-medium tracking-wide">
               The architects of high-performance digital infrastructure.
             </p>
           </motion.div>
@@ -75,10 +75,10 @@ export default function Team() {
                   
                   <div className="flex flex-col items-start gap-4 mb-16 relative">
                     <div className="space-y-2">
-                      <div className={`text-[10px] font-bold uppercase tracking-[0.5em] ${
+                      <div className={`text-[9px] font-bold uppercase tracking-[0.4em] ${
                         member.accent === 'blue' ? 'text-blue-500' : 'text-purple-500'
                       }`}>{member.role}</div>
-                      <h3 className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tighter text-white uppercase leading-[0.95] break-words">{member.name}</h3>
+                      <h3 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tighter text-white uppercase leading-[0.9] break-normal">{member.name}</h3>
                     </div>
                   </div>
 

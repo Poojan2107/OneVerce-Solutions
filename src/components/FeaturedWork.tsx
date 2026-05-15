@@ -197,7 +197,7 @@ export default function FeaturedWork() {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-2xl sm:text-4xl md:text-5xl font-black tracking-tight text-white uppercase leading-[0.9] break-words">
+                <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tighter text-white uppercase leading-[1.1] lg:leading-[0.9] break-normal">
                   {project.title}
                 </h3>
 

@@ -40,7 +40,7 @@ export default function Stats() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
-              className="relative group p-6 rounded-2xl bg-zinc-950/60 border border-white/5 hover:border-white/15 transition-all duration-500 overflow-hidden"
+              className="relative group p-4 md:p-6 rounded-2xl bg-zinc-950/60 border border-white/5 hover:border-white/15 transition-all duration-500 overflow-hidden"
             >
               <div className="flex items-center justify-between mb-5">
                 <div className={`p-3 rounded-xl bg-white/[0.03] border border-white/5 group-hover:scale-110 transition-transform duration-500 ${stat.color}`}>

@@ -26,7 +26,7 @@ export default function SocialProof() {
               Connectivity Protocol
             </div>
             
-            <h2 className="heading-xl text-white uppercase mb-8">
+            <h2 className="text-3xl sm:text-7xl lg:text-8xl text-white uppercase mb-8 font-black tracking-tighter">
               Network Pulse
             </h2>
             
@@ -58,7 +58,7 @@ export default function SocialProof() {
               href="https://www.instagram.com/oneverce/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-4 bg-white text-black px-12 py-6 rounded-full font-bold uppercase tracking-[0.2em] text-xs hover:scale-105 transition-all group shadow-2xl"
+              className="inline-flex items-center gap-4 bg-white text-black px-8 md:px-12 py-4 md:py-6 rounded-full font-black uppercase tracking-[0.2em] text-[10px] md:text-xs hover:scale-105 transition-all group shadow-2xl"
             >
               Sync Global Profile
               <Globe size={18} className="group-hover:rotate-45 transition-transform" />

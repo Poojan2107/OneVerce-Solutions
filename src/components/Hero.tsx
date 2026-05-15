@@ -47,12 +47,12 @@ export default function Hero() {
       </div>
 
       {/* 2. The Infinity Core (One Flow) */}
-      <div className="absolute inset-0 z-10 opacity-60 sm:opacity-90 -translate-x-0 sm:-translate-x-[2vw] scale-[0.45] sm:scale-[0.8] md:scale-100 transition-all duration-1000">
+      <div className="absolute inset-0 z-10 opacity-60 sm:opacity-90 flex items-center justify-center -translate-x-0 sm:-translate-x-[2vw] scale-[0.4] sm:scale-[0.8] md:scale-100 transition-all duration-1000">
         <InfinityScene mouseX={mouseX} mouseY={mouseY} />
       </div>
 
       {/* 3. Cinematic Interface HUD */}
-      <div className="absolute inset-0 z-20 pointer-events-none p-10 md:pt-40 md:pb-20 md:px-20 hidden lg:flex flex-col justify-between">
+      <div className="absolute inset-0 z-20 pointer-events-none p-10 md:pt-40 md:pb-20 md:px-20 hidden md:flex flex-col justify-between">
         <div className="flex justify-between items-start opacity-30 uppercase tracking-[0.4em] text-[9px] font-mono">
           <div className="space-y-2">
             <p className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-[#00f0f0] animate-pulse" /> Status: Operational</p>
@@ -80,7 +80,7 @@ export default function Hero() {
       {/* 4. The Hero Content */}
       <motion.div 
         style={{ rotateX, rotateY, x: textX, y: textY }}
-        className="relative z-30 flex flex-col items-center text-center px-4 md:px-6 max-w-7xl mx-auto transform-style-preserve-3d pt-10 md:pt-0"
+        className="relative z-30 flex flex-col items-center text-center px-4 sm:px-6 max-w-full sm:max-w-7xl mx-auto transform-style-preserve-3d pt-10 md:pt-0"
       >
         
         {/* Identity Badge */}
@@ -97,23 +97,23 @@ export default function Hero() {
         </motion.div>
 
         {/* Primary Headline */}
-        <div className="relative mb-6 md:mb-10 group w-full">
+        <div className="relative mb-6 md:mb-10 group w-full overflow-visible">
           <motion.h1
             initial={{ opacity: 0, scale: 0.95, filter: 'blur(20px)' }}
             animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
             transition={{ duration: 1.6, ease: "easeOut" }}
-            className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-[-0.05em] sm:tracking-[-0.04em] uppercase text-white select-none relative z-10 leading-[0.95] md:leading-[0.85] drop-shadow-[0_0_40px_rgba(255,255,255,0.15)]"
+            className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-[-0.04em] uppercase text-white select-none relative z-10 leading-[0.85] drop-shadow-[0_0_40px_rgba(255,255,255,0.15)]"
           >
             Oneverce
           </motion.h1>
-          
-          {/* Vibrant Logo Underline (Cyan/Purple focused) */}
-          <motion.div 
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ duration: 2, delay: 0.8, ease: "circOut" }}
-            className="absolute -bottom-2 md:-bottom-6 left-1/2 -translate-x-1/2 w-[85%] md:w-4/5 h-[1.5px] md:h-[4px] bg-gradient-to-r from-transparent via-[#00f0ff] via-[#00ff9d] via-[#ffeb3b] via-[#ff5722] via-[#9c27b0] to-transparent shadow-[0_8px_30px_rgba(0,240,240,0.2)]" 
-          />
+
+          <div className="h-[2px] w-12 md:w-24 bg-white/10 mx-auto my-6 md:my-10 overflow-hidden">
+            <motion.div 
+              animate={{ x: ['-100%', '100%'] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              className="h-full w-full bg-gradient-to-r from-transparent via-white/50 to-transparent"
+            />
+          </div>
         </div>
 
         {/* Supporting Narrative */}
@@ -121,12 +121,11 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.2, delay: 1.2 }}
-          className="text-zinc-500 text-[10px] sm:text-sm md:text-lg lg:text-xl max-w-[280px] sm:max-w-2xl mx-auto leading-relaxed font-medium tracking-tight mb-8 md:mb-12"
+          className="text-zinc-500 text-[10px] sm:text-sm md:text-lg lg:text-xl max-w-[85vw] sm:max-w-2xl mx-auto leading-relaxed font-medium tracking-tight mb-8 md:mb-12"
         >
           We engineer <span className="text-white italic">high-fidelity digital infrastructure</span> for organizations that demand total dominance.
         </motion.p>
 
-        {/* Action Array */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
