@@ -37,13 +37,13 @@ export default function Problem() {
               <span className="text-zinc-500 font-bold uppercase tracking-[0.5em] text-[10px]">Strategic Audit</span>
             </div>
             
-            <h2 className="heading-2xl text-white uppercase mb-12 leading-[1.1] break-normal">
+            <h2 className="text-4xl sm:text-7xl lg:text-8xl text-white uppercase mb-12 leading-[1.1] break-normal font-black tracking-tighter">
               System<br />
               <span className="text-red-500 text-glow">Failure</span><br />
               Identified.
             </h2>
             
-            <p className="text-zinc-400 text-xl leading-relaxed mb-12 max-w-lg tracking-wide font-medium">
+            <p className="text-zinc-400 text-base sm:text-xl leading-relaxed mb-12 max-w-lg tracking-wide font-medium">
               Traffic hitting technical dead-ends results in <span className="text-red-400 font-bold">40%</span> ad spend waste. We stop revenue leakage through engineered precision.
             </p>
 

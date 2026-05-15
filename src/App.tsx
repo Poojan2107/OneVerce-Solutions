@@ -18,6 +18,7 @@ import Process from './components/Process';
 import SocialProof from './components/SocialProof';
 import SmoothScroll from './components/SmoothScroll';
 import Preloader from './components/Preloader';
+import TechnicalHUD from './components/TechnicalHUD';
 
 const RevealSection = ({ children, className }: { children: React.ReactNode, className?: string }) => (
   <motion.div
@@ -42,6 +43,7 @@ export default function App() {
       <Spotlight />
       <CustomCursor />
       <ScrollToTop />
+      <TechnicalHUD />
       <div className="vignette" />
       <div className="fixed inset-0 pointer-events-none bg-noise opacity-5 z-[100] mix-blend-overlay" />
       <div className="fixed inset-0 pointer-events-none bg-scanlines opacity-10 z-[100]" />

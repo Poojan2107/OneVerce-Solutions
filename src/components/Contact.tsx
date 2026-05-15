@@ -52,10 +52,10 @@ export default function Contact() {
                 <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" />
                 <span className="text-zinc-400 font-bold uppercase tracking-[0.5em] text-[10px]">Communication Protocol</span>
               </div>
-              <h2 className="heading-xl text-white uppercase mb-6 break-normal">
+              <h2 className="text-4xl sm:text-7xl lg:text-8xl text-white uppercase mb-6 break-normal font-black tracking-tighter">
                 Command Uplink
               </h2>
-              <p className="text-zinc-400 text-base md:text-lg mb-8 leading-relaxed font-medium">
+              <p className="text-zinc-400 text-base sm:text-xl mb-8 leading-relaxed font-medium">
                 Establish a direct link with the <span className="text-white font-semibold">Oneverce</span> technical team. We'll synchronize on your mission within 24 hours.
               </p>
 

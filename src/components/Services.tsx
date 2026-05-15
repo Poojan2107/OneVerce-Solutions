@@ -178,7 +178,7 @@ export default function Services() {
   const [selectedService, setSelectedService] = useState<typeof services[0] | null>(null);
 
   return (
-    <section id="services" className="py-32 md:py-48 bg-[#050505] relative overflow-hidden bg-blueprint">
+    <section id="services" className="py-20 md:py-32 lg:py-48 bg-[#050505] relative overflow-hidden bg-blueprint">
       
       {/* Background Polish with Technical Grid */}
       <div className="absolute inset-0 z-0">
@@ -186,8 +186,8 @@ export default function Services() {
         <div className="absolute bottom-0 right-0 w-[800px] h-[800px] bg-purple-600/[0.02] rounded-full blur-[200px]" />
       </div>
       
-      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
-        <div className="mb-12">
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-12 relative z-10">
+        <div className="mb-12 lg:mb-24">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -199,11 +199,11 @@ export default function Services() {
                 <div className="w-2 h-2 bg-blue-500 rounded-full animate-ping" />
                 <span className="text-zinc-500 font-bold uppercase tracking-[0.5em] text-[10px]">Capabilities Matrix</span>
               </div>
-              <h2 className="heading-2xl text-white uppercase break-normal">
+            <h2 className="text-4xl sm:text-6xl lg:text-8xl text-white uppercase break-normal font-black tracking-tighter">
                 Engineered Solutions
               </h2>
             </div>
-            <p className="text-zinc-400 text-lg md:text-xl leading-loose max-w-lg font-medium tracking-wide">
+            <p className="text-zinc-400 text-lg sm:text-xl leading-relaxed max-w-lg font-medium tracking-wide">
               Replacing technical debt with <span className="text-white font-semibold">revenue-grade</span> infrastructure.
             </p>
           </motion.div>

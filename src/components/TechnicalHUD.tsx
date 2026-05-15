@@ -17,7 +17,7 @@ export default function TechnicalHUD() {
   }, []);
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-[100] font-mono text-[9px] text-blue-500/40 uppercase tracking-widest p-6">
+    <div className="fixed inset-0 pointer-events-none z-[100] font-mono text-[9px] text-blue-500/40 uppercase tracking-widest p-6 hidden md:block">
       {/* Top Left */}
       <div className="absolute top-6 left-6 flex flex-col gap-1">
         <div className="flex items-center gap-2">

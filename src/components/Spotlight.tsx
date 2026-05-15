@@ -21,7 +21,7 @@ export default function Spotlight() {
 
   return (
     <motion.div
-      className="pointer-events-none fixed inset-0 z-50 overflow-hidden"
+      className="pointer-events-none fixed inset-0 z-50 overflow-hidden hidden md:block"
       style={{
         background: `radial-gradient(600px circle at ${springX}px ${springY}px, rgba(59, 130, 246, 0.08), transparent 80%)`,
       }}

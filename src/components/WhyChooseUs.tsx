@@ -44,11 +44,11 @@ export default function WhyChooseUs() {
               <span className="text-zinc-500 font-bold uppercase tracking-[0.5em] text-[10px]">Strategic Advantage</span>
             </div>
             
-            <h2 className="heading-2xl text-white uppercase mb-10 break-normal">
+            <h2 className="text-4xl sm:text-7xl lg:text-8xl text-white uppercase mb-10 break-normal font-black tracking-tighter">
               Engineered Authority
             </h2>
             
-            <p className="text-zinc-400 text-xl mb-12 max-w-xl leading-loose font-medium tracking-wide">
+            <p className="text-zinc-400 text-base sm:text-xl mb-12 max-w-xl leading-relaxed font-medium tracking-wide">
               Architecting <span className="text-white font-semibold">digital command centers</span> that enforce market leadership.
             </p>
 

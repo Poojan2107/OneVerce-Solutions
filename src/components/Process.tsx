@@ -43,11 +43,11 @@ export default function Process() {
               <div className="w-2 h-2 bg-zinc-500 rounded-full animate-pulse" />
               <span className="text-zinc-500 font-bold uppercase tracking-[0.5em] text-[10px]">Standard Operating Procedure</span>
             </div>
-            <h2 className="heading-xl text-white uppercase">
+            <h2 className="text-4xl sm:text-7xl lg:text-8xl text-white uppercase font-black tracking-tighter">
               Deployment Sequence
             </h2>
           </div>
-          <p className="text-zinc-400 text-xl max-w-sm leading-loose font-medium tracking-wide">
+          <p className="text-zinc-400 text-base sm:text-xl max-w-sm leading-relaxed font-medium tracking-wide">
             Precision multi-phase execution. Engineered for <span className="text-white font-semibold">predictable scale</span>.
           </p>
         </div>
