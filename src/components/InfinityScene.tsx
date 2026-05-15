@@ -51,16 +51,18 @@ export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
               top: `calc(50% + ${star.y}px)`,
               backgroundColor: star.color,
               boxShadow: star.color !== '#ffffff' ? `0 0 12px ${star.color}` : `0 0 6px rgba(255,255,255,0.4)`,
+              backfaceVisibility: 'hidden',
             }}
           />
         ))}
       </div>
 
       <motion.div 
-        className="relative flex items-center justify-center transform-style-preserve-3d scale-[0.22] sm:scale-[0.55] md:scale-[0.75] lg:scale-[0.9] will-change-transform z-10"
+        className="relative flex items-center justify-center transform-style-preserve-3d scale-[0.25] sm:scale-[0.55] md:scale-[0.75] lg:scale-[0.9] will-change-transform z-10"
         style={{ 
           rotateX, 
           rotateY,
+          backfaceVisibility: 'hidden',
         }}
       >
         

@@ -25,8 +25,8 @@ export default function Hero() {
 
   return (
     <section id="hero" className="relative min-h-screen w-full bg-[#020202] flex flex-col items-center justify-center overflow-hidden">
-      {/* 0. Cinematic Noise Grain Overlay */}
-      <div className="absolute inset-0 z-50 pointer-events-none opacity-[0.03] mix-blend-overlay">
+      {/* 0. Cinematic Noise Grain Overlay - Disabled on mobile for performance stability */}
+      <div className="absolute inset-0 z-50 pointer-events-none opacity-[0.03] mix-blend-overlay hidden md:block">
         <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
           <filter id="noiseFilter">
             <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
@@ -47,7 +47,7 @@ export default function Hero() {
       </div>
 
       {/* 2. The Infinity Core (One Flow) */}
-      <div className="absolute inset-0 z-10 opacity-60 sm:opacity-90 flex items-center justify-center -translate-x-0 sm:-translate-x-[2vw] scale-[0.4] sm:scale-[0.8] md:scale-100 transition-all duration-1000">
+      <div className="absolute inset-0 z-10 opacity-60 sm:opacity-90 flex items-center justify-center -translate-x-0 sm:-translate-x-[2vw] md:scale-100 transition-all duration-1000">
         <InfinityScene mouseX={mouseX} mouseY={mouseY} />
       </div>
 
