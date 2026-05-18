@@ -1,15 +1,22 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { motion, useSpring, useMotionValue } from 'motion/react';
+import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion';
+import { useCoarsePointer } from '../hooks/useCoarsePointer';
 
 export default function Spotlight() {
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
+  const reducedMotion = usePrefersReducedMotion();
+  const isCoarsePointer = useCoarsePointer();
 
-  const springConfig = { damping: 25, stiffness: 150 };
+  const mouseX = useMotionValue(-500);
+  const mouseY = useMotionValue(-500);
+
+  const springConfig = { damping: 30, stiffness: 120 };
   const springX = useSpring(mouseX, springConfig);
   const springY = useSpring(mouseY, springConfig);
 
   useEffect(() => {
+    if (reducedMotion || isCoarsePointer) return;
+
     const handleMouseMove = (e: MouseEvent) => {
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
@@ -17,22 +24,23 @@ export default function Spotlight() {
 
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, [mouseX, mouseY]);
+  }, [reducedMotion, isCoarsePointer, mouseX, mouseY]);
+
+  if (reducedMotion || isCoarsePointer) return null;
 
   return (
-    <motion.div
-      className="pointer-events-none fixed inset-0 z-50 overflow-hidden hidden md:block"
-      style={{
-        background: `radial-gradient(600px circle at ${springX}px ${springY}px, rgba(59, 130, 246, 0.08), transparent 80%)`,
-      }}
-    >
-      <motion.div 
-        className="absolute w-[400px] h-[400px] bg-blue-500/10 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2 transition-opacity duration-500"
+    <div className="pointer-events-none fixed inset-0 z-50 overflow-hidden hidden md:block">
+      <motion.div
+        className="absolute w-[600px] h-[600px] bg-blue-500/[0.07] rounded-full blur-[140px] pointer-events-none"
         style={{
-          left: springX,
-          top: springY,
+          x: springX,
+          y: springY,
+          translateX: '-50%',
+          translateY: '-50%',
+          willChange: 'transform',
         }}
       />
-    </motion.div>
+    </div>
   );
 }
+

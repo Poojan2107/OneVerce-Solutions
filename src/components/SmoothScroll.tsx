@@ -1,12 +1,15 @@
 import { useEffect } from 'react';
 import Lenis from 'lenis';
 import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion';
+import { useCoarsePointer } from '../hooks/useCoarsePointer';
 
 export default function SmoothScroll() {
   const reducedMotion = usePrefersReducedMotion();
+  const isCoarsePointer = useCoarsePointer();
 
   useEffect(() => {
-    if (reducedMotion) return;
+    // Disable smooth scroll on reduced motion OR coarse pointers (touch devices)
+    if (reducedMotion || isCoarsePointer) return;
 
     const lenis = new Lenis({
       duration: 1.2,
@@ -15,17 +18,17 @@ export default function SmoothScroll() {
       gestureOrientation: 'vertical',
       smoothWheel: true,
       wheelMultiplier: 1.0,
-      touchMultiplier: 1.3,
-      syncTouch: true,
-      syncTouchLerp: 0.08,
+      syncTouch: false, // Ensure native touch scrolling on mobile
     });
+
+    let animationFrameId: number;
 
     function raf(time: number) {
       lenis.raf(time);
-      requestAnimationFrame(raf);
+      animationFrameId = requestAnimationFrame(raf);
     }
 
-    requestAnimationFrame(raf);
+    animationFrameId = requestAnimationFrame(raf);
 
     // Optimized Global Anchor Link Handling (Event Delegation)
     const handleAnchorClick = (e: MouseEvent) => {
@@ -55,10 +58,12 @@ export default function SmoothScroll() {
 
     return () => {
       document.removeEventListener('click', handleAnchorClick);
+      cancelAnimationFrame(animationFrameId);
       lenis.destroy();
       delete (window as any).lenis;
     };
-  }, [reducedMotion]);
+  }, [reducedMotion, isCoarsePointer]);
 
   return null;
 }
+

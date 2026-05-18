@@ -31,17 +31,18 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-700 ease-[0.16,1,0.3,1] ${
-        isScrolled ? 'py-4' : 'py-6 md:py-8'
+      className={`fixed top-0 left-0 right-0 z-[100] transition-[padding] duration-500 ease-out ${
+        isScrolled ? 'py-4' : 'py-4 md:py-8'
       }`}
     >
-      <motion.div
-        className={`absolute inset-0 transition-all duration-700 ease-[0.16,1,0.3,1] ${
-          isScrolled
-            ? 'bg-[#050505]/40 backdrop-blur-2xl border-b border-white/[0.05] opacity-100'
-            : 'opacity-0 pointer-events-none'
+      <div
+        className={`absolute inset-0 transition-opacity duration-500 ease-out ${
+          isScrolled ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
-      />
+      >
+        <div className="absolute inset-0 bg-[#050505]/80 backdrop-blur-md border-b border-white/[0.05]" />
+      </div>
+
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between relative z-10">
         <Magnetic>

@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import InfinityScene from './InfinityScene';
 import { useCoarsePointer } from '../hooks/useCoarsePointer';
 
-export default function Hero() {
+export default function Hero({ isPreloading = false }: { isPreloading?: boolean }) {
   const isCoarsePointer = useCoarsePointer();
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -32,8 +32,8 @@ export default function Hero() {
     : { rotateX, rotateY, x: textX, y: textY };
 
   return (
-    <section id="hero" className="relative min-h-[100dvh] w-full bg-[#020202] flex flex-col items-center justify-center overflow-hidden">
-      <div className="absolute inset-0 z-50 pointer-events-none opacity-[0.03] mix-blend-overlay hidden md:block">
+    <section id="hero" className="relative min-h-screen w-full bg-[#020202] flex flex-col items-center justify-center overflow-hidden">
+      <div className="absolute inset-0 z-50 pointer-events-none opacity-[0.03] hidden md:block">
         <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
           <filter id="noiseFilter">
             <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
@@ -52,8 +52,11 @@ export default function Hero() {
       </div>
 
       <div className="absolute inset-0 z-10 opacity-50 sm:opacity-90 flex items-center justify-center overflow-hidden">
-        <InfinityScene mouseX={isCoarsePointer ? undefined : mouseX} mouseY={isCoarsePointer ? undefined : mouseY} />
+        {!isPreloading && (
+          <InfinityScene mouseX={isCoarsePointer ? undefined : mouseX} mouseY={isCoarsePointer ? undefined : mouseY} />
+        )}
       </div>
+
 
       <div className="absolute inset-0 z-20 pointer-events-none p-10 md:pt-40 md:pb-20 md:px-20 hidden md:flex flex-col justify-between">
         <div className="flex justify-between items-start opacity-30 uppercase tracking-[0.4em] text-[9px] font-mono">
