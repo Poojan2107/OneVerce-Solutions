@@ -24,7 +24,11 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section className="py-16 md:py-24 bg-[#0a0a0c] relative overflow-hidden bg-blueprint">
+    <section
+      id="testimonials"
+      aria-labelledby="testimonials-heading"
+      className="py-16 md:py-24 bg-[#0a0a0c] relative overflow-hidden bg-blueprint"
+    >
       
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-blue-500/5 blur-[120px] rounded-full -z-10" />
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
@@ -33,7 +37,7 @@ export default function Testimonials() {
             <div className="w-2 h-2 bg-blue-500 rounded-full" />
             <span className="text-zinc-500 font-bold uppercase tracking-[0.4em] text-[10px]">Global Validation</span>
           </div>
-          <h2 className="heading-xl text-white uppercase text-center">
+          <h2 id="testimonials-heading" className="heading-xl text-white uppercase text-center">
             Market Signal
           </h2>
         </div>
@@ -46,16 +50,17 @@ export default function Testimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="p-12 rounded-[3rem] bg-zinc-900/50 border border-white/5 relative group hover:bg-zinc-800/50 transition-colors"
+              className="p-6 sm:p-10 md:p-12 rounded-[2rem] sm:rounded-[3rem] bg-zinc-900/50 border border-white/5 relative group hover:bg-zinc-800/50 transition-colors"
             >
               <Quote className="absolute top-12 right-12 text-zinc-800 group-hover:text-blue-500/20 transition-colors" size={60} />
-              <p className="text-zinc-200 text-xl mb-12 relative z-10 leading-relaxed font-light italic">
+              <p className="text-zinc-200 text-base sm:text-lg md:text-xl mb-8 sm:mb-12 relative z-10 leading-relaxed font-light italic">
                 "{testimonial.content}"
               </p>
               <div className="flex items-center gap-5">
                 <img 
                   src={testimonial.image} 
                   alt={testimonial.author} 
+                  loading="lazy"
                   className="w-14 h-14 rounded-2xl object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
                 />
                 <div>

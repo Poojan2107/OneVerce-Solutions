@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { motion, MotionValue, useTransform } from 'motion/react';
+import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion';
 
 interface InfinitySceneProps {
   mouseX?: MotionValue<number>;
@@ -7,13 +8,17 @@ interface InfinitySceneProps {
 }
 
 export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
+  const reducedMotion = usePrefersReducedMotion();
+  const particleCount =
+    typeof window !== 'undefined' && window.innerWidth < 768 ? 60 : reducedMotion ? 80 : 200;
+
   // Synchronized Scene Tilting
   const rotateX = useTransform(mouseY || new MotionValue(0), [-500, 500], [15, 10]);
   const rotateY = useTransform(mouseX || new MotionValue(0), [-500, 500], [-10, 10]);
 
   // Static Stardust Field (Immersive Environment)
   const stardust = useMemo(() => {
-    return Array.from({ length: 200 }).map((_, i) => ({
+    return Array.from({ length: particleCount }).map((_, i) => ({
       id: i,
       x: (Math.random() - 0.5) * 2200,
       y: (Math.random() - 0.5) * 1300,
@@ -23,13 +28,13 @@ export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
       color: i % 15 === 0 ? '#00f0ff' : i % 25 === 0 ? '#ffeb3b' : i % 35 === 0 ? '#ff5722' : '#ffffff', 
       duration: 2 + Math.random() * 4,
     }));
-  }, []);
+  }, [particleCount]);
 
   return (
-    <div className="relative w-full h-full flex items-center justify-center overflow-visible perspective-[2000px] pointer-events-none">
+    <div className="relative w-full h-full flex items-center justify-center overflow-hidden md:overflow-visible perspective-[2000px] pointer-events-none">
       {/* 1. Deep Space Ambient Nebula */}
       <div className="absolute inset-0 flex items-center justify-center z-0">
-        <div className="absolute w-[1800px] h-[1000px] bg-white/[0.01] rounded-[100%] blur-[250px] animate-pulse" />
+        <div className="absolute w-[min(1800px,200vw)] h-[min(1000px,120vh)] bg-white/[0.01] rounded-[100%] blur-[120px] md:blur-[250px] animate-pulse" />
       </div>
 
       {/* 2. Stardust Field (Parallax Environment) */}
@@ -58,7 +63,7 @@ export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
       </div>
 
       <motion.div 
-        className="relative flex items-center justify-center transform-style-preserve-3d scale-[0.25] sm:scale-[0.55] md:scale-[0.75] lg:scale-[0.9] will-change-transform z-10"
+        className="relative flex items-center justify-center md:preserve-3d scale-[0.25] sm:scale-[0.55] md:scale-[0.75] lg:scale-[0.9] will-change-transform z-10"
         style={{ 
           rotateX, 
           rotateY,
@@ -67,7 +72,7 @@ export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
       >
         
         {/* 3. The Volumetric Ribbon (One Flow Architecture) */}
-        <div className="relative w-[1400px] h-[1000px] flex items-center justify-center transform-style-preserve-3d">
+        <div className="relative w-[1400px] h-[1000px] flex items-center justify-center md:preserve-3d">
           <svg 
             viewBox="-700 -500 1400 1000" 
             className="absolute inset-0 w-full h-full overflow-visible mix-blend-screen"
@@ -153,7 +158,7 @@ export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
           </svg>
 
           {/* 4. The Saturn Planet (High-Fidelity) */}
-          <div className="absolute -translate-x-[300px] -translate-y-[150px] z-30 transform-style-preserve-3d">
+          <div className="absolute -translate-x-[300px] -translate-y-[150px] z-30 md:preserve-3d">
             <motion.div 
               animate={{ 
                 rotateZ: [0, 6, 0],
@@ -182,7 +187,7 @@ export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
         </div>
 
         {/* 5. Focal Atmospheric Singularities */}
-        <div className="absolute flex items-center justify-center transform-style-preserve-3d pointer-events-none">
+        <div className="absolute flex items-center justify-center md:preserve-3d pointer-events-none">
           <div className="absolute translate-x-[350px] w-[1000px] h-[700px] bg-[#9333ea]/[0.05] rounded-full blur-[180px]" />
           <div className="absolute -translate-x-[350px] w-[800px] h-[600px] bg-[#00f0f0]/[0.08] rounded-full blur-[180px]" />
         </div>

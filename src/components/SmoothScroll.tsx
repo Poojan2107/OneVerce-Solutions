@@ -1,8 +1,15 @@
 import { useEffect } from 'react';
 import Lenis from 'lenis';
+import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion';
+import { useCoarsePointer } from '../hooks/useCoarsePointer';
 
 export default function SmoothScroll() {
+  const reducedMotion = usePrefersReducedMotion();
+  const isCoarsePointer = useCoarsePointer();
+
   useEffect(() => {
+    if (reducedMotion || isCoarsePointer) return;
+
     const lenis = new Lenis({
       duration: 1.5,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -51,7 +58,7 @@ export default function SmoothScroll() {
       lenis.destroy();
       delete (window as any).lenis;
     };
-  }, []);
+  }, [reducedMotion, isCoarsePointer]);
 
   return null;
 }

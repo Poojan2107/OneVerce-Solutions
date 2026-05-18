@@ -21,7 +21,7 @@ const painPoints = [
 
 export default function Problem() {
   return (
-    <section id="problem" className="py-32 md:py-48 bg-[#050505] relative overflow-hidden bg-blueprint">
+    <section id="problem" className="py-16 sm:py-24 md:py-48 bg-[#050505] relative overflow-hidden bg-blueprint">
       
       {/* Background */}
       <div className="absolute inset-0 z-0">
@@ -37,7 +37,7 @@ export default function Problem() {
               <span className="text-zinc-500 font-bold uppercase tracking-[0.5em] text-[10px]">Strategic Audit</span>
             </div>
             
-            <h2 className="text-4xl sm:text-7xl lg:text-8xl text-white uppercase mb-12 leading-[1.1] break-normal font-black tracking-tighter">
+            <h2 className="heading-2xl text-white uppercase mb-12 leading-[1.1] break-normal font-black tracking-tighter">
               System<br />
               <span className="text-red-500 text-glow">Failure</span><br />
               Identified.
@@ -60,7 +60,7 @@ export default function Problem() {
                 </p>
                 <div className="mt-6 flex items-center gap-4 pl-6">
                   <div className="w-10 h-10 rounded-full bg-zinc-900 border border-white/5 overflow-hidden flex-shrink-0">
-                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=partner" alt="Strategic Partner" className="w-full h-full object-cover grayscale" />
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=partner" alt="Strategic Partner" loading="lazy" className="w-full h-full object-cover grayscale" />
                   </div>
                   <div>
                     <div className="text-white font-bold text-sm">Strategic Partner</div>

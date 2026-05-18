@@ -5,20 +5,21 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
   
   return (
-    <footer className="bg-[#050505] pt-32 pb-12 border-t border-white/[0.05] relative overflow-hidden bg-blueprint">
+    <footer className="bg-[#050505] pt-16 sm:pt-24 md:pt-32 pb-12 border-t border-white/[0.05] relative overflow-hidden bg-blueprint">
       {/* Background Polish */}
       <div className="absolute inset-0 z-0">
         <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-blue-500/[0.01] rounded-full blur-[150px]" />
       </div>
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
-        <div className="grid lg:grid-cols-12 gap-20 mb-32">
+        <div className="grid lg:grid-cols-12 gap-12 sm:gap-20 mb-16 sm:mb-32">
           <div className="lg:col-span-5 space-y-12">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 rounded-xl bg-zinc-900 border border-white/10 p-1 shadow-2xl overflow-hidden">
                  <img 
                    src="https://res.cloudinary.com/daheghidk/image/upload/v1775229314/logooneverce_l3ckqq.jpg" 
-                   alt="Oneverce" 
+                   alt="Oneverce"
+                   loading="lazy"
                    className="w-full h-full object-cover grayscale brightness-125"
                  />
               </div>
@@ -48,7 +49,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="lg:col-span-7 grid grid-cols-2 md:grid-cols-3 gap-12">
+          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 sm:gap-12">
             <div className="space-y-8">
               <h4 className="text-[10px] font-bold text-white uppercase tracking-[0.4em]">Company</h4>
               <ul className="space-y-4 text-[10px] font-bold uppercase text-zinc-400 tracking-widest">

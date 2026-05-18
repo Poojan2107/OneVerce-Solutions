@@ -9,7 +9,7 @@ export default function SocialProof() {
   ];
 
   return (
-    <section className="py-32 md:py-48 bg-black relative overflow-hidden border-t border-white/5 bg-blueprint">
+    <section className="py-16 sm:py-24 md:py-48 bg-black relative overflow-hidden border-t border-white/5 bg-blueprint">
       
       <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-blue-500/5 to-transparent pointer-events-none" />
       
@@ -26,7 +26,7 @@ export default function SocialProof() {
               Connectivity Protocol
             </div>
             
-            <h2 className="text-3xl sm:text-7xl lg:text-8xl text-white uppercase mb-8 font-black tracking-tighter">
+            <h2 className="heading-2xl text-white uppercase mb-8 font-black tracking-tighter">
               Network Pulse
             </h2>
             
@@ -86,7 +86,7 @@ export default function SocialProof() {
                   whileHover={{ scale: 1.05, zIndex: 20 }}
                   className="aspect-square rounded-2xl overflow-hidden border border-white/5 relative group cursor-pointer"
                 >
-                  <img src={post.img} alt={post.title} className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity" />
+                  <img src={post.img} alt={post.title} loading="lazy" className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity" />
                   <div className="absolute inset-0 bg-[#00f0ff]/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
                     <Activity size={14} className="text-white" />
                     <Share2 size={14} className="text-white" />

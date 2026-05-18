@@ -1,11 +1,17 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'motion/react';
+import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion';
+import { useCoarsePointer } from '../hooks/useCoarsePointer';
 
 export default function CustomCursor() {
+  const reducedMotion = usePrefersReducedMotion();
+  const isCoarsePointer = useCoarsePointer();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
 
   useEffect(() => {
+    if (reducedMotion || isCoarsePointer) return;
+
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
@@ -13,9 +19,9 @@ export default function CustomCursor() {
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       if (
-        target.tagName === 'A' || 
-        target.tagName === 'BUTTON' || 
-        target.closest('button') || 
+        target.tagName === 'A' ||
+        target.tagName === 'BUTTON' ||
+        target.closest('button') ||
         target.closest('a')
       ) {
         setIsHovering(true);
@@ -31,7 +37,9 @@ export default function CustomCursor() {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseover', handleMouseOver);
     };
-  }, []);
+  }, [reducedMotion, isCoarsePointer]);
+
+  if (reducedMotion || isCoarsePointer) return null;
 
   return (
     <>
@@ -44,11 +52,12 @@ export default function CustomCursor() {
           borderColor: isHovering ? 'rgba(255, 255, 255, 0.8)' : 'rgba(255, 255, 255, 0.3)',
         }}
         transition={{ type: 'spring', damping: 20, stiffness: 250, mass: 0.5 }}
+        aria-hidden="true"
       >
         <div className="absolute top-1/2 left-0 w-full h-[1px] bg-white/20 -translate-y-1/2" />
         <div className="absolute left-1/2 top-0 w-[1px] h-full bg-white/20 -translate-x-1/2" />
       </motion.div>
-      
+
       <motion.div
         className="fixed top-0 left-0 w-1 h-1 bg-blue-500 rounded-full pointer-events-none z-[9999] hidden md:block"
         animate={{
@@ -56,6 +65,7 @@ export default function CustomCursor() {
           y: mousePosition.y - 2,
         }}
         transition={{ type: 'spring', damping: 30, stiffness: 1000, mass: 0.1 }}
+        aria-hidden="true"
       />
     </>
   );

@@ -107,7 +107,7 @@ const accentGlowClasses: Record<string, string> = {
 
 export default function FeaturedWork() {
   return (
-    <section id="work" className="py-32 md:py-48 bg-[#050505] relative overflow-hidden bg-blueprint">
+    <section id="work" className="py-16 sm:py-24 md:py-48 bg-[#050505] relative overflow-hidden bg-blueprint">
 
       {/* Background */}
       <div className="absolute inset-0 z-0 pointer-events-none">
@@ -153,7 +153,7 @@ export default function FeaturedWork() {
               {/* Image — alternates left/right */}
               <div className={`relative ${index % 2 === 1 ? 'lg:order-2' : ''}`}>
                 <Tilt>
-                  <div className="relative aspect-[4/3] sm:aspect-[16/10] rounded-2xl overflow-hidden bg-zinc-950 border border-white/5 group-hover:border-white/20 transition-all duration-700 shadow-2xl shadow-black/50" style={{ transformStyle: 'preserve-3d' }}>
+                  <div className="relative aspect-[4/3] sm:aspect-[16/10] rounded-2xl overflow-hidden bg-zinc-950 border border-white/5 group-hover:border-white/20 transition-all duration-700 shadow-2xl shadow-black/50 md:preserve-3d">
                     {/* Deep Background Glow */}
                     <div className={`absolute inset-0 opacity-0 group-hover:opacity-20 blur-3xl transition-opacity duration-[1.5s] ${accentClasses[project.accent]}`} style={{ transform: 'translateZ(-50px)' }} />
 
@@ -178,6 +178,7 @@ export default function FeaturedWork() {
                     <img
                       src={project.image}
                       alt={project.title}
+                      loading="lazy"
                       className="absolute inset-0 w-full h-full object-cover transition-all duration-[1.2s] group-hover:scale-110 grayscale group-hover:grayscale-0 opacity-60 group-hover:opacity-100"
                       style={{ transform: 'translateZ(10px) scale(1.05)' }}
                     />
@@ -219,7 +220,7 @@ export default function FeaturedWork() {
                 </div>
 
                 {/* Metrics */}
-                <div className={`grid grid-cols-1 sm:grid-cols-3 gap-6 pt-5 border-t border-white/[0.06]`}>
+                <div className={`grid grid-cols-3 gap-4 sm:gap-6 pt-5 border-t border-white/[0.06]`}>
                   {Object.entries(project.metrics).map(([key, value]) => (
                     <div key={key} className="group/metric">
                       <div className="text-[8px] md:text-[9px] font-bold text-zinc-600 uppercase tracking-widest mb-1.5 group-hover/metric:text-zinc-400 transition-colors">
@@ -238,7 +239,7 @@ export default function FeaturedWork() {
                     href={project.liveLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`group/link flex items-center justify-center gap-2.5 px-6 py-3 rounded-full border text-white font-bold uppercase tracking-widest text-[9px] md:text-[10px] transition-all duration-400 bg-white/[0.03] hover:bg-white/[0.08] ${accentBorderClasses[project.accent]}`}
+                    className={`group/link flex items-center justify-center gap-2.5 px-6 py-3.5 min-h-[44px] rounded-full border text-white font-bold uppercase tracking-widest text-[10px] md:text-[10px] transition-all duration-400 bg-white/[0.03] hover:bg-white/[0.08] ${accentBorderClasses[project.accent]}`}
                   >
                     <ExternalLink size={13} className="group-hover/link:scale-110 transition-transform" />
                     Launch Live
@@ -248,7 +249,7 @@ export default function FeaturedWork() {
                       href={project.githubLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group/gh flex items-center justify-center gap-2.5 px-6 py-3 rounded-full border border-white/[0.07] text-zinc-500 font-bold uppercase tracking-widest text-[9px] md:text-[10px] transition-all duration-400 bg-white/[0.02] hover:bg-white/[0.06] hover:text-white hover:border-white/20"
+                      className="group/gh flex items-center justify-center gap-2.5 px-6 py-3.5 min-h-[44px] rounded-full border border-white/[0.07] text-zinc-500 font-bold uppercase tracking-widest text-[10px] md:text-[10px] transition-all duration-400 bg-white/[0.02] hover:bg-white/[0.06] hover:text-white hover:border-white/20"
                     >
                       <Github size={13} className="group-hover/gh:scale-110 transition-transform" />
                       Source Code

@@ -19,27 +19,47 @@ import SocialProof from './components/SocialProof';
 import SmoothScroll from './components/SmoothScroll';
 import Preloader from './components/Preloader';
 import TechnicalHUD from './components/TechnicalHUD';
+import AuditTool from './components/AuditTool';
+import Testimonials from './components/Testimonials';
+import StickyCTA from './components/StickyCTA';
+import SkipLink from './components/SkipLink';
+import { usePrefersReducedMotion } from './hooks/usePrefersReducedMotion';
+import { useCoarsePointer } from './hooks/useCoarsePointer';
 
-const RevealSection = ({ children, className }: { children: React.ReactNode, className?: string }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 40 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true, margin: "-15%" }}
-    transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-    style={{ willChange: 'transform, opacity' }}
-    className={className}
-  >
-    {children}
-  </motion.div>
-);
+const RevealSection = ({
+  children,
+  className,
+  reducedMotion,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  reducedMotion: boolean;
+}) =>
+  reducedMotion ? (
+    <div className={className}>{children}</div>
+  ) : (
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-15%' }}
+      transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
+      style={{ willChange: 'transform, opacity' }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
 
 export default function App() {
+  const reducedMotion = usePrefersReducedMotion();
+  const isCoarsePointer = useCoarsePointer();
+
   return (
-    <div className="relative min-h-screen bg-[#050505] text-white overflow-x-hidden selection:bg-white/10">
-      <Preloader />
+    <motion.div className="relative min-h-screen bg-[#050505] text-white overflow-x-hidden selection:bg-white/10">
+      <SkipLink />
+      {!reducedMotion && !isCoarsePointer && <Preloader />}
       <SmoothScroll />
-      
-      {/* Persistent System Overlays */}
+
       <Spotlight />
       <CustomCursor />
       <ScrollToTop />
@@ -47,60 +67,70 @@ export default function App() {
       <div className="vignette" />
       <div className="fixed inset-0 pointer-events-none bg-noise opacity-5 z-[100] mix-blend-overlay" />
       <div className="fixed inset-0 pointer-events-none bg-scanlines opacity-10 z-[100]" />
-      
+
+      <StickyCTA />
+
       <div className="relative z-10">
         <Navbar />
-        <main>
+        <main id="main-content">
           <AnimatePresence mode="wait">
             <motion.div
-              initial={{ opacity: 0, scale: 1.05 }}
+              initial={reducedMotion ? false : { opacity: 0, scale: 1.05 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: reducedMotion ? 0 : 1.8, ease: [0.16, 1, 0.3, 1] }}
             >
               <Hero />
-              
+
               <div className="space-y-0">
-                <RevealSection>
+                <RevealSection reducedMotion={reducedMotion}>
                   <Stats />
                 </RevealSection>
 
-                <RevealSection>
+                <RevealSection reducedMotion={reducedMotion}>
                   <Problem />
                 </RevealSection>
-                
-                <RevealSection>
+
+                <RevealSection reducedMotion={reducedMotion}>
                   <WhyChooseUs />
                 </RevealSection>
 
-                <RevealSection>
+                <RevealSection reducedMotion={reducedMotion}>
                   <Services />
                 </RevealSection>
-                
-                <RevealSection>
+
+                <RevealSection reducedMotion={reducedMotion}>
                   <Process />
                 </RevealSection>
 
-                <RevealSection>
+                <RevealSection reducedMotion={reducedMotion}>
+                  <AuditTool />
+                </RevealSection>
+
+                <RevealSection reducedMotion={reducedMotion}>
                   <FeaturedWork />
                 </RevealSection>
-                
-                <RevealSection>
+
+                <RevealSection reducedMotion={reducedMotion}>
                   <SocialProof />
                 </RevealSection>
 
-                <RevealSection>
+                <RevealSection reducedMotion={reducedMotion}>
+                  <Testimonials />
+                </RevealSection>
+
+                <RevealSection reducedMotion={reducedMotion}>
                   <CTA />
                 </RevealSection>
-                
-                <RevealSection>
+
+                <RevealSection reducedMotion={reducedMotion}>
                   <Team />
                 </RevealSection>
-                
-                <RevealSection>
+
+                <RevealSection reducedMotion={reducedMotion}>
                   <FAQ />
                 </RevealSection>
-                
-                <RevealSection>
+
+                <RevealSection reducedMotion={reducedMotion}>
                   <Contact />
                 </RevealSection>
               </div>
@@ -109,8 +139,6 @@ export default function App() {
         </main>
         <Footer />
       </div>
-    </div>
+    </motion.div>
   );
 }
-
-

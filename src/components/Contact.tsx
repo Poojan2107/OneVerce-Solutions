@@ -31,7 +31,7 @@ export default function Contact() {
   const prevStep = () => setStep(prev => Math.max(prev - 1, 1));
 
   return (
-    <section id="contact" className="py-32 md:py-48 bg-[#050505] relative overflow-hidden">
+    <section id="contact" className="py-16 sm:py-24 md:py-48 bg-[#050505] relative overflow-hidden">
       {/* Background Polish */}
       <div className="absolute inset-0 z-0">
         <div className="absolute top-1/2 left-0 w-[600px] h-[600px] bg-blue-500/[0.03] rounded-full blur-[150px]" />
@@ -52,7 +52,7 @@ export default function Contact() {
                 <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" />
                 <span className="text-zinc-400 font-bold uppercase tracking-[0.5em] text-[10px]">Communication Protocol</span>
               </div>
-              <h2 className="text-4xl sm:text-7xl lg:text-8xl text-white uppercase mb-6 break-normal font-black tracking-tighter">
+              <h2 className="heading-2xl text-white uppercase mb-6 break-normal font-black tracking-tighter">
                 Command Uplink
               </h2>
               <p className="text-zinc-400 text-base sm:text-xl mb-8 leading-relaxed font-medium">
@@ -70,14 +70,14 @@ export default function Contact() {
                       <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white">{member.name} // FOUNDER</span>
                     </div>
                     <div className="flex flex-col gap-5">
-                      <a href={`mailto:${member.email}`} className="flex items-center gap-4 group cursor-pointer w-fit">
-                        <div className="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/5 flex items-center justify-center text-zinc-500 group-hover:text-[#00f0ff] group-hover:border-[#00f0ff]/30 transition-all duration-500">
+                      <a href={`mailto:${member.email}`} className="flex items-start gap-4 group cursor-pointer w-full min-w-0">
+                        <div className="w-10 h-10 shrink-0 rounded-xl bg-white/[0.03] border border-white/5 flex items-center justify-center text-zinc-500 group-hover:text-[#00f0ff] group-hover:border-[#00f0ff]/30 transition-all duration-500">
                           <Mail size={16} />
                         </div>
-                        <div className="text-sm font-bold text-zinc-400 group-hover:text-white transition-colors lowercase tracking-wider">{member.email}</div>
+                        <div className="text-sm font-bold text-zinc-400 group-hover:text-white transition-colors lowercase tracking-wider break-all min-w-0">{member.email}</div>
                       </a>
-                      <a href={`tel:${member.phone.replace(/\s+/g, '')}`} className="flex items-center gap-4 group cursor-pointer w-fit">
-                        <div className="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/5 flex items-center justify-center text-zinc-500 group-hover:text-[#00f0ff] group-hover:border-[#00f0ff]/30 transition-all duration-500">
+                      <a href={`tel:${member.phone.replace(/\s+/g, '')}`} className="flex items-start gap-4 group cursor-pointer w-full min-w-0">
+                        <div className="w-10 h-10 shrink-0 rounded-xl bg-white/[0.03] border border-white/5 flex items-center justify-center text-zinc-500 group-hover:text-[#00f0ff] group-hover:border-[#00f0ff]/30 transition-all duration-500">
                           <Phone size={16} />
                         </div>
                         <div className="text-sm font-bold text-zinc-400 group-hover:text-white transition-colors tracking-wider">{member.phone}</div>
@@ -96,7 +96,7 @@ export default function Contact() {
               viewport={{ once: true }}
               className="glass-card rounded-[2.5rem] md:rounded-[3.5rem] overflow-hidden border border-white/5 shadow-2xl"
             >
-              <div className="p-8 md:p-16 min-h-[450px]">
+              <div className="p-6 sm:p-8 md:p-16 min-h-0 md:min-h-[450px]">
                 {!isSuccess ? (
                   <form onSubmit={handleSubmit} className="space-y-10">
                     <div className="flex justify-between items-center mb-12">

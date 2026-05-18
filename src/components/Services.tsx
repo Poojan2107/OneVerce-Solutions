@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'motion/react';
 import { Globe, Code2, Cpu, Zap, ArrowUpRight, MousePointer2, Rocket, BarChart3, Sparkles } from 'lucide-react';
 import ServiceModal from './ServiceModal';
@@ -71,6 +71,7 @@ const services = [
 ];
 
 function ServiceCard({ service, index, onClick }: { service: typeof services[0], index: number, onClick: () => void }) {
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
@@ -80,7 +81,12 @@ function ServiceCard({ service, index, onClick }: { service: typeof services[0],
   const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["10deg", "-10deg"]);
   const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-10deg", "10deg"]);
 
+  useEffect(() => {
+    setIsTouchDevice(window.matchMedia('(pointer: coarse)').matches);
+  }, []);
+
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (isTouchDevice) return;
     const rect = e.currentTarget.getBoundingClientRect();
     const width = rect.width;
     const height = rect.height;
@@ -93,6 +99,7 @@ function ServiceCard({ service, index, onClick }: { service: typeof services[0],
   };
 
   const handleMouseLeave = () => {
+    if (isTouchDevice) return;
     x.set(0);
     y.set(0);
   };
@@ -117,7 +124,7 @@ function ServiceCard({ service, index, onClick }: { service: typeof services[0],
 
   return (
     <motion.div
-      style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+      style={isTouchDevice ? {} : { rotateX, rotateY }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       initial={{ opacity: 0, y: 40 }}
@@ -125,7 +132,7 @@ function ServiceCard({ service, index, onClick }: { service: typeof services[0],
       viewport={{ once: true }}
       transition={{ duration: 1.2, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
       onClick={onClick}
-      className={`group bg-[#0A0A0A] p-10 rounded-[3rem] cursor-pointer hover:bg-white/[0.01] transition-all relative overflow-hidden flex flex-col justify-between h-full border border-white/[0.05] shadow-2xl ${getBorderColor(service.color)}`}
+      className={`group bg-[#0A0A0A] p-6 sm:p-10 rounded-[2rem] sm:rounded-[3rem] cursor-pointer hover:bg-white/[0.01] transition-all relative overflow-hidden flex flex-col justify-between h-full border border-white/[0.05] shadow-2xl md:preserve-3d ${getBorderColor(service.color)}`}
     >
       {/* HUD Scanline overlay */}
       <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_50%,rgba(255,255,255,0.01)_50%)] bg-[size:100%_4px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
