@@ -30,12 +30,14 @@ const RevealSection = ({
   children,
   className,
   reducedMotion,
+  isCoarsePointer,
 }: {
   children: React.ReactNode;
   className?: string;
   reducedMotion: boolean;
+  isCoarsePointer: boolean;
 }) =>
-  reducedMotion ? (
+  reducedMotion || isCoarsePointer ? (
     <div className={className}>{children}</div>
   ) : (
     <motion.div
@@ -57,7 +59,7 @@ export default function App() {
   return (
     <motion.div className="relative min-h-screen bg-[#050505] text-white overflow-x-hidden selection:bg-white/10">
       <SkipLink />
-      {!reducedMotion && !isCoarsePointer && <Preloader />}
+      {!reducedMotion && <Preloader />}
       <SmoothScroll />
 
       <Spotlight />
@@ -65,8 +67,8 @@ export default function App() {
       <ScrollToTop />
       <TechnicalHUD />
       <div className="vignette" />
-      <div className="fixed inset-0 pointer-events-none bg-noise opacity-5 z-[100] mix-blend-overlay" />
-      <div className="fixed inset-0 pointer-events-none bg-scanlines opacity-10 z-[100]" />
+      <div className="fixed inset-0 pointer-events-none bg-noise opacity-5 z-[100] mix-blend-overlay hidden md:block" />
+      <div className="fixed inset-0 pointer-events-none bg-scanlines opacity-10 z-[100] hidden md:block" />
 
       <StickyCTA />
 
@@ -82,55 +84,55 @@ export default function App() {
               <Hero />
 
               <div className="space-y-0">
-                <RevealSection reducedMotion={reducedMotion}>
+                <RevealSection reducedMotion={reducedMotion} isCoarsePointer={isCoarsePointer}>
                   <Stats />
                 </RevealSection>
 
-                <RevealSection reducedMotion={reducedMotion}>
+                <RevealSection reducedMotion={reducedMotion} isCoarsePointer={isCoarsePointer}>
                   <Problem />
                 </RevealSection>
 
-                <RevealSection reducedMotion={reducedMotion}>
+                <RevealSection reducedMotion={reducedMotion} isCoarsePointer={isCoarsePointer}>
                   <WhyChooseUs />
                 </RevealSection>
 
-                <RevealSection reducedMotion={reducedMotion}>
+                <RevealSection reducedMotion={reducedMotion} isCoarsePointer={isCoarsePointer}>
                   <Services />
                 </RevealSection>
 
-                <RevealSection reducedMotion={reducedMotion}>
+                <RevealSection reducedMotion={reducedMotion} isCoarsePointer={isCoarsePointer}>
                   <Process />
                 </RevealSection>
 
-                <RevealSection reducedMotion={reducedMotion}>
+                <RevealSection reducedMotion={reducedMotion} isCoarsePointer={isCoarsePointer}>
                   <AuditTool />
                 </RevealSection>
 
-                <RevealSection reducedMotion={reducedMotion}>
+                <RevealSection reducedMotion={reducedMotion} isCoarsePointer={isCoarsePointer}>
                   <FeaturedWork />
                 </RevealSection>
 
-                <RevealSection reducedMotion={reducedMotion}>
+                <RevealSection reducedMotion={reducedMotion} isCoarsePointer={isCoarsePointer}>
                   <SocialProof />
                 </RevealSection>
 
-                <RevealSection reducedMotion={reducedMotion}>
+                <RevealSection reducedMotion={reducedMotion} isCoarsePointer={isCoarsePointer}>
                   <Testimonials />
                 </RevealSection>
 
-                <RevealSection reducedMotion={reducedMotion}>
+                <RevealSection reducedMotion={reducedMotion} isCoarsePointer={isCoarsePointer}>
                   <CTA />
                 </RevealSection>
 
-                <RevealSection reducedMotion={reducedMotion}>
+                <RevealSection reducedMotion={reducedMotion} isCoarsePointer={isCoarsePointer}>
                   <Team />
                 </RevealSection>
 
-                <RevealSection reducedMotion={reducedMotion}>
+                <RevealSection reducedMotion={reducedMotion} isCoarsePointer={isCoarsePointer}>
                   <FAQ />
                 </RevealSection>
 
-                <RevealSection reducedMotion={reducedMotion}>
+                <RevealSection reducedMotion={reducedMotion} isCoarsePointer={isCoarsePointer}>
                   <Contact />
                 </RevealSection>
               </div>

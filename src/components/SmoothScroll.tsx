@@ -1,23 +1,24 @@
 import { useEffect } from 'react';
 import Lenis from 'lenis';
 import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion';
-import { useCoarsePointer } from '../hooks/useCoarsePointer';
 
 export default function SmoothScroll() {
   const reducedMotion = usePrefersReducedMotion();
-  const isCoarsePointer = useCoarsePointer();
 
   useEffect(() => {
-    if (reducedMotion || isCoarsePointer) return;
+    if (reducedMotion) return;
 
     const lenis = new Lenis({
-      duration: 1.5,
+      duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 1.1,
-      touchMultiplier: 1.5,
+      wheelMultiplier: 1.0,
+      touchMultiplier: 1.3,
+      syncTouch: true,
+      syncTouchLerp: 0.08,
+      touchInertiaMultiplier: 1.1,
     });
 
     function raf(time: number) {
