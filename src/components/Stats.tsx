@@ -4,10 +4,10 @@ import { useEffect, useState } from 'react';
 
 export default function Stats() {
   const stats = [
-    { label: 'System Uptime', value: '99.98%', icon: <Activity size={16} />, color: 'text-green-500' },
-    { label: 'Global Clients', value: '12+', icon: <Globe size={16} />, color: 'text-blue-500' },
-    { label: 'Avg Speed Boost', value: '65%', icon: <Zap size={16} />, color: 'text-yellow-500' },
-    { label: 'Retained Users', value: '10K+', icon: <Users size={16} />, color: 'text-purple-500' }
+    { label: 'Projects Shipped', value: '6+', icon: <Activity size={16} />, color: 'text-green-500' },
+    { label: 'Delivery Rate', value: '100%', icon: <Zap size={16} />, color: 'text-yellow-500' },
+    { label: 'Avg. Turnaround', value: '<30d', icon: <Globe size={16} />, color: 'text-blue-500' },
+    { label: 'Founding Team', value: '2', icon: <Users size={16} />, color: 'text-purple-500' }
   ];
 
   return (

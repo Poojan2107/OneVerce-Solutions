@@ -3,9 +3,9 @@ import { Globe, Users, Share2, Heart, MessageCircle, Activity } from 'lucide-rea
 
 export default function SocialProof() {
   const socialStats = [
-    { label: 'Network', value: '500+', icon: <Users size={16} /> },
-    { label: 'Signals', value: '2K+', icon: <Activity size={16} /> },
-    { label: 'Bandwidth', value: 'LIVE', icon: <Share2 size={16} />, live: true }
+    { label: 'Projects Live', value: '6+', icon: <Activity size={16} /> },
+    { label: 'Stacks Used', value: '12+', icon: <Share2 size={16} /> },
+    { label: 'Status', value: 'LIVE', icon: <Users size={16} />, live: true }
   ];
 
   return (
@@ -55,12 +55,12 @@ export default function SocialProof() {
             </div>
 
             <a
-              href="https://www.instagram.com/oneverce/"
+              href="https://github.com/vbp-web"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-4 bg-white text-black px-8 md:px-12 py-4 md:py-6 rounded-full font-black uppercase tracking-[0.2em] text-[10px] md:text-xs hover:scale-105 transition-all group shadow-2xl"
             >
-              Sync Global Profile
+              View All Deployments
               <Globe size={18} className="group-hover:rotate-45 transition-transform" />
             </a>
           </motion.div>
@@ -74,19 +74,19 @@ export default function SocialProof() {
             {/* Realistic Technical Dashboard Mockup */}
             <div className="grid grid-cols-2 gap-4 max-w-md mx-auto relative z-10 p-4 bg-zinc-950 rounded-[2.5rem] border border-white/10 shadow-2xl shadow-blue-500/5">
               {[
-                { title: 'System_Audit', img: '/portfolio-3.jpg' },
-                { title: 'Logic_Flow', img: '/portfolio-1.jpg' },
-                { title: 'Neural_Engine', img: '/portfolio-4.jpg' },
-                { title: 'Core_Architecture', img: '/portfolio-2.jpg' },
-                { title: 'Visual_Logic', img: '/portfolio-3.jpg' },
-                { title: 'Infrastructure', img: '/portfolio-1.jpg' }
+                { title: 'ParArc Studio', img: '/assets/pararc_studio.png' },
+                { title: 'NeuralCredit', img: '/assets/neural_credit.png' },
+                { title: 'Product Nexus', img: '/assets/product_nexus.png' },
+                { title: 'Travelling Tent', img: '/assets/traveling_tent.png' },
+                { title: 'Sportivo', img: '/assets/sportivo.png' },
+                { title: 'Restaurant POS', img: '/assets/nexus_pos.png' }
               ].map((post, i) => (
                 <motion.div 
                   key={i}
                   whileHover={{ scale: 1.05, zIndex: 20 }}
                   className="aspect-square rounded-2xl overflow-hidden border border-white/5 relative group cursor-pointer"
                 >
-                  <img src={post.img} alt={post.title} loading="lazy" className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity" />
+                  <img src={post.img} alt={post.title} loading="lazy" className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity grayscale group-hover:grayscale-0 transition-all duration-500" />
                   <div className="absolute inset-0 bg-[#00f0ff]/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
                     <Activity size={14} className="text-white" />
                     <Share2 size={14} className="text-white" />
