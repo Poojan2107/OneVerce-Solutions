@@ -237,3 +237,60 @@ body::after {
     text-shadow: 0 0 10px currentColor;
   }
 }
+
+/* GPU Hardware-Accelerated Cinematic Animations */
+@keyframes particle-pulse {
+  0%, 100% {
+    opacity: var(--particle-opacity);
+    transform: scale(1);
+  }
+  50% {
+    opacity: calc(var(--particle-opacity) * 1.5);
+    transform: scale(1.25);
+  }
+}
+
+.particle-pulse {
+  animation: particle-pulse var(--particle-duration) infinite ease-in-out;
+  animation-delay: var(--particle-delay);
+  will-change: transform, opacity;
+}
+
+@keyframes shimmer-move {
+  to {
+    stroke-dashoffset: -2000;
+  }
+}
+
+.shimmer-path {
+  animation: shimmer-move 8s linear infinite;
+  will-change: stroke-dashoffset;
+}
+
+@keyframes spin-dashed {
+  from {
+    transform: translate(-50%, -50%) rotate(24deg) rotateZ(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(24deg) rotateZ(360deg);
+  }
+}
+
+.spin-dashed-ring {
+  animation: spin-dashed 20s linear infinite;
+  will-change: transform;
+}
+
+@keyframes planet-float {
+  0%, 100% {
+    transform: translateY(-10px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(10px) rotate(6deg);
+  }
+}
+
+.planet-float {
+  animation: planet-float 7s ease-in-out infinite;
+  will-change: transform;
+}

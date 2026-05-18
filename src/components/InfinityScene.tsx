@@ -7,14 +7,17 @@ interface InfinitySceneProps {
   mouseY?: MotionValue<number>;
 }
 
+// Global fallback to prevent memory allocation and re-renders
+const fallbackMotionValue = new MotionValue(0);
+
 export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
   const reducedMotion = usePrefersReducedMotion();
   const particleCount =
-    typeof window !== 'undefined' && window.innerWidth < 768 ? 60 : reducedMotion ? 80 : 200;
+    typeof window !== 'undefined' && window.innerWidth < 768 ? 15 : reducedMotion ? 25 : 45;
 
-  // Synchronized Scene Tilting
-  const rotateX = useTransform(mouseY || new MotionValue(0), [-500, 500], [15, 10]);
-  const rotateY = useTransform(mouseX || new MotionValue(0), [-500, 500], [-10, 10]);
+  // Synchronized Scene Tilting using stable motion value reference
+  const rotateX = useTransform(mouseY || fallbackMotionValue, [-500, 500], [15, 10]);
+  const rotateY = useTransform(mouseX || fallbackMotionValue, [-500, 500], [-10, 10]);
 
   // Static Stardust Field (Immersive Environment)
   const stardust = useMemo(() => {
@@ -26,7 +29,7 @@ export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
       opacity: Math.random() * 0.7,
       delay: Math.random() * 5,
       color: i % 15 === 0 ? '#00f0ff' : i % 25 === 0 ? '#ffeb3b' : i % 35 === 0 ? '#ff5722' : '#ffffff', 
-      duration: 2 + Math.random() * 4,
+      duration: 3 + Math.random() * 4,
     }));
   }, [particleCount]);
 
@@ -37,18 +40,12 @@ export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
         <div className="absolute w-[min(1800px,200vw)] h-[min(1000px,120vh)] bg-white/[0.01] rounded-[100%] blur-[120px] md:blur-[250px] animate-pulse" />
       </div>
 
-      {/* 2. Stardust Field (Parallax Environment) */}
+      {/* 2. Stardust Field (Parallax Environment - Hardware-Accelerated CSS) */}
       <div className="absolute inset-0 z-[1]">
         {stardust.map((star) => (
-          <motion.div
+          <div
             key={star.id}
-            initial={{ opacity: 0 }}
-            animate={{ 
-              opacity: [star.opacity, star.opacity * 1.5, star.opacity],
-              scale: [1, 1.2, 1],
-            }}
-            transition={{ duration: star.duration, repeat: Infinity, delay: star.delay }}
-            className="absolute rounded-full"
+            className="absolute rounded-full particle-pulse"
             style={{
               width: star.size,
               height: star.size,
@@ -57,7 +54,10 @@ export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
               backgroundColor: star.color,
               boxShadow: star.color !== '#ffffff' ? `0 0 12px ${star.color}` : `0 0 6px rgba(255,255,255,0.4)`,
               backfaceVisibility: 'hidden',
-            }}
+              '--particle-opacity': star.opacity,
+              '--particle-delay': `${star.delay}s`,
+              '--particle-duration': `${star.duration}s`,
+            } as React.CSSProperties}
           />
         ))}
       </div>
@@ -132,7 +132,7 @@ export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
             />
 
             {/* Layer C: The Matte Depth Core */}
-            <motion.path
+            <path
               d="M 0,0 C 200,-420 620,-420 620,0 C 620,420 200,420 0,0 C -150,300 -450,300 -450,0 C -450,-300 -150,-300 0,0"
               fill="none"
               stroke="url(#ribbon-inner-shadow)"
@@ -142,8 +142,8 @@ export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
               className="blur-[3px]"
             />
 
-            {/* Layer D: Liquid Gloss Shimmer */}
-            <motion.path
+            {/* Layer D: Liquid Gloss Shimmer (Hardware-Accelerated CSS) */}
+            <path
               d="M 0,0 C 200,-420 620,-420 620,0 C 620,420 200,420 0,0 C -150,300 -450,300 -450,0 C -450,-300 -150,-300 0,0"
               fill="none"
               stroke="#ffffff"
@@ -151,22 +151,13 @@ export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
               strokeOpacity="0.4"
               strokeLinecap="round"
               strokeDasharray="12 400"
-              animate={{ strokeDashoffset: -2000 }}
-              transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-              className="blur-[1px]"
+              className="blur-[1px] shimmer-path"
             />
           </svg>
 
-          {/* 4. The Saturn Planet (High-Fidelity) */}
-          <div className="absolute -translate-x-[300px] -translate-y-[150px] z-30 md:preserve-3d">
-            <motion.div 
-              animate={{ 
-                rotateZ: [0, 6, 0],
-                y: [-10, 10, -10]
-              }}
-              transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-              className="relative w-48 h-48"
-            >
+          {/* 4. The Saturn Planet (High-Fidelity) - Hidden on Mobile for layout clarity & peak performance */}
+          <div className="absolute -translate-x-[300px] -translate-y-[150px] z-30 md:preserve-3d hidden md:block">
+            <div className="relative w-48 h-48 planet-float">
               {/* Glossy Sphere */}
               <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#00f0ff] via-[#00b0d0] to-[#010101] shadow-[inset_-25px_-25px_50px_rgba(0,0,0,1),0_0_100px_rgba(0,240,255,0.4)] overflow-hidden">
                 <div className="absolute top-[12%] left-[18%] w-1/2 h-1/2 bg-white/30 rounded-full blur-[20px]" />
@@ -176,18 +167,14 @@ export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] h-[80px] border-[5px] border-[#00f0f0]/40 rounded-[100%] rotate-[24deg] blur-[0.5px] shadow-[0_0_40px_rgba(0,240,240,0.4)]" />
               <div className="absolute top-1/2 left-1/2 -translate-x-[50.5%] -translate-y-[50.5%] w-[340px] h-[80px] border border-[#9333ea]/20 rounded-[100%] rotate-[24.2deg] blur-[1px]" />
               
-              {/* Orbital Ring Pulse */}
-              <motion.div 
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[330px] h-[75px] border border-white/20 rounded-[100%] rotate-[24deg] border-dashed"
-              />
-            </motion.div>
+              {/* Orbital Ring Pulse (Hardware-Accelerated CSS) */}
+              <div className="absolute top-1/2 left-1/2 w-[330px] h-[75px] border border-white/20 rounded-[100%] border-dashed spin-dashed-ring" />
+            </div>
           </div>
         </div>
 
-        {/* 5. Focal Atmospheric Singularities */}
-        <div className="absolute flex items-center justify-center md:preserve-3d pointer-events-none">
+        {/* 5. Focal Atmospheric Singularities - Hidden on Mobile to prevent rendering layout glitches and repaint costs */}
+        <div className="absolute hidden md:flex items-center justify-center md:preserve-3d pointer-events-none">
           <div className="absolute translate-x-[350px] w-[1000px] h-[700px] bg-[#9333ea]/[0.05] rounded-full blur-[180px]" />
           <div className="absolute -translate-x-[350px] w-[800px] h-[600px] bg-[#00f0f0]/[0.08] rounded-full blur-[180px]" />
         </div>
