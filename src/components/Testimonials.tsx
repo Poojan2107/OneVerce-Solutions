@@ -57,12 +57,10 @@ export default function Testimonials() {
                 "{testimonial.content}"
               </p>
               <div className="flex items-center gap-5">
-                <img 
-                  src={testimonial.image} 
-                  alt={testimonial.author} 
-                  loading="lazy"
-                  className="w-14 h-14 rounded-2xl object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
-                />
+                <div className="w-14 h-14 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-center relative overflow-hidden group-hover:border-blue-500/30 transition-all duration-500">
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 opacity-50" />
+                  <span className="text-lg font-black text-white z-10 font-mono tracking-tighter uppercase">{testimonial.author[0]}</span>
+                </div>
                 <div>
                   <div className="font-bold text-white text-lg">{testimonial.author}</div>
                   <div className="text-xs text-zinc-500 uppercase tracking-[0.2em] font-bold">{testimonial.role}</div>

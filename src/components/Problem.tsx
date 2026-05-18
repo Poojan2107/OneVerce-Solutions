@@ -59,8 +59,9 @@ export default function Problem() {
                   "CAC dropped by 65% post-architecture overhaul."
                 </p>
                 <div className="mt-6 flex items-center gap-4 pl-6">
-                  <div className="w-10 h-10 rounded-full bg-zinc-900 border border-white/5 overflow-hidden flex-shrink-0">
-                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=partner" alt="Strategic Partner" loading="lazy" className="w-full h-full object-cover grayscale" />
+                  <div className="w-10 h-10 rounded-full bg-white/[0.03] border border-white/10 flex items-center justify-center relative overflow-hidden group-hover:border-red-500/30 transition-all duration-500 flex-shrink-0">
+                    <div className="absolute inset-0 bg-gradient-to-br from-red-500/10 to-purple-500/10 opacity-50" />
+                    <span className="text-xs font-black text-white z-10 font-mono tracking-tighter uppercase">S</span>
                   </div>
                   <div>
                     <div className="text-white font-bold text-sm">Strategic Partner</div>
