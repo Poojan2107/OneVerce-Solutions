@@ -18,7 +18,6 @@ export default function SmoothScroll() {
       touchMultiplier: 1.3,
       syncTouch: true,
       syncTouchLerp: 0.08,
-      touchInertiaMultiplier: 1.1,
     });
 
     function raf(time: number) {
@@ -59,7 +58,7 @@ export default function SmoothScroll() {
       lenis.destroy();
       delete (window as any).lenis;
     };
-  }, [reducedMotion, isCoarsePointer]);
+  }, [reducedMotion]);
 
   return null;
 }
