@@ -96,7 +96,7 @@ export default function Hero() {
             initial={{ opacity: 0, scale: 0.95, filter: 'blur(20px)' }}
             animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
             transition={{ duration: 1.6, ease: 'easeOut' }}
-            className="heading-hero text-white select-none relative z-10 drop-shadow-[0_0_40px_rgba(255,255,255,0.15)]"
+            className="heading-hero uppercase tracking-tighter text-white select-none relative z-10 drop-shadow-[0_0_50px_rgba(255,255,255,0.2)]"
           >
             Oneverce
           </motion.h1>
