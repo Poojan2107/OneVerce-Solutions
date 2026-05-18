@@ -206,8 +206,8 @@ export default function Services() {
                 <div className="w-2 h-2 bg-blue-500 rounded-full animate-ping" />
                 <span className="text-zinc-500 font-bold uppercase tracking-[0.5em] text-[10px]">Capabilities Matrix</span>
               </div>
-            <h2 className="text-4xl sm:text-6xl lg:text-8xl text-white uppercase break-normal font-black tracking-tighter">
-                Engineered Solutions
+            <h2 className="text-4xl sm:text-6xl lg:text-8xl text-white uppercase font-black tracking-tighter leading-none break-normal hyphens-none" style={{ wordBreak: 'keep-all' }}>
+                Engineered<br className="sm:hidden" /> Solutions
               </h2>
             </div>
             <p className="text-zinc-400 text-lg sm:text-xl leading-relaxed max-w-lg font-medium tracking-wide">

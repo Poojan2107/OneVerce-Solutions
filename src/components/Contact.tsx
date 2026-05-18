@@ -61,8 +61,8 @@ export default function Contact() {
 
               <div className="space-y-8 pt-8 border-t border-white/5">
                 {[
-                  { name: 'POOJAN', email: 'poojanshrivastav21@gmail.com', phone: '+91 9023362134', accent: 'purple' },
-                  { name: 'VANSH', email: 'prajapativansh512@gmail.com', phone: '+91 84012 86822', accent: 'blue' }
+                  { name: 'POOJAN', email: 'poojanshrivastav21@gmail.com', phone: '+91 9023362134', whatsapp: '919023362134', accent: 'purple' },
+                  { name: 'VANSH', email: 'prajapativansh512@gmail.com', phone: '+91 8401286822', whatsapp: '918401286822', accent: 'blue' }
                 ].map((member, i) => (
                   <div key={i} className="space-y-4">
                     <div className="flex items-center gap-3">
@@ -76,11 +76,11 @@ export default function Contact() {
                         </div>
                         <div className="text-sm font-bold text-zinc-400 group-hover:text-white transition-colors lowercase tracking-wider break-all min-w-0">{member.email}</div>
                       </a>
-                      <a href={`tel:${member.phone.replace(/\s+/g, '')}`} className="flex items-start gap-4 group cursor-pointer w-full min-w-0">
-                        <div className="w-10 h-10 shrink-0 rounded-xl bg-white/[0.03] border border-white/5 flex items-center justify-center text-zinc-500 group-hover:text-[#00f0ff] group-hover:border-[#00f0ff]/30 transition-all duration-500">
+                      <a href={`https://wa.me/${member.whatsapp}?text=Hi%20Oneverce%2C%20I'd%20like%20to%20discuss%20a%20project.`} target="_blank" rel="noopener noreferrer" className="flex items-start gap-4 group cursor-pointer w-full min-w-0">
+                        <div className="w-10 h-10 shrink-0 rounded-xl bg-white/[0.03] border border-white/5 flex items-center justify-center text-zinc-500 group-hover:text-emerald-400 group-hover:border-emerald-400/30 transition-all duration-500">
                           <Phone size={16} />
                         </div>
-                        <div className="text-sm font-bold text-zinc-400 group-hover:text-white transition-colors tracking-wider">{member.phone}</div>
+                        <div className="text-sm font-bold text-zinc-400 group-hover:text-white transition-colors tracking-wider">{member.phone} <span className="text-[9px] text-emerald-500/60 font-bold uppercase tracking-widest ml-1">WhatsApp</span></div>
                       </a>
                     </div>
                   </div>

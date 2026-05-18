@@ -71,7 +71,7 @@ export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
       </div>
 
       <motion.div 
-        className="relative flex items-center justify-center md:preserve-3d scale-[0.35] sm:scale-[0.55] md:scale-[0.75] lg:scale-[0.9] will-change-transform z-10"
+        className="relative flex items-center justify-center md:preserve-3d scale-[0.42] sm:scale-[0.58] md:scale-[0.78] lg:scale-[0.92] will-change-transform z-10"
         style={{ 
           rotateX: isMobile ? undefined : rotateX, 
           rotateY: isMobile ? undefined : rotateY,
@@ -111,14 +111,14 @@ export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
             {/* Path: Symmetrical Infinity */}
             <motion.path
               id="infinity-path"
-              d="M 0,0 C 200,-420 580,-420 580,0 C 580,420 200,420 0,0 C -200,420 -580,420 -580,0 C -580,-420 -200,-420 0,0"
+              d="M 0,0 C 200,-400 520,-400 520,0 C 520,400 200,400 0,0 C -200,400 -520,400 -520,0 C -520,-400 -200,-400 0,0"
               fill="none"
               stroke="transparent"
             />
 
             {/* Layer A: Massive Structural Underglow */}
             <motion.path
-              d="M 0,0 C 200,-420 580,-420 580,0 C 580,420 200,420 0,0 C -200,420 -580,420 -580,0 C -580,-420 -200,-420 0,0"
+              d="M 0,0 C 200,-400 520,-400 520,0 C 520,400 200,400 0,0 C -200,400 -520,400 -520,0 C -520,-400 -200,-400 0,0"
               fill="none"
               stroke="url(#ribbon-grad-v1)"
               strokeWidth="110"
@@ -128,7 +128,7 @@ export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
 
             {/* Layer B: The Volumetric Body Glow Shell (GPU-Accelerated CSS blur) */}
             <motion.path
-              d="M 0,0 C 200,-420 580,-420 580,0 C 580,420 200,420 0,0 C -200,420 -580,420 -580,0 C -580,-420 -200,-420 0,0"
+              d="M 0,0 C 200,-400 520,-400 520,0 C 520,400 200,400 0,0 C -200,400 -520,400 -520,0 C -520,-400 -200,-400 0,0"
               fill="none"
               stroke="url(#ribbon-grad-v1)"
               strokeWidth="60"
@@ -142,7 +142,7 @@ export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
 
             {/* Layer B.2: The Sharp Core Body */}
             <motion.path
-              d="M 0,0 C 200,-420 580,-420 580,0 C 580,420 200,420 0,0 C -200,420 -580,420 -580,0 C -580,-420 -200,-420 0,0"
+              d="M 0,0 C 200,-400 520,-400 520,0 C 520,400 200,400 0,0 C -200,400 -520,400 -520,0 C -520,-400 -200,-400 0,0"
               fill="none"
               stroke="url(#ribbon-grad-v1)"
               strokeWidth="60"
@@ -154,7 +154,7 @@ export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
 
             {/* Layer C: The Matte Depth Core */}
             <path
-              d="M 0,0 C 200,-420 580,-420 580,0 C 580,420 200,420 0,0 C -200,420 -580,420 -580,0 C -580,-420 -200,-420 0,0"
+              d="M 0,0 C 200,-400 520,-400 520,0 C 520,400 200,400 0,0 C -200,400 -520,400 -520,0 C -520,-400 -200,-400 0,0"
               fill="none"
               stroke="url(#ribbon-inner-shadow)"
               strokeWidth="28"
@@ -165,7 +165,7 @@ export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
 
             {/* Layer D: Liquid Gloss Shimmer (Hardware-Accelerated CSS) */}
             <path
-              d="M 0,0 C 200,-420 580,-420 580,0 C 580,420 200,420 0,0 C -200,420 -580,420 -580,0 C -580,-420 -200,-420 0,0"
+              d="M 0,0 C 200,-400 520,-400 520,0 C 520,400 200,400 0,0 C -200,400 -520,400 -520,0 C -520,-400 -200,-400 0,0"
               fill="none"
               stroke="#ffffff"
               strokeWidth="5"
