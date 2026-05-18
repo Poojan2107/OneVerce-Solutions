@@ -1,7 +1,12 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 
-export default function Preloader() {
+interface PreloaderProps {
+  onComplete?: () => void;
+}
+
+
+export default function Preloader({ onComplete }: PreloaderProps) {
   const [loading, setLoading] = useState(true);
   const [progress, setProgress] = useState(0);
   const [logs, setLogs] = useState<string[]>([]);
@@ -26,12 +31,16 @@ export default function Preloader() {
         setProgress(prev => Math.min(prev + 12.5, 100));
       } else {
         clearInterval(logInterval);
-        setTimeout(() => setLoading(false), 800);
+        setTimeout(() => {
+          setLoading(false);
+          if (onComplete) onComplete();
+        }, 800);
       }
     }, 400);
 
     return () => clearInterval(logInterval);
-  }, []);
+  }, [onComplete]);
+
 
   return (
     <AnimatePresence>

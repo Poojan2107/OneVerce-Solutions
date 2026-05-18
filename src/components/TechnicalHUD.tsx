@@ -1,15 +1,26 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 export default function TechnicalHUD() {
-  const [coords, setCoords] = useState({ x: 0, y: 0 });
   const [time, setTime] = useState(new Date());
+  // Compute encrypted ID once so it is completely stable
+  const [encryptedId] = useState(() => Math.random().toString(16).slice(2, 10));
+
+  const coordXRef = useRef<HTMLSpanElement>(null);
+  const coordYRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      setCoords({ x: e.clientX, y: e.clientY });
+      if (coordXRef.current) {
+        coordXRef.current.textContent = String(e.clientX);
+      }
+      if (coordYRef.current) {
+        coordYRef.current.textContent = String(e.clientY);
+      }
     };
+
     const timer = setInterval(() => setTime(new Date()), 1000);
     window.addEventListener('mousemove', handleMouseMove);
+
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       clearInterval(timer);
@@ -36,8 +47,8 @@ export default function TechnicalHUD() {
       {/* Bottom Left */}
       <div className="absolute bottom-6 left-6 flex items-end gap-10">
         <div className="flex flex-col gap-1">
-          <div>LOC_X: {coords.x}</div>
-          <div>LOC_Y: {coords.y}</div>
+          <div>LOC_X: <span ref={coordXRef}>0</span></div>
+          <div>LOC_Y: <span ref={coordYRef}>0</span></div>
         </div>
         <div className="w-24 h-1 bg-white/5 rounded-full overflow-hidden">
           <div className="h-full bg-blue-500/40 animate-[shimmer_2s_infinite]" style={{ width: '60%' }} />
@@ -50,7 +61,7 @@ export default function TechnicalHUD() {
           NEURAL_LINK_ACTIVE
           <div className="w-1 h-1 bg-cyan-500 animate-ping" />
         </div>
-        <div className="text-zinc-600">ENCRYPTED_ID: {Math.random().toString(16).slice(2, 10)}</div>
+        <div className="text-zinc-600">ENCRYPTED_ID: {encryptedId}</div>
       </div>
 
       {/* Corner Brackets */}
@@ -61,3 +72,4 @@ export default function TechnicalHUD() {
     </div>
   );
 }
+
