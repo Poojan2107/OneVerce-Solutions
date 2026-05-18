@@ -37,3 +37,20 @@ Every piece of infrastructure developed under the Oneverce protocol adheres to s
   <p><em>"Replacing technical debt with revenue-grade infrastructure."</em></p>
   <strong>[ COMMUNICATION PROTOCOL SECURED ]</strong>
 </div>
+
+---
+
+## Development (Vercel)
+
+```bash
+npm install
+npm run dev
+```
+
+**Live deploy:** Push to GitHub — Vercel builds with `vite build` and serves `dist/`.
+
+**AI audit on production:** In Vercel → Project → Settings → Environment Variables, add:
+
+`GEMINI_API_KEY` = your [Google AI Studio](https://aistudio.google.com/) key
+
+The audit API runs as `api/audit.ts` (serverless). It is not available during plain `npm run dev` unless you use `vercel dev`.

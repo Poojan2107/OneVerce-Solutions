@@ -41,7 +41,7 @@ export default function Preloader() {
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           className="fixed inset-0 z-[9999] bg-[#050505] flex items-center justify-center p-6 font-mono"
         >
-          <div className="max-w-md w-full space-y-12">
+          <div className="max-w-md w-full space-y-6 sm:space-y-12">
             {/* Logo Section */}
             <div className="flex flex-col items-center gap-6">
               <motion.div
@@ -63,7 +63,7 @@ export default function Preloader() {
             </div>
 
             {/* Logs Section */}
-            <div className="space-y-3 min-h-[160px]">
+            <div className="space-y-2 sm:space-y-3 min-h-[120px] sm:min-h-[160px]">
               {logs.map((log, i) => (
                 <motion.div
                   key={i}

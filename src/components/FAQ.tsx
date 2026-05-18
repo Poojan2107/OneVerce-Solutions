@@ -25,7 +25,7 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="py-32 md:py-48 bg-[#050505] relative overflow-hidden bg-blueprint">
+    <section id="faq" className="py-16 sm:py-24 md:py-48 bg-[#050505] relative overflow-hidden bg-blueprint">
       
       {/* Background Polish */}
       <div className="absolute inset-0 z-0">
@@ -66,7 +66,7 @@ export default function FAQ() {
             >
               <button
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                className="w-full p-8 md:p-10 flex items-center justify-between text-left group"
+                className="w-full p-5 sm:p-8 md:p-10 flex items-center justify-between text-left group"
               >
                 <div className="flex items-center gap-6">
                   <div className={`font-mono text-[10px] font-black tracking-widest transition-all duration-500 ${
@@ -98,8 +98,8 @@ export default function FAQ() {
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                   >
-                    <div className="px-8 pb-10 md:px-10">
-                      <div className="p-8 rounded-2xl bg-white/[0.01] border border-white/[0.03] relative overflow-hidden">
+                    <div className="px-5 pb-6 sm:px-8 sm:pb-10 md:px-10">
+                      <div className="p-5 sm:p-8 rounded-2xl bg-white/[0.01] border border-white/[0.03] relative overflow-hidden">
                         <div className="absolute top-0 right-0 w-16 h-16 bg-blueprint opacity-10 pointer-events-none" />
                         <p className="text-zinc-400 font-medium text-lg leading-relaxed tracking-tight relative z-10">
                           {faq.answer}

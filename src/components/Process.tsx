@@ -29,7 +29,7 @@ const steps = [
 
 export default function Process() {
   return (
-    <section id="process" className="py-32 md:py-48 bg-[#050505] relative overflow-hidden border-t border-white/5 bg-blueprint">
+    <section id="process" className="py-16 sm:py-24 md:py-48 bg-[#050505] relative overflow-hidden border-t border-white/5 bg-blueprint">
       
       {/* Background Polish */}
       <div className="absolute inset-0 z-0">
@@ -43,7 +43,7 @@ export default function Process() {
               <div className="w-2 h-2 bg-zinc-500 rounded-full animate-pulse" />
               <span className="text-zinc-500 font-bold uppercase tracking-[0.5em] text-[10px]">Standard Operating Procedure</span>
             </div>
-            <h2 className="text-4xl sm:text-7xl lg:text-8xl text-white uppercase font-black tracking-tighter">
+            <h2 className="heading-2xl text-white uppercase font-black tracking-tighter">
               Deployment Sequence
             </h2>
           </div>

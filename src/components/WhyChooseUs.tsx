@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { ShieldCheck, Rocket, Layers, BrainCircuit } from 'lucide-react';
 
@@ -25,8 +26,14 @@ const reasons = [
 ];
 
 export default function WhyChooseUs() {
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+
+  useEffect(() => {
+    setIsTouchDevice(window.matchMedia('(pointer: coarse)').matches);
+  }, []);
+
   return (
-    <section id="about" className="py-32 md:py-48 overflow-hidden bg-[#0a0c10] relative bg-blueprint">
+    <section id="about" className="py-16 sm:py-24 md:py-48 overflow-hidden bg-[#0a0c10] relative bg-blueprint">
       
       {/* Background Polish with Grid */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[1px] bg-gradient-to-r from-transparent via-blue-500/20 to-transparent opacity-50 z-0" />
@@ -44,7 +51,7 @@ export default function WhyChooseUs() {
               <span className="text-zinc-500 font-bold uppercase tracking-[0.5em] text-[10px]">Strategic Advantage</span>
             </div>
             
-            <h2 className="text-4xl sm:text-7xl lg:text-8xl text-white uppercase mb-10 break-normal font-black tracking-tighter">
+            <h2 className="heading-2xl text-white uppercase mb-10 break-normal font-black tracking-tighter">
               Engineered Authority
             </h2>
             
@@ -75,7 +82,7 @@ export default function WhyChooseUs() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.9, rotateY: 20 }}
+            initial={{ opacity: 0, scale: 0.9, rotateY: isTouchDevice ? 0 : 20 }}
             whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
@@ -92,6 +99,7 @@ export default function WhyChooseUs() {
               <img 
                 src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80" 
                 alt="Engineering Command Center" 
+                loading="lazy"
                 className="w-full h-full object-cover rounded-[3.5rem] opacity-40 group-hover:opacity-90 transition-all duration-[2s] grayscale group-hover:grayscale-0"
                 referrerPolicy="no-referrer"
               />

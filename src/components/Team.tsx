@@ -27,7 +27,7 @@ export default function Team() {
   ];
 
   return (
-    <section id="team" className="py-32 md:py-48 bg-[#050505] relative overflow-hidden bg-blueprint">
+    <section id="team" className="py-16 sm:py-24 md:py-48 bg-[#050505] relative overflow-hidden bg-blueprint">
       
       {/* Background Polish with Balanced Colors */}
       <div className="absolute inset-0 z-0">
@@ -46,7 +46,7 @@ export default function Team() {
               <div className="w-2 h-2 bg-blue-500 rounded-full" />
               <span className="text-zinc-500 font-bold uppercase tracking-[0.4em] text-[10px]">Strategic Founders</span>
             </div>
-            <h2 className="text-4xl sm:text-7xl lg:text-8xl text-white uppercase mb-8 font-black tracking-tighter">
+            <h2 className="heading-2xl text-white uppercase mb-8 font-black tracking-tighter">
               The Architects
             </h2>
             <p className="text-zinc-400 text-base sm:text-xl max-w-2xl mx-auto leading-relaxed font-medium tracking-wide">
@@ -66,7 +66,7 @@ export default function Team() {
               className="relative group"
             >
               <Tilt>
-                <div className={`glass-card p-10 md:p-14 rounded-[3rem] border border-white/5 transition-all duration-700 h-full flex flex-col group/card preserve-3d relative overflow-hidden ${
+                <div className={`glass-card p-6 sm:p-10 md:p-14 rounded-[3rem] border border-white/5 transition-all duration-700 h-full flex flex-col group/card md:preserve-3d relative overflow-hidden ${
                    member.accent === 'blue' ? 'hover:border-blue-500/30' : 'hover:border-purple-500/30'
                  }`}>
                   {/* Decorative Industrial Elements */}

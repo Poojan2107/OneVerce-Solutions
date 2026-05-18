@@ -29,11 +29,11 @@ export default function StickyCTA() {
                 className="bg-zinc-900 border border-white/10 p-2 rounded-2xl shadow-2xl flex flex-col gap-2 mb-2"
               >
                 <a
-                  href="#contact"
+                  href="#audit"
                   onClick={() => setIsExpanded(false)}
                   className="flex items-center gap-3 px-4 py-3 bg-white text-black rounded-xl font-bold hover:bg-zinc-200 transition-all text-sm"
                 >
-                  <FileSearch size={18} />
+                  <FileSearch size={18} aria-hidden="true" />
                   Free Web Audit
                 </a>
                 <a
@@ -49,10 +49,13 @@ export default function StickyCTA() {
             )}
 
             <motion.button
+              type="button"
               initial={{ opacity: 0, scale: 0.5 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.5 }}
               onClick={() => setIsExpanded(!isExpanded)}
+              aria-label={isExpanded ? 'Close quick actions' : 'Open quick actions'}
+              aria-expanded={isExpanded}
               className={`w-14 h-14 rounded-full flex items-center justify-center shadow-2xl transition-all ${
                 isExpanded ? 'bg-zinc-800 text-white rotate-90' : 'bg-white text-black'
               }`}

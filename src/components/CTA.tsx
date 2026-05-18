@@ -3,7 +3,7 @@ import { ArrowRight, Sparkles } from 'lucide-react';
 
 export default function CTA() {
   return (
-    <section className="py-32 md:py-48 bg-[#050505] relative overflow-hidden border-t border-white/5 bg-blueprint">
+    <section className="py-16 sm:py-24 md:py-48 bg-[#050505] relative overflow-hidden border-t border-white/5 bg-blueprint">
       
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
         <motion.div
