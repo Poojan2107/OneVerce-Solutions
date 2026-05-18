@@ -197,8 +197,11 @@ export default function FeaturedWork() {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-xl sm:text-2xl md:text-4xl lg:text-3xl xl:text-4xl font-black tracking-tighter text-white uppercase leading-[1.1] break-words">
-                  {project.title}
+                <h3 className="text-xl sm:text-2xl md:text-4xl lg:text-3xl xl:text-4xl font-black tracking-tighter text-white uppercase leading-[1.1]" style={{ wordBreak: 'keep-all', overflowWrap: 'normal' }}>
+                  {project.title === 'NeuralCredit'
+                    ? <><span>Neural</span><br/><span>Credit</span></>
+                    : project.title
+                  }
                 </h3>
 
                 {/* Description */}
