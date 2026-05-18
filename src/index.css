@@ -142,40 +142,49 @@
   }
 }
 
-/* Texture Overlay */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: radial-gradient(#ffffff05 1px, transparent 1px);
-  background-size: 40px 40px;
-  opacity: 0.08;
-  pointer-events: none;
-  z-index: 9999;
+/* Texture Overlay (Desktop Only for GPU Performance) */
+@media (min-width: 768px) {
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(#ffffff05 1px, transparent 1px);
+    background-size: 40px 40px;
+    opacity: 0.08;
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* Scanline Effect */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(
+      rgba(18, 16, 16, 0) 50%,
+      rgba(0, 0, 0, 0.05) 50%
+    );
+    background-size: 100% 4px;
+    pointer-events: none;
+    z-index: 9998;
+    opacity: 0.08;
+  }
 }
 
-/* Scanline Effect */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: linear-gradient(
-    rgba(18, 16, 16, 0) 50%,
-    rgba(0, 0, 0, 0.05) 50%
-  );
-  background-size: 100% 4px;
-  pointer-events: none;
-  z-index: 9998;
-  opacity: 0.08;
-}
-
-/* Vignette */
+/* Vignette (Desktop Only to reduce composite/redraw cost) */
 .vignette {
-  position: fixed;
-  inset: 0;
-  background: radial-gradient(circle at center, transparent 40%, rgba(0,0,0,0.35) 100%);
-  pointer-events: none;
-  z-index: 9997;
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .vignette {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at center, transparent 40%, rgba(0,0,0,0.35) 100%);
+    pointer-events: none;
+    z-index: 9997;
+  }
 }
 
 /* Custom Scrollbar */
