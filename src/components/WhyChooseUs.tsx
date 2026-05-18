@@ -97,7 +97,7 @@ export default function WhyChooseUs() {
 
               <div className="absolute inset-0 bg-gradient-to-tr from-blue-600/15 via-transparent to-purple-600/15 z-10" />
               <img 
-                src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80" 
+                src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80" 
                 alt="Engineering Command Center" 
                 loading="lazy"
                 className="w-full h-full object-cover rounded-[3.5rem] opacity-40 group-hover:opacity-90 transition-all duration-[2s] grayscale group-hover:grayscale-0"
