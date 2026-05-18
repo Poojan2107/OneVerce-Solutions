@@ -46,7 +46,6 @@ const RevealSection = ({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-15%' }}
       transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-      style={{ willChange: 'transform, opacity' }}
       className={className}
     >
       {children}
