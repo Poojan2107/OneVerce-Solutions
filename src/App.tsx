@@ -42,11 +42,12 @@ const RevealSection = ({
     <div className={className}>{children}</div>
   ) : (
     <motion.div
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 15 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-15%' }}
-      transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
+      viewport={{ once: true, margin: '-10%' }}
+      transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
       className={className}
+      style={{ willChange: 'opacity, transform' }}
     >
       {children}
     </motion.div>
@@ -79,14 +80,14 @@ export default function App() {
         
         {/* Render SmoothScroll and active pointer components only after loading completes */}
         {!isPreloading && <SmoothScroll />}
-        {!isPreloading && <Spotlight />}
-        {!isPreloading && <CustomCursor />}
-        {!isPreloading && <TechnicalHUD />}
+        {!isPreloading && !isCoarsePointer && <Spotlight />}
+        {!isPreloading && !isCoarsePointer && <CustomCursor />}
+        {!isPreloading && !isCoarsePointer && <TechnicalHUD />}
         
         <ScrollToTop />
         <div className="vignette" />
         
-        {/* Optimized performance overlay layers (zero paint layout strain) */}
+        {/* Fixed overlay layers — desktop only */}
         <div className="fixed inset-0 pointer-events-none bg-noise opacity-[0.015] z-[100] hidden md:block" />
         <div className="fixed inset-0 pointer-events-none bg-scanlines opacity-[0.04] z-[100] hidden md:block" />
 

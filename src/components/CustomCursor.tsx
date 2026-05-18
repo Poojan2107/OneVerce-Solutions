@@ -29,16 +29,14 @@ export default function CustomCursor() {
 
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      if (
-        target.tagName === 'A' ||
-        target.tagName === 'BUTTON' ||
-        target.closest('button') ||
-        target.closest('a')
-      ) {
-        setIsHovering(true);
-      } else {
-        setIsHovering(false);
-      }
+      if (!target) return;
+
+      // Fast check to avoid expensive closest() queries on standard divs/spans
+      const isInteractive = 
+        ['A', 'BUTTON', 'INPUT', 'SELECT', 'TEXTAREA'].includes(target.tagName) ||
+        target.closest('a, button, [role="button"]') !== null;
+
+      setIsHovering(isInteractive);
     };
 
     window.addEventListener('mousemove', handleMouseMove);
@@ -61,6 +59,7 @@ export default function CustomCursor() {
           y: cursorYSpring1,
           translateX: '-50%',
           translateY: '-50%',
+          willChange: 'transform',
         }}
         animate={{
           scale: isHovering ? 1.5 : 1,
@@ -80,6 +79,7 @@ export default function CustomCursor() {
           y: cursorYSpring2,
           translateX: '-50%',
           translateY: '-50%',
+          willChange: 'transform',
         }}
         aria-hidden="true"
       />

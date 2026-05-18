@@ -21,8 +21,10 @@
     color: var(--color-zinc-100);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
     overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
   }
 
   ::selection {
@@ -43,10 +45,11 @@
 
 @layer components {
   .glass-card {
-    background-color: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background-color: rgba(10, 10, 12, 0.7);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.05);
+    will-change: transform, opacity;
   }
 
   .brand-gradient {
@@ -142,7 +145,7 @@
   }
 }
 
-/* Texture Overlay (Desktop Only for GPU Performance) */
+/* Fixed overlay textures — desktop only, composited independently */
 @media (min-width: 768px) {
   body::before {
     content: "";
@@ -150,9 +153,11 @@
     inset: 0;
     background: radial-gradient(#ffffff05 1px, transparent 1px);
     background-size: 40px 40px;
-    opacity: 0.08;
+    opacity: 0.06;
     pointer-events: none;
     z-index: 9999;
+    will-change: opacity;
+    contain: strict;
   }
 
   /* Scanline Effect */
@@ -167,7 +172,8 @@
     background-size: 100% 4px;
     pointer-events: none;
     z-index: 9998;
-    opacity: 0.08;
+    opacity: 0.05;
+    contain: strict;
   }
 }
 
