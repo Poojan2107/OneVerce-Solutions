@@ -10,8 +10,9 @@ export default function Team() {
       specialization: 'Digital Architecture',
       bio: 'Architect of high-velocity conversion engines, blending technical logic with surgical precision to dominate digital spaces.',
       accent: 'blue',
+      photo: '/assets/vansh.png',
       social: [
-        { label: 'LinkedIn', href: 'https://www.linkedin.com/in/vansh-prajapati-6a1b2b2b1/' }
+        { label: 'LinkedIn', href: 'https://www.linkedin.com/in/vansh-prajapati-6a1749360' }
       ]
     },
     {
@@ -20,8 +21,9 @@ export default function Team() {
       specialization: 'Experience Strategy',
       bio: 'Master of experience strategy, synthesizing aesthetic authority with algorithmic performance to build the next generation of digital infrastructure.',
       accent: 'purple',
+      photo: '/assets/poojan.png',
       social: [
-        { label: 'LinkedIn', href: 'https://www.linkedin.com/in/poojan-shrivastav-6a1b2b2b1/' }
+        { label: 'LinkedIn', href: 'https://www.linkedin.com/in/poojanshrivastav21' }
       ]
     }
   ];
@@ -73,7 +75,16 @@ export default function Team() {
                   <div className="absolute top-0 right-0 w-32 h-32 bg-blueprint opacity-10 pointer-events-none" />
                   <div className="absolute bottom-0 left-0 w-24 h-24 border-l border-b border-white/5 pointer-events-none" />
                   
-                  <div className="flex flex-col items-start gap-4 mb-16 relative">
+                  <div className="flex flex-col items-start gap-6 mb-12 relative">
+                    {/* Real profile photo */}
+                    <div className={`relative w-20 h-20 rounded-2xl overflow-hidden border ${member.accent === 'blue' ? 'border-blue-500/30' : 'border-purple-500/30'} shadow-xl`}>
+                      <img
+                        src={member.photo}
+                        alt={member.name}
+                        className="w-full h-full object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-700"
+                      />
+                      <div className={`absolute inset-0 bg-gradient-to-t ${member.accent === 'blue' ? 'from-blue-900/40' : 'from-purple-900/40'} to-transparent`} />
+                    </div>
                     <div className="space-y-2">
                       <div className={`text-[9px] font-bold uppercase tracking-[0.4em] ${
                         member.accent === 'blue' ? 'text-blue-500' : 'text-purple-500'

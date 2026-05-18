@@ -110,15 +110,15 @@ export default function WhyChooseUs() {
                   whileHover={{ y: -8 }}
                   className="bg-black/80 backdrop-blur-3xl border border-white/20 p-6 rounded-[2rem] group/stat shadow-2xl"
                 >
-                  <div className="text-3xl font-bold mb-2 text-white tracking-tighter transition-colors group-hover/stat:text-blue-500">98%</div>
-                  <div className="text-[10px] text-zinc-400 uppercase tracking-[0.3em] font-bold">Success Rate</div>
+                  <div className="text-3xl font-bold mb-2 text-white tracking-tighter transition-colors group-hover/stat:text-blue-500">6+</div>
+                  <div className="text-[10px] text-zinc-400 uppercase tracking-[0.3em] font-bold">Live Projects</div>
                 </motion.div>
                 <motion.div 
                   whileHover={{ y: -8 }}
                   className="bg-black/80 backdrop-blur-3xl border border-white/20 p-6 rounded-[2rem] group/stat shadow-2xl"
                 >
-                  <div className="text-3xl font-bold mb-2 text-white tracking-tighter transition-colors group-hover/stat:text-purple-500">24/7</div>
-                  <div className="text-[10px] text-zinc-400 uppercase tracking-[0.3em] font-bold">Global Support</div>
+                  <div className="text-3xl font-bold mb-2 text-white tracking-tighter transition-colors group-hover/stat:text-purple-500">100%</div>
+                  <div className="text-[10px] text-zinc-400 uppercase tracking-[0.3em] font-bold">Delivery Rate</div>
                 </motion.div>
               </div>
             </div>

@@ -20,7 +20,6 @@ import SocialProof from './components/SocialProof';
 import SmoothScroll from './components/SmoothScroll';
 import Preloader from './components/Preloader';
 import TechnicalHUD from './components/TechnicalHUD';
-import AuditTool from './components/AuditTool';
 import Testimonials from './components/Testimonials';
 import StickyCTA from './components/StickyCTA';
 import SkipLink from './components/SkipLink';
@@ -124,10 +123,6 @@ export default function App() {
 
                   <RevealSection reducedMotion={reducedMotion} isCoarsePointer={isCoarsePointer}>
                     <Process />
-                  </RevealSection>
-
-                  <RevealSection reducedMotion={reducedMotion} isCoarsePointer={isCoarsePointer}>
-                    <AuditTool />
                   </RevealSection>
 
                   <RevealSection reducedMotion={reducedMotion} isCoarsePointer={isCoarsePointer}>
