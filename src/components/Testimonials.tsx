@@ -5,20 +5,17 @@ const testimonials = [
   {
     content: "Oneverce completely transformed our online presence. Our lead volume tripled in just 3 months after the new site went live. They understand business, not just code.",
     author: "Sarah Jenkins",
-    role: "CEO at TechFlow Startups",
-    image: "https://i.pravatar.cc/150?u=sarah"
+    role: "CEO at TechFlow Startups"
   },
   {
     content: "The free audit they provided was eye-opening. They pointed out exactly why our visitors weren't buying. The redesign paid for itself within weeks.",
     author: "Deepak Sharma",
-    role: "Founder of LocalEats",
-    image: "https://i.pravatar.cc/150?u=deepak"
+    role: "Founder of LocalEats"
   },
   {
     content: "Professional, fast, and incredibly focused on the numbers. If you want a website that actually works for your business, these are the people to talk to.",
     author: "Michael Chen",
-    role: "Marketing Director at GrowthOps",
-    image: "https://i.pravatar.cc/150?u=michael"
+    role: "Marketing Director at GrowthOps"
   }
 ];
 
