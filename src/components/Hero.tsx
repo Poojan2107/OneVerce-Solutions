@@ -51,7 +51,8 @@ export default function Hero({ isPreloading = false }: { isPreloading?: boolean 
         />
       </div>
 
-      <div className="absolute inset-0 z-10 opacity-50 sm:opacity-90 flex items-center justify-center overflow-hidden">
+      {/* InfinityScene — locked to center of viewport, behind text */}
+      <div className="absolute inset-0 z-10 flex items-center justify-center overflow-hidden pointer-events-none" style={{ contain: 'layout style' }}>
         {!isPreloading && (
           <InfinityScene mouseX={isCoarsePointer ? undefined : mouseX} mouseY={isCoarsePointer ? undefined : mouseY} />
         )}

@@ -31,12 +31,13 @@ export default function Spotlight() {
   return (
     <div className="pointer-events-none fixed inset-0 z-50 overflow-hidden hidden md:block">
       <motion.div
-        className="absolute w-[600px] h-[600px] bg-blue-500/[0.07] rounded-full blur-[140px] pointer-events-none"
+        className="absolute w-[600px] h-[600px] rounded-full pointer-events-none"
         style={{
           x: springX,
           y: springY,
           translateX: '-50%',
           translateY: '-50%',
+          background: 'radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, rgba(59, 130, 246, 0.03) 45%, transparent 70%)',
           willChange: 'transform',
         }}
       />

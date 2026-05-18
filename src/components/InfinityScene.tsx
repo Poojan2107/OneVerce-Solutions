@@ -12,8 +12,8 @@ const fallbackMotionValue = new MotionValue(0);
 
 export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
   const reducedMotion = usePrefersReducedMotion();
-  const particleCount =
-    typeof window !== 'undefined' && window.innerWidth < 768 ? 15 : reducedMotion ? 25 : 45;
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  const particleCount = isMobile ? 8 : reducedMotion ? 20 : 40;
 
   // Synchronized Scene Tilting using stable motion value reference
   const rotateX = useTransform(mouseY || fallbackMotionValue, [-500, 500], [15, 10]);
@@ -28,16 +28,21 @@ export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
       size: Math.random() * 2.5,
       opacity: Math.random() * 0.7,
       delay: Math.random() * 5,
-      color: i % 15 === 0 ? '#00f0ff' : i % 25 === 0 ? '#ffeb3b' : i % 35 === 0 ? '#ff5722' : '#ffffff', 
+      color: i % 15 === 0 ? '#00f0ff' : i % 25 === 0 ? '#ffeb3b' : i % 35 === 0 ? '#ff5722' : '#ffffff',
       duration: 3 + Math.random() * 4,
     }));
   }, [particleCount]);
 
   return (
-    <div className="relative w-full h-full flex items-center justify-center overflow-hidden md:overflow-visible perspective-[2000px] pointer-events-none">
+    <div className="relative w-full h-full flex items-center justify-center overflow-hidden md:overflow-visible md:perspective-[2000px] pointer-events-none" style={{ contain: 'layout style paint' }}>
       {/* 1. Deep Space Ambient Nebula */}
       <div className="absolute inset-0 flex items-center justify-center z-0">
-        <div className="absolute w-[min(1800px,200vw)] h-[min(1000px,120vh)] bg-white/[0.01] rounded-[100%] blur-[120px] md:blur-[250px] animate-pulse" />
+        <div 
+          className="absolute w-[min(1800px,200vw)] h-[min(1000px,120vh)] rounded-[100%] animate-pulse" 
+          style={{
+            background: 'radial-gradient(circle, rgba(255, 255, 255, 0.01) 0%, transparent 80%)'
+          }}
+        />
       </div>
 
       {/* 2. Stardust Field (Parallax Environment - Hardware-Accelerated CSS) */}
@@ -45,28 +50,31 @@ export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
         {stardust.map((star) => (
           <div
             key={star.id}
-            className="absolute rounded-full particle-pulse"
+            className={`absolute rounded-full ${isMobile ? '' : 'particle-pulse'}`}
             style={{
               width: star.size,
               height: star.size,
               left: `calc(50% + ${star.x}px)`,
               top: `calc(50% + ${star.y}px)`,
               backgroundColor: star.color,
-              boxShadow: star.color !== '#ffffff' ? `0 0 12px ${star.color}` : `0 0 6px rgba(255,255,255,0.4)`,
-              backfaceVisibility: 'hidden',
-              '--particle-opacity': star.opacity,
-              '--particle-delay': `${star.delay}s`,
-              '--particle-duration': `${star.duration}s`,
+              opacity: star.opacity,
+              boxShadow: isMobile ? 'none' : (star.color !== '#ffffff' ? `0 0 12px ${star.color}` : `0 0 6px rgba(255,255,255,0.4)`),
+              ...(isMobile ? {} : {
+                backfaceVisibility: 'hidden',
+                '--particle-opacity': star.opacity,
+                '--particle-delay': `${star.delay}s`,
+                '--particle-duration': `${star.duration}s`,
+              }),
             } as React.CSSProperties}
           />
         ))}
       </div>
 
       <motion.div 
-        className="relative flex items-center justify-center md:preserve-3d scale-[0.25] sm:scale-[0.55] md:scale-[0.75] lg:scale-[0.9] will-change-transform z-10"
+        className="relative flex items-center justify-center md:preserve-3d scale-[0.35] sm:scale-[0.55] md:scale-[0.75] lg:scale-[0.9] will-change-transform z-10"
         style={{ 
-          rotateX, 
-          rotateY,
+          rotateX: isMobile ? undefined : rotateX, 
+          rotateY: isMobile ? undefined : rotateY,
           backfaceVisibility: 'hidden',
         }}
       >
@@ -95,32 +103,32 @@ export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
               </linearGradient>
 
               <filter id="ribbon-glow-v2" x="-50%" y="-50%" width="200%" height="200%">
-                <feGaussianBlur in="SourceGraphic" stdDeviation="18" result="blur" />
+                <feGaussianBlur in="SourceGraphic" stdDeviation={isMobile ? 8 : 18} result="blur" />
                 <feComposite in="SourceGraphic" in2="blur" operator="over" />
               </filter>
             </defs>
 
-            {/* Path: Asymmetrical Teardrop Infinity */}
+            {/* Path: Symmetrical Infinity */}
             <motion.path
               id="infinity-path"
-              d="M 0,0 C 200,-420 620,-420 620,0 C 620,420 200,420 0,0 C -150,300 -450,300 -450,0 C -450,-300 -150,-300 0,0"
+              d="M 0,0 C 200,-420 580,-420 580,0 C 580,420 200,420 0,0 C -200,420 -580,420 -580,0 C -580,-420 -200,-420 0,0"
               fill="none"
               stroke="transparent"
             />
 
             {/* Layer A: Massive Structural Underglow */}
             <motion.path
-              d="M 0,0 C 200,-420 620,-420 620,0 C 620,420 200,420 0,0 C -150,300 -450,300 -450,0 C -450,-300 -150,-300 0,0"
+              d="M 0,0 C 200,-420 580,-420 580,0 C 580,420 200,420 0,0 C -200,420 -580,420 -580,0 C -580,-420 -200,-420 0,0"
               fill="none"
               stroke="url(#ribbon-grad-v1)"
               strokeWidth="110"
               strokeOpacity="0.08"
-              className="blur-[70px]"
+              className="blur-[24px]"
             />
 
-            {/* Layer B: The Volumetric Body (Outer Shell) */}
+            {/* Layer B: The Volumetric Body Glow Shell (GPU-Accelerated CSS blur) */}
             <motion.path
-              d="M 0,0 C 200,-420 620,-420 620,0 C 620,420 200,420 0,0 C -150,300 -450,300 -450,0 C -450,-300 -150,-300 0,0"
+              d="M 0,0 C 200,-420 580,-420 580,0 C 580,420 200,420 0,0 C -200,420 -580,420 -580,0 C -580,-420 -200,-420 0,0"
               fill="none"
               stroke="url(#ribbon-grad-v1)"
               strokeWidth="60"
@@ -128,12 +136,25 @@ export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
               initial={{ pathLength: 0 }}
               animate={{ pathLength: 1 }}
               transition={{ duration: 4, ease: "easeInOut" }}
-              filter="url(#ribbon-glow-v2)"
+              className="blur-[12px]"
+              style={{ opacity: 0.75 }}
+            />
+
+            {/* Layer B.2: The Sharp Core Body */}
+            <motion.path
+              d="M 0,0 C 200,-420 580,-420 580,0 C 580,420 200,420 0,0 C -200,420 -580,420 -580,0 C -580,-420 -200,-420 0,0"
+              fill="none"
+              stroke="url(#ribbon-grad-v1)"
+              strokeWidth="60"
+              strokeLinecap="round"
+              initial={{ pathLength: 0 }}
+              animate={{ pathLength: 1 }}
+              transition={{ duration: 4, ease: "easeInOut" }}
             />
 
             {/* Layer C: The Matte Depth Core */}
             <path
-              d="M 0,0 C 200,-420 620,-420 620,0 C 620,420 200,420 0,0 C -150,300 -450,300 -450,0 C -450,-300 -150,-300 0,0"
+              d="M 0,0 C 200,-420 580,-420 580,0 C 580,420 200,420 0,0 C -200,420 -580,420 -580,0 C -580,-420 -200,-420 0,0"
               fill="none"
               stroke="url(#ribbon-inner-shadow)"
               strokeWidth="28"
@@ -144,7 +165,7 @@ export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
 
             {/* Layer D: Liquid Gloss Shimmer (Hardware-Accelerated CSS) */}
             <path
-              d="M 0,0 C 200,-420 620,-420 620,0 C 620,420 200,420 0,0 C -150,300 -450,300 -450,0 C -450,-300 -150,-300 0,0"
+              d="M 0,0 C 200,-420 580,-420 580,0 C 580,420 200,420 0,0 C -200,420 -580,420 -580,0 C -580,-420 -200,-420 0,0"
               fill="none"
               stroke="#ffffff"
               strokeWidth="5"
@@ -175,8 +196,18 @@ export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
 
         {/* 5. Focal Atmospheric Singularities - Hidden on Mobile to prevent rendering layout glitches and repaint costs */}
         <div className="absolute hidden md:flex items-center justify-center md:preserve-3d pointer-events-none">
-          <div className="absolute translate-x-[350px] w-[1000px] h-[700px] bg-[#9333ea]/[0.05] rounded-full blur-[180px]" />
-          <div className="absolute -translate-x-[350px] w-[800px] h-[600px] bg-[#00f0f0]/[0.08] rounded-full blur-[180px]" />
+          <div 
+            className="absolute translate-x-[350px] w-[1000px] h-[700px] rounded-full" 
+            style={{
+              background: 'radial-gradient(circle, rgba(147, 51, 234, 0.05) 0%, transparent 70%)'
+            }}
+          />
+          <div 
+            className="absolute -translate-x-[350px] w-[800px] h-[600px] rounded-full" 
+            style={{
+              background: 'radial-gradient(circle, rgba(0, 240, 240, 0.08) 0%, transparent 70%)'
+            }}
+          />
         </div>
       </motion.div>
     </div>
