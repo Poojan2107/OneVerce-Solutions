@@ -1,25 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Plus, Minus, ShieldCheck, Zap, Activity, Cpu, Globe, MessageCircle } from 'lucide-react';
-
-const faqs = [
-  {
-    question: 'How fast can we launch?',
-    answer: 'Speed is our competitive advantage. A high-conversion agency site or custom POS system typically launches within 4-6 weeks from initial strategy to production.'
-  },
-  {
-    question: 'Do you use templates?',
-    answer: 'Never. Every pixel is custom-engineered from the ground up to solve your specific revenue friction. We build bespoke digital assets that you own entirely.'
-  },
-  {
-    question: 'Is SEO and Performance included?',
-    answer: 'Performance is at our core. Every Oneverce deployment is optimized for sub-1s load times and follows strict SEO best practices to ensure your brand ranks where it belongs.'
-  },
-  {
-    question: 'What happens after launch?',
-    answer: 'We don’t just ship and leave. Oneverce provides ongoing strategic support, performance monitoring, and rapid scaling as your business grows.'
-  }
-];
+import { faqs } from '../data/portfolioData';
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);

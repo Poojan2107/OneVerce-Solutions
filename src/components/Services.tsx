@@ -2,73 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'motion/react';
 import { Globe, Code2, Cpu, Zap, ArrowUpRight, MousePointer2, Rocket, BarChart3, Sparkles } from 'lucide-react';
 import ServiceModal from './ServiceModal';
-
-const services = [
-  {
-    icon: <MousePointer2 className="w-6 h-6" />,
-    title: 'Experience Design',
-    description: 'Layouts engineered to route intent into transactions with zero friction.',
-    longDescription: 'Most websites are built for aesthetics. We build for connection. Every element, from typography to motion curves, is strategically chosen to reduce friction and increase your conversion fidelity.',
-    features: [
-      'Conversion Rate Optimization',
-      'High-Fidelity UI/UX Design',
-      'Sales Funnel Architecture',
-      'Responsive Lead Magnets',
-      'A/B Testing Foundations',
-      'Behavioral Data Analysis'
-    ],
-    tag: 'CONVERSION',
-    color: 'blue'
-  },
-  {
-    icon: <Rocket className="w-6 h-6" />,
-    title: 'Performance Engineering',
-    description: 'Full-stack architecture optimized for sub-500ms latency.',
-    longDescription: 'A slow website is a dead website. We use modern full-stack technologies to ensure your site loads instantly on every device, keeping your customers engaged and your search engine performance at the elite level.',
-    features: [
-      'Core Web Vitals Perfection',
-      'Next.js Architectural Builds',
-      'Secure Backend Logic',
-      'Scalable Database Design',
-      'Seamless API Integrations',
-      'Automated Performance Monitoring'
-    ],
-    tag: 'PERFORMANCE',
-    color: 'purple'
-  },
-  {
-    icon: <Cpu className="w-6 h-6" />,
-    title: 'Automation Logic',
-    description: 'Autonomous systems that qualify prospects and execute logic 24/7.',
-    longDescription: 'Automate your customer engagement at scale. Our custom systems qualify prospects, handle bookings, and provide support, effectively acting as a high-performance team that never sleeps.',
-    features: [
-      'Custom Sales Automation',
-      'Lead Qualification Systems',
-      'Predictive Traffic Modeling',
-      'Workflow Optimization',
-      'Data Layer Synchronization',
-      'CRM Integration'
-    ],
-    tag: 'AUTOMATION',
-    color: 'red'
-  },
-  {
-    icon: <Sparkles className="w-6 h-6" />,
-    title: 'Brand Synthesis',
-    description: 'High-fidelity identities projecting absolute authority.',
-    longDescription: 'Your digital presence is your strongest asset. We craft visual identities that aren\'t just beautiful—they\'re engineered to command attention and project professional authority.',
-    features: [
-      'Identity Architecture',
-      'Visual Language Systems',
-      'Motion Brand Guidelines',
-      'Digital Asset Design',
-      'Brand Authority Strategy',
-      'Social Proof Systems'
-    ],
-    tag: 'BRAND',
-    color: 'blue'
-  }
-];
+import { services } from '../data/portfolioData';
 
 function ServiceCard({ service, index, onClick }: { service: typeof services[0], index: number, onClick: () => void }) {
   const [isTouchDevice, setIsTouchDevice] = useState(false);

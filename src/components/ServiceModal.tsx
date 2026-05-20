@@ -1,15 +1,6 @@
-import { ReactNode } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, CheckCircle2, ArrowRight } from 'lucide-react';
-
-interface ServiceDetail {
-  title: string;
-  description: string;
-  longDescription: string;
-  features: string[];
-  icon: ReactNode;
-  color: string;
-}
+import { ServiceDetail } from '../data/portfolioData';
 
 interface ServiceModalProps {
   service: ServiceDetail | null;

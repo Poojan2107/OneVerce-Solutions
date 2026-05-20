@@ -1,41 +1,6 @@
 import { motion } from 'motion/react';
 import { TrendingUp, Zap, ShieldCheck } from 'lucide-react';
-
-const results = [
-  {
-    icon: <TrendingUp size={20} />,
-    accent: 'emerald',
-    accentColor: 'rgb(16,185,129)',
-    project: 'ParArc Design Studio',
-    category: 'Architecture · Portfolio',
-    result: 'Organic search traffic surged post-launch through a surgical grayscale aesthetic and cinematic transitions that matched the studio\'s brand authority.',
-    metric: '#1',
-    metricLabel: 'Local Search',
-    link: 'https://pararcdesignstudio.in/',
-  },
-  {
-    icon: <ShieldCheck size={20} />,
-    accent: 'blue',
-    accentColor: 'rgb(59,130,246)',
-    project: 'NeuralCredit',
-    category: 'FinTech · Enterprise Platform',
-    result: 'End-to-end AI loan intelligence platform with biometric verification, persistent AI engine, and real-time anomaly detection — built for institutional-grade viva presentation.',
-    metric: '<2s',
-    metricLabel: 'Verification',
-    link: 'https://neuralcredit.onrender.com/',
-  },
-  {
-    icon: <Zap size={20} />,
-    accent: 'red',
-    accentColor: 'rgb(239,68,68)',
-    project: 'Travelling Tent',
-    category: 'Platform · Travel Booking',
-    result: 'Immersive luxury booking platform engineered for pixel-perfect UX and seamless checkout flows. Sub-second load performance on all devices.',
-    metric: '4.2x',
-    metricLabel: 'Conversion',
-    link: 'https://travelling-tent.vercel.app/',
-  },
-];
+import { results } from '../data/portfolioData';
 
 const accentMap: Record<string, { bg: string; border: string; text: string; glow: string }> = {
   emerald: {

@@ -1,29 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { ShieldCheck, Rocket, Layers, BrainCircuit } from 'lucide-react';
-
-const reasons = [
-  {
-    icon: <Rocket className="w-6 h-6 text-blue-500" />,
-    title: 'Fast Delivery',
-    description: 'Rapid deployment cycles without compromising architectural integrity.'
-  },
-  {
-    icon: <Layers className="w-6 h-6 text-purple-500" />,
-    title: 'Modern Tech Stack',
-    description: 'Engineered on modern stacks for absolute speed, security, and future-proofing.'
-  },
-  {
-    icon: <ShieldCheck className="w-6 h-6 text-emerald-500" />,
-    title: 'Scalable Systems',
-    description: 'Infrastructure designed to scale autonomously with exponential traffic load.'
-  },
-  {
-    icon: <BrainCircuit className="w-6 h-6 text-amber-500" />,
-    title: 'AI-First Approach',
-    description: 'Integrating AI-native logic for maximum operational efficiency.'
-  }
-];
+import { reasons } from '../data/portfolioData';
 
 export default function WhyChooseUs() {
   const [isTouchDevice, setIsTouchDevice] = useState(false);
@@ -97,7 +75,7 @@ export default function WhyChooseUs() {
 
               <div className="absolute inset-0 bg-gradient-to-tr from-blue-600/15 via-transparent to-purple-600/15 z-10" />
               <img 
-                src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80" 
+                src="/portfolio-1.jpg" 
                 alt="Engineering Command Center" 
                 loading="lazy"
                 className="w-full h-full object-cover rounded-[3.5rem] opacity-40 group-hover:opacity-90 transition-all duration-[2s] grayscale group-hover:grayscale-0"

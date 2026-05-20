@@ -1,32 +1,9 @@
 import { motion } from 'motion/react';
 import { User, Phone, Cpu, Binary, Layers, Code2, Zap, Heart, MessageSquare, Briefcase } from 'lucide-react';
 import Tilt from './Tilt';
+import { team } from '../data/portfolioData';
 
 export default function Team() {
-  const team = [
-    {
-      name: 'Vansh Prajapati',
-      role: 'Founding Engineer',
-      specialization: 'Digital Architecture',
-      bio: 'Architect of high-velocity conversion engines, blending technical logic with surgical precision to dominate digital spaces.',
-      accent: 'blue',
-      photo: '/assets/vansh.png',
-      social: [
-        { label: 'LinkedIn', href: 'https://www.linkedin.com/in/vansh-prajapati-6a1749360' }
-      ]
-    },
-    {
-      name: 'Poojan Shrivastav',
-      role: 'Founding Architect',
-      specialization: 'Experience Strategy',
-      bio: 'Master of experience strategy, synthesizing aesthetic authority with algorithmic performance to build the next generation of digital infrastructure.',
-      accent: 'purple',
-      photo: '/assets/poojan.png',
-      social: [
-        { label: 'LinkedIn', href: 'https://www.linkedin.com/in/poojanshrivastav21' }
-      ]
-    }
-  ];
 
   return (
     <section id="team" className="py-16 sm:py-24 md:py-48 bg-[#050505] relative overflow-hidden bg-blueprint">
