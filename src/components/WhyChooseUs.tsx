@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { ShieldCheck, Rocket, Layers, BrainCircuit } from 'lucide-react';
+import { ShieldCheck, Rocket, Layers, BrainCircuit, TrendingUp, Star } from 'lucide-react';
 import { reasons } from '../data/portfolioData';
 
 export default function WhyChooseUs() {
@@ -10,14 +10,23 @@ export default function WhyChooseUs() {
     setIsTouchDevice(window.matchMedia('(pointer: coarse)').matches);
   }, []);
 
+  const stats = [
+    { value: '6+', label: 'Live Projects', color: 'text-blue-400', glow: 'group-hover:text-blue-400' },
+    { value: '100%', label: 'Delivery Rate', color: 'text-purple-400', glow: 'group-hover:text-purple-400' },
+    { value: '4.8★', label: 'Client Rating', color: 'text-amber-400', glow: 'group-hover:text-amber-400' },
+    { value: '12+', label: 'Tech Stacks', color: 'text-emerald-400', glow: 'group-hover:text-emerald-400' },
+  ];
+
   return (
     <section id="about" className="py-16 sm:py-24 md:py-48 overflow-hidden bg-[#0a0c10] relative bg-blueprint">
       
-      {/* Background Polish with Grid */}
+      {/* Ambient background line */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[1px] bg-gradient-to-r from-transparent via-blue-500/20 to-transparent opacity-50 z-0" />
       
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
-        <div className="grid lg:grid-cols-[1.2fr_1fr] gap-12 lg:gap-20 items-center">
+        <div className="grid lg:grid-cols-[1.2fr_1fr] gap-12 lg:gap-20 items-start">
+
+          {/* LEFT: Text Content */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -59,52 +68,69 @@ export default function WhyChooseUs() {
             </div>
           </motion.div>
 
+          {/* RIGHT: Poster Image + Stats below */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9, rotateY: isTouchDevice ? 0 : 20 }}
+            initial={{ opacity: 0, scale: 0.92, rotateY: isTouchDevice ? 0 : 15 }}
             whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-            className="relative"
+            className="relative flex flex-col gap-4"
           >
-            <div className="aspect-square rounded-[2.5rem] sm:rounded-[4.5rem] bg-zinc-950 border border-white/5 p-4 sm:p-6 relative overflow-hidden group shadow-2xl">
-              {/* HUD Reticles */}
-              <div className="absolute inset-0 z-20 pointer-events-none opacity-40">
-                <div className="absolute top-12 left-12 w-24 h-24 border-l border-t border-white/20 rounded-tl-[3.5rem]" />
-                <div className="absolute bottom-12 right-12 w-24 h-24 border-r border-b border-white/20 rounded-br-[3.5rem]" />
+            {/* Poster Image Card */}
+            <div className="relative rounded-[2rem] sm:rounded-[3rem] overflow-hidden border border-white/8 shadow-2xl shadow-blue-900/20 group bg-zinc-950">
+              {/* HUD corner reticles */}
+              <div className="absolute inset-0 z-20 pointer-events-none">
+                <div className="absolute top-5 left-5 w-8 h-8 border-l-2 border-t-2 border-white/25 rounded-tl-lg" />
+                <div className="absolute top-5 right-5 w-8 h-8 border-r-2 border-t-2 border-white/25 rounded-tr-lg" />
+                <div className="absolute bottom-5 left-5 w-8 h-8 border-l-2 border-b-2 border-white/25 rounded-bl-lg" />
+                <div className="absolute bottom-5 right-5 w-8 h-8 border-r-2 border-b-2 border-white/25 rounded-br-lg" />
               </div>
 
-              <div className="absolute inset-0 bg-gradient-to-tr from-blue-600/15 via-transparent to-purple-600/15 z-10" />
-              <img 
-                src="/portfolio-1.jpg" 
-                alt="Engineering Command Center" 
+              {/* Colour overlay tint */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-blue-900/20 via-transparent to-purple-900/15 z-10 pointer-events-none" />
+
+              {/* The official poster */}
+              <img
+                src="/portfolio-3.jpg"
+                alt="Oneverce — Innovating the Future of Digital"
                 loading="lazy"
-                className="w-full h-full object-cover rounded-[3.5rem] opacity-80 group-hover:opacity-95 transition-all duration-[2s]"
-                referrerPolicy="no-referrer"
+                className="w-full h-auto object-cover object-top transition-transform duration-[2s] group-hover:scale-[1.03]"
               />
-              
-              {/* Stats Overlay - HUD Style */}
-              <div className="absolute bottom-4 sm:bottom-8 left-4 sm:left-8 right-4 sm:right-8 grid grid-cols-2 gap-3 sm:gap-6 z-30">
-                <motion.div 
-                  whileHover={{ y: -8 }}
-                  className="bg-black/80 backdrop-blur-3xl border border-white/20 p-3 sm:p-6 rounded-[1.25rem] sm:rounded-[2rem] group/stat shadow-2xl"
-                >
-                  <div className="text-xl sm:text-3xl font-bold mb-1 sm:mb-2 text-white tracking-tighter transition-colors group-hover/stat:text-blue-500">6+</div>
-                  <div className="text-[8px] sm:text-[10px] text-zinc-400 uppercase tracking-[0.2em] sm:tracking-[0.3em] font-bold">Live Projects</div>
-                </motion.div>
-                <motion.div 
-                  whileHover={{ y: -8 }}
-                  className="bg-black/80 backdrop-blur-3xl border border-white/20 p-3 sm:p-6 rounded-[1.25rem] sm:rounded-[2rem] group/stat shadow-2xl"
-                >
-                  <div className="text-xl sm:text-3xl font-bold mb-1 sm:mb-2 text-white tracking-tighter transition-colors group-hover/stat:text-purple-500">100%</div>
-                  <div className="text-[8px] sm:text-[10px] text-zinc-400 uppercase tracking-[0.2em] sm:tracking-[0.3em] font-bold">Delivery Rate</div>
-                </motion.div>
+
+              {/* LIVE badge */}
+              <div className="absolute top-4 right-4 z-30 flex items-center gap-2 bg-black/70 backdrop-blur-md border border-white/15 px-3 py-1.5 rounded-full">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
+                <span className="text-[9px] font-bold text-emerald-400 uppercase tracking-widest">Live</span>
               </div>
             </div>
-            
-            {/* Ambient Glows */}
-            <div className="absolute -top-20 -right-20 w-80 h-80 bg-blue-600/15 blur-[120px] rounded-full pointer-events-none" />
-            <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-purple-600/15 blur-[120px] rounded-full pointer-events-none" />
+
+            {/* Stats row — clean 2×2 grid below the poster */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              {stats.map((stat, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.7, delay: 0.1 + i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                  whileHover={{ y: -4 }}
+                  className="group bg-zinc-950/90 border border-white/8 rounded-2xl p-4 text-center cursor-default shadow-lg hover:border-white/20 transition-all duration-300"
+                >
+                  <div className={`text-2xl font-black tracking-tighter mb-0.5 transition-colors duration-300 ${stat.color}`}>
+                    {stat.value}
+                  </div>
+                  <div className="text-[9px] text-zinc-500 uppercase tracking-[0.25em] font-bold leading-tight">
+                    {stat.label}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Ambient glows */}
+            <div className="absolute -top-16 -right-16 w-72 h-72 bg-blue-600/15 blur-[100px] rounded-full pointer-events-none -z-10" />
+            <div className="absolute -bottom-16 -left-16 w-72 h-72 bg-purple-600/12 blur-[100px] rounded-full pointer-events-none -z-10" />
           </motion.div>
+
         </div>
       </div>
     </section>
