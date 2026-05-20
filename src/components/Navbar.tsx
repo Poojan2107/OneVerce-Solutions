@@ -50,7 +50,7 @@ export default function Navbar() {
             <div className="relative">
               <div className="w-10 h-10 rounded-xl bg-zinc-900 border border-white/10 flex items-center justify-center text-white shadow-2xl relative overflow-hidden">
                 <img
-                  src="https://res.cloudinary.com/daheghidk/image/upload/v1775229314/logooneverce_l3ckqq.jpg"
+                  src="/logo.jpeg"
                   alt="Oneverce"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                 />

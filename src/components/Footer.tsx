@@ -17,10 +17,10 @@ export default function Footer() {
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 rounded-xl bg-zinc-900 border border-white/10 p-1 shadow-2xl overflow-hidden">
                  <img 
-                   src="https://res.cloudinary.com/daheghidk/image/upload/v1775229314/logooneverce_l3ckqq.jpg" 
+                   src="/logo.jpeg" 
                    alt="Oneverce"
                    loading="lazy"
-                   className="w-full h-full object-cover grayscale brightness-125"
+                   className="w-full h-full object-cover"
                  />
               </div>
               <span className="text-2xl font-bold tracking-tighter uppercase text-white">ONEVERCE</span>

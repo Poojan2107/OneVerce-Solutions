@@ -86,7 +86,7 @@ export default function SocialProof() {
                   whileHover={{ scale: 1.05, zIndex: 20 }}
                   className="aspect-square rounded-2xl overflow-hidden border border-white/5 relative group cursor-pointer"
                 >
-                  <img src={post.img} alt={post.title} loading="lazy" className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity grayscale group-hover:grayscale-0 transition-all duration-500" />
+                  <img src={post.img} alt={post.title} loading="lazy" className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
                   <div className="absolute inset-0 bg-[#00f0ff]/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
                     <Activity size={14} className="text-white" />
                     <Share2 size={14} className="text-white" />

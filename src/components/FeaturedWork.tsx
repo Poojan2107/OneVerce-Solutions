@@ -104,7 +104,7 @@ export default function FeaturedWork() {
                       src={project.image}
                       alt={project.title}
                       loading="lazy"
-                      className="absolute inset-0 w-full h-full object-cover transition-all duration-[1.2s] group-hover:scale-110 grayscale group-hover:grayscale-0 opacity-60 group-hover:opacity-100"
+                      className="absolute inset-0 w-full h-full object-cover transition-all duration-[1.2s] group-hover:scale-110 opacity-85 group-hover:opacity-100"
                       style={{ transform: 'translateZ(10px) scale(1.05)' }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-90 group-hover:opacity-30 transition-opacity duration-700" style={{ transform: 'translateZ(15px)' }} />

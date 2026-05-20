@@ -60,7 +60,7 @@ export default function Preloader({ onComplete }: PreloaderProps) {
               >
                 <div className="absolute inset-0 bg-blue-500/10 animate-pulse" />
                 <img 
-                  src="https://res.cloudinary.com/daheghidk/image/upload/v1775229314/logooneverce_l3ckqq.jpg" 
+                  src="/logo.jpeg" 
                   alt="Oneverce" 
                   className="w-10 h-10 object-cover rounded-md z-10"
                 />

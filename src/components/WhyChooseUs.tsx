@@ -78,7 +78,7 @@ export default function WhyChooseUs() {
                 src="/portfolio-1.jpg" 
                 alt="Engineering Command Center" 
                 loading="lazy"
-                className="w-full h-full object-cover rounded-[3.5rem] opacity-40 group-hover:opacity-90 transition-all duration-[2s] grayscale group-hover:grayscale-0"
+                className="w-full h-full object-cover rounded-[3.5rem] opacity-80 group-hover:opacity-95 transition-all duration-[2s]"
                 referrerPolicy="no-referrer"
               />
               
