@@ -68,30 +68,21 @@ export default function Team() {
               className="relative group"
             >
               <Tilt>
-                <div className={`glass-card p-6 sm:p-10 md:p-14 rounded-[3rem] border border-white/5 transition-all duration-700 h-full flex flex-col group/card md:preserve-3d relative overflow-hidden ${
+                <div className={`glass-card p-6 sm:p-10 md:p-14 rounded-2xl sm:rounded-[2rem] md:rounded-[3rem] border border-white/5 transition-all duration-700 h-full flex flex-col group/card md:preserve-3d relative overflow-hidden ${
                    member.accent === 'blue' ? 'hover:border-blue-500/30' : 'hover:border-purple-500/30'
                  }`}>
                   {/* Decorative Industrial Elements */}
                   <div className="absolute top-0 right-0 w-32 h-32 bg-blueprint opacity-10 pointer-events-none" />
                   <div className="absolute bottom-0 left-0 w-24 h-24 border-l border-b border-white/5 pointer-events-none" />
                   
-                  <div className="flex flex-col items-start gap-6 mb-12 relative">
-                    {/* Real profile photo */}
-                    <div className={`relative w-20 h-20 rounded-2xl overflow-hidden border ${member.accent === 'blue' ? 'border-blue-500/30' : 'border-purple-500/30'} shadow-xl`}>
-                      <img
-                        src={member.photo}
-                        alt={member.name}
-                        className="w-full h-full object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-700"
-                      />
-                      <div className={`absolute inset-0 bg-gradient-to-t ${member.accent === 'blue' ? 'from-blue-900/40' : 'from-purple-900/40'} to-transparent`} />
-                    </div>
-                    <div className="space-y-2">
-                      <div className={`text-[9px] font-bold uppercase tracking-[0.4em] ${
-                        member.accent === 'blue' ? 'text-blue-500' : 'text-purple-500'
-                      }`}>{member.role}</div>
-                      <h3 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tighter text-white uppercase leading-[0.9] break-normal">{member.name}</h3>
-                    </div>
-                  </div>
+                  <div className="flex flex-col items-start gap-4 mb-12 relative">
+                     <div className="space-y-2">
+                       <div className={`text-[9px] font-bold uppercase tracking-[0.4em] ${
+                         member.accent === 'blue' ? 'text-blue-500' : 'text-purple-500'
+                       }`}>{member.role}</div>
+                       <h3 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tighter text-white uppercase leading-[0.9] break-normal">{member.name}</h3>
+                     </div>
+                   </div>
 
                   <div className="space-y-12 flex-grow">
                     <div className="space-y-4">

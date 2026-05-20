@@ -35,17 +35,17 @@ export default function ServiceModal({ service, onClose }: ServiceModalProps) {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
           transition={{ type: "spring", damping: 25, stiffness: 300 }}
-          className="relative w-full max-w-4xl bg-[#050505] border border-white/10 rounded-[2.5rem] overflow-y-auto max-h-[90vh] shadow-2xl custom-scrollbar"
+          className="relative w-full max-w-4xl bg-[#050505] border border-white/10 rounded-2xl sm:rounded-[2rem] md:rounded-[2.5rem] overflow-y-auto max-h-[90vh] shadow-2xl custom-scrollbar"
         >
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 md:top-8 md:right-8 p-2 rounded-full bg-white/[0.03] hover:bg-white/[0.08] text-zinc-400 hover:text-white transition-all z-20 border border-white/5"
+            className="absolute top-4 right-4 md:top-8 md:right-8 p-3 min-w-[44px] min-h-[44px] rounded-full bg-white/[0.03] hover:bg-white/[0.08] text-zinc-400 hover:text-white transition-all z-20 border border-white/5 flex items-center justify-center"
           >
             <X size={20} />
           </button>
 
           <div className="grid md:grid-cols-2 h-full">
-            <div className="p-8 md:p-16">
+            <div className="p-5 sm:p-8 md:p-16">
               <div className="w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-white/[0.03] flex items-center justify-center mb-8 md:mb-12 text-white border border-white/5">
                 {service.icon}
               </div>

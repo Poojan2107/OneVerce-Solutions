@@ -81,7 +81,7 @@ export default function Hero({ isPreloading = false }: { isPreloading?: boolean 
 
       <motion.div
         style={motionStyle}
-        className="relative z-30 flex flex-col items-center text-center px-4 sm:px-6 max-w-full sm:max-w-7xl mx-auto pt-24 pb-16 md:pt-0 md:pb-0 md:preserve-3d"
+        className="relative z-30 flex flex-col items-center text-center px-4 sm:px-6 max-w-full sm:max-w-7xl mx-auto pt-16 pb-12 md:pt-0 md:pb-0 md:preserve-3d"
       >
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -131,9 +131,9 @@ export default function Hero({ isPreloading = false }: { isPreloading?: boolean 
         >
           <a
             href="#contact"
-            className="group relative px-6 md:px-14 py-4 md:py-6 overflow-hidden w-full md:w-auto text-center min-h-[48px] flex items-center justify-center"
+            className="group relative px-8 md:px-14 py-4 md:py-6 overflow-hidden w-full md:w-auto text-center min-h-[48px] flex items-center justify-center rounded-full md:rounded-none"
           >
-            <div className="absolute inset-0 bg-white group-hover:bg-[#00f0f0] transition-colors duration-500 clip-path-hero-btn" />
+            <div className="absolute inset-0 bg-white group-hover:bg-[#00f0f0] transition-colors duration-500 rounded-full md:rounded-none md:clip-path-hero-btn" />
             <motion.div
               animate={{ x: ['-100%', '200%'] }}
               transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}

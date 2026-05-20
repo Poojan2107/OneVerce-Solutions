@@ -94,12 +94,12 @@ export default function Contact() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="glass-card rounded-[2.5rem] md:rounded-[3.5rem] overflow-hidden border border-white/5 shadow-2xl"
+              className="glass-card rounded-[1.5rem] sm:rounded-[2.5rem] md:rounded-[3.5rem] overflow-hidden border border-white/5 shadow-2xl"
             >
               <div className="p-6 sm:p-8 md:p-16 min-h-0 md:min-h-[450px]">
                 {!isSuccess ? (
                   <form onSubmit={handleSubmit} className="space-y-10">
-                    <div className="flex justify-between items-center mb-12">
+                    <div className="flex justify-between items-center mb-6 sm:mb-12">
                       <div className="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.4em]">Step {step} of 3</div>
                       <div className="flex gap-2">
                         {[1, 2, 3].map(i => (
@@ -195,7 +195,7 @@ export default function Contact() {
                       )}
                     </AnimatePresence>
 
-                    <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-10">
+                    <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6 pt-6 sm:pt-8 md:pt-10">
                       <button
                         type="button"
                         onClick={prevStep}
@@ -211,7 +211,7 @@ export default function Contact() {
                           <button
                             type="button"
                             onClick={nextStep}
-                            className="w-full sm:w-auto flex items-center justify-center gap-4 bg-white text-black px-10 py-5 rounded-full font-bold uppercase tracking-widest text-[10px] hover:scale-105 transition-all shadow-2xl"
+                            className="w-full sm:w-auto flex items-center justify-center gap-4 bg-white text-black px-8 sm:px-10 py-4 sm:py-5 rounded-full font-bold uppercase tracking-widest text-[10px] hover:scale-105 transition-all shadow-2xl"
                           >
                             Advance <ArrowUpRight size={14} />
                           </button>

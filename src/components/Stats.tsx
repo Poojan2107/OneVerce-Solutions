@@ -52,7 +52,7 @@ export default function Stats() {
                 </div>
               </div>
               
-              <div className="text-3xl md:text-4xl font-bold mb-2 tracking-tight font-mono text-white group-hover:text-blue-400 transition-colors duration-500">
+              <div className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 tracking-tight font-mono text-white group-hover:text-blue-400 transition-colors duration-500">
                 {stat.value}
               </div>
               <div className="text-[10px] font-bold uppercase tracking-[0.3em] text-zinc-600 group-hover:text-zinc-400 transition-colors">
@@ -68,7 +68,7 @@ export default function Stats() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1.2, delay: 0.5 }}
-          className="mt-10 flex flex-wrap items-center justify-center gap-6 py-4 px-8 rounded-full bg-zinc-950 border border-white/5 w-fit mx-auto"
+          className="mt-10 flex flex-wrap items-center justify-center gap-3 sm:gap-4 md:gap-6 py-4 px-4 sm:px-6 md:px-8 rounded-2xl sm:rounded-full bg-zinc-950 border border-white/5 w-fit mx-auto"
         >
           <div className="flex items-center gap-3">
             <span className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_12px_rgba(16,185,129,0.6)] animate-pulse" />

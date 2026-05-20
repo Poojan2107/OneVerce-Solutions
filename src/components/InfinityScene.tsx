@@ -71,7 +71,7 @@ export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
       </div>
 
       <motion.div 
-        className="relative flex items-center justify-center md:preserve-3d scale-[0.42] sm:scale-[0.58] md:scale-[0.78] lg:scale-[0.92] will-change-transform z-10"
+        className="relative flex items-center justify-center md:preserve-3d scale-[0.52] sm:scale-[0.58] md:scale-[0.78] lg:scale-[0.92] will-change-transform z-10"
         style={{ 
           rotateX: isMobile ? undefined : rotateX, 
           rotateY: isMobile ? undefined : rotateY,

@@ -132,13 +132,13 @@ function ServiceCard({ service, index, onClick }: { service: typeof services[0],
       viewport={{ once: true }}
       transition={{ duration: 1.2, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
       onClick={onClick}
-      className={`group bg-[#0A0A0A] p-6 sm:p-10 rounded-[2rem] sm:rounded-[3rem] cursor-pointer hover:bg-white/[0.01] transition-all relative overflow-hidden flex flex-col justify-between h-full border border-white/[0.05] shadow-2xl md:preserve-3d ${getBorderColor(service.color)}`}
+      className={`group bg-[#0A0A0A] p-5 sm:p-10 rounded-[1.5rem] sm:rounded-[3rem] cursor-pointer hover:bg-white/[0.01] transition-all relative overflow-hidden flex flex-col justify-between h-full border border-white/[0.05] shadow-2xl md:preserve-3d ${getBorderColor(service.color)}`}
     >
       {/* HUD Scanline overlay */}
       <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_50%,rgba(255,255,255,0.01)_50%)] bg-[size:100%_4px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
       
       <div style={{ transform: "translateZ(60px)" }} className="z-10">
-        <div className="flex justify-between items-start mb-12">
+        <div className="flex justify-between items-start mb-6 sm:mb-12">
           <div className={`w-16 h-16 rounded-[1.5rem] bg-white/[0.03] flex items-center justify-center group-hover:scale-110 transition-all duration-700 border border-white/5 ${getAccentColor(service.color)}`}>
             {service.icon}
           </div>
@@ -147,8 +147,8 @@ function ServiceCard({ service, index, onClick }: { service: typeof services[0],
           </div>
         </div>
         
-        <h3 className="text-3xl md:text-4xl font-bold mb-8 tracking-tighter text-white group-hover:translate-x-2 transition-transform duration-700 uppercase leading-tight">{service.title}</h3>
-        <p className="text-zinc-300 text-lg leading-relaxed font-medium group-hover:text-white transition-colors">
+        <h3 className="text-2xl md:text-4xl font-bold mb-4 sm:mb-8 tracking-tighter text-white group-hover:translate-x-2 transition-transform duration-700 uppercase leading-tight">{service.title}</h3>
+        <p className="text-zinc-300 text-base sm:text-lg leading-relaxed font-medium group-hover:text-white transition-colors">
           {service.description}
         </p>
       </div>
@@ -158,7 +158,7 @@ function ServiceCard({ service, index, onClick }: { service: typeof services[0],
         0{index + 1}
       </div>
 
-      <div style={{ transform: "translateZ(40px)" }} className="mt-12 space-y-6 z-10">
+      <div style={{ transform: "translateZ(40px)" }} className="mt-6 sm:mt-12 space-y-4 sm:space-y-6 z-10">
         <div className="flex items-center gap-3">
           <div className={`w-1.5 h-1.5 rounded-full ${
             service.color === 'blue' ? 'bg-blue-500' : service.color === 'purple' ? 'bg-purple-500' : 'bg-red-500'

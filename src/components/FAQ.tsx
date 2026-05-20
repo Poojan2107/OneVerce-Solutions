@@ -46,7 +46,7 @@ export default function FAQ() {
             <h2 className="heading-xl text-white uppercase mb-6">
               Growth Clarified
             </h2>
-            <p className="text-zinc-400 text-xl max-w-2xl mx-auto leading-loose font-medium tracking-wide">
+            <p className="text-zinc-400 text-base sm:text-lg md:text-xl max-w-2xl mx-auto leading-relaxed sm:leading-loose font-medium tracking-wide">
               Operational intelligence and execution protocols.
             </p>
           </motion.div>
@@ -66,21 +66,21 @@ export default function FAQ() {
             >
               <button
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                className="w-full p-5 sm:p-8 md:p-10 flex items-center justify-between text-left group"
+                className="w-full p-4 sm:p-8 md:p-10 flex items-start sm:items-center justify-between text-left group gap-3"
               >
-                <div className="flex items-center gap-6">
-                  <div className={`font-mono text-[10px] font-black tracking-widest transition-all duration-500 ${
+                <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 min-w-0">
+                  <div className={`font-mono text-[10px] font-black tracking-widest transition-all duration-500 shrink-0 ${
                     openIndex === index ? 'text-blue-500' : 'text-zinc-700'
                   }`}>
                     PROTOCOL_{index + 1 < 10 ? `0${index + 1}` : index + 1}
                   </div>
-                  <span className={`text-lg md:text-xl font-bold tracking-tighter uppercase transition-all duration-500 ${
+                  <span className={`text-base sm:text-lg md:text-xl font-bold tracking-tighter uppercase transition-all duration-500 ${
                     openIndex === index ? 'text-white' : 'text-zinc-500 group-hover:text-zinc-300'
                   }`}>
                     {faq.question}
                   </span>
                 </div>
-                <div className={`flex items-center gap-4 transition-all duration-500 ${openIndex === index ? 'text-blue-500' : 'text-zinc-800'}`}>
+                <div className={`flex items-center gap-2 sm:gap-4 transition-all duration-500 shrink-0 ${openIndex === index ? 'text-blue-500' : 'text-zinc-800'}`}>
                    <div className="text-[9px] font-mono font-bold tracking-widest opacity-40 uppercase hidden sm:block">
                      {openIndex === index ? 'DECRYPTED' : 'ENCRYPTED'}
                    </div>

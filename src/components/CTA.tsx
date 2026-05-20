@@ -10,7 +10,7 @@ export default function CTA() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="glass-card p-12 md:p-20 rounded-3xl border border-white/5 text-center relative overflow-hidden group bg-white/[0.01]"
+          className="glass-card p-6 sm:p-12 md:p-20 rounded-3xl border border-white/5 text-center relative overflow-hidden group bg-white/[0.01]"
         >
           {/* Background Polish with Dynamic Colors */}
           <div className="absolute inset-0 z-0">
@@ -27,7 +27,7 @@ export default function CTA() {
               Architect Your Operational Future.
             </h2>
             
-            <p className="text-zinc-400 text-xl max-w-2xl mx-auto leading-loose font-medium tracking-wide">
+            <p className="text-zinc-400 text-sm sm:text-base md:text-xl max-w-2xl mx-auto leading-relaxed sm:leading-loose font-medium tracking-wide">
               Deploy AI-native systems engineered to command your market. <span className="text-white font-semibold text-glow">Scale without friction.</span>
             </p>
 

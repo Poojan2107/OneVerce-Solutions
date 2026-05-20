@@ -16,7 +16,7 @@ export default function StickyCTA() {
   const whatsappLink = "https://wa.me/918401286822?text=Hi%20Oneverce%2C%20I'd%20like%20to%20discuss%20a%20project.";
 
   return (
-    <div className="fixed bottom-6 right-6 z-[90]">
+    <div className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-[90]">
       <AnimatePresence>
         {isVisible && (
           <motion.a

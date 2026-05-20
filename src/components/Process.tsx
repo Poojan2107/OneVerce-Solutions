@@ -72,7 +72,7 @@ export default function Process() {
               style={{ willChange: 'transform, opacity' }}
               className="group relative"
             >
-              <div className="flex items-center justify-between mb-12">
+              <div className="flex items-center justify-between mb-6 sm:mb-12">
                 <div className="w-16 h-16 rounded-3xl bg-zinc-950 border border-white/5 flex items-center justify-center text-base font-mono font-bold text-white relative z-10 group-hover:border-white/20 transition-all duration-700 shadow-2xl group-hover:scale-110">
                   {step.number}
                   <div className="absolute inset-0 rounded-3xl bg-white/5 blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -82,13 +82,13 @@ export default function Process() {
                 </div>
               </div>
               
-              <h3 className="text-3xl font-bold mb-8 tracking-tighter text-white group-hover:translate-x-2 transition-transform duration-700 uppercase">{step.title}</h3>
-              <p className="text-zinc-400 text-lg leading-relaxed font-medium group-hover:text-zinc-300 transition-colors">
+              <h3 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-8 tracking-tighter text-white group-hover:translate-x-2 transition-transform duration-700 uppercase">{step.title}</h3>
+              <p className="text-zinc-400 text-base sm:text-lg leading-relaxed font-medium group-hover:text-zinc-300 transition-colors">
                 {step.description}
               </p>
 
               {/* Step indicator tag */}
-              <div className="mt-12 flex items-center gap-3 opacity-0 group-hover:opacity-100 transition-all duration-1000 translate-y-4 group-hover:translate-y-0">
+              <div className="mt-6 sm:mt-12 flex items-center gap-3 opacity-0 group-hover:opacity-100 transition-all duration-1000 translate-y-4 group-hover:translate-y-0">
                 <div className="w-1 h-1 bg-zinc-500 rounded-full" />
                 <span className="text-[9px] font-bold text-zinc-500 uppercase tracking-[0.2em]">Ready for Phase_0{index + 1}</span>
               </div>

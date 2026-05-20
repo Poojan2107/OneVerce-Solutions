@@ -37,28 +37,28 @@ export default function Problem() {
               <span className="text-zinc-500 font-bold uppercase tracking-[0.5em] text-[10px]">Strategic Audit</span>
             </div>
             
-            <h2 className="heading-2xl text-white uppercase mb-12 leading-[1.1] break-normal font-black tracking-tighter">
+            <h2 className="heading-2xl text-white uppercase mb-6 sm:mb-12 leading-[1.1] break-normal font-black tracking-tighter">
               System<br />
               <span className="text-red-500 text-glow">Failure</span><br />
               Identified.
             </h2>
             
-            <p className="text-zinc-400 text-base sm:text-xl leading-relaxed mb-12 max-w-lg tracking-wide font-medium">
+            <p className="text-zinc-400 text-base sm:text-xl leading-relaxed mb-8 sm:mb-12 max-w-lg tracking-wide font-medium">
               Traffic hitting technical dead-ends results in <span className="text-red-400 font-bold">40%</span> ad spend waste. We stop revenue leakage through engineered precision.
             </p>
 
             <div className="relative group max-w-sm">
               <div className="absolute -inset-6 bg-red-600/[0.06] rounded-full blur-[60px] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-              <div className="relative glass-card p-8 rounded-2xl overflow-hidden border border-white/5">
+              <div className="relative glass-card p-5 sm:p-8 rounded-2xl overflow-hidden border border-white/5">
                 {/* Tactical Corner Reticles */}
                 <div className="absolute top-0 left-0 w-4 h-4 border-l border-t border-red-500/30" />
                 <div className="absolute bottom-0 right-0 w-4 h-4 border-r border-b border-red-500/30" />
                 
                 <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_50%,rgba(255,0,0,0.015)_50%)] bg-[size:100%_4px] pointer-events-none" />
-                <p className="text-zinc-300 text-lg italic leading-relaxed border-l-2 border-red-600/30 pl-6 font-medium">
+                <p className="text-zinc-300 text-base sm:text-lg italic leading-relaxed border-l-2 border-red-600/30 pl-4 sm:pl-6 font-medium">
                   "CAC dropped by 65% post-architecture overhaul."
                 </p>
-                <div className="mt-6 flex items-center gap-4 pl-6">
+                <div className="mt-4 sm:mt-6 flex items-center gap-3 sm:gap-4 pl-4 sm:pl-6">
                   <div className="w-10 h-10 rounded-full bg-white/[0.03] border border-white/10 flex items-center justify-center relative overflow-hidden group-hover:border-red-500/30 transition-all duration-500 flex-shrink-0">
                     <div className="absolute inset-0 bg-gradient-to-br from-red-500/10 to-purple-500/10 opacity-50" />
                     <span className="text-xs font-black text-white z-10 font-mono tracking-tighter uppercase">S</span>

@@ -41,7 +41,7 @@ export default function SocialProof() {
                     <span className="text-zinc-800">{stat.icon}</span>
                     {stat.label}
                   </div>
-                  <div className="text-4xl font-bold font-mono flex items-center gap-3 tracking-tighter text-zinc-300 group-hover:text-white transition-all">
+                  <div className="text-2xl sm:text-4xl font-bold font-mono flex items-center gap-3 tracking-tighter text-zinc-300 group-hover:text-white transition-all">
                     {stat.value}
                     {stat.live && (
                       <div className="flex items-center gap-2">
@@ -72,7 +72,7 @@ export default function SocialProof() {
             className="relative"
           >
             {/* Realistic Technical Dashboard Mockup */}
-            <div className="grid grid-cols-2 gap-4 max-w-md mx-auto relative z-10 p-4 bg-zinc-950 rounded-[2.5rem] border border-white/10 shadow-2xl shadow-blue-500/5">
+            <div className="grid grid-cols-2 gap-3 sm:gap-4 max-w-md mx-auto relative z-10 p-3 sm:p-4 bg-zinc-950 rounded-[2rem] sm:rounded-[2.5rem] border border-white/10 shadow-2xl shadow-blue-500/5 mt-8 sm:mt-0">
               {[
                 { title: 'ParArc Studio', img: '/assets/pararc_studio.png' },
                 { title: 'NeuralCredit', img: '/assets/neural_credit.png' },
@@ -95,7 +95,7 @@ export default function SocialProof() {
               ))}
 
               {/* Floating Node Status Header */}
-              <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-[90%] bg-zinc-900 border border-white/10 p-3 rounded-2xl flex items-center gap-4 shadow-2xl">
+              <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-[90%] bg-zinc-900 border border-white/10 p-2 sm:p-3 rounded-xl sm:rounded-2xl flex items-center gap-2 sm:gap-4 shadow-2xl">
                 <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-[#00f0ff]">
                   <Globe size={20} className="animate-spin-slow" />
                 </div>

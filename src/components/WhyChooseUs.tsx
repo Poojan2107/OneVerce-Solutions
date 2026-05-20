@@ -88,7 +88,7 @@ export default function WhyChooseUs() {
             transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
             className="relative"
           >
-            <div className="aspect-square rounded-[4.5rem] bg-zinc-950 border border-white/5 p-6 relative overflow-hidden group shadow-2xl">
+            <div className="aspect-square rounded-[2.5rem] sm:rounded-[4.5rem] bg-zinc-950 border border-white/5 p-4 sm:p-6 relative overflow-hidden group shadow-2xl">
               {/* HUD Reticles */}
               <div className="absolute inset-0 z-20 pointer-events-none opacity-40">
                 <div className="absolute top-12 left-12 w-24 h-24 border-l border-t border-white/20 rounded-tl-[3.5rem]" />
@@ -105,20 +105,20 @@ export default function WhyChooseUs() {
               />
               
               {/* Stats Overlay - HUD Style */}
-              <div className="absolute bottom-8 left-8 right-8 grid grid-cols-2 gap-6 z-30">
+              <div className="absolute bottom-4 sm:bottom-8 left-4 sm:left-8 right-4 sm:right-8 grid grid-cols-2 gap-3 sm:gap-6 z-30">
                 <motion.div 
                   whileHover={{ y: -8 }}
-                  className="bg-black/80 backdrop-blur-3xl border border-white/20 p-6 rounded-[2rem] group/stat shadow-2xl"
+                  className="bg-black/80 backdrop-blur-3xl border border-white/20 p-3 sm:p-6 rounded-[1.25rem] sm:rounded-[2rem] group/stat shadow-2xl"
                 >
-                  <div className="text-3xl font-bold mb-2 text-white tracking-tighter transition-colors group-hover/stat:text-blue-500">6+</div>
-                  <div className="text-[10px] text-zinc-400 uppercase tracking-[0.3em] font-bold">Live Projects</div>
+                  <div className="text-xl sm:text-3xl font-bold mb-1 sm:mb-2 text-white tracking-tighter transition-colors group-hover/stat:text-blue-500">6+</div>
+                  <div className="text-[8px] sm:text-[10px] text-zinc-400 uppercase tracking-[0.2em] sm:tracking-[0.3em] font-bold">Live Projects</div>
                 </motion.div>
                 <motion.div 
                   whileHover={{ y: -8 }}
-                  className="bg-black/80 backdrop-blur-3xl border border-white/20 p-6 rounded-[2rem] group/stat shadow-2xl"
+                  className="bg-black/80 backdrop-blur-3xl border border-white/20 p-3 sm:p-6 rounded-[1.25rem] sm:rounded-[2rem] group/stat shadow-2xl"
                 >
-                  <div className="text-3xl font-bold mb-2 text-white tracking-tighter transition-colors group-hover/stat:text-purple-500">100%</div>
-                  <div className="text-[10px] text-zinc-400 uppercase tracking-[0.3em] font-bold">Delivery Rate</div>
+                  <div className="text-xl sm:text-3xl font-bold mb-1 sm:mb-2 text-white tracking-tighter transition-colors group-hover/stat:text-purple-500">100%</div>
+                  <div className="text-[8px] sm:text-[10px] text-zinc-400 uppercase tracking-[0.2em] sm:tracking-[0.3em] font-bold">Delivery Rate</div>
                 </motion.div>
               </div>
             </div>
