@@ -8,7 +8,7 @@
   
   --color-bg: #050505;
   --color-zinc-100: #f4f4f5;
-  --color-zinc-500: #71717a;
+  --color-zinc-500: #a1a1aa;
   --color-zinc-800: #27272a;
   --color-blue-400: #60a5fa;
   --color-blue-500: #3b82f6;
@@ -40,6 +40,14 @@
   
   p {
     line-height: 1.625; /* leading-relaxed */
+  }
+
+  /* Premium decelleration curve override for all tailwind transitions */
+  .transition-all,
+  .transition,
+  .transition-colors,
+  .transition-transform {
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
   }
 }
 
