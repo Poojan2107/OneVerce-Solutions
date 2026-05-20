@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { ArrowUpRight, Github, ExternalLink, X, Cpu, ShieldAlert, Sparkles, CheckCircle2 } from 'lucide-react';
 import Tilt from './Tilt';
 import { projects } from '../data/portfolioData';
+import { useAudioUI } from '../context/AudioUIContext';
 
 const accentClasses: Record<string, string> = {
   blue: 'bg-blue-500',
@@ -91,6 +92,7 @@ const projectHighlights: Record<string, { summary: string; challenges: string; o
 };
 
 export default function FeaturedWork() {
+  const { playHover, playClick } = useAudioUI();
   const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
 
   const activeProject = selectedIdx !== null ? projects[selectedIdx] : null;
@@ -98,6 +100,7 @@ export default function FeaturedWork() {
 
   return (
     <section id="work" className="py-16 sm:py-24 md:py-48 bg-[#050505] relative overflow-hidden bg-blueprint">
+
 
       {/* Background */}
       <div className="absolute inset-0 z-0 pointer-events-none">
@@ -138,7 +141,11 @@ export default function FeaturedWork() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-80px' }}
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: index * 0.05 }}
-              onClick={() => setSelectedIdx(index)}
+              onClick={() => {
+                playClick();
+                setSelectedIdx(index);
+              }}
+              onMouseEnter={playHover}
               className={`group grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center rounded-2xl md:rounded-3xl border border-white/[0.06] bg-white/[0.015] p-4 md:p-10 transition-all duration-700 ${accentGlowClasses[project.accent]} hover:border-white/10 cursor-pointer`}
             >
               {/* Image — alternates left/right */}
@@ -300,8 +307,12 @@ export default function FeaturedWork() {
                 
                 {/* Close Button */}
                 <button
-                  onClick={() => setSelectedIdx(null)}
-                  className="absolute top-6 right-6 w-10 h-10 rounded-full bg-black/60 border border-white/10 hover:border-white/25 text-white flex items-center justify-center hover:scale-105 transition-all"
+                  onClick={() => {
+                    playClick();
+                    setSelectedIdx(null);
+                  }}
+                  onMouseEnter={playHover}
+                  className="absolute top-6 right-6 w-10 h-10 rounded-full bg-black/60 border border-white/10 hover:border-white/25 text-white flex items-center justify-center hover:scale-105 transition-all cursor-pointer"
                   aria-label="Close details"
                 >
                   <X size={16} />

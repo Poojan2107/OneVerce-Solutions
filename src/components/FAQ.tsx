@@ -2,8 +2,10 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Plus, Minus, ShieldCheck, Zap, Activity, Cpu, Globe, MessageCircle } from 'lucide-react';
 import { faqs } from '../data/portfolioData';
+import { useAudioUI } from '../context/AudioUIContext';
 
 export default function FAQ() {
+  const { playHover, playClick } = useAudioUI();
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
@@ -47,8 +49,12 @@ export default function FAQ() {
               }`}
             >
               <button
-                onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                className="w-full p-4 sm:p-8 md:p-10 flex items-start sm:items-center justify-between text-left group gap-3"
+                onClick={() => {
+                  playClick();
+                  setOpenIndex(openIndex === index ? null : index);
+                }}
+                onMouseEnter={playHover}
+                className="w-full p-4 sm:p-8 md:p-10 flex items-start sm:items-center justify-between text-left group gap-3 cursor-pointer"
               >
                 <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 min-w-0">
                   <div className={`font-mono text-[10px] font-black tracking-widest transition-all duration-500 shrink-0 ${

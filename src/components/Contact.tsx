@@ -2,7 +2,10 @@ import { useState, FormEvent } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Mail, ShieldCheck, Zap, Loader2, Phone, ArrowUpRight, CheckCircle2 } from 'lucide-react';
 import Magnetic from './Magnetic';
+import { useAudioUI } from '../context/AudioUIContext';
+
 export default function Contact() {
+  const { playHover, playClick, playSuccess } = useAudioUI();
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     name: '',
@@ -15,6 +18,7 @@ export default function Contact() {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+    playClick();
     setIsTransmitting(true);
     
     setTimeout(() => {
@@ -24,11 +28,19 @@ export default function Contact() {
       window.open(whatsappUrl, '_blank');
       setIsTransmitting(false);
       setIsSuccess(true);
+      playSuccess();
     }, 1500);
   };
 
-  const nextStep = () => setStep(prev => Math.min(prev + 1, 3));
-  const prevStep = () => setStep(prev => Math.max(prev - 1, 1));
+  const nextStep = () => {
+    playClick();
+    setStep(prev => Math.min(prev + 1, 3));
+  };
+  
+  const prevStep = () => {
+    playClick();
+    setStep(prev => Math.max(prev - 1, 1));
+  };
 
   return (
     <section id="contact" className="py-16 sm:py-24 md:py-48 bg-[#050505] relative overflow-hidden">
@@ -157,8 +169,12 @@ export default function Contact() {
                                 <button
                                   key={tier}
                                   type="button"
-                                  onClick={() => setFormData({ ...formData, budget: tier })}
-                                  className={`px-6 py-5 rounded-2xl border text-[10px] md:text-xs font-bold uppercase tracking-widest transition-all ${
+                                  onClick={() => {
+                                    playClick();
+                                    setFormData({ ...formData, budget: tier });
+                                  }}
+                                  onMouseEnter={playHover}
+                                  className={`px-6 py-5 rounded-2xl border text-[10px] md:text-xs font-bold uppercase tracking-widest transition-all cursor-pointer ${
                                     formData.budget === tier 
                                     ? 'bg-blue-600 border-blue-500 text-white shadow-xl shadow-blue-500/20' 
                                     : 'bg-white/[0.02] border-white/10 text-zinc-500 hover:border-white/20'
@@ -196,10 +212,11 @@ export default function Contact() {
                     </AnimatePresence>
 
                     <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6 pt-6 sm:pt-8 md:pt-10">
-                      <button
+                       <button
                         type="button"
                         onClick={prevStep}
-                        className={`text-[10px] font-bold uppercase tracking-[0.3em] transition-all ${
+                        onMouseEnter={playHover}
+                        className={`text-[10px] font-bold uppercase tracking-[0.3em] transition-all cursor-pointer ${
                           step === 1 ? 'opacity-0 pointer-events-none' : 'text-zinc-500 hover:text-white'
                         }`}
                       >
@@ -211,7 +228,8 @@ export default function Contact() {
                           <button
                             type="button"
                             onClick={nextStep}
-                            className="w-full sm:w-auto flex items-center justify-center gap-4 bg-white text-black px-8 sm:px-10 py-4 sm:py-5 rounded-full font-bold uppercase tracking-widest text-[10px] hover:scale-105 transition-all shadow-2xl"
+                            onMouseEnter={playHover}
+                            className="w-full sm:w-auto flex items-center justify-center gap-4 bg-white text-black px-8 sm:px-10 py-4 sm:py-5 rounded-full font-bold uppercase tracking-widest text-[10px] hover:scale-105 transition-all shadow-2xl cursor-pointer"
                           >
                             Advance <ArrowUpRight size={14} />
                           </button>
@@ -221,7 +239,8 @@ export default function Contact() {
                           <button
                             type="submit"
                             disabled={isTransmitting}
-                            className="w-full sm:w-auto flex items-center justify-center gap-4 bg-blue-600 text-white px-12 py-5 rounded-full font-bold uppercase tracking-widest text-[10px] hover:scale-105 transition-all disabled:opacity-50 shadow-2xl shadow-blue-500/20"
+                            onMouseEnter={playHover}
+                            className="w-full sm:w-auto flex items-center justify-center gap-4 bg-blue-600 text-white px-12 py-5 rounded-full font-bold uppercase tracking-widest text-[10px] hover:scale-105 transition-all disabled:opacity-50 shadow-2xl shadow-blue-500/20 cursor-pointer"
                           >
                             {isTransmitting ? (
                               <>Uplinking... <Loader2 size={14} className="animate-spin" /></>
