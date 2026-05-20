@@ -57,7 +57,7 @@ export default function Team() {
                        <div className={`text-[9px] font-bold uppercase tracking-[0.4em] ${
                          member.accent === 'blue' ? 'text-blue-500' : 'text-purple-500'
                        }`}>{member.role}</div>
-                       <h3 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tighter text-white uppercase leading-[0.9] break-normal">{member.name}</h3>
+                       <h3 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tighter text-white uppercase leading-[1.1] sm:leading-[0.9] break-normal">{member.name}</h3>
                      </div>
                    </div>
 
