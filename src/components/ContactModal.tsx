@@ -1,4 +1,4 @@
-import { useState, FormEvent } from 'react';
+import { useState, FormEvent, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, Mail, Phone, Loader2, Zap, ArrowUpRight, CheckCircle2 } from 'lucide-react';
 import Magnetic from './Magnetic';
@@ -18,6 +18,23 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
   });
   const [isTransmitting, setIsTransmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+
+  useEffect(() => {
+    const handlePrefill = (e: Event) => {
+      const customEvt = e as CustomEvent;
+      if (customEvt.detail) {
+        setFormData(prev => ({
+          ...prev,
+          budget: customEvt.detail.budget || prev.budget,
+          details: customEvt.detail.details || prev.details
+        }));
+        // Send directly to page 3 (details view) or page 1 depending on step
+        setStep(3);
+      }
+    };
+    window.addEventListener('open-contact-modal', handlePrefill);
+    return () => window.removeEventListener('open-contact-modal', handlePrefill);
+  }, []);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();

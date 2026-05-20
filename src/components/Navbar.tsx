@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Menu, X, ArrowRight } from 'lucide-react';
+import { Menu, X, ArrowRight, Volume2, VolumeX } from 'lucide-react';
 import Magnetic from './Magnetic';
 import ContactModal from './ContactModal';
+import { useAudioUI } from '../context/AudioUIContext';
 
 const navLinks = [
   { name: 'Capabilities', href: '#services' },
@@ -15,6 +16,7 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const { soundEnabled, toggleSound, playHover, playClick } = useAudioUI();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,6 +32,14 @@ export default function Navbar() {
       document.body.style.overflow = '';
     };
   }, [mobileMenuOpen]);
+
+  useEffect(() => {
+    const handleOpen = () => {
+      setIsContactModalOpen(true);
+    };
+    window.addEventListener('open-contact-modal', handleOpen);
+    return () => window.removeEventListener('open-contact-modal', handleOpen);
+  }, []);
 
   return (
     <>
@@ -48,7 +58,15 @@ export default function Navbar() {
 
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between relative z-10">
           <Magnetic>
-            <a href="#hero" className="flex items-center gap-3 sm:gap-4 group" onClick={() => setMobileMenuOpen(false)}>
+            <a 
+              href="#hero" 
+              className="flex items-center gap-3 sm:gap-4 group" 
+              onClick={() => {
+                playClick();
+                setMobileMenuOpen(false);
+              }}
+              onMouseEnter={playHover}
+            >
               <div className="relative">
                 <div className="w-10 h-10 rounded-xl bg-zinc-900 border border-white/10 flex items-center justify-center text-white shadow-2xl relative overflow-hidden">
                   <img
@@ -78,6 +96,8 @@ export default function Navbar() {
                 <Magnetic key={link.name}>
                   <a
                     href={link.href}
+                    onClick={playClick}
+                    onMouseEnter={playHover}
                     className="text-[9px] font-bold text-white/40 hover:text-white uppercase tracking-[0.5em] transition-all relative group py-2 whitespace-nowrap"
                   >
                     {link.name}
@@ -87,8 +107,53 @@ export default function Navbar() {
               ))}
             </div>
 
+            {/* Sound HUD controls */}
             <button
-              onClick={() => setIsContactModalOpen(true)}
+              onClick={() => {
+                toggleSound();
+                // Play feedback sound after toggling on
+                setTimeout(() => {
+                  if (!soundEnabled) {
+                    // This triggers if toggled from OFF to ON
+                    const ctx = new (window.AudioContext || (window as any).webkitAudioContext)();
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(600, ctx.currentTime);
+                    gain.gain.setValueAtTime(0.02, ctx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.1);
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    osc.start();
+                    osc.stop(ctx.currentTime + 0.1);
+                  }
+                }, 50);
+              }}
+              onMouseEnter={playHover}
+              className={`w-9 h-9 rounded-full border flex items-center justify-center transition-all duration-300 relative cursor-pointer ${
+                soundEnabled 
+                ? 'border-emerald-500/30 text-emerald-400 bg-emerald-500/5 hover:border-emerald-400' 
+                : 'border-white/10 text-zinc-500 hover:text-white hover:border-white/20 bg-white/[0.01]'
+              }`}
+              title={soundEnabled ? 'Mute Sounds' : 'Enable Sounds'}
+              aria-label={soundEnabled ? 'Mute Sounds' : 'Enable Sounds'}
+            >
+              {soundEnabled ? (
+                <>
+                  <Volume2 size={14} className="relative z-10" />
+                  <span className="absolute inset-0 rounded-full bg-emerald-500/10 animate-ping opacity-70" />
+                </>
+              ) : (
+                <VolumeX size={14} className="relative z-10" />
+              )}
+            </button>
+
+            <button
+              onClick={() => {
+                playClick();
+                setIsContactModalOpen(true);
+              }}
+              onMouseEnter={playHover}
               className="group relative px-6 lg:px-8 py-3 overflow-hidden rounded-full transition-transform hover:scale-105 active:scale-95 flex-shrink-0 whitespace-nowrap min-w-fit block cursor-pointer"
             >
               <div className="absolute inset-0 bg-white group-hover:bg-[#00f0f0] transition-colors duration-500" />
@@ -107,7 +172,11 @@ export default function Navbar() {
           <button
             type="button"
             className="md:hidden min-w-[44px] min-h-[44px] w-11 h-11 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white transition-colors"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            onClick={() => {
+              playClick();
+              setMobileMenuOpen(!mobileMenuOpen);
+            }}
+            onMouseEnter={playHover}
             aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={mobileMenuOpen}
           >
@@ -134,12 +203,33 @@ export default function Navbar() {
                 className="fixed top-[72px] left-0 right-0 bottom-0 bg-[#050505]/98 backdrop-blur-3xl border-b border-white/[0.05] overflow-y-auto md:hidden z-[95]"
               >
                 <div className="p-8 pb-24 flex flex-col gap-2 text-center">
+                  {/* Sound control inside mobile menu */}
+                  <div className="py-4 border-b border-white/5 flex items-center justify-center gap-4">
+                    <span className="text-[10px] uppercase tracking-widest text-zinc-500 font-bold">Audio Interface</span>
+                    <button
+                      onClick={() => {
+                        toggleSound();
+                        playClick();
+                      }}
+                      className={`px-4 py-2 rounded-full border text-[9px] font-bold uppercase tracking-widest flex items-center gap-2 ${
+                        soundEnabled 
+                        ? 'border-emerald-500/30 text-emerald-400 bg-emerald-500/5' 
+                        : 'border-white/10 text-zinc-500'
+                      }`}
+                    >
+                      {soundEnabled ? <><Volume2 size={12} /> ON</> : <><VolumeX size={12} /> OFF</>}
+                    </button>
+                  </div>
+
                   {navLinks.map((link) => (
                     <a
                       key={link.name}
                       href={link.href}
                       className="block py-4 text-sm font-bold text-white/50 uppercase tracking-[0.35em] hover:text-white transition-colors"
-                      onClick={() => setMobileMenuOpen(false)}
+                      onClick={() => {
+                        playClick();
+                        setMobileMenuOpen(false);
+                      }}
                     >
                       {link.name}
                     </a>
@@ -147,6 +237,7 @@ export default function Navbar() {
                   <button
                     className="mt-4 bg-white text-black py-4 min-h-[48px] rounded-full font-black uppercase tracking-[0.3em] text-xs flex items-center justify-center cursor-pointer"
                     onClick={() => {
+                      playClick();
                       setMobileMenuOpen(false);
                       setIsContactModalOpen(true);
                     }}
