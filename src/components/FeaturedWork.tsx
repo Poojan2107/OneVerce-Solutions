@@ -1,5 +1,6 @@
-import { motion } from 'motion/react';
-import { ArrowUpRight, Github, ExternalLink } from 'lucide-react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import { ArrowUpRight, Github, ExternalLink, X, Cpu, ShieldAlert, Sparkles, CheckCircle2 } from 'lucide-react';
 import Tilt from './Tilt';
 import { projects } from '../data/portfolioData';
 
@@ -31,7 +32,70 @@ const accentGlowClasses: Record<string, string> = {
   emerald: 'group-hover:shadow-[0_0_60px_rgba(16,185,129,0.08)]',
 };
 
+// Rich details map for each project
+const projectHighlights: Record<string, { summary: string; challenges: string; outcomes: string[] }> = {
+  'ParArc Design Studio': {
+    summary: 'A bespoke architectural digital exhibit. Created to reflect ParArc\'s design philosophy—"Architecture as a Dialogue"—using a highly specialized, minimal typography scheme and context-aware transition curves.',
+    challenges: 'Blending cinematic, low-frame-latency photo galleries with structured, readable portfolio items without exceeding Core Web Vitals performance thresholds.',
+    outcomes: [
+      'Sub-500ms initial contentful paint on high-resolution image payloads',
+      'Fully responsive cinematic slider modules supporting tactile gestures',
+      'Significant increase in client acquisition flow directly from search ranks'
+    ]
+  },
+  'NeuralCredit': {
+    summary: 'A secure, biometric-integrated loan qualification cockpit. Features real-time risk simulation, an autonomous AI underwriting agent, and zero-trust protocol compliance.',
+    challenges: 'Managing secure asynchronous micro-service calls while updating real-time interactive charts without UI blocking.',
+    outcomes: [
+      'Simulated under 2-second credit verification cycles',
+      'Biometric and device-secure multi-factor portal protection',
+      'Real-time data feeds powered by serverless backend logic'
+    ]
+  },
+  'Product Nexus': {
+    summary: 'An enterprise hardware and asset deployment matrix. Provides inventory audits, predictive fiscal forecasts, and direct multi-location tracking with real-time sync.',
+    challenges: 'Designing dynamic, responsive data-tables supporting 10,000+ records and real-time interactive charts with under 50ms rendering latency.',
+    outcomes: [
+      '100% asset visibility across multi-warehouse configurations',
+      'Dynamic inventory forecasting algorithms saving weeks of accounting',
+      'Fully integrated alert framework targeting low-stock items automatically'
+    ]
+  },
+  'Travelling Tent': {
+    summary: 'A highly immersive booking platform tailored for elite glamping and travel experiences. Smooth Framer Motion interactions and integrated Stripe checkout flow.',
+    challenges: 'Minimizing booking friction down to under three clicks while implementing dynamic custom travel scheduling calendars.',
+    outcomes: [
+      'Verified 4.2x increase in conversion throughput',
+      'Instant, error-resilient payment processing via local checkout gates',
+      'Comprehensive localized SEO framework ranking first on outdoor searches'
+    ]
+  },
+  'Sportivo': {
+    summary: 'A dynamic multi-court booking engine and scheduling grid. Provides real-time slot occupancy indicators, automated confirmation emails, and complex backend validation.',
+    challenges: 'Preventing double-booking race conditions during high-volume peak booking sessions.',
+    outcomes: [
+      'Zero double-booking occurrences through database transactional locks',
+      'Reduced booking lifecycle friction by over 70%',
+      'Integrated live chat widget connecting players to court operators'
+    ]
+  },
+  'Restaurant POS': {
+    summary: 'An Electron-based desktop checkout terminal for restaurant command. Houses real-time table layout states, automated ticket generation, and offline-first persistence.',
+    challenges: 'Maintaining operational sync between multiple terminals and kitchen displays under weak local network connections.',
+    outcomes: [
+      'Offline resilience with auto-synchronization when connection restores',
+      'Real-time kitchen order dispatching using custom websocket hubs',
+      'Interactive visual table editor for rapid floorplan configurations'
+    ]
+  }
+};
+
 export default function FeaturedWork() {
+  const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
+
+  const activeProject = selectedIdx !== null ? projects[selectedIdx] : null;
+  const highlights = activeProject ? projectHighlights[activeProject.title] : null;
+
   return (
     <section id="work" className="py-16 sm:py-24 md:py-48 bg-[#050505] relative overflow-hidden bg-blueprint">
 
@@ -65,6 +129,7 @@ export default function FeaturedWork() {
           </motion.div>
         </div>
 
+        {/* Projects Grid */}
         <div className="space-y-8 md:space-y-10">
           {projects.map((project, index) => (
             <motion.div
@@ -73,7 +138,8 @@ export default function FeaturedWork() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-80px' }}
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: index * 0.05 }}
-              className={`group grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center rounded-2xl md:rounded-3xl border border-white/[0.06] bg-white/[0.015] p-4 md:p-10 transition-all duration-700 ${accentGlowClasses[project.accent]} hover:border-white/10`}
+              onClick={() => setSelectedIdx(index)}
+              className={`group grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center rounded-2xl md:rounded-3xl border border-white/[0.06] bg-white/[0.015] p-4 md:p-10 transition-all duration-700 ${accentGlowClasses[project.accent]} hover:border-white/10 cursor-pointer`}
             >
               {/* Image — alternates left/right */}
               <div className={`relative ${index % 2 === 1 ? 'lg:order-2' : ''}`}>
@@ -137,7 +203,7 @@ export default function FeaturedWork() {
 
                 {/* Tech stack */}
                 <div className="flex flex-wrap gap-2">
-                  {project.tech.map(t => (
+                  {project.tech.slice(0, 4).map(t => (
                     <span
                       key={t}
                       className="text-[8px] md:text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.07] text-zinc-400"
@@ -145,6 +211,11 @@ export default function FeaturedWork() {
                       {t}
                     </span>
                   ))}
+                  {project.tech.length > 4 && (
+                    <span className="text-[8px] md:text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1 rounded-full bg-white/[0.02] border border-white/[0.05] text-zinc-600">
+                      +{project.tech.length - 4} More
+                    </span>
+                  )}
                 </div>
 
                 {/* Metrics */}
@@ -163,26 +234,16 @@ export default function FeaturedWork() {
 
                 {/* CTAs */}
                 <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 md:gap-4 pt-2 md:pt-4">
-                  <a
-                    href={project.liveLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedIdx(index);
+                    }}
                     className={`group/link flex items-center justify-center gap-2.5 px-6 py-3.5 min-h-[44px] rounded-full border text-white font-bold uppercase tracking-widest text-[10px] transition-all duration-400 bg-white/[0.03] hover:bg-white/[0.08] ${accentBorderClasses[project.accent]}`}
                   >
-                    <ExternalLink size={13} className="group-hover/link:scale-110 transition-transform" />
-                    Launch Live
-                  </a>
-                  {project.githubLink && (
-                    <a
-                      href={project.githubLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group/gh flex items-center justify-center gap-2.5 px-6 py-3.5 min-h-[44px] rounded-full border border-white/[0.07] text-zinc-500 font-bold uppercase tracking-widest text-[10px] transition-all duration-400 bg-white/[0.02] hover:bg-white/[0.06] hover:text-white hover:border-white/20"
-                    >
-                      <Github size={13} className="group-hover/gh:scale-110 transition-transform" />
-                      Source Code
-                    </a>
-                  )}
+                    View Project Details
+                    <ArrowUpRight size={13} className="group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
+                  </button>
                 </div>
               </div>
             </motion.div>
@@ -209,6 +270,150 @@ export default function FeaturedWork() {
           </a>
         </motion.div>
       </div>
+
+      {/* ── PROJECT DETAIL MODAL OVERLAY ── */}
+      <AnimatePresence>
+        {activeProject && highlights && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedIdx(null)}
+            className="fixed inset-0 z-[200] bg-black/85 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto"
+          >
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0, y: 30 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.95, opacity: 0, y: 30 }}
+              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-[#0b0c0f] border border-white/10 rounded-[2rem] overflow-hidden shadow-2xl max-w-2xl w-full my-8"
+            >
+              {/* Cover Image & Header */}
+              <div className="relative aspect-[16/9] bg-zinc-950 border-b border-white/5">
+                <img
+                  src={activeProject.image}
+                  alt={activeProject.title}
+                  className="w-full h-full object-cover object-top"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0b0c0f] via-[#0b0c0f]/40 to-transparent" />
+                
+                {/* Close Button */}
+                <button
+                  onClick={() => setSelectedIdx(null)}
+                  className="absolute top-6 right-6 w-10 h-10 rounded-full bg-black/60 border border-white/10 hover:border-white/25 text-white flex items-center justify-center hover:scale-105 transition-all"
+                  aria-label="Close details"
+                >
+                  <X size={16} />
+                </button>
+
+                {/* Badging */}
+                <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between flex-wrap gap-4">
+                  <div>
+                    <span className={`text-[9px] font-black uppercase tracking-[0.3em] ${accentTextClasses[activeProject.accent]}`}>
+                      {activeProject.category}
+                    </span>
+                    <h4 className="text-2xl sm:text-3xl font-black text-white uppercase tracking-tighter mt-1 leading-none">
+                      {activeProject.title}
+                    </h4>
+                  </div>
+                </div>
+              </div>
+
+              {/* Modal Body */}
+              <div className="p-6 sm:p-10 space-y-8">
+                {/* Metrics Row */}
+                <div className="grid grid-cols-3 gap-4 p-5 rounded-2xl bg-white/[0.02] border border-white/5">
+                  {Object.entries(activeProject.metrics).map(([key, value]) => (
+                    <div key={key} className="text-center">
+                      <div className="text-[8px] sm:text-[9px] font-bold text-zinc-500 uppercase tracking-widest mb-1.5">
+                        {key.replace('_', ' ')}
+                      </div>
+                      <div className={`text-sm sm:text-lg md:text-xl font-bold tracking-tight ${accentTextClasses[activeProject.accent]}`}>
+                        {value}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Details Section */}
+                <div className="space-y-6">
+                  <div className="space-y-2.5">
+                    <span className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-500 flex items-center gap-1.5">
+                      <Cpu size={12} className={accentTextClasses[activeProject.accent]} />
+                      Overview Dossier
+                    </span>
+                    <p className="text-zinc-300 text-sm leading-relaxed font-medium">
+                      {highlights.summary}
+                    </p>
+                  </div>
+
+                  <div className="space-y-2.5">
+                    <span className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-500 flex items-center gap-1.5">
+                      <ShieldAlert size={12} className="text-amber-500" />
+                      Engineering Challenges
+                    </span>
+                    <p className="text-zinc-400 text-sm leading-relaxed font-medium">
+                      {highlights.challenges}
+                    </p>
+                  </div>
+
+                  <div className="space-y-3">
+                    <span className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-500 flex items-center gap-1.5">
+                      <Sparkles size={12} className="text-emerald-500" />
+                      Key Milestones & Outcomes
+                    </span>
+                    <ul className="space-y-2">
+                      {highlights.outcomes.map((outcome, idx) => (
+                        <li key={idx} className="flex items-start gap-2.5 text-zinc-400 text-xs leading-relaxed font-medium">
+                          <CheckCircle2 size={13} className="text-emerald-500 shrink-0 mt-0.5" />
+                          <span>{outcome}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                {/* Tech Badges */}
+                <div className="space-y-2.5">
+                  <span className="text-[9px] font-black uppercase tracking-[0.3em] text-zinc-500">Tech Stack Matrix</span>
+                  <div className="flex flex-wrap gap-2">
+                    {activeProject.tech.map(t => (
+                      <span key={t} className="text-[9px] font-bold uppercase tracking-[0.25em] px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.06] text-zinc-300">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Action Links */}
+                <div className="flex gap-4 flex-wrap pt-2">
+                  <a
+                    href={activeProject.liveLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`flex-1 min-w-[140px] flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl border text-white font-black uppercase tracking-widest text-[10px] transition-all bg-white/[0.03] hover:bg-white/[0.08] ${accentBorderClasses[activeProject.accent]}`}
+                  >
+                    <ExternalLink size={14} />
+                    Launch Live
+                  </a>
+                  {activeProject.githubLink && (
+                    <a
+                      href={activeProject.githubLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 min-w-[140px] flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl border border-white/8 text-zinc-400 hover:text-white font-black uppercase tracking-widest text-[10px] transition-all bg-white/[0.01] hover:bg-white/[0.06] hover:border-white/20"
+                    >
+                      <Github size={14} />
+                      Source Code
+                    </a>
+                  )}
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

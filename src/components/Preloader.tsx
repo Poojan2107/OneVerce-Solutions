@@ -63,6 +63,8 @@ export default function Preloader({ onComplete }: PreloaderProps) {
                   src="/logo.jpeg" 
                   alt="Oneverce" 
                   className="w-10 h-10 object-cover rounded-md z-10"
+                  width={40}
+                  height={40}
                 />
               </motion.div>
               <div className="text-center space-y-2">

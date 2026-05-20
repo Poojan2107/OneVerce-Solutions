@@ -21,6 +21,8 @@ export default function Footer() {
                    alt="Oneverce"
                    loading="lazy"
                    className="w-full h-full object-cover"
+                   width={48}
+                   height={48}
                  />
               </div>
               <span className="text-2xl font-bold tracking-tighter uppercase text-white">ONEVERCE</span>

@@ -95,6 +95,8 @@ export default function WhyChooseUs() {
                 alt="Oneverce — Innovating the Future of Digital"
                 loading="lazy"
                 className="w-full h-auto object-cover object-top transition-transform duration-[2s] group-hover:scale-[1.03]"
+                width={800}
+                height={800}
               />
 
               {/* LIVE badge */}

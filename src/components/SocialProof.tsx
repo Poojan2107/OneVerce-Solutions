@@ -230,7 +230,9 @@ export default function SocialProof() {
                     {colA.map((src, i) => (
                       <div key={i} className="relative flex-shrink-0 aspect-[3/4] overflow-hidden rounded-lg group">
                         <img src={src} alt="Oneverce creative" loading="lazy"
-                          className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105" />
+                          className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                          width={300}
+                          height={400} />
                         <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                           style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.5), transparent)' }} />
                       </div>
@@ -244,7 +246,9 @@ export default function SocialProof() {
                     {colB.map((src, i) => (
                       <div key={i} className="relative flex-shrink-0 aspect-[3/4] overflow-hidden rounded-lg group">
                         <img src={src} alt="Oneverce creative" loading="lazy"
-                          className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105" />
+                          className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                          width={300}
+                          height={400} />
                         <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                           style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.5), transparent)' }} />
                       </div>
@@ -258,7 +262,9 @@ export default function SocialProof() {
                     {colC.map((src, i) => (
                       <div key={i} className="relative flex-shrink-0 aspect-[3/4] overflow-hidden rounded-lg group">
                         <img src={src} alt="Oneverce creative" loading="lazy"
-                          className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105" />
+                          className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                          width={300}
+                          height={400} />
                         <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                           style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.5), transparent)' }} />
                       </div>
@@ -274,7 +280,7 @@ export default function SocialProof() {
                 <div className="flex items-center gap-2.5">
                   <div className="w-7 h-7 rounded-full overflow-hidden"
                     style={{ border: '1.5px solid rgba(244,114,182,0.5)', boxShadow: '0 0 10px rgba(244,114,182,0.25)' }}>
-                    <img src="/logo.jpeg" alt="oneverce" className="w-full h-full object-cover" />
+                    <img src="/logo.jpeg" alt="oneverce" className="w-full h-full object-cover" width={28} height={28} />
                   </div>
                   <div>
                     <div className="text-[10px] font-black text-white">oneverce</div>
