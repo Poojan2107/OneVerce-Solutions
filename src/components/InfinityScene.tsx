@@ -12,17 +12,18 @@ const fallbackMotionValue = new MotionValue(0);
 
 export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
   const reducedMotion = usePrefersReducedMotion();
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(() => {
+    return typeof window !== 'undefined' ? window.innerWidth < 768 : false;
+  });
 
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
     };
-    handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-  const particleCount = isMobile ? 8 : reducedMotion ? 20 : 40;
+  const particleCount = isMobile ? 0 : reducedMotion ? 20 : 40;
 
   // Synchronized Scene Tilting using stable motion value reference
   const rotateX = useTransform(mouseY || fallbackMotionValue, [-500, 500], [15, 10]);
@@ -30,6 +31,7 @@ export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
 
   // Static Stardust Field (Immersive Environment)
   const stardust = useMemo(() => {
+    if (particleCount === 0) return [];
     return Array.from({ length: particleCount }).map((_, i) => ({
       id: i,
       x: (Math.random() - 0.5) * 2200,
@@ -47,7 +49,7 @@ export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
       {/* 1. Deep Space Ambient Nebula */}
       <div className="absolute inset-0 flex items-center justify-center z-0">
         <div 
-          className="absolute w-[min(1800px,200vw)] h-[min(1000px,120vh)] rounded-[100%] animate-pulse" 
+          className={`absolute w-[min(1800px,200vw)] h-[min(1000px,120vh)] rounded-[100%] ${isMobile ? '' : 'animate-pulse'}`} 
           style={{
             background: 'radial-gradient(circle, rgba(255, 255, 255, 0.01) 0%, transparent 80%)'
           }}

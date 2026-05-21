@@ -134,10 +134,10 @@
   }
 
   .heading-hero {
-    font-size: clamp(2.2rem, 10vw, 8.5rem);
+    font-size: clamp(1.6rem, 11.5vw, 8.5rem);
     line-height: 0.88;
     font-weight: 800;
-    letter-spacing: -0.04em;
+    letter-spacing: -0.045em;
   }
 
   .sr-only {

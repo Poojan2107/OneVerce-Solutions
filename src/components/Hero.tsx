@@ -1,10 +1,22 @@
 import { motion, useMotionValue, useSpring, useTransform } from 'motion/react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import InfinityScene from './InfinityScene';
 import { useCoarsePointer } from '../hooks/useCoarsePointer';
 
 export default function Hero({ isPreloading = false }: { isPreloading?: boolean }) {
   const isCoarsePointer = useCoarsePointer();
+  const [isMobile, setIsMobile] = useState(() => {
+    return typeof window !== 'undefined' ? window.innerWidth < 768 : false;
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -84,9 +96,9 @@ export default function Hero({ isPreloading = false }: { isPreloading?: boolean 
         className="relative z-30 flex flex-col items-center text-center px-4 sm:px-6 w-full max-w-full sm:max-w-7xl mx-auto pt-16 pb-12 md:pt-0 md:pb-0 md:preserve-3d overflow-hidden"
       >
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: isMobile ? 0 : 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          transition={{ duration: isMobile ? 0.6 : 0.8, delay: 0.2 }}
           className="mb-6 md:mb-10 flex items-center gap-2 md:gap-3 px-3 py-1.5 md:px-5 md:py-2 rounded-full border border-white/10 bg-white/05 backdrop-blur-md shadow-[0_0_30px_rgba(0,0,0,0.5)] max-w-[95vw]"
         >
           <div className="w-1 h-1 md:w-1.5 md:h-1.5 rounded-full bg-[#00f0f0] animate-pulse shadow-[0_0_15px_#00f0f0] shrink-0" />
@@ -97,36 +109,40 @@ export default function Hero({ isPreloading = false }: { isPreloading?: boolean 
 
         <div className="relative mb-6 md:mb-10 group w-full overflow-hidden">
           <motion.h1
-            initial={{ opacity: 0, scale: 0.95, filter: 'blur(20px)' }}
-            animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-            transition={{ duration: 1.6, ease: 'easeOut' }}
-            className="heading-hero uppercase tracking-tighter text-white select-none relative z-10 drop-shadow-[0_0_50px_rgba(255,255,255,0.2)] w-full whitespace-nowrap"
+            initial={isMobile ? { opacity: 0 } : { opacity: 0, scale: 0.95, filter: 'blur(20px)' }}
+            animate={{ opacity: 1, scale: 1, filter: 'none' }}
+            transition={{ duration: isMobile ? 0.6 : 1.6, ease: 'easeOut' }}
+            className="heading-hero uppercase tracking-tighter text-white select-none relative z-10 drop-shadow-none md:drop-shadow-[0_0_50px_rgba(255,255,255,0.2)] w-full whitespace-nowrap"
           >
             Oneverce
           </motion.h1>
 
           <div className="h-[2px] w-12 md:w-24 bg-white/10 mx-auto my-6 md:my-10 overflow-hidden">
-            <motion.div
-              animate={{ x: ['-100%', '100%'] }}
-              transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-              className="h-full w-full bg-gradient-to-r from-transparent via-white/50 to-transparent"
-            />
+            {!isMobile ? (
+              <motion.div
+                animate={{ x: ['-100%', '100%'] }}
+                transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                className="h-full w-full bg-gradient-to-r from-transparent via-white/50 to-transparent"
+              />
+            ) : (
+              <div className="h-full w-full bg-white/20" />
+            )}
           </div>
         </div>
 
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1.2, delay: 1.2 }}
+          transition={{ duration: isMobile ? 0.6 : 1.2, delay: isMobile ? 0.2 : 1.2 }}
           className="text-zinc-500 text-xs sm:text-sm md:text-lg lg:text-xl max-w-[90vw] sm:max-w-2xl mx-auto leading-relaxed font-medium tracking-tight mb-8 md:mb-12 px-2"
         >
           We engineer <span className="text-white italic">high-fidelity digital infrastructure</span> for organizations that demand total dominance.
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: isMobile ? 0 : 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.4 }}
+          transition={{ duration: isMobile ? 0.6 : 0.8, delay: isMobile ? 0.4 : 1.4 }}
           className="flex flex-col md:flex-row items-stretch md:items-center gap-4 md:gap-12 w-full max-w-md md:max-w-none md:w-auto px-2"
         >
           <a
@@ -134,11 +150,13 @@ export default function Hero({ isPreloading = false }: { isPreloading?: boolean 
             className="group relative px-8 md:px-14 py-4 md:py-6 overflow-hidden w-full md:w-auto text-center min-h-[48px] flex items-center justify-center rounded-full md:rounded-none"
           >
             <div className="absolute inset-0 bg-white group-hover:bg-[#00f0f0] transition-colors duration-500 rounded-full md:rounded-none md:clip-path-hero-btn" />
-            <motion.div
-              animate={{ x: ['-100%', '200%'] }}
-              transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
-              className="absolute inset-0 bg-gradient-to-r from-transparent via-black/10 to-transparent skew-x-12"
-            />
+            {!isMobile && (
+              <motion.div
+                animate={{ x: ['-100%', '200%'] }}
+                transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-black/10 to-transparent skew-x-12"
+              />
+            )}
             <span className="relative z-10 text-black font-black text-[10px] md:text-xs tracking-[0.25em] md:tracking-[0.4em] uppercase">
               Initiate Venture
             </span>

@@ -77,7 +77,7 @@ export default function SocialProof() {
 
             {/* Heading */}
             <h2 className="font-black uppercase tracking-tighter leading-[0.88] mb-8"
-              style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2.2rem, 8vw, 4.5rem)' }}>
+              style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.7rem, 8vw, 4.5rem)' }}>
               <span className="text-white block">Network</span>
               <span className="block" style={{
                 background: 'linear-gradient(90deg, #f472b6 0%, #a855f7 45%, #818cf8 80%, #60a5fa 100%)',
