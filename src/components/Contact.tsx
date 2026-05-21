@@ -10,7 +10,7 @@ export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    budget: '₹4L - ₹12L',
+    budget: 'Medium Scale Platform',
     details: ''
   });
   const [isTransmitting, setIsTransmitting] = useState(false);
@@ -23,7 +23,7 @@ export default function Contact() {
     
     setTimeout(() => {
       const phoneNumber = "918401286822";
-      const message = `*ONEVERCE_PROJECT_INQUIRY*%0A%0A*Name:* ${formData.name}%0A*Email:* ${formData.email}%0A*Tier:* ${formData.budget}%0A*Message:* ${formData.details}`;
+      const message = `*ONEVERCE_PROJECT_INQUIRY*%0A%0A*Name:* ${formData.name}%0A*Email:* ${formData.email}%0A*Scale:* ${formData.budget}%0A*Message:* ${formData.details}`;
       const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
       window.open(whatsappUrl, '_blank');
       setIsTransmitting(false);
@@ -110,7 +110,7 @@ export default function Contact() {
             >
               <div className="p-5 sm:p-8 md:p-16 min-h-0 md:min-h-[450px]">
                 {!isSuccess ? (
-                  <form onSubmit={handleSubmit} className="space-y-10">
+                  <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-10">
                     <div className="flex justify-between items-center mb-4 sm:mb-12">
                       <div className="text-[9px] sm:text-[10px] font-bold text-zinc-500 uppercase tracking-[0.3em] sm:tracking-[0.4em]">Step {step} of 3</div>
                       <div className="flex gap-1.5 sm:gap-2">
@@ -163,9 +163,9 @@ export default function Contact() {
                           className="space-y-5 sm:space-y-8"
                         >
                           <div className="space-y-4">
-                            <label className="text-xs font-bold text-zinc-500 uppercase tracking-widest">Budget Tier</label>
+                            <label className="text-xs font-bold text-zinc-500 uppercase tracking-widest">Project Scale</label>
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                              {['₹1.5L - ₹4L', '₹4L - ₹12L', '₹12L+', 'Custom R&D'].map(tier => (
+                              {['MVP / Prototype', 'Medium Scale Platform', 'Full Production System', 'Custom Enterprise R&D'].map(tier => (
                                 <button
                                   key={tier}
                                   type="button"

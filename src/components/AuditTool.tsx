@@ -253,14 +253,14 @@ Implementing these structural adjustments is estimated to increase checkout conv
                           value={url}
                           onChange={(e) => setUrl(e.target.value)}
                           placeholder="https://yourdomain.com"
-                          className="w-full bg-white/[0.02] border border-white/10 rounded-[1.5rem] sm:rounded-[2rem] pl-11 pr-4 md:pl-16 md:pr-8 py-4 md:py-8 text-base md:text-2xl focus:border-blue-500/30 outline-none transition-all placeholder:text-zinc-800 text-white"
+                          className="w-full bg-white/[0.02] border border-white/10 rounded-xl sm:rounded-2xl pl-11 pr-4 md:pl-16 md:pr-8 py-3.5 sm:py-4 md:py-6 text-sm sm:text-base md:text-xl focus:border-blue-500/30 outline-none transition-all placeholder:text-zinc-800 text-white"
                         />
                       </div>
                       <button
                         type="submit"
                         disabled={isAnalyzing}
                         onMouseEnter={playHover}
-                        className="w-full bg-white text-black py-4 sm:py-6 rounded-[1.5rem] sm:rounded-[2rem] font-bold uppercase tracking-widest text-[10px] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-4 shadow-2xl group/btn disabled:opacity-60 cursor-pointer min-h-[52px]"
+                        className="w-full bg-white text-black py-3.5 sm:py-5 rounded-xl sm:rounded-2xl font-bold uppercase tracking-widest text-[10px] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-4 shadow-2xl group/btn disabled:opacity-60 cursor-pointer min-h-[52px]"
                       >
                         Initiate Free Audit
                         <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" aria-hidden="true" />

@@ -6,33 +6,34 @@ import { useAudioUI } from '../context/AudioUIContext';
 interface ServiceItem {
   id: string;
   name: string;
-  price: number;
+  tag: string;
   description: string;
 }
 
 const servicesList: ServiceItem[] = [
-  { id: 'saas', name: 'SaaS Platform Development', price: 180000, description: 'Scalable multi-tenant dashboard, subscription hooks, & serverless database.' },
-  { id: 'ai', name: 'AI & Intelligence Integration', price: 220000, description: 'Custom LLM underwritings, data vectoring, and predictive models.' },
-  { id: 'design', name: 'High-Fidelity UI/UX System', price: 100000, description: 'Custom brand identity assets, interface grids, and interaction curves.' },
-  { id: 'infra', name: 'Secure API & DB Architecture', price: 130000, description: 'High-throughput database setup, custom gateways, and offline-first state.' },
-  { id: 'audit', name: 'Security Audit & Compliance', price: 90000, description: 'Rate limit configurations, end-to-end encryption, and penetration reporting.' }
+  { id: 'saas', name: 'SaaS Platform Development', tag: '[Core Module]', description: 'Scalable multi-tenant dashboard, subscription hooks, & serverless database.' },
+  { id: 'ai', name: 'AI & Intelligence Integration', tag: '[Neural Integration]', description: 'Custom LLM underwritings, data vectoring, and predictive models.' },
+  { id: 'design', name: 'High-Fidelity UI/UX System', tag: '[Premium UI]', description: 'Custom brand identity assets, interface grids, and interaction curves.' },
+  { id: 'infra', name: 'Secure API & DB Architecture', tag: '[High Throughput]', description: 'High-throughput database setup, custom gateways, and offline-first state.' },
+  { id: 'audit', name: 'Security Audit & Compliance', tag: '[Hardened Security]', description: 'Rate limit configurations, end-to-end encryption, and penetration reporting.' }
 ];
 
 export default function PriceCalculator() {
   const { playHover, playClick } = useAudioUI();
   const [selectedServices, setSelectedServices] = useState<string[]>(['saas', 'design']);
   const [screens, setScreens] = useState<number>(5);
-  const [estimate, setEstimate] = useState<number>(0);
 
-  useEffect(() => {
-    // Base cost is ₹1,50,000
-    const servicesCost = selectedServices.reduce((sum, serviceId) => {
-      const service = servicesList.find(s => s.id === serviceId);
-      return sum + (service ? service.price : 0);
-    }, 0);
-    const screenCost = screens * 12000;
-    setEstimate(150000 + servicesCost + screenCost);
-  }, [selectedServices, screens]);
+  const complexityTier = 
+    screens <= 4 ? 'MVP / Prototype' :
+    screens <= 9 ? 'Medium Scale Platform' :
+    screens <= 15 ? 'Full Production System' :
+    'Custom Enterprise R&D';
+
+  const activeLayersCount = selectedServices.length;
+  const loadFactor = 
+    activeLayersCount <= 2 && screens <= 5 ? 'Lightweight' :
+    activeLayersCount <= 4 && screens <= 12 ? 'Advanced' :
+    'Ultra-High Performance';
 
   const toggleService = (id: string) => {
     playClick();
@@ -44,15 +45,10 @@ export default function PriceCalculator() {
   const handleLaunch = () => {
     playClick();
     const serviceNames = selectedServices.map(id => servicesList.find(s => s.id === id)?.name).filter(Boolean);
-    const details = `Estimated package details from online architect calculator:\n- Selected Services: ${serviceNames.join(', ')}\n- Estimated Screen Count: ${screens} views\n- Approximate Estimated Budget: ₹${estimate.toLocaleString('en-IN')}`;
-    
-    // Choose appropriate tier based on estimated amount
-    let budgetTier = '₹1.5L - ₹4L';
-    if (estimate > 1200000) budgetTier = 'Custom R&D';
-    else if (estimate > 400000) budgetTier = '₹4L - ₹12L';
+    const details = `Selected system configurations from online configurator:\n- Selected Modules: ${serviceNames.join(', ')}\n- Selected Views/Scope: ${screens} views\n- System Scale: ${complexityTier}\n- Load Profile: ${loadFactor}`;
 
     const event = new CustomEvent('open-contact-modal', {
-      detail: { details, budget: budgetTier }
+      detail: { details, budget: complexityTier }
     });
     window.dispatchEvent(event);
   };
@@ -69,13 +65,13 @@ export default function PriceCalculator() {
         <div className="text-center mb-16">
           <div className="flex items-center justify-center gap-3 mb-6">
             <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" />
-            <span className="text-zinc-500 font-bold uppercase tracking-[0.5em] text-[10px]">Real-Time Audit</span>
+            <span className="text-zinc-500 font-bold uppercase tracking-[0.5em] text-[10px]">Scope Configurator</span>
           </div>
           <h2 className="heading-2xl text-white uppercase mb-6">
-            Budget Architect
+            System Configurator
           </h2>
           <p className="text-zinc-400 text-base sm:text-xl max-w-xl mx-auto leading-relaxed font-medium">
-            Tailor the scope of your system and compute your approximate investment in real-time.
+            Tailor the scale of your systems and preview your structural blueprint configuration in real-time.
           </p>
         </div>
 
@@ -107,8 +103,10 @@ export default function PriceCalculator() {
                       <div className="text-sm font-bold tracking-tight mb-1">{service.name}</div>
                       <div className="text-xs text-zinc-500 leading-relaxed font-medium">{service.description}</div>
                     </div>
-                    <div className="ml-auto text-xs font-black text-[#00f0ff] font-mono shrink-0">
-                      +₹{service.price.toLocaleString('en-IN')}
+                    <div className={`ml-auto text-xs font-black font-mono shrink-0 transition-colors ${
+                      isSelected ? 'text-[#00f0ff]' : 'text-zinc-600'
+                    }`}>
+                      {service.tag}
                     </div>
                   </button>
                 );
@@ -139,26 +137,32 @@ export default function PriceCalculator() {
             </div>
           </div>
 
-          {/* Pricing readout card */}
+          {/* Configuration readout card */}
           <div className="lg:col-span-5 flex flex-col justify-between p-6 sm:p-10 rounded-[2rem] border border-white/10 bg-[#090a0d] relative overflow-hidden">
             {/* Ambient glows */}
             <div className="absolute -top-12 -right-12 w-48 h-48 bg-blue-500/10 blur-[80px] rounded-full pointer-events-none" />
 
             <div className="space-y-8">
               <div>
-                <span className="text-[9px] font-black uppercase tracking-[0.4em] text-zinc-500 block">Pricing Matrix</span>
-                <h4 className="text-xl font-black text-white uppercase tracking-tight mt-1">Uplink Estimate</h4>
+                <span className="text-[9px] font-black uppercase tracking-[0.4em] text-zinc-500 block">Configuration Blueprint</span>
+                <h4 className="text-xl font-black text-white uppercase tracking-tight mt-1">Scope Summary</h4>
               </div>
 
               {/* Estimate readout display */}
               <div className="p-6 sm:p-8 rounded-2xl bg-white/[0.02] border border-white/5 text-center relative overflow-hidden flex flex-col justify-center items-center">
                 <div className="absolute inset-0 bg-gradient-to-b from-blue-500/[0.03] to-transparent pointer-events-none" />
-                <span className="text-[9px] font-black text-[#00f0ff] uppercase tracking-[0.3em] mb-1.5">Estimated Budget</span>
-                <div className="text-4xl sm:text-5xl font-black text-white tracking-tighter uppercase font-mono flex items-baseline justify-center gap-1">
-                  <span className="text-2xl text-zinc-500 font-medium">₹</span>
-                  {estimate.toLocaleString('en-IN')}
+                <span className="text-[9px] font-black text-[#00f0ff] uppercase tracking-[0.3em] mb-3">System Scale Class</span>
+                <div className="text-lg sm:text-xl font-black text-white tracking-tight uppercase font-sans py-3.5 px-6 rounded-xl border border-blue-500/30 bg-blue-500/[0.03] shadow-[0_0_15px_rgba(59,130,246,0.15)] select-none">
+                  {complexityTier}
                 </div>
-                <span className="text-[8px] text-zinc-500 font-medium tracking-wide mt-2">Subject to scoping specification</span>
+                <div className="text-[8px] text-zinc-500 font-medium tracking-wide mt-3 flex items-center gap-1.5">
+                  <span>Architectural Profile:</span>
+                  <span className="text-zinc-400 font-bold uppercase font-mono">{loadFactor}</span>
+                </div>
+                <span className="text-[10px] text-zinc-500 font-semibold tracking-wide mt-4 flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#00f0ff] animate-pulse" />
+                  {activeLayersCount} of 5 Subsystems Active
+                </span>
               </div>
 
               <div className="space-y-4">
@@ -166,15 +170,15 @@ export default function PriceCalculator() {
                 <ul className="space-y-2.5 text-xs text-zinc-400 font-medium">
                   <li className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                    Custom framer-motion animations
+                    Zero-Latency Next.js/Vite SSR Architecture
                   </li>
                   <li className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                    Sub-second initial page payloads
+                    High-Fidelity Framer-Motion Interactions
                   </li>
                   <li className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                    24/7 dedicated support synchronizations
+                    Secure Edge Infrastructure & CDN Deployment
                   </li>
                 </ul>
               </div>

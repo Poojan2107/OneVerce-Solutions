@@ -92,7 +92,7 @@ export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
         <div className="relative w-[1400px] h-[1000px] flex items-center justify-center md:preserve-3d">
           <svg 
             viewBox="-700 -500 1400 1000" 
-            className="absolute inset-0 w-full h-full overflow-visible mix-blend-screen"
+            className={`absolute inset-0 w-full h-full overflow-visible ${isMobile ? "" : "mix-blend-screen"}`}
           >
             <defs>
               {/* Official Full Spectrum Rainbow Gradient - Spatial Precision */}
@@ -160,9 +160,11 @@ export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
               stroke="url(#ribbon-grad-v1)"
               strokeWidth={isMobile ? 16 : 60}
               strokeLinecap="round"
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-              transition={{ duration: 4, ease: "easeInOut" }}
+              {...(!isMobile ? {
+                initial: { pathLength: 0 },
+                animate: { pathLength: 1 },
+                transition: { duration: 4, ease: "easeInOut" }
+              } : {})}
             />
 
             {/* Layer C: The Matte Depth Core */}
@@ -177,16 +179,18 @@ export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
             />
 
             {/* Layer D: Liquid Gloss Shimmer (Hardware-Accelerated CSS) */}
-            <path
-              d="M 0,0 C 200,-400 520,-400 520,0 C 520,400 200,400 0,0 C -200,400 -520,400 -520,0 C -520,-400 -200,-400 0,0"
-              fill="none"
-              stroke="#ffffff"
-              strokeWidth={isMobile ? 1.5 : 5}
-              strokeOpacity="0.4"
-              strokeLinecap="round"
-              strokeDasharray="12 400"
-              className={`${isMobile ? "" : "blur-[1px]"} shimmer-path`}
-            />
+            {!isMobile && (
+              <path
+                d="M 0,0 C 200,-400 520,-400 520,0 C 520,400 200,400 0,0 C -200,400 -520,400 -520,0 C -520,-400 -200,-400 0,0"
+                fill="none"
+                stroke="#ffffff"
+                strokeWidth={5}
+                strokeOpacity="0.4"
+                strokeLinecap="round"
+                strokeDasharray="12 400"
+                className="blur-[1px] shimmer-path"
+              />
+            )}
           </svg>
 
           {/* 4. The Saturn Planet (High-Fidelity) - Hidden on Mobile for layout clarity & peak performance */}
