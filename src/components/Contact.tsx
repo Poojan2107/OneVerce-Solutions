@@ -10,7 +10,6 @@ export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    budget: 'Medium Scale Platform',
     details: ''
   });
   const [isTransmitting, setIsTransmitting] = useState(false);
@@ -23,7 +22,7 @@ export default function Contact() {
     
     setTimeout(() => {
       const phoneNumber = "918401286822";
-      const message = `*ONEVERCE_PROJECT_INQUIRY*%0A%0A*Name:* ${formData.name}%0A*Email:* ${formData.email}%0A*Scale:* ${formData.budget}%0A*Message:* ${formData.details}`;
+      const message = `*ONEVERCE_PROJECT_INQUIRY*%0A%0A*Name:* ${formData.name}%0A*Email:* ${formData.email}%0A*Message:* ${formData.details}`;
       const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
       window.open(whatsappUrl, '_blank');
       setIsTransmitting(false);
@@ -34,7 +33,7 @@ export default function Contact() {
 
   const nextStep = () => {
     playClick();
-    setStep(prev => Math.min(prev + 1, 3));
+    setStep(prev => Math.min(prev + 1, 2));
   };
   
   const prevStep = () => {
@@ -112,9 +111,9 @@ export default function Contact() {
                 {!isSuccess ? (
                   <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-10">
                     <div className="flex justify-between items-center mb-4 sm:mb-12">
-                      <div className="text-[9px] sm:text-[10px] font-bold text-zinc-500 uppercase tracking-[0.3em] sm:tracking-[0.4em]">Step {step} of 3</div>
+                      <div className="text-[9px] sm:text-[10px] font-bold text-zinc-500 uppercase tracking-[0.3em] sm:tracking-[0.4em]">Step {step} of 2</div>
                       <div className="flex gap-1.5 sm:gap-2">
-                        {[1, 2, 3].map(i => (
+                        {[1, 2].map(i => (
                           <div key={i} className={`h-1 rounded-full transition-all duration-500 ${step >= i ? 'w-6 sm:w-8 bg-blue-500' : 'w-3 sm:w-4 bg-white/10'}`} />
                         ))}
                       </div>
@@ -163,40 +162,6 @@ export default function Contact() {
                           className="space-y-5 sm:space-y-8"
                         >
                           <div className="space-y-4">
-                            <label className="text-xs font-bold text-zinc-500 uppercase tracking-widest">Project Scale</label>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                              {['MVP / Prototype', 'Medium Scale Platform', 'Full Production System', 'Custom Enterprise R&D'].map(tier => (
-                                <button
-                                  key={tier}
-                                  type="button"
-                                  onClick={() => {
-                                    playClick();
-                                    setFormData({ ...formData, budget: tier });
-                                  }}
-                                  onMouseEnter={playHover}
-                                  className={`px-6 py-5 rounded-2xl border text-[10px] md:text-xs font-bold uppercase tracking-widest transition-all cursor-pointer ${
-                                    formData.budget === tier 
-                                    ? 'bg-blue-600 border-blue-500 text-white shadow-xl shadow-blue-500/20' 
-                                    : 'bg-white/[0.02] border-white/10 text-zinc-500 hover:border-white/20'
-                                  }`}
-                                >
-                                  {tier}
-                                </button>
-                              ))}
-                            </div>
-                          </div>
-                        </motion.div>
-                      )}
-
-                      {step === 3 && (
-                        <motion.div
-                          key="step3"
-                          initial={{ opacity: 0, x: 20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          exit={{ opacity: 0, x: -20 }}
-                          className="space-y-5 sm:space-y-8"
-                        >
-                          <div className="space-y-4">
                             <label className="text-xs font-bold text-zinc-500 uppercase tracking-widest">Project Details</label>
                             <textarea
                               required
@@ -223,7 +188,7 @@ export default function Contact() {
                         Previous_Phase
                       </button>
 
-                      {step < 3 ? (
+                      {step < 2 ? (
                         <Magnetic>
                           <button
                             type="button"

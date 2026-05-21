@@ -6,7 +6,7 @@ import Problem from './components/Problem';
 import Services from './components/Services';
 import FeaturedWork from './components/FeaturedWork';
 import CaseStudies from './components/CaseStudies';
-import PriceCalculator from './components/PriceCalculator';
+import SystemArchitecture from './components/SystemArchitecture';
 import CTA from './components/CTA';
 import Team from './components/Team';
 import FAQ from './components/FAQ';
@@ -146,7 +146,7 @@ export default function App() {
                     </RevealSection>
 
                     <RevealSection reducedMotion={reducedMotion} isCoarsePointer={isCoarsePointer}>
-                      <PriceCalculator />
+                      <SystemArchitecture />
                     </RevealSection>
 
                     <RevealSection reducedMotion={reducedMotion} isCoarsePointer={isCoarsePointer}>

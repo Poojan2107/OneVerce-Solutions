@@ -15,15 +15,42 @@ export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
   const [isMobile, setIsMobile] = useState(() => {
     return typeof window !== 'undefined' ? window.innerWidth < 768 : false;
   });
+  const [scale, setScale] = useState(() => {
+    if (typeof window === 'undefined') return 0.78;
+    const width = window.innerWidth;
+    if (width < 360) return 0.25;
+    if (width < 400) return 0.28;
+    if (width < 480) return 0.32;
+    if (width < 640) return 0.40;
+    if (width < 768) return 0.50;
+    if (width < 1024) return 0.78;
+    return 0.92;
+  });
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
+      const width = window.innerWidth;
+      setIsMobile(width < 768);
+      if (width < 360) {
+        setScale(0.25);
+      } else if (width < 400) {
+        setScale(0.28);
+      } else if (width < 480) {
+        setScale(0.32);
+      } else if (width < 640) {
+        setScale(0.40);
+      } else if (width < 768) {
+        setScale(0.50);
+      } else if (width < 1024) {
+        setScale(0.78);
+      } else {
+        setScale(0.92);
+      }
     };
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-  const particleCount = isMobile ? 0 : reducedMotion ? 20 : 40;
+  const particleCount: number = isMobile ? 12 : reducedMotion ? 20 : 40;
 
   // Synchronized Scene Tilting using stable motion value reference
   const rotateX = useTransform(mouseY || fallbackMotionValue, [-500, 500], [15, 10]);
@@ -34,22 +61,22 @@ export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
     if (particleCount === 0) return [];
     return Array.from({ length: particleCount }).map((_, i) => ({
       id: i,
-      x: (Math.random() - 0.5) * 2200,
-      y: (Math.random() - 0.5) * 1300,
-      size: Math.random() * 2.5,
+      x: (Math.random() - 0.5) * (isMobile ? 380 : 2200),
+      y: (Math.random() - 0.5) * (isMobile ? 700 : 1300),
+      size: Math.random() * (isMobile ? 1.8 : 2.5),
       opacity: Math.random() * 0.7,
       delay: Math.random() * 5,
       color: i % 15 === 0 ? '#00f0ff' : i % 25 === 0 ? '#ffeb3b' : i % 35 === 0 ? '#ff5722' : '#ffffff',
       duration: 3 + Math.random() * 4,
     }));
-  }, [particleCount]);
+  }, [particleCount, isMobile]);
 
   return (
     <div className="relative w-full h-full flex items-center justify-center overflow-hidden md:overflow-visible md:perspective-[2000px] pointer-events-none" style={{ contain: 'layout style paint' }}>
       {/* 1. Deep Space Ambient Nebula */}
       <div className="absolute inset-0 flex items-center justify-center z-0">
         <div 
-          className={`absolute w-[min(1800px,200vw)] h-[min(1000px,120vh)] rounded-[100%] ${isMobile ? '' : 'animate-pulse'}`} 
+          className={`absolute w-[min(1800px,200vw)] h-[min(1000px,120vh)] rounded-[100%] ${isMobile ? 'opacity-40' : 'animate-pulse'}`} 
           style={{
             background: 'radial-gradient(circle, rgba(255, 255, 255, 0.01) 0%, transparent 80%)'
           }}
@@ -61,7 +88,7 @@ export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
         {stardust.map((star) => (
           <div
             key={star.id}
-            className={`absolute rounded-full ${isMobile ? '' : 'particle-pulse'}`}
+            className="absolute rounded-full particle-pulse"
             style={{
               width: star.size,
               height: star.size,
@@ -69,25 +96,37 @@ export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
               top: `calc(50% + ${star.y}px)`,
               backgroundColor: star.color,
               opacity: star.opacity,
-              boxShadow: isMobile ? 'none' : (star.color !== '#ffffff' ? `0 0 12px ${star.color}` : `0 0 6px rgba(255,255,255,0.4)`),
-              ...(isMobile ? {} : {
-                backfaceVisibility: 'hidden',
-                '--particle-opacity': star.opacity,
-                '--particle-delay': `${star.delay}s`,
-                '--particle-duration': `${star.duration}s`,
-              }),
+              boxShadow: isMobile ? 'none' : (star.color !== '#ffffff' ? `0 0 6px ${star.color}` : `0 0 3px rgba(255,255,255,0.4)`),
+              backfaceVisibility: 'hidden',
+              '--particle-opacity': star.opacity,
+              '--particle-delay': `${star.delay}s`,
+              '--particle-duration': `${star.duration}s`,
             } as React.CSSProperties}
           />
         ))}
       </div>
 
       <motion.div 
-        className="relative flex items-center justify-center md:preserve-3d scale-[0.52] sm:scale-[0.58] md:scale-[0.78] lg:scale-[0.92] will-change-transform z-10"
+        className="relative flex items-center justify-center md:preserve-3d will-change-transform z-10"
         style={{ 
           rotateX: isMobile ? undefined : rotateX, 
           rotateY: isMobile ? undefined : rotateY,
           backfaceVisibility: 'hidden',
+          scale: scale,
         }}
+        {...(isMobile ? {
+          animate: {
+            y: [-12, 12, -12],
+            rotateX: [12, 18, 12],
+            rotateY: [-22, -16, -22],
+            rotateZ: [73, 77, 73],
+          },
+          transition: {
+            duration: 9,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }
+        } : {})}
       >
         
         {/* 3. The Volumetric Ribbon (One Flow Architecture) */}
@@ -105,20 +144,20 @@ export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
                 <stop offset="75%" stopColor="#ff5a00" /> {/* Right-Top: Orange/Red */}
                 <stop offset="100%" stopColor="#d600ff" /> {/* Right-Bottom: Purple/Pink */}
               </linearGradient>
-
+ 
               {/* Inner Depth Gradient (Shadow Side) */}
               <linearGradient id="ribbon-inner-shadow" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="#002a35" />
                 <stop offset="50%" stopColor="#352a00" />
                 <stop offset="100%" stopColor="#2a0035" />
               </linearGradient>
-
+ 
               <filter id="ribbon-glow-v2" x="-50%" y="-50%" width="200%" height="200%">
                 <feGaussianBlur in="SourceGraphic" stdDeviation={isMobile ? 8 : 18} result="blur" />
                 <feComposite in="SourceGraphic" in2="blur" operator="over" />
               </filter>
             </defs>
-
+ 
             {/* Path: Symmetrical Infinity */}
             <motion.path
               id="infinity-path"
@@ -126,72 +165,125 @@ export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
               fill="none"
               stroke="transparent"
             />
+ 
+            {isMobile ? (
+              <>
+                {/* 1. Ultra-wide ambient halo */}
+                <path
+                  d="M 0,0 C 200,-400 520,-400 520,0 C 520,400 200,400 0,0 C -200,400 -520,400 -520,0 C -520,-400 -200,-400 0,0"
+                  fill="none"
+                  stroke="url(#ribbon-grad-v1)"
+                  strokeWidth={140}
+                  strokeOpacity={0.02}
+                  strokeLinecap="round"
+                />
+                {/* 2. Wide glow */}
+                <path
+                  d="M 0,0 C 200,-400 520,-400 520,0 C 520,400 200,400 0,0 C -200,400 -520,400 -520,0 C -520,-400 -200,-400 0,0"
+                  fill="none"
+                  stroke="url(#ribbon-grad-v1)"
+                  strokeWidth={80}
+                  strokeOpacity={0.06}
+                  strokeLinecap="round"
+                />
+                {/* 3. Medium glow */}
+                <path
+                  d="M 0,0 C 200,-400 520,-400 520,0 C 520,400 200,400 0,0 C -200,400 -520,400 -520,0 C -520,-400 -200,-400 0,0"
+                  fill="none"
+                  stroke="url(#ribbon-grad-v1)"
+                  strokeWidth={40}
+                  strokeOpacity={0.12}
+                  strokeLinecap="round"
+                />
+                {/* 4. Sharp inner core glow */}
+                <path
+                  d="M 0,0 C 200,-400 520,-400 520,0 C 520,400 200,400 0,0 C -200,400 -520,400 -520,0 C -520,-400 -200,-400 0,0"
+                  fill="none"
+                  stroke="url(#ribbon-grad-v1)"
+                  strokeWidth={20}
+                  strokeOpacity={0.28}
+                  strokeLinecap="round"
+                />
+                {/* 5. Core body */}
+                <path
+                  d="M 0,0 C 200,-400 520,-400 520,0 C 520,400 200,400 0,0 C -200,400 -520,400 -520,0 C -520,-400 -200,-400 0,0"
+                  fill="none"
+                  stroke="url(#ribbon-grad-v1)"
+                  strokeWidth={8}
+                  strokeOpacity={0.65}
+                  strokeLinecap="round"
+                />
+                {/* 6. Sharp center core line */}
+                <path
+                  d="M 0,0 C 200,-400 520,-400 520,0 C 520,400 200,400 0,0 C -200,400 -520,400 -520,0 C -520,-400 -200,-400 0,0"
+                  fill="none"
+                  stroke="#ffffff"
+                  strokeWidth={1.5}
+                  strokeOpacity={0.9}
+                  strokeLinecap="round"
+                />
+              </>
+            ) : (
+              <>
+                {/* Layer A: Massive Structural Underglow */}
+                <motion.path
+                  d="M 0,0 C 200,-400 520,-400 520,0 C 520,400 200,400 0,0 C -200,400 -520,400 -520,0 C -520,-400 -200,-400 0,0"
+                  fill="none"
+                  stroke="url(#ribbon-grad-v1)"
+                  strokeWidth={110}
+                  strokeOpacity={0.08}
+                  className="blur-[24px]"
+                />
 
-            {/* Layer A: Massive Structural Underglow */}
-            {!isMobile && (
-              <motion.path
-                d="M 0,0 C 200,-400 520,-400 520,0 C 520,400 200,400 0,0 C -200,400 -520,400 -520,0 C -520,-400 -200,-400 0,0"
-                fill="none"
-                stroke="url(#ribbon-grad-v1)"
-                strokeWidth="110"
-                strokeOpacity="0.08"
-                className="blur-[24px]"
-              />
-            )}
+                {/* Layer B: The Volumetric Body Glow Shell (GPU-Accelerated CSS blur) */}
+                <motion.path
+                  d="M 0,0 C 200,-400 520,-400 520,0 C 520,400 200,400 0,0 C -200,400 -520,400 -520,0 C -520,-400 -200,-400 0,0"
+                  fill="none"
+                  stroke="url(#ribbon-grad-v1)"
+                  strokeWidth={60}
+                  strokeLinecap="round"
+                  className="blur-[12px]"
+                  style={{ opacity: 0.75 }}
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: 1 }}
+                  transition={{ duration: 4, ease: "easeInOut" }}
+                />
 
-            {/* Layer B: The Volumetric Body Glow Shell (GPU-Accelerated CSS blur) */}
-            {!isMobile && (
-              <motion.path
-                d="M 0,0 C 200,-400 520,-400 520,0 C 520,400 200,400 0,0 C -200,400 -520,400 -520,0 C -520,-400 -200,-400 0,0"
-                fill="none"
-                stroke="url(#ribbon-grad-v1)"
-                strokeWidth="60"
-                strokeLinecap="round"
-                initial={{ pathLength: 0 }}
-                animate={{ pathLength: 1 }}
-                transition={{ duration: 4, ease: "easeInOut" }}
-                className="blur-[12px]"
-                style={{ opacity: 0.75 }}
-              />
-            )}
+                {/* Layer B.2: The Sharp Core Body */}
+                <motion.path
+                  d="M 0,0 C 200,-400 520,-400 520,0 C 520,400 200,400 0,0 C -200,400 -520,400 -520,0 C -520,-400 -200,-400 0,0"
+                  fill="none"
+                  stroke="url(#ribbon-grad-v1)"
+                  strokeWidth={60}
+                  strokeLinecap="round"
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: 1 }}
+                  transition={{ duration: 4, ease: "easeInOut" }}
+                />
 
-            {/* Layer B.2: The Sharp Core Body */}
-            <motion.path
-              d="M 0,0 C 200,-400 520,-400 520,0 C 520,400 200,400 0,0 C -200,400 -520,400 -520,0 C -520,-400 -200,-400 0,0"
-              fill="none"
-              stroke="url(#ribbon-grad-v1)"
-              strokeWidth={isMobile ? 16 : 60}
-              strokeLinecap="round"
-              {...(!isMobile ? {
-                initial: { pathLength: 0 },
-                animate: { pathLength: 1 },
-                transition: { duration: 4, ease: "easeInOut" }
-              } : {})}
-            />
+                {/* Layer C: The Matte Depth Core */}
+                <path
+                  d="M 0,0 C 200,-400 520,-400 520,0 C 520,400 200,400 0,0 C -200,400 -520,400 -520,0 C -520,-400 -200,-400 0,0"
+                  fill="none"
+                  stroke="url(#ribbon-inner-shadow)"
+                  strokeWidth={28}
+                  strokeLinecap="round"
+                  strokeOpacity="0.8"
+                  className="blur-[3px]"
+                />
 
-            {/* Layer C: The Matte Depth Core */}
-            <path
-              d="M 0,0 C 200,-400 520,-400 520,0 C 520,400 200,400 0,0 C -200,400 -520,400 -520,0 C -520,-400 -200,-400 0,0"
-              fill="none"
-              stroke="url(#ribbon-inner-shadow)"
-              strokeWidth={isMobile ? 6 : 28}
-              strokeLinecap="round"
-              strokeOpacity="0.8"
-              className={isMobile ? "" : "blur-[3px]"}
-            />
-
-            {/* Layer D: Liquid Gloss Shimmer (Hardware-Accelerated CSS) */}
-            {!isMobile && (
-              <path
-                d="M 0,0 C 200,-400 520,-400 520,0 C 520,400 200,400 0,0 C -200,400 -520,400 -520,0 C -520,-400 -200,-400 0,0"
-                fill="none"
-                stroke="#ffffff"
-                strokeWidth={5}
-                strokeOpacity="0.4"
-                strokeLinecap="round"
-                strokeDasharray="12 400"
-                className="blur-[1px] shimmer-path"
-              />
+                {/* Layer D: Liquid Gloss Shimmer (Hardware-Accelerated CSS) */}
+                <path
+                  d="M 0,0 C 200,-400 520,-400 520,0 C 520,400 200,400 0,0 C -200,400 -520,400 -520,0 C -520,-400 -200,-400 0,0"
+                  fill="none"
+                  stroke="#ffffff"
+                  strokeWidth={5}
+                  strokeOpacity="0.4"
+                  strokeLinecap="round"
+                  strokeDasharray="12 400"
+                  className="blur-[1px] shimmer-path"
+                />
+              </>
             )}
           </svg>
 

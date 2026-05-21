@@ -13,7 +13,6 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    budget: 'Medium Scale Platform',
     details: ''
   });
   const [isTransmitting, setIsTransmitting] = useState(false);
@@ -25,11 +24,10 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
       if (customEvt.detail) {
         setFormData(prev => ({
           ...prev,
-          budget: customEvt.detail.budget || prev.budget,
           details: customEvt.detail.details || prev.details
         }));
-        // Send directly to page 3 (details view) or page 1 depending on step
-        setStep(3);
+        // Send directly to step 2 (details view)
+        setStep(2);
       }
     };
     window.addEventListener('open-contact-modal', handlePrefill);
@@ -42,7 +40,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
     
     setTimeout(() => {
       const phoneNumber = "918401286822";
-      const message = `*ONEVERCE_PROJECT_INQUIRY*%0A%0A*Name:* ${formData.name}%0A*Email:* ${formData.email}%0A*Scale:* ${formData.budget}%0A*Message:* ${formData.details}`;
+      const message = `*ONEVERCE_PROJECT_INQUIRY*%0A%0A*Name:* ${formData.name}%0A*Email:* ${formData.email}%0A*Message:* ${formData.details}`;
       const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
       window.open(whatsappUrl, '_blank');
       setIsTransmitting(false);
@@ -50,7 +48,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
     }, 1500);
   };
 
-  const nextStep = () => setStep(prev => Math.min(prev + 1, 3));
+  const nextStep = () => setStep(prev => Math.min(prev + 1, 2));
   const prevStep = () => setStep(prev => Math.max(prev - 1, 1));
 
   return (
@@ -95,9 +93,9 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                 <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-8">
                   {/* Step indicators */}
                   <div className="flex justify-between items-center mb-4">
-                    <div className="text-[9px] font-bold text-zinc-500 uppercase tracking-[0.3em]">Step {step} of 3</div>
+                    <div className="text-[9px] font-bold text-zinc-500 uppercase tracking-[0.3em]">Step {step} of 2</div>
                     <div className="flex gap-1.5">
-                      {[1, 2, 3].map(i => (
+                      {[1, 2].map(i => (
                         <div key={i} className={`h-0.5 rounded-full transition-all duration-500 ${step >= i ? 'w-6 bg-blue-500' : 'w-3 bg-white/10'}`} />
                       ))}
                     </div>
@@ -146,36 +144,6 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                         className="space-y-6"
                       >
                         <div className="space-y-2">
-                          <label className="text-[10px] font-black text-zinc-500 uppercase tracking-widest">Project Scale</label>
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                            {['MVP / Prototype', 'Medium Scale Platform', 'Full Production System', 'Custom Enterprise R&D'].map(tier => (
-                              <button
-                                key={tier}
-                                type="button"
-                                onClick={() => setFormData({ ...formData, budget: tier })}
-                                className={`px-5 py-4 rounded-xl border text-[10px] font-bold uppercase tracking-widest transition-all ${
-                                  formData.budget === tier 
-                                  ? 'bg-blue-600 border-blue-500 text-white shadow-xl shadow-blue-500/20' 
-                                  : 'bg-white/[0.02] border-white/10 text-zinc-500 hover:border-white/20'
-                                }`}
-                              >
-                                {tier}
-                              </button>
-                            ))}
-                          </div>
-                        </div>
-                      </motion.div>
-                    )}
-
-                    {step === 3 && (
-                      <motion.div
-                        key="step3"
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: -20 }}
-                        className="space-y-6"
-                      >
-                        <div className="space-y-2">
                           <label className="text-[10px] font-black text-zinc-500 uppercase tracking-widest">Project Details</label>
                           <textarea
                             required
@@ -201,7 +169,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                       Previous
                     </button>
 
-                    {step < 3 ? (
+                    {step < 2 ? (
                       <Magnetic>
                         <button
                           type="button"

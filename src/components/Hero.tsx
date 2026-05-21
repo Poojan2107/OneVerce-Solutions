@@ -44,7 +44,13 @@ export default function Hero({ isPreloading = false }: { isPreloading?: boolean 
     : { rotateX, rotateY, x: textX, y: textY };
 
   return (
-    <section id="hero" className="relative min-h-screen w-full bg-[#020202] flex flex-col items-center justify-center overflow-hidden">
+    <section 
+      id="hero" 
+      className="relative min-h-screen w-full bg-[#020202] flex flex-col items-center justify-center overflow-hidden"
+      style={isMobile ? {
+        background: 'radial-gradient(circle at top right, rgba(0, 112, 176, 0.04), transparent 65%), radial-gradient(circle at bottom left, rgba(147, 51, 234, 0.04), transparent 65%), #020202'
+      } : undefined}
+    >
       <div className="absolute inset-0 z-50 pointer-events-none opacity-[0.03] hidden md:block">
         <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
           <filter id="noiseFilter">
@@ -58,8 +64,15 @@ export default function Hero({ isPreloading = false }: { isPreloading?: boolean 
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
 
         <div
-          className="absolute bottom-0 w-full h-[45vh] bg-[linear-gradient(to_right,#00f0f003_1px,transparent_1px),linear-gradient(to_bottom,#00f0f003_1px,transparent_1px)] bg-[size:60px_60px] hidden md:block"
-          style={{ transform: 'perspective(1200px) rotateX(72deg) scale(2.8)', transformOrigin: 'bottom' }}
+          className="absolute bottom-0 w-full h-[25vh] md:h-[45vh] bg-[linear-gradient(to_right,#00f0f002_1px,transparent_1px),linear-gradient(to_bottom,#00f0f002_1px,transparent_1px)] md:bg-[linear-gradient(to_right,#00f0f003_1px,transparent_1px),linear-gradient(to_bottom,#00f0f003_1px,transparent_1px)] bg-[size:40px_40px] md:bg-[size:60px_60px]"
+          style={isMobile ? {
+            transform: 'translate3d(0,0,0) perspective(600px) rotateX(72deg) scale(2.0)',
+            transformOrigin: 'bottom',
+            willChange: 'transform'
+          } : {
+            transform: 'perspective(1200px) rotateX(72deg) scale(2.8)',
+            transformOrigin: 'bottom'
+          }}
         />
       </div>
 
@@ -90,6 +103,29 @@ export default function Hero({ isPreloading = false }: { isPreloading?: boolean 
           </div>
         </div>
       </div>
+
+      {/* Mobile-Optimized HUD */}
+      {isMobile && (
+        <div className="absolute inset-x-0 top-18 bottom-6 z-20 pointer-events-none px-6 flex flex-col justify-between uppercase tracking-[0.25em] text-[8px] font-mono text-zinc-600">
+          <div className="flex justify-between items-start">
+            <div className="space-y-1">
+              <p className="flex items-center gap-1.5"><span className="w-1 h-1 rounded-full bg-[#00f0f0] animate-pulse" /> SYS_STATUS: OPTIMAL</p>
+              <p className="text-white/30">AUTH_UPLINK: PASSED</p>
+            </div>
+            <div className="text-right">
+              <p className="text-[#00f0f0]/60">V_024.9.1</p>
+            </div>
+          </div>
+          <div className="flex justify-between items-end">
+            <div>
+              <p className="text-white/20">STUDIO: SYS_ARCH</p>
+            </div>
+            <div>
+              <p className="text-white/20">ENGINE: NEURAL_X1</p>
+            </div>
+          </div>
+        </div>
+      )}
 
       <motion.div
         style={motionStyle}
@@ -172,8 +208,12 @@ export default function Hero({ isPreloading = false }: { isPreloading?: boolean 
         </motion.div>
       </motion.div>
 
-      <div className="absolute top-0 right-0 w-[min(800px,100vw)] h-[min(800px,100vw)] bg-[#0070b0]/05 rounded-full blur-[200px] mix-blend-overlay pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[min(800px,100vw)] h-[min(800px,100vw)] bg-[#9333ea]/05 rounded-full blur-[200px] mix-blend-overlay pointer-events-none" />
+      {!isMobile && (
+        <>
+          <div className="absolute top-0 right-0 w-[min(800px,100vw)] h-[min(800px,100vw)] bg-[#0070b0]/05 rounded-full blur-[200px] mix-blend-overlay pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-[min(800px,100vw)] h-[min(800px,100vw)] bg-[#9333ea]/05 rounded-full blur-[200px] mix-blend-overlay pointer-events-none" />
+        </>
+      )}
     </section>
   );
 }
