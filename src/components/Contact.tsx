@@ -10,7 +10,7 @@ export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    budget: 'Premium ($5k - $15k)',
+    budget: '₹4L - ₹12L',
     details: ''
   });
   const [isTransmitting, setIsTransmitting] = useState(false);
@@ -165,7 +165,7 @@ export default function Contact() {
                           <div className="space-y-4">
                             <label className="text-xs font-bold text-zinc-500 uppercase tracking-widest">Budget Tier</label>
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                              {['$2k - $5k', '$5k - $15k', '$15k+', 'Custom R&D'].map(tier => (
+                              {['₹1.5L - ₹4L', '₹4L - ₹12L', '₹12L+', 'Custom R&D'].map(tier => (
                                 <button
                                   key={tier}
                                   type="button"

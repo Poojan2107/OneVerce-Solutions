@@ -34,9 +34,9 @@ export default function Preloader({ onComplete }: PreloaderProps) {
         setTimeout(() => {
           setLoading(false);
           if (onComplete) onComplete();
-        }, 800);
+        }, 400);
       }
-    }, 400);
+    }, 150);
 
     return () => clearInterval(logInterval);
   }, [onComplete]);

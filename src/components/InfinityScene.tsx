@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { motion, MotionValue, useTransform } from 'motion/react';
 import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion';
 
@@ -12,7 +12,16 @@ const fallbackMotionValue = new MotionValue(0);
 
 export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
   const reducedMotion = usePrefersReducedMotion();
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
   const particleCount = isMobile ? 8 : reducedMotion ? 20 : 40;
 
   // Synchronized Scene Tilting using stable motion value reference
@@ -117,35 +126,39 @@ export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
             />
 
             {/* Layer A: Massive Structural Underglow */}
-            <motion.path
-              d="M 0,0 C 200,-400 520,-400 520,0 C 520,400 200,400 0,0 C -200,400 -520,400 -520,0 C -520,-400 -200,-400 0,0"
-              fill="none"
-              stroke="url(#ribbon-grad-v1)"
-              strokeWidth="110"
-              strokeOpacity="0.08"
-              className="blur-[24px]"
-            />
+            {!isMobile && (
+              <motion.path
+                d="M 0,0 C 200,-400 520,-400 520,0 C 520,400 200,400 0,0 C -200,400 -520,400 -520,0 C -520,-400 -200,-400 0,0"
+                fill="none"
+                stroke="url(#ribbon-grad-v1)"
+                strokeWidth="110"
+                strokeOpacity="0.08"
+                className="blur-[24px]"
+              />
+            )}
 
             {/* Layer B: The Volumetric Body Glow Shell (GPU-Accelerated CSS blur) */}
-            <motion.path
-              d="M 0,0 C 200,-400 520,-400 520,0 C 520,400 200,400 0,0 C -200,400 -520,400 -520,0 C -520,-400 -200,-400 0,0"
-              fill="none"
-              stroke="url(#ribbon-grad-v1)"
-              strokeWidth="60"
-              strokeLinecap="round"
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-              transition={{ duration: 4, ease: "easeInOut" }}
-              className="blur-[12px]"
-              style={{ opacity: 0.75 }}
-            />
+            {!isMobile && (
+              <motion.path
+                d="M 0,0 C 200,-400 520,-400 520,0 C 520,400 200,400 0,0 C -200,400 -520,400 -520,0 C -520,-400 -200,-400 0,0"
+                fill="none"
+                stroke="url(#ribbon-grad-v1)"
+                strokeWidth="60"
+                strokeLinecap="round"
+                initial={{ pathLength: 0 }}
+                animate={{ pathLength: 1 }}
+                transition={{ duration: 4, ease: "easeInOut" }}
+                className="blur-[12px]"
+                style={{ opacity: 0.75 }}
+              />
+            )}
 
             {/* Layer B.2: The Sharp Core Body */}
             <motion.path
               d="M 0,0 C 200,-400 520,-400 520,0 C 520,400 200,400 0,0 C -200,400 -520,400 -520,0 C -520,-400 -200,-400 0,0"
               fill="none"
               stroke="url(#ribbon-grad-v1)"
-              strokeWidth="60"
+              strokeWidth={isMobile ? 16 : 60}
               strokeLinecap="round"
               initial={{ pathLength: 0 }}
               animate={{ pathLength: 1 }}
@@ -157,10 +170,10 @@ export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
               d="M 0,0 C 200,-400 520,-400 520,0 C 520,400 200,400 0,0 C -200,400 -520,400 -520,0 C -520,-400 -200,-400 0,0"
               fill="none"
               stroke="url(#ribbon-inner-shadow)"
-              strokeWidth="28"
+              strokeWidth={isMobile ? 6 : 28}
               strokeLinecap="round"
               strokeOpacity="0.8"
-              className="blur-[3px]"
+              className={isMobile ? "" : "blur-[3px]"}
             />
 
             {/* Layer D: Liquid Gloss Shimmer (Hardware-Accelerated CSS) */}
@@ -168,11 +181,11 @@ export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
               d="M 0,0 C 200,-400 520,-400 520,0 C 520,400 200,400 0,0 C -200,400 -520,400 -520,0 C -520,-400 -200,-400 0,0"
               fill="none"
               stroke="#ffffff"
-              strokeWidth="5"
+              strokeWidth={isMobile ? 1.5 : 5}
               strokeOpacity="0.4"
               strokeLinecap="round"
               strokeDasharray="12 400"
-              className="blur-[1px] shimmer-path"
+              className={`${isMobile ? "" : "blur-[1px]"} shimmer-path`}
             />
           </svg>
 

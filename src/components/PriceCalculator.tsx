@@ -11,11 +11,11 @@ interface ServiceItem {
 }
 
 const servicesList: ServiceItem[] = [
-  { id: 'saas', name: 'SaaS Platform Development', price: 2000, description: 'Scalable multi-tenant dashboard, subscription hooks, & serverless database.' },
-  { id: 'ai', name: 'AI & Intelligence Integration', price: 2500, description: 'Custom LLM underwritings, data vectoring, and predictive models.' },
-  { id: 'design', name: 'High-Fidelity UI/UX System', price: 1200, description: 'Custom brand identity assets, interface grids, and interaction curves.' },
-  { id: 'infra', name: 'Secure API & DB Architecture', price: 1500, description: 'High-throughput database setup, custom gateways, and offline-first state.' },
-  { id: 'audit', name: 'Security Audit & Compliance', price: 1000, description: 'Rate limit configurations, end-to-end encryption, and penetration reporting.' }
+  { id: 'saas', name: 'SaaS Platform Development', price: 180000, description: 'Scalable multi-tenant dashboard, subscription hooks, & serverless database.' },
+  { id: 'ai', name: 'AI & Intelligence Integration', price: 220000, description: 'Custom LLM underwritings, data vectoring, and predictive models.' },
+  { id: 'design', name: 'High-Fidelity UI/UX System', price: 100000, description: 'Custom brand identity assets, interface grids, and interaction curves.' },
+  { id: 'infra', name: 'Secure API & DB Architecture', price: 130000, description: 'High-throughput database setup, custom gateways, and offline-first state.' },
+  { id: 'audit', name: 'Security Audit & Compliance', price: 90000, description: 'Rate limit configurations, end-to-end encryption, and penetration reporting.' }
 ];
 
 export default function PriceCalculator() {
@@ -25,13 +25,13 @@ export default function PriceCalculator() {
   const [estimate, setEstimate] = useState<number>(0);
 
   useEffect(() => {
-    // Base cost is $2,000
+    // Base cost is ₹1,50,000
     const servicesCost = selectedServices.reduce((sum, serviceId) => {
       const service = servicesList.find(s => s.id === serviceId);
       return sum + (service ? service.price : 0);
     }, 0);
-    const screenCost = screens * 150;
-    setEstimate(2000 + servicesCost + screenCost);
+    const screenCost = screens * 12000;
+    setEstimate(150000 + servicesCost + screenCost);
   }, [selectedServices, screens]);
 
   const toggleService = (id: string) => {
@@ -44,12 +44,12 @@ export default function PriceCalculator() {
   const handleLaunch = () => {
     playClick();
     const serviceNames = selectedServices.map(id => servicesList.find(s => s.id === id)?.name).filter(Boolean);
-    const details = `Estimated package details from online architect calculator:\n- Selected Services: ${serviceNames.join(', ')}\n- Estimated Screen Count: ${screens} views\n- Approximate Estimated Budget: $${estimate}`;
+    const details = `Estimated package details from online architect calculator:\n- Selected Services: ${serviceNames.join(', ')}\n- Estimated Screen Count: ${screens} views\n- Approximate Estimated Budget: ₹${estimate.toLocaleString('en-IN')}`;
     
     // Choose appropriate tier based on estimated amount
-    let budgetTier = '$2k - $5k';
-    if (estimate > 10000) budgetTier = 'Custom R&D';
-    else if (estimate > 5000) budgetTier = '$5k - $15k';
+    let budgetTier = '₹1.5L - ₹4L';
+    if (estimate > 1200000) budgetTier = 'Custom R&D';
+    else if (estimate > 400000) budgetTier = '₹4L - ₹12L';
 
     const event = new CustomEvent('open-contact-modal', {
       detail: { details, budget: budgetTier }
@@ -108,7 +108,7 @@ export default function PriceCalculator() {
                       <div className="text-xs text-zinc-500 leading-relaxed font-medium">{service.description}</div>
                     </div>
                     <div className="ml-auto text-xs font-black text-[#00f0ff] font-mono shrink-0">
-                      +${service.price}
+                      +₹{service.price.toLocaleString('en-IN')}
                     </div>
                   </button>
                 );
@@ -155,8 +155,8 @@ export default function PriceCalculator() {
                 <div className="absolute inset-0 bg-gradient-to-b from-blue-500/[0.03] to-transparent pointer-events-none" />
                 <span className="text-[9px] font-black text-[#00f0ff] uppercase tracking-[0.3em] mb-1.5">Estimated Budget</span>
                 <div className="text-4xl sm:text-5xl font-black text-white tracking-tighter uppercase font-mono flex items-baseline justify-center gap-1">
-                  <span className="text-2xl text-zinc-500 font-medium">$</span>
-                  {estimate.toLocaleString()}
+                  <span className="text-2xl text-zinc-500 font-medium">₹</span>
+                  {estimate.toLocaleString('en-IN')}
                 </div>
                 <span className="text-[8px] text-zinc-500 font-medium tracking-wide mt-2">Subject to scoping specification</span>
               </div>

@@ -63,7 +63,7 @@ export default function SocialProof() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
-              className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full mb-8"
+              className="inline-flex items-center gap-1.5 sm:gap-2.5 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full mb-8"
               style={{
                 background: 'linear-gradient(135deg, rgba(236,72,153,0.10), rgba(168,85,247,0.10))',
                 border: '1px solid rgba(236,72,153,0.22)',
@@ -71,13 +71,13 @@ export default function SocialProof() {
             >
               <span className="w-1.5 h-1.5 rounded-full bg-pink-400 animate-pulse"
                 style={{ boxShadow: '0 0 8px rgba(244,114,182,0.9)' }} />
-              <Radio size={11} className="text-pink-400" />
-              <span className="text-pink-300 text-[10px] font-black uppercase tracking-[0.45em]">Connectivity Protocol</span>
+              <Radio size={11} className="text-pink-400 shrink-0" />
+              <span className="text-pink-300 text-[8px] sm:text-[10px] font-black uppercase tracking-[0.2em] sm:tracking-[0.45em]">Connectivity Protocol</span>
             </motion.div>
 
             {/* Heading */}
             <h2 className="font-black uppercase tracking-tighter leading-[0.88] mb-8"
-              style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2.2rem, 12vw, 6rem)' }}>
+              style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2.2rem, 8vw, 4.5rem)' }}>
               <span className="text-white block">Network</span>
               <span className="block" style={{
                 background: 'linear-gradient(90deg, #f472b6 0%, #a855f7 45%, #818cf8 80%, #60a5fa 100%)',
@@ -127,15 +127,15 @@ export default function SocialProof() {
             </div>
 
             {/* Live broadcast indicator */}
-            <div className="flex items-center gap-3 mb-10 px-4 py-3 rounded-2xl w-fit"
+            <div className="flex items-center gap-2 sm:gap-3 mb-10 px-3 py-2 sm:px-4 sm:py-3 rounded-2xl w-fit max-w-full"
               style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}>
-              <div className="flex items-center gap-1.5">
+              <div className="flex items-center gap-1.5 shrink-0">
                 <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse"
                   style={{ boxShadow: '0 0 10px rgba(239,68,68,0.9)' }} />
-                <span className="text-[9px] font-black text-red-400 uppercase tracking-[0.4em]">Live</span>
+                <span className="text-[9px] font-black text-red-400 uppercase tracking-[0.2em] sm:tracking-[0.4em]">Live</span>
               </div>
-              <div className="w-[1px] h-4 bg-white/10" />
-              <span className="text-[9px] font-bold text-zinc-500 uppercase tracking-widest">Broadcasting Creative Content</span>
+              <div className="w-[1px] h-4 bg-white/10 shrink-0" />
+              <span className="text-[8px] sm:text-[9px] font-bold text-zinc-500 uppercase tracking-normal sm:tracking-widest truncate">Broadcasting Creative Content</span>
             </div>
 
             {/* CTAs */}
@@ -181,7 +181,7 @@ export default function SocialProof() {
             className="relative"
           >
             {/* Outer glow */}
-            <div className="absolute inset-[-30px] rounded-[3rem] pointer-events-none blur-[80px] opacity-25"
+            <div className="absolute inset-[-10px] sm:inset-[-30px] rounded-[3rem] pointer-events-none blur-[80px] opacity-25"
               style={{ background: 'radial-gradient(ellipse, rgba(168,85,247,0.5) 0%, rgba(236,72,153,0.3) 50%, transparent 80%)' }} />
 
             {/* Broadcast frame */}

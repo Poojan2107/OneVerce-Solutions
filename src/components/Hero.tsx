@@ -100,8 +100,7 @@ export default function Hero({ isPreloading = false }: { isPreloading?: boolean 
             initial={{ opacity: 0, scale: 0.95, filter: 'blur(20px)' }}
             animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
             transition={{ duration: 1.6, ease: 'easeOut' }}
-            className="heading-hero uppercase tracking-tighter text-white select-none relative z-10 drop-shadow-[0_0_50px_rgba(255,255,255,0.2)] w-full"
-            style={{ wordBreak: 'break-word' }}
+            className="heading-hero uppercase tracking-tighter text-white select-none relative z-10 drop-shadow-[0_0_50px_rgba(255,255,255,0.2)] w-full whitespace-nowrap"
           >
             Oneverce
           </motion.h1>
