@@ -260,7 +260,7 @@ Implementing these structural adjustments is estimated to increase checkout conv
                         type="submit"
                         disabled={isAnalyzing}
                         onMouseEnter={playHover}
-                        className="w-full bg-white text-black py-5 sm:py-8 rounded-[1.5rem] sm:rounded-[2rem] font-bold uppercase tracking-widest text-[10px] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-4 shadow-2xl group/btn disabled:opacity-60 cursor-pointer min-h-[52px]"
+                        className="w-full bg-white text-black py-4 sm:py-6 rounded-[1.5rem] sm:rounded-[2rem] font-bold uppercase tracking-widest text-[10px] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-4 shadow-2xl group/btn disabled:opacity-60 cursor-pointer min-h-[52px]"
                       >
                         Initiate Free Audit
                         <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" aria-hidden="true" />

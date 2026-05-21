@@ -85,7 +85,7 @@ export default function Navbar() {
               </div>
               <div className="flex flex-col min-w-0">
                 <span className="text-lg sm:text-xl font-bold tracking-tighter uppercase text-white leading-none">Oneverce</span>
-                <span className="text-[7px] uppercase tracking-[0.4em] sm:tracking-[0.6em] text-[#00f0f0] font-mono opacity-60">Systems_Studio</span>
+                <span className="text-[9px] uppercase tracking-[0.4em] sm:tracking-[0.6em] text-[#00f0f0] font-mono opacity-60">Systems_Studio</span>
               </div>
             </a>
           </Magnetic>
@@ -200,7 +200,8 @@ export default function Navbar() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                className="fixed top-[72px] left-0 right-0 bottom-0 bg-[#050505]/98 backdrop-blur-3xl border-b border-white/[0.05] overflow-y-auto md:hidden z-[95]"
+                className="fixed left-0 right-0 bottom-0 bg-[#050505]/98 backdrop-blur-3xl border-b border-white/[0.05] overflow-y-auto md:hidden z-[95]"
+                style={{ top: 'calc(72px + env(safe-area-inset-top))' }}
               >
                 <div className="p-8 pb-24 flex flex-col gap-2 text-center">
                   {/* Sound control inside mobile menu */}

@@ -83,7 +83,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
               </div>
               <button
                 onClick={onClose}
-                className="w-9 h-9 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 flex items-center justify-center text-white transition-all hover:scale-105"
+                className="w-11 h-11 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 flex items-center justify-center text-white transition-all hover:scale-105"
                 aria-label="Close form"
               >
                 <X size={15} />

@@ -87,7 +87,7 @@ export default function FAQ() {
                     transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                   >
                     <div className="px-5 pb-6 sm:px-8 sm:pb-10 md:px-10">
-                      <div className="p-4 sm:p-5 sm:p-8 rounded-xl sm:rounded-2xl bg-white/[0.01] border border-white/[0.03] relative overflow-hidden">
+                      <div className="p-4 sm:p-8 rounded-xl sm:rounded-2xl bg-white/[0.01] border border-white/[0.03] relative overflow-hidden">
                         <div className="absolute top-0 right-0 w-16 h-16 bg-blueprint opacity-10 pointer-events-none" />
                         <p className="text-zinc-400 font-medium text-base sm:text-lg leading-relaxed tracking-tight relative z-10">
                           {faq.answer}

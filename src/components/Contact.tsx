@@ -202,7 +202,7 @@ export default function Contact() {
                               required
                               rows={5}
                               placeholder="Tell us about your project goals..."
-                              className="w-full bg-white/[0.02] border border-white/10 rounded-2xl md:rounded-3xl px-6 py-5 text-lg md:text-xl focus:border-blue-500/50 outline-none transition-all placeholder:text-zinc-800 text-white resize-none"
+                              className="w-full bg-white/[0.02] border border-white/10 rounded-2xl px-5 sm:px-6 py-4 sm:py-5 text-base md:text-xl focus:border-blue-500/50 outline-none transition-all placeholder:text-zinc-800 text-white resize-none"
                               value={formData.details}
                               onChange={e => setFormData({ ...formData, details: e.target.value })}
                             />

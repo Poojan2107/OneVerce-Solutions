@@ -312,7 +312,7 @@ export default function FeaturedWork() {
                     setSelectedIdx(null);
                   }}
                   onMouseEnter={playHover}
-                  className="absolute top-6 right-6 w-10 h-10 rounded-full bg-black/60 border border-white/10 hover:border-white/25 text-white flex items-center justify-center hover:scale-105 transition-all cursor-pointer"
+                  className="absolute top-6 right-6 w-11 h-11 rounded-full bg-black/60 border border-white/10 hover:border-white/25 text-white flex items-center justify-center hover:scale-105 transition-all cursor-pointer"
                   aria-label="Close details"
                 >
                   <X size={16} />
@@ -413,7 +413,7 @@ export default function FeaturedWork() {
                       href={activeProject.githubLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 min-w-[140px] flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl border border-white/8 text-zinc-400 hover:text-white font-black uppercase tracking-widest text-[10px] transition-all bg-white/[0.01] hover:bg-white/[0.06] hover:border-white/20"
+                      className="flex-1 min-w-[140px] flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl border border-white/[0.08] text-zinc-400 hover:text-white font-black uppercase tracking-widest text-[10px] transition-all bg-white/[0.01] hover:bg-white/[0.06] hover:border-white/20"
                     >
                       <Github size={14} />
                       Source Code
