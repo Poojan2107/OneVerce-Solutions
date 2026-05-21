@@ -81,7 +81,7 @@ export default function Hero({ isPreloading = false }: { isPreloading?: boolean 
 
       <motion.div
         style={motionStyle}
-        className="relative z-30 flex flex-col items-center text-center px-4 sm:px-6 max-w-full sm:max-w-7xl mx-auto pt-16 pb-12 md:pt-0 md:pb-0 md:preserve-3d"
+        className="relative z-30 flex flex-col items-center text-center px-4 sm:px-6 w-full max-w-full sm:max-w-7xl mx-auto pt-16 pb-12 md:pt-0 md:pb-0 md:preserve-3d overflow-hidden"
       >
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -95,12 +95,13 @@ export default function Hero({ isPreloading = false }: { isPreloading?: boolean 
           </span>
         </motion.div>
 
-        <div className="relative mb-6 md:mb-10 group w-full overflow-visible">
+        <div className="relative mb-6 md:mb-10 group w-full overflow-hidden">
           <motion.h1
             initial={{ opacity: 0, scale: 0.95, filter: 'blur(20px)' }}
             animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
             transition={{ duration: 1.6, ease: 'easeOut' }}
-            className="heading-hero uppercase tracking-tighter text-white select-none relative z-10 drop-shadow-[0_0_50px_rgba(255,255,255,0.2)]"
+            className="heading-hero uppercase tracking-tighter text-white select-none relative z-10 drop-shadow-[0_0_50px_rgba(255,255,255,0.2)] w-full"
+            style={{ wordBreak: 'break-word' }}
           >
             Oneverce
           </motion.h1>

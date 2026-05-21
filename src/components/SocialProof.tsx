@@ -47,8 +47,8 @@ export default function SocialProof() {
           style={{ background: 'rgba(168,85,247,0.07)' }} />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-24 items-center">
 
           {/* ──────────────── LEFT — Copy ──────────────── */}
           <motion.div
@@ -77,7 +77,7 @@ export default function SocialProof() {
 
             {/* Heading */}
             <h2 className="font-black uppercase tracking-tighter leading-[0.88] mb-8"
-              style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(3rem, 7vw, 6rem)' }}>
+              style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2.2rem, 12vw, 6rem)' }}>
               <span className="text-white block">Network</span>
               <span className="block" style={{
                 background: 'linear-gradient(90deg, #f472b6 0%, #a855f7 45%, #818cf8 80%, #60a5fa 100%)',
@@ -186,12 +186,12 @@ export default function SocialProof() {
 
             {/* Broadcast frame */}
             <div
-              className="relative rounded-[2rem] overflow-hidden"
+              className="relative rounded-[1.5rem] sm:rounded-[2rem] overflow-hidden"
               style={{
                 background: 'linear-gradient(145deg, #0d0d10, #0a0a0d)',
                 border: '1px solid rgba(255,255,255,0.07)',
                 boxShadow: '0 50px 120px rgba(0,0,0,0.85), 0 0 0 1px rgba(255,255,255,0.05) inset',
-                height: '520px',
+                height: 'clamp(320px, 55vw, 520px)',
               }}
             >
               {/* Top fade mask */}
@@ -256,9 +256,9 @@ export default function SocialProof() {
                   </div>
                 </div>
 
-                {/* Column C — scroll up, 18s (fastest) */}
-                <div className="flex-1 overflow-hidden">
-                  <div className="col-up flex flex-col gap-[3px]" style={{ '--dur': '18s' } as React.CSSProperties}>
+                {/* Column C — hidden on mobile, scroll up, 18s (fastest) */}
+                <div className="hidden sm:flex flex-1 overflow-hidden">
+                  <div className="col-up flex flex-col gap-[3px] w-full" style={{ '--dur': '18s' } as React.CSSProperties}>
                     {colC.map((src, i) => (
                       <div key={i} className="relative flex-shrink-0 aspect-[3/4] overflow-hidden rounded-lg group">
                         <img src={src} alt="Oneverce creative" loading="lazy"

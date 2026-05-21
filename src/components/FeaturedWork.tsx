@@ -294,7 +294,7 @@ export default function FeaturedWork() {
               exit={{ scale: 0.95, opacity: 0, y: 30 }}
               transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-[#0b0c0f] border border-white/10 rounded-[2rem] overflow-hidden shadow-2xl max-w-2xl w-full my-8"
+              className="bg-[#0b0c0f] border border-white/10 rounded-[1.25rem] sm:rounded-[2rem] overflow-hidden shadow-2xl max-w-2xl w-full my-4 sm:my-8 max-h-[90vh] overflow-y-auto"
             >
               {/* Cover Image & Header */}
               <div className="relative aspect-[16/9] bg-zinc-950 border-b border-white/5">

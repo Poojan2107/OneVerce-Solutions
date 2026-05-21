@@ -124,7 +124,7 @@ export default function Team() {
   const accentBgClass = currentFounder.accent === 'blue' ? 'bg-blue-500' : 'bg-purple-500';
 
   return (
-    <section id="team" className="py-16 sm:py-24 bg-[#050505] relative overflow-hidden bg-blueprint">
+    <section id="team" className="py-16 sm:py-24 md:py-32 bg-[#050505] relative overflow-hidden bg-blueprint">
       {/* Background radial effects */}
       <div className="absolute inset-0 pointer-events-none z-0">
         <div className="absolute top-1/2 left-1/4 w-[600px] h-[600px] bg-blue-500/[0.015] rounded-full blur-[180px]" />
@@ -147,13 +147,13 @@ export default function Team() {
         </div>
 
         {/* Tab Selectors */}
-        <div className="flex justify-center gap-4 mb-12">
+        <div className="flex justify-center gap-3 sm:gap-4 mb-12 flex-wrap">
           {founderData.map((founder, idx) => (
             <button
               key={founder.name}
               onClick={() => handleTabChange(idx)}
               onMouseEnter={playHover}
-              className={`px-6 py-3 rounded-full border text-[10px] font-black uppercase tracking-widest transition-all cursor-pointer ${
+              className={`px-4 sm:px-6 min-h-[44px] py-2.5 rounded-full border text-[9px] sm:text-[10px] font-black uppercase tracking-widest transition-all cursor-pointer ${
                 activeTab === idx
                 ? founder.accent === 'blue'
                   ? 'bg-blue-600 border-blue-500 text-white shadow-xl shadow-blue-500/20'
@@ -161,15 +161,15 @@ export default function Team() {
                 : 'bg-white/[0.01] border-white/5 text-zinc-500 hover:border-white/15'
               }`}
             >
-              {founder.name}
+              <span className="max-w-[120px] sm:max-w-none truncate block">{founder.name}</span>
             </button>
           ))}
         </div>
 
-        <div className="grid lg:grid-cols-12 gap-8 items-start">
+        <div className="grid lg:grid-cols-12 gap-6 sm:gap-8 items-start">
           {/* Left panel: Founder overview + interactive timeline */}
-          <div className="lg:col-span-7 space-y-8">
-            <div className="p-6 sm:p-10 rounded-[2rem] border border-white/5 bg-white/[0.01] relative overflow-hidden">
+          <div className="lg:col-span-7 space-y-6 sm:space-y-8">
+            <div className="p-5 sm:p-10 rounded-[1.5rem] sm:rounded-[2rem] border border-white/5 bg-white/[0.01] relative overflow-hidden">
               <div className="flex items-center justify-between gap-4 mb-6">
                 <div>
                   <span className={`text-[9px] font-black uppercase tracking-[0.30em] ${accentColorClass}`}>
@@ -239,7 +239,7 @@ export default function Team() {
           </div>
 
           {/* Right panel: Active event details */}
-          <div className="lg:col-span-5">
+          <div className="lg:col-span-5 mt-2 lg:mt-0">
             <AnimatePresence mode="wait">
               {activeEvent && (
                 <motion.div
@@ -248,7 +248,7 @@ export default function Team() {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
                   transition={{ duration: 0.3 }}
-                  className="p-6 sm:p-10 rounded-[2.5rem] border border-white/10 bg-[#090a0d] relative overflow-hidden"
+                  className="p-5 sm:p-10 rounded-[1.5rem] sm:rounded-[2.5rem] border border-white/10 bg-[#090a0d] relative overflow-hidden"
                 >
                   {/* Corner indicator */}
                   <div className="absolute top-0 right-0 w-32 h-32 bg-blueprint opacity-[0.03] pointer-events-none" />

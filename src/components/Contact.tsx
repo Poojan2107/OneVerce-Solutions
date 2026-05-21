@@ -108,14 +108,14 @@ export default function Contact() {
               viewport={{ once: true }}
               className="glass-card rounded-[1.5rem] sm:rounded-[2.5rem] md:rounded-[3.5rem] overflow-hidden border border-white/5 shadow-2xl"
             >
-              <div className="p-6 sm:p-8 md:p-16 min-h-0 md:min-h-[450px]">
+              <div className="p-5 sm:p-8 md:p-16 min-h-0 md:min-h-[450px]">
                 {!isSuccess ? (
                   <form onSubmit={handleSubmit} className="space-y-10">
-                    <div className="flex justify-between items-center mb-6 sm:mb-12">
-                      <div className="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.4em]">Step {step} of 3</div>
-                      <div className="flex gap-2">
+                    <div className="flex justify-between items-center mb-4 sm:mb-12">
+                      <div className="text-[9px] sm:text-[10px] font-bold text-zinc-500 uppercase tracking-[0.3em] sm:tracking-[0.4em]">Step {step} of 3</div>
+                      <div className="flex gap-1.5 sm:gap-2">
                         {[1, 2, 3].map(i => (
-                          <div key={i} className={`h-1 rounded-full transition-all duration-500 ${step >= i ? 'w-8 bg-blue-500' : 'w-4 bg-white/10'}`} />
+                          <div key={i} className={`h-1 rounded-full transition-all duration-500 ${step >= i ? 'w-6 sm:w-8 bg-blue-500' : 'w-3 sm:w-4 bg-white/10'}`} />
                         ))}
                       </div>
                     </div>

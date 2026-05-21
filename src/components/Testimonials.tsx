@@ -93,7 +93,7 @@ export default function Testimonials() {
         </div>
 
         {/* Carousel Container */}
-        <div className="relative min-h-[320px] flex items-center justify-center">
+        <div className="relative min-h-[260px] sm:min-h-[320px] flex items-center justify-center">
           <AnimatePresence mode="wait">
             <motion.a
               key={activeResult.project}

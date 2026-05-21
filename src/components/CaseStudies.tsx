@@ -166,17 +166,17 @@ export default function CaseStudies() {
               initial={{ scale: 0.95, opacity: 0, y: 30 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.95, opacity: 0, y: 30 }}
-              className="relative bg-[#090a0d] border border-white/10 rounded-[2.5rem] shadow-2xl max-w-2xl w-full my-8 overflow-hidden"
+              className="relative bg-[#090a0d] border border-white/10 rounded-[1.5rem] sm:rounded-[2.5rem] shadow-2xl max-w-2xl w-full my-4 sm:my-8 overflow-hidden"
             >
               {/* Header */}
-              <div className="px-6 sm:px-10 pt-8 pb-4 flex items-center justify-between border-b border-white/5 bg-white/[0.01]">
+              <div className="px-5 sm:px-10 pt-6 sm:pt-8 pb-4 flex items-start justify-between gap-3 border-b border-white/5 bg-white/[0.01]">
                 <div>
                   <span className="text-[9px] font-black uppercase tracking-[0.4em] text-purple-400 block">{selectedStudy.category} Log</span>
                   <h3 className="text-lg font-black text-white uppercase tracking-tight mt-0.5">{selectedStudy.title}</h3>
                 </div>
                 <button
                   onClick={handleClose}
-                  className="w-9 h-9 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 flex items-center justify-center text-white transition-all hover:scale-105"
+                  className="w-11 h-11 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 flex items-center justify-center text-white transition-all hover:scale-105 shrink-0"
                   aria-label="Close Case Study"
                 >
                   <X size={15} />
@@ -184,7 +184,7 @@ export default function CaseStudies() {
               </div>
 
               {/* Content body */}
-              <div className="p-6 sm:p-10 space-y-6 max-h-[70vh] overflow-y-auto font-sans leading-relaxed text-zinc-400 text-sm">
+              <div className="p-5 sm:p-10 space-y-6 max-h-[65vh] sm:max-h-[70vh] overflow-y-auto font-sans leading-relaxed text-zinc-400 text-sm">
                 <div className="space-y-2">
                   <div className="text-[9px] font-black uppercase tracking-widest text-zinc-500">The Challenge</div>
                   <p className="text-zinc-300 font-medium">{selectedStudy.challenge}</p>

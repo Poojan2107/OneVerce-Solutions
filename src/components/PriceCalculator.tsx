@@ -183,7 +183,7 @@ export default function PriceCalculator() {
             <button
               onClick={handleLaunch}
               onMouseEnter={playHover}
-              className="mt-8 w-full flex items-center justify-center gap-3 bg-blue-600 hover:bg-blue-500 text-white py-4.5 rounded-xl font-bold uppercase tracking-widest text-[9px] hover:scale-105 transition-all shadow-xl shadow-blue-500/20 cursor-pointer"
+              className="mt-8 w-full flex items-center justify-center gap-3 bg-blue-600 hover:bg-blue-500 text-white py-[18px] rounded-xl font-bold uppercase tracking-widest text-[9px] hover:scale-105 transition-all shadow-xl shadow-blue-500/20 cursor-pointer min-h-[48px]"
             >
               Initiate Scoped Project
               <ArrowRight size={13} />
