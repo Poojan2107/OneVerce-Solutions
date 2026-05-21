@@ -140,7 +140,7 @@ export default function Services() {
                 <div className="w-2 h-2 bg-blue-500 rounded-full animate-ping" />
                 <span className="text-zinc-500 font-bold uppercase tracking-[0.5em] text-[10px]">Capabilities Matrix</span>
               </div>
-            <h2 className="text-[clamp(2rem,10vw,6rem)] text-white uppercase font-black tracking-tighter leading-[1.0] sm:leading-none">
+            <h2 className="text-[clamp(1.5rem,8.2vw,4rem)] md:text-[clamp(2rem,10vw,6rem)] text-white uppercase font-black tracking-tighter leading-[1.0] sm:leading-none">
                 Engineered<br /> Solutions
               </h2>
             </div>
