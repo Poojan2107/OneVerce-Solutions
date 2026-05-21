@@ -44,7 +44,7 @@ export default function FAQ() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1, duration: 0.8 }}
-              className={`glass-card rounded-[2rem] overflow-hidden transition-all duration-500 border border-white/5 ${
+              className={`glass-card rounded-[1.25rem] sm:rounded-[2rem] overflow-hidden transition-all duration-500 border border-white/5 ${
                 openIndex === index ? 'bg-white/[0.03] border-white/10' : 'hover:bg-white/[0.02]'
               }`}
             >
@@ -87,9 +87,9 @@ export default function FAQ() {
                     transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                   >
                     <div className="px-5 pb-6 sm:px-8 sm:pb-10 md:px-10">
-                      <div className="p-5 sm:p-8 rounded-2xl bg-white/[0.01] border border-white/[0.03] relative overflow-hidden">
+                      <div className="p-4 sm:p-5 sm:p-8 rounded-xl sm:rounded-2xl bg-white/[0.01] border border-white/[0.03] relative overflow-hidden">
                         <div className="absolute top-0 right-0 w-16 h-16 bg-blueprint opacity-10 pointer-events-none" />
-                        <p className="text-zinc-400 font-medium text-lg leading-relaxed tracking-tight relative z-10">
+                        <p className="text-zinc-400 font-medium text-base sm:text-lg leading-relaxed tracking-tight relative z-10">
                           {faq.answer}
                         </p>
                       </div>

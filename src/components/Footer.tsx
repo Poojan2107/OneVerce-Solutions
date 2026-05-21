@@ -12,7 +12,7 @@ export default function Footer() {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
-        <div className="grid lg:grid-cols-12 gap-12 sm:gap-20 mb-16 sm:mb-32">
+        <div className="grid lg:grid-cols-12 gap-10 sm:gap-20 mb-12 sm:mb-24">
           <div className="lg:col-span-5 space-y-12">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 rounded-xl bg-zinc-900 border border-white/10 p-1 shadow-2xl overflow-hidden">

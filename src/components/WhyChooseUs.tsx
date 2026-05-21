@@ -59,8 +59,8 @@ export default function WhyChooseUs() {
                   <div className="mb-8 w-16 h-16 rounded-2xl bg-white/[0.03] border border-white/5 flex items-center justify-center group-hover:bg-white/10 transition-all duration-500 group-hover:scale-110 shadow-xl group-hover:border-blue-500/30">
                     {reason.icon}
                   </div>
-                  <h4 className="text-2xl font-bold mb-4 text-white uppercase tracking-tighter group-hover:translate-x-2 transition-transform">{reason.title}</h4>
-                  <p className="text-zinc-400 text-lg leading-relaxed font-medium group-hover:text-zinc-200 transition-colors">
+                  <h4 className="text-lg sm:text-2xl font-bold mb-3 sm:mb-4 text-white uppercase tracking-tighter group-hover:translate-x-2 transition-transform">{reason.title}</h4>
+                  <p className="text-zinc-400 text-base leading-relaxed font-medium group-hover:text-zinc-200 transition-colors">
                     {reason.description}
                   </p>
                 </motion.div>
@@ -77,7 +77,7 @@ export default function WhyChooseUs() {
             className="relative flex flex-col gap-4"
           >
             {/* Poster Image Card */}
-            <div className="relative rounded-[2rem] sm:rounded-[3rem] overflow-hidden border border-white/8 shadow-2xl shadow-blue-900/20 group bg-zinc-950">
+            <div className="relative rounded-[2rem] sm:rounded-[3rem] overflow-hidden border border-white/[0.08] shadow-2xl shadow-blue-900/20 group bg-zinc-950">
               {/* HUD corner reticles */}
               <div className="absolute inset-0 z-20 pointer-events-none">
                 <div className="absolute top-5 left-5 w-8 h-8 border-l-2 border-t-2 border-white/25 rounded-tl-lg" />
@@ -116,7 +116,7 @@ export default function WhyChooseUs() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.7, delay: 0.1 + i * 0.08, ease: [0.16, 1, 0.3, 1] }}
                   whileHover={{ y: -4 }}
-                  className="group bg-zinc-950/90 border border-white/8 rounded-2xl p-4 text-center cursor-default shadow-lg hover:border-white/20 transition-all duration-300"
+                  className="group bg-zinc-950/90 border border-white/[0.08] rounded-2xl p-4 text-center cursor-default shadow-lg hover:border-white/20 transition-all duration-300"
                 >
                   <div className={`text-2xl font-black tracking-tighter mb-0.5 transition-colors duration-300 ${stat.color}`}>
                     {stat.value}

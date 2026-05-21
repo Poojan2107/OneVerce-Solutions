@@ -197,9 +197,9 @@ Implementing these structural adjustments is estimated to increase checkout conv
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="glass-card rounded-[4rem] overflow-hidden shadow-2xl relative border border-white/5 bg-white/[0.01]"
+              className="glass-card rounded-[2rem] sm:rounded-[4rem] overflow-hidden shadow-2xl relative border border-white/5 bg-white/[0.01]"
             >
-              <div className="bg-white/[0.03] px-10 py-6 border-b border-white/[0.05] flex items-center justify-between">
+              <div className="bg-white/[0.03] px-6 sm:px-10 py-5 sm:py-6 border-b border-white/[0.05] flex items-center justify-between">
                 <div className="text-[9px] font-bold text-zinc-500 uppercase tracking-widest flex items-center gap-3">
                   Intelligence Dashboard
                 </div>
@@ -253,14 +253,14 @@ Implementing these structural adjustments is estimated to increase checkout conv
                           value={url}
                           onChange={(e) => setUrl(e.target.value)}
                           placeholder="https://yourdomain.com"
-                          className="w-full bg-white/[0.02] border border-white/10 rounded-[2rem] pl-12 pr-4 md:pl-16 md:pr-8 py-5 md:py-8 text-base md:text-2xl focus:border-blue-500/30 outline-none transition-all placeholder:text-zinc-800 text-white"
+                          className="w-full bg-white/[0.02] border border-white/10 rounded-[1.5rem] sm:rounded-[2rem] pl-11 pr-4 md:pl-16 md:pr-8 py-4 md:py-8 text-base md:text-2xl focus:border-blue-500/30 outline-none transition-all placeholder:text-zinc-800 text-white"
                         />
                       </div>
                       <button
                         type="submit"
                         disabled={isAnalyzing}
                         onMouseEnter={playHover}
-                        className="w-full bg-white text-black py-8 rounded-[2rem] font-bold uppercase tracking-widest text-[10px] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-4 shadow-2xl group/btn disabled:opacity-60 cursor-pointer"
+                        className="w-full bg-white text-black py-5 sm:py-8 rounded-[1.5rem] sm:rounded-[2rem] font-bold uppercase tracking-widest text-[10px] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-4 shadow-2xl group/btn disabled:opacity-60 cursor-pointer min-h-[52px]"
                       >
                         Initiate Free Audit
                         <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" aria-hidden="true" />
@@ -305,7 +305,7 @@ Implementing these structural adjustments is estimated to increase checkout conv
                       ))}
                     </div>
 
-                    <div className="bg-white/[0.01] border border-white/5 rounded-[2.5rem] p-8 text-sm text-zinc-500 leading-relaxed max-h-[350px] overflow-y-auto custom-scrollbar whitespace-pre-wrap font-medium text-left">
+                    <div className="bg-white/[0.01] border border-white/5 rounded-[1.5rem] sm:rounded-[2.5rem] p-5 sm:p-8 text-sm text-zinc-500 leading-relaxed max-h-[350px] overflow-y-auto custom-scrollbar whitespace-pre-wrap font-medium text-left">
                       {result}
                     </div>
 

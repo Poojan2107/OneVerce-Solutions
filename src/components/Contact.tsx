@@ -127,7 +127,7 @@ export default function Contact() {
                           initial={{ opacity: 0, x: 20 }}
                           animate={{ opacity: 1, x: 0 }}
                           exit={{ opacity: 0, x: -20 }}
-                          className="space-y-8"
+                          className="space-y-5 sm:space-y-8"
                         >
                           <div className="space-y-4">
                             <label className="text-xs font-bold text-zinc-500 uppercase tracking-widest">Full Name</label>
@@ -135,7 +135,7 @@ export default function Contact() {
                               type="text"
                               required
                               placeholder="John Doe"
-                              className="w-full bg-white/[0.02] border border-white/10 rounded-2xl px-6 py-5 text-lg md:text-xl focus:border-blue-500/50 outline-none transition-all placeholder:text-zinc-800 text-white"
+                              className="w-full bg-white/[0.02] border border-white/10 rounded-2xl px-5 sm:px-6 py-4 sm:py-5 text-base md:text-xl focus:border-blue-500/50 outline-none transition-all placeholder:text-zinc-800 text-white"
                               value={formData.name}
                               onChange={e => setFormData({ ...formData, name: e.target.value })}
                             />
@@ -146,7 +146,7 @@ export default function Contact() {
                               type="email"
                               required
                               placeholder="john@example.com"
-                              className="w-full bg-white/[0.02] border border-white/10 rounded-2xl px-6 py-5 text-lg md:text-xl focus:border-blue-500/50 outline-none transition-all placeholder:text-zinc-800 text-white"
+                              className="w-full bg-white/[0.02] border border-white/10 rounded-2xl px-5 sm:px-6 py-4 sm:py-5 text-base md:text-xl focus:border-blue-500/50 outline-none transition-all placeholder:text-zinc-800 text-white"
                               value={formData.email}
                               onChange={e => setFormData({ ...formData, email: e.target.value })}
                             />
@@ -160,7 +160,7 @@ export default function Contact() {
                           initial={{ opacity: 0, x: 20 }}
                           animate={{ opacity: 1, x: 0 }}
                           exit={{ opacity: 0, x: -20 }}
-                          className="space-y-8"
+                          className="space-y-5 sm:space-y-8"
                         >
                           <div className="space-y-4">
                             <label className="text-xs font-bold text-zinc-500 uppercase tracking-widest">Budget Tier</label>
@@ -194,7 +194,7 @@ export default function Contact() {
                           initial={{ opacity: 0, x: 20 }}
                           animate={{ opacity: 1, x: 0 }}
                           exit={{ opacity: 0, x: -20 }}
-                          className="space-y-8"
+                          className="space-y-5 sm:space-y-8"
                         >
                           <div className="space-y-4">
                             <label className="text-xs font-bold text-zinc-500 uppercase tracking-widest">Project Details</label>

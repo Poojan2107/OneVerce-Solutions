@@ -90,7 +90,7 @@ export default function Hero({ isPreloading = false }: { isPreloading?: boolean 
           className="mb-6 md:mb-10 flex items-center gap-2 md:gap-3 px-3 py-1.5 md:px-5 md:py-2 rounded-full border border-white/10 bg-white/05 backdrop-blur-md shadow-[0_0_30px_rgba(0,0,0,0.5)] max-w-[95vw]"
         >
           <div className="w-1 h-1 md:w-1.5 md:h-1.5 rounded-full bg-[#00f0f0] animate-pulse shadow-[0_0_15px_#00f0f0] shrink-0" />
-          <span className="text-[7px] sm:text-xs font-mono uppercase tracking-[0.15em] sm:tracking-[0.4em] md:tracking-[0.6em] text-white/80 text-center">
+          <span className="text-[9px] sm:text-xs font-mono uppercase tracking-[0.15em] sm:tracking-[0.4em] md:tracking-[0.6em] text-white/80 text-center">
             Next Generation Studio
           </span>
         </motion.div>
