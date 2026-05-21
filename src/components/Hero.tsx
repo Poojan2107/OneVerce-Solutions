@@ -93,7 +93,7 @@ export default function Hero({ isPreloading = false }: { isPreloading?: boolean 
 
       <motion.div
         style={motionStyle}
-        className="relative z-30 flex flex-col items-center text-center px-4 sm:px-6 w-full max-w-full sm:max-w-7xl mx-auto pt-16 pb-12 md:pt-0 md:pb-0 md:preserve-3d overflow-hidden"
+        className="relative z-30 flex flex-col items-center text-center px-4 sm:px-6 w-full max-w-full sm:max-w-7xl mx-auto pt-16 pb-12 md:pt-0 md:pb-0 md:preserve-3d md:overflow-hidden"
       >
         <motion.div
           initial={{ opacity: 0, y: isMobile ? 0 : 20 }}
@@ -107,7 +107,7 @@ export default function Hero({ isPreloading = false }: { isPreloading?: boolean 
           </span>
         </motion.div>
 
-        <div className="relative mb-6 md:mb-10 group w-full overflow-hidden">
+        <div className="relative mb-6 md:mb-10 group w-full">
           <motion.h1
             initial={isMobile ? { opacity: 0 } : { opacity: 0, scale: 0.95, filter: 'blur(20px)' }}
             animate={{ opacity: 1, scale: 1, filter: 'none' }}
