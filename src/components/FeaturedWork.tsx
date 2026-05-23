@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { createPortal } from 'react-dom'
 import { motion, AnimatePresence } from 'motion/react'
 import {
   ArrowUpRight,
@@ -350,164 +351,171 @@ export default function FeaturedWork() {
       </div>
 
       {/* ── PROJECT DETAIL MODAL OVERLAY ── */}
-      <AnimatePresence>
-        {activeProject && highlights && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setSelectedIdx(null)}
-            className='fixed inset-0 z-[250] bg-black/85 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto'
-          >
-            <motion.div
-              initial={{ scale: 0.95, opacity: 0, y: 30 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.95, opacity: 0, y: 30 }}
-              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              onClick={e => e.stopPropagation()}
-              className='bg-[#0b0c0f] border border-white/10 rounded-[1.25rem] sm:rounded-[2rem] overflow-hidden shadow-2xl max-w-2xl w-full my-4 sm:my-8 max-h-[90vh] overflow-y-auto'
-            >
-              {/* Cover Image & Header */}
-              <div className='relative aspect-[16/9] bg-zinc-950 border-b border-white/5'>
-                <img
-                  src={activeProject.image}
-                  alt={activeProject.title}
-                  className='w-full h-full object-cover object-top'
-                />
-                <div className='absolute inset-0 bg-gradient-to-t from-[#0b0c0f] via-[#0b0c0f]/40 to-transparent' />
-
-                {/* Close Button */}
-                <button
-                  onClick={() => {
-                    playClick()
-                    setSelectedIdx(null)
-                  }}
-                  onMouseEnter={playHover}
-                  className='absolute top-6 right-6 w-11 h-11 rounded-full bg-black/60 border border-white/10 hover:border-white/25 text-white flex items-center justify-center hover:scale-105 transition-all cursor-pointer'
-                  aria-label='Close details'
+      {typeof document !== 'undefined' &&
+        createPortal(
+          <AnimatePresence>
+            {activeProject && highlights && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setSelectedIdx(null)}
+                className='fixed inset-0 z-[250] bg-black/85 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto'
+              >
+                <motion.div
+                  initial={{ scale: 0.95, opacity: 0, y: 30 }}
+                  animate={{ scale: 1, opacity: 1, y: 0 }}
+                  exit={{ scale: 0.95, opacity: 0, y: 30 }}
+                  transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                  onClick={e => e.stopPropagation()}
+                  className='bg-[#0b0c0f] border border-white/10 rounded-[1.25rem] sm:rounded-[2rem] overflow-hidden shadow-2xl max-w-2xl w-full my-4 sm:my-8 max-h-[90vh] overflow-y-auto'
                 >
-                  <X size={16} />
-                </button>
+                  {/* Cover Image & Header */}
+                  <div className='relative aspect-[16/9] bg-zinc-950 border-b border-white/5'>
+                    <img
+                      src={activeProject.image}
+                      alt={activeProject.title}
+                      className='w-full h-full object-cover object-top'
+                    />
+                    <div className='absolute inset-0 bg-gradient-to-t from-[#0b0c0f] via-[#0b0c0f]/40 to-transparent' />
 
-                {/* Badging */}
-                <div className='absolute bottom-6 left-6 right-6 flex items-end justify-between flex-wrap gap-4'>
-                  <div>
-                    <span
-                      className={`text-[9px] font-black uppercase tracking-[0.3em] ${accentTextClasses[activeProject.accent]}`}
+                    {/* Close Button */}
+                    <button
+                      onClick={() => {
+                        playClick()
+                        setSelectedIdx(null)
+                      }}
+                      onMouseEnter={playHover}
+                      className='absolute top-6 right-6 w-11 h-11 rounded-full bg-black/60 border border-white/10 hover:border-white/25 text-white flex items-center justify-center hover:scale-105 transition-all cursor-pointer'
+                      aria-label='Close details'
                     >
-                      {activeProject.category}
-                    </span>
-                    <h4 className='text-2xl sm:text-3xl font-black text-white uppercase tracking-tighter mt-1 leading-none'>
-                      {activeProject.title}
-                    </h4>
-                  </div>
-                </div>
-              </div>
+                      <X size={16} />
+                    </button>
 
-              {/* Modal Body */}
-              <div className='p-6 sm:p-10 space-y-8'>
-                {/* Metrics Row */}
-                <div className='grid grid-cols-3 gap-4 p-5 rounded-2xl bg-white/[0.02] border border-white/5'>
-                  {Object.entries(activeProject.metrics).map(([key, value]) => (
-                    <div key={key} className='text-center'>
-                      <div className='text-[8px] sm:text-[9px] font-bold text-zinc-500 uppercase tracking-widest mb-1.5'>
-                        {key.replace('_', ' ')}
-                      </div>
-                      <div
-                        className={`text-sm sm:text-lg md:text-xl font-bold tracking-tight ${accentTextClasses[activeProject.accent]}`}
-                      >
-                        {value}
+                    {/* Badging */}
+                    <div className='absolute bottom-6 left-6 right-6 flex items-end justify-between flex-wrap gap-4'>
+                      <div>
+                        <span
+                          className={`text-[9px] font-black uppercase tracking-[0.3em] ${accentTextClasses[activeProject.accent]}`}
+                        >
+                          {activeProject.category}
+                        </span>
+                        <h4 className='text-2xl sm:text-3xl font-black text-white uppercase tracking-tighter mt-1 leading-none'>
+                          {activeProject.title}
+                        </h4>
                       </div>
                     </div>
-                  ))}
-                </div>
-
-                {/* Details Section */}
-                <div className='space-y-6'>
-                  <div className='space-y-2.5'>
-                    <span className='text-[10px] font-black uppercase tracking-[0.3em] text-zinc-500 flex items-center gap-1.5'>
-                      <Cpu size={12} className={accentTextClasses[activeProject.accent]} />
-                      Overview Dossier
-                    </span>
-                    <p className='text-zinc-300 text-sm leading-relaxed font-medium'>
-                      {highlights.summary}
-                    </p>
                   </div>
 
-                  <div className='space-y-2.5'>
-                    <span className='text-[10px] font-black uppercase tracking-[0.3em] text-zinc-500 flex items-center gap-1.5'>
-                      <ShieldAlert size={12} className='text-amber-500' />
-                      Engineering Challenges
-                    </span>
-                    <p className='text-zinc-400 text-sm leading-relaxed font-medium'>
-                      {highlights.challenges}
-                    </p>
-                  </div>
-
-                  <div className='space-y-3'>
-                    <span className='text-[10px] font-black uppercase tracking-[0.3em] text-zinc-500 flex items-center gap-1.5'>
-                      <Sparkles size={12} className='text-emerald-500' />
-                      Key Milestones & Outcomes
-                    </span>
-                    <ul className='space-y-2'>
-                      {highlights.outcomes.map((outcome, idx) => (
-                        <li
-                          key={idx}
-                          className='flex items-start gap-2.5 text-zinc-400 text-xs leading-relaxed font-medium'
-                        >
-                          <CheckCircle2 size={13} className='text-emerald-500 shrink-0 mt-0.5' />
-                          <span>{outcome}</span>
-                        </li>
+                  {/* Modal Body */}
+                  <div className='p-6 sm:p-10 space-y-8'>
+                    {/* Metrics Row */}
+                    <div className='grid grid-cols-3 gap-4 p-5 rounded-2xl bg-white/[0.02] border border-white/5'>
+                      {Object.entries(activeProject.metrics).map(([key, value]) => (
+                        <div key={key} className='text-center'>
+                          <div className='text-[8px] sm:text-[9px] font-bold text-zinc-500 uppercase tracking-widest mb-1.5'>
+                            {key.replace('_', ' ')}
+                          </div>
+                          <div
+                            className={`text-sm sm:text-lg md:text-xl font-bold tracking-tight ${accentTextClasses[activeProject.accent]}`}
+                          >
+                            {value}
+                          </div>
+                        </div>
                       ))}
-                    </ul>
-                  </div>
-                </div>
+                    </div>
 
-                {/* Tech Badges */}
-                <div className='space-y-2.5'>
-                  <span className='text-[9px] font-black uppercase tracking-[0.3em] text-zinc-500'>
-                    Tech Stack Matrix
-                  </span>
-                  <div className='flex flex-wrap gap-2'>
-                    {activeProject.tech.map(t => (
-                      <span
-                        key={t}
-                        className='text-[9px] font-bold uppercase tracking-[0.25em] px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.06] text-zinc-300'
-                      >
-                        {t}
+                    {/* Details Section */}
+                    <div className='space-y-6'>
+                      <div className='space-y-2.5'>
+                        <span className='text-[10px] font-black uppercase tracking-[0.3em] text-zinc-500 flex items-center gap-1.5'>
+                          <Cpu size={12} className={accentTextClasses[activeProject.accent]} />
+                          Overview Dossier
+                        </span>
+                        <p className='text-zinc-300 text-sm leading-relaxed font-medium'>
+                          {highlights.summary}
+                        </p>
+                      </div>
+
+                      <div className='space-y-2.5'>
+                        <span className='text-[10px] font-black uppercase tracking-[0.3em] text-zinc-500 flex items-center gap-1.5'>
+                          <ShieldAlert size={12} className='text-amber-500' />
+                          Engineering Challenges
+                        </span>
+                        <p className='text-zinc-400 text-sm leading-relaxed font-medium'>
+                          {highlights.challenges}
+                        </p>
+                      </div>
+
+                      <div className='space-y-3'>
+                        <span className='text-[10px] font-black uppercase tracking-[0.3em] text-zinc-500 flex items-center gap-1.5'>
+                          <Sparkles size={12} className='text-emerald-500' />
+                          Key Milestones & Outcomes
+                        </span>
+                        <ul className='space-y-2'>
+                          {highlights.outcomes.map((outcome, idx) => (
+                            <li
+                              key={idx}
+                              className='flex items-start gap-2.5 text-zinc-400 text-xs leading-relaxed font-medium'
+                            >
+                              <CheckCircle2
+                                size={13}
+                                className='text-emerald-500 shrink-0 mt-0.5'
+                              />
+                              <span>{outcome}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+
+                    {/* Tech Badges */}
+                    <div className='space-y-2.5'>
+                      <span className='text-[9px] font-black uppercase tracking-[0.3em] text-zinc-500'>
+                        Tech Stack Matrix
                       </span>
-                    ))}
-                  </div>
-                </div>
+                      <div className='flex flex-wrap gap-2'>
+                        {activeProject.tech.map(t => (
+                          <span
+                            key={t}
+                            className='text-[9px] font-bold uppercase tracking-[0.25em] px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.06] text-zinc-300'
+                          >
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
 
-                {/* Action Links */}
-                <div className='flex gap-4 flex-wrap pt-2'>
-                  <a
-                    href={activeProject.liveLink}
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    className={`flex-1 min-w-[140px] flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl border text-white font-black uppercase tracking-widest text-[10px] transition-all bg-white/[0.03] hover:bg-white/[0.08] ${accentBorderClasses[activeProject.accent]}`}
-                  >
-                    <ExternalLink size={14} />
-                    Launch Live
-                  </a>
-                  {activeProject.githubLink && (
-                    <a
-                      href={activeProject.githubLink}
-                      target='_blank'
-                      rel='noopener noreferrer'
-                      className='flex-1 min-w-[140px] flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl border border-white/[0.08] text-zinc-400 hover:text-white font-black uppercase tracking-widest text-[10px] transition-all bg-white/[0.01] hover:bg-white/[0.06] hover:border-white/20'
-                    >
-                      <Github size={14} />
-                      Source Code
-                    </a>
-                  )}
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
+                    {/* Action Links */}
+                    <div className='flex gap-4 flex-wrap pt-2'>
+                      <a
+                        href={activeProject.liveLink}
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        className={`flex-1 min-w-[140px] flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl border text-white font-black uppercase tracking-widest text-[10px] transition-all bg-white/[0.03] hover:bg-white/[0.08] ${accentBorderClasses[activeProject.accent]}`}
+                      >
+                        <ExternalLink size={14} />
+                        Launch Live
+                      </a>
+                      {activeProject.githubLink && (
+                        <a
+                          href={activeProject.githubLink}
+                          target='_blank'
+                          rel='noopener noreferrer'
+                          className='flex-1 min-w-[140px] flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl border border-white/[0.08] text-zinc-400 hover:text-white font-black uppercase tracking-widest text-[10px] transition-all bg-white/[0.01] hover:bg-white/[0.06] hover:border-white/20'
+                        >
+                          <Github size={14} />
+                          Source Code
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>,
+          document.body,
         )}
-      </AnimatePresence>
     </section>
   )
 }

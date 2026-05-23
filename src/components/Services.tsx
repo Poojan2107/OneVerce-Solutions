@@ -213,9 +213,7 @@ export default function Services() {
         </div>
       </div>
 
-      {selectedService && (
-        <ServiceModal service={selectedService} onClose={() => setSelectedService(null)} />
-      )}
+      <ServiceModal service={selectedService} onClose={() => setSelectedService(null)} />
     </section>
   )
 }
