@@ -447,11 +447,11 @@ function DesktopHero({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.4 }}
-              className='flex justify-center w-full'
+              className='flex flex-col md:flex-row items-stretch md:items-center gap-4 md:gap-12 w-full max-w-md md:max-w-none md:w-auto px-2 justify-center'
             >
               <a
                 href='#contact'
-                className='group relative w-full max-w-[300px] h-[56px] inline-flex items-center justify-center border-0 overflow-hidden text-center rounded-full'
+                className='group relative w-full max-w-[300px] md:w-auto md:px-14 h-[56px] inline-flex items-center justify-center border-0 overflow-hidden text-center rounded-full'
               >
                 <div className='absolute inset-0 bg-white group-hover:bg-[#00f0f0] transition-colors duration-500 clip-path-hero-btn' />
                 <motion.div
@@ -462,6 +462,14 @@ function DesktopHero({
                 <span className='relative z-10 text-black font-black text-xs tracking-[0.4em] uppercase flex items-center gap-2 transition-colors duration-500'>
                   Initiate Venture <span>➔</span>
                 </span>
+              </a>
+
+              <a
+                href='#work'
+                className='group flex items-center justify-center gap-3 md:gap-5 text-white/20 hover:text-white transition-all duration-500 uppercase tracking-[0.15em] md:tracking-[0.4em] text-[9px] md:text-[10px] font-bold font-mono py-2 min-h-[44px]'
+              >
+                <span className='w-8 md:w-16 h-[1px] bg-white/10 group-hover:w-12 md:group-hover:w-24 group-hover:bg-[#00f0f0] transition-all duration-700 shrink-0' />
+                <span className='text-center'>Sector Archive</span>
               </a>
             </motion.div>
           </div>
