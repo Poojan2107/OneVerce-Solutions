@@ -17,16 +17,17 @@ We serve as the technical command center for venture-backed startups, disruptive
 
 ## ❖ Capabilities Matrix
 
-*   **Systems Engineering:** Full-stack, modular architecture designed for operational scale and uncompromised performance.
-*   **High-Fidelity UI/UX:** "Surgical Industrialism" design systems. Brutalist aesthetics meeting military-grade precision to create unforgettable digital experiences.
-*   **AI Integration:** Custom neural networks, LLM integrations, and automated intelligence pipelines designed to replace manual overhead.
-*   **Performance Marketing:** Conversion-engineered landing pages built on data-driven heuristics, dramatically lowering customer acquisition costs.
+- **Systems Engineering:** Full-stack, modular architecture designed for operational scale and uncompromised performance.
+- **High-Fidelity UI/UX:** "Surgical Industrialism" design systems. Brutalist aesthetics meeting military-grade precision to create unforgettable digital experiences.
+- **AI Integration:** Custom neural networks, LLM integrations, and automated intelligence pipelines designed to replace manual overhead.
+- **Performance Marketing:** Conversion-engineered landing pages built on data-driven heuristics, dramatically lowering customer acquisition costs.
 
 ---
 
 ## ❖ The Oneverce Standard
 
 Every piece of infrastructure developed under the Oneverce protocol adheres to strict operational standards:
+
 1.  **Zero Latency:** Uncompromising hardware-accelerated physics and optimized rendering.
 2.  **Absolute Security:** Enterprise-grade validation and data integrity.
 3.  **Commanding Presence:** Cinematic design language that forces immediate market respect.
@@ -45,6 +46,16 @@ Every piece of infrastructure developed under the Oneverce protocol adheres to s
 ```bash
 npm install
 npm run dev
+```
+
+**Testing:**
+
+```bash
+npm run test
+npm run test:watch
+npm run coverage
+npm run e2e
+npm run verify
 ```
 
 **Live deploy:** Push to GitHub — Vercel builds with `vite build` and serves `dist/`.

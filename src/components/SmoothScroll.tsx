@@ -1,69 +1,68 @@
-import { useEffect } from 'react';
-import Lenis from 'lenis';
-import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion';
-import { useCoarsePointer } from '../hooks/useCoarsePointer';
+import { useEffect } from 'react'
+import Lenis from 'lenis'
+import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion'
+import { useCoarsePointer } from '../hooks/useCoarsePointer'
 
 export default function SmoothScroll() {
-  const reducedMotion = usePrefersReducedMotion();
-  const isCoarsePointer = useCoarsePointer();
+  const reducedMotion = usePrefersReducedMotion()
+  const isCoarsePointer = useCoarsePointer()
 
   useEffect(() => {
     // Disable smooth scroll on reduced motion OR coarse pointers (touch devices)
-    if (reducedMotion || isCoarsePointer) return;
+    if (reducedMotion || isCoarsePointer) return
 
     const lenis = new Lenis({
       duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
       wheelMultiplier: 1.0,
       syncTouch: false, // Ensure native touch scrolling on mobile
-    });
+    })
 
-    let animationFrameId: number;
+    let animationFrameId: number
 
     function raf(time: number) {
-      lenis.raf(time);
-      animationFrameId = requestAnimationFrame(raf);
+      lenis.raf(time)
+      animationFrameId = requestAnimationFrame(raf)
     }
 
-    animationFrameId = requestAnimationFrame(raf);
+    animationFrameId = requestAnimationFrame(raf)
 
     // Optimized Global Anchor Link Handling (Event Delegation)
     const handleAnchorClick = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      const anchor = target.closest('a');
-      
+      const target = e.target as HTMLElement
+      const anchor = target.closest('a')
+
       if (anchor && anchor.hash && anchor.hash.startsWith('#')) {
-        const targetId = anchor.hash;
-        if (targetId === '#') return;
-        
-        const targetElement = document.querySelector(targetId);
+        const targetId = anchor.hash
+        if (targetId === '#') return
+
+        const targetElement = document.querySelector(targetId)
         if (targetElement) {
-          e.preventDefault();
+          e.preventDefault()
           lenis.scrollTo(targetElement as HTMLElement, {
             offset: 0,
             duration: 2,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-          });
+            easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          })
         }
       }
-    };
+    }
 
-    document.addEventListener('click', handleAnchorClick);
+    document.addEventListener('click', handleAnchorClick)
 
-    // Store lenis on window for global access if needed
-    (window as any).lenis = lenis;
+    const win = window as unknown as { lenis?: Lenis }
+    win.lenis = lenis
 
     return () => {
-      document.removeEventListener('click', handleAnchorClick);
-      cancelAnimationFrame(animationFrameId);
-      lenis.destroy();
-      delete (window as any).lenis;
-    };
-  }, [reducedMotion, isCoarsePointer]);
+      document.removeEventListener('click', handleAnchorClick)
+      cancelAnimationFrame(animationFrameId)
+      lenis.destroy()
+      delete win.lenis
+    }
+  }, [reducedMotion, isCoarsePointer])
 
-  return null;
+  return null
 }
-
