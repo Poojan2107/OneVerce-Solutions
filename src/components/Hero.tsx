@@ -402,7 +402,7 @@ function DesktopHero({
             className='relative flex justify-center items-center w-full'
             style={{ width: '100%', height: '280px' }}
           >
-            <div style={{ width: '105vw', maxWidth: '430px' }}>
+            <div style={{ width: '100%', maxWidth: '1200px' }}>
               {!isPreloading && (
                 <InfinityScene
                   mouseX={isCoarsePointer ? undefined : mouseX}

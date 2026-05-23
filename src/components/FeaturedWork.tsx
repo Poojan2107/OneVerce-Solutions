@@ -162,9 +162,10 @@ export default function FeaturedWork() {
         {/* Projects Grid */}
         <div className='space-y-8 md:space-y-10'>
           {projects.map((project, index) => (
-            <motion.button
+            <motion.div
               key={project.title}
-              type='button'
+              role='button'
+              tabIndex={0}
               aria-label={`Select ${project.title} project`}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -173,6 +174,13 @@ export default function FeaturedWork() {
               onClick={() => {
                 playClick()
                 setSelectedIdx(index)
+              }}
+              onKeyDown={e => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault()
+                  playClick()
+                  setSelectedIdx(index)
+                }
               }}
               onMouseEnter={playHover}
               className={`group grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center rounded-2xl md:rounded-3xl border border-white/[0.06] bg-white/[0.015] p-4 md:p-10 transition-all duration-700 ${accentGlowClasses[project.accent]} hover:border-white/10 cursor-pointer`}
@@ -313,7 +321,7 @@ export default function FeaturedWork() {
                   </button>
                 </div>
               </div>
-            </motion.button>
+            </motion.div>
           ))}
         </div>
 
@@ -349,7 +357,7 @@ export default function FeaturedWork() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setSelectedIdx(null)}
-            className='fixed inset-0 z-[200] bg-black/85 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto'
+            className='fixed inset-0 z-[250] bg-black/85 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto'
           >
             <motion.div
               initial={{ scale: 0.95, opacity: 0, y: 30 }}
