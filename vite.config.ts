@@ -93,8 +93,10 @@ export default defineConfig(({ mode }) => {
 
                     // If we are in E2E tests, or if there is no valid GEMINI_API_KEY, return a high-fidelity mock.
                     const isTest =
+                      process.env.PLAYWRIGHT === 'true' ||
                       process.env.NODE_ENV === 'test' ||
                       env.NODE_ENV === 'test' ||
+                      req.headers['x-playwright-test'] === 'true' ||
                       req.headers['user-agent']?.includes('Playwright')
                     if (
                       isTest ||

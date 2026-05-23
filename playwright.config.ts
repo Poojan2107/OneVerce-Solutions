@@ -25,6 +25,7 @@ export default defineConfig({
     stderr: 'pipe',
     env: {
       NODE_ENV: 'test',
+      PLAYWRIGHT: 'true',
     },
   },
 })

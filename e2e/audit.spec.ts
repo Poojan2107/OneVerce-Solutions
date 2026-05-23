@@ -1,6 +1,12 @@
 import { test, expect } from '@playwright/test'
 
 test.describe('Audit Tool', () => {
+  test.use({
+    extraHTTPHeaders: {
+      'x-playwright-test': 'true',
+    },
+  })
+
   test('should allow a user to initiate an audit and see results', async ({ page }) => {
     // Go to the page
     await page.goto('/')
