@@ -273,7 +273,7 @@ export default function AuditTool() {
                       {Object.entries(scores).map(([key, value]) => (
                         <div
                           key={key}
-                          className='glass-card p-4 sm:p-6 rounded-2xl border border-white/10 text-center relative overflow-hidden group bg-white/[0.01]'
+                          className='glass-card p-3 sm:p-4 rounded-2xl border border-white/10 text-center relative overflow-hidden group bg-white/[0.01]'
                         >
                           <div className='absolute top-0 left-0 w-full h-1 bg-white/5 overflow-hidden'>
                             <motion.div
@@ -283,7 +283,7 @@ export default function AuditTool() {
                               className='h-full bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.5)]'
                             />
                           </div>
-                          <div className='text-[9px] font-bold text-zinc-600 uppercase tracking-widest mb-2'>
+                          <div className='text-[8px] sm:text-[9px] font-bold text-zinc-600 uppercase tracking-wider mb-2 whitespace-normal break-words'>
                             {key}
                           </div>
                           <div className='text-2xl font-bold text-white group-hover:text-blue-500 transition-colors'>

@@ -89,8 +89,8 @@ function MobileHero({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'center',
-        padding: '60px 20px 10px',
+        justifyContent: 'flex-start',
+        padding: '120px 20px 40px',
         gap: '16px',
         overflow: 'hidden',
         background: '#050505',
@@ -329,8 +329,8 @@ function DesktopHero({
   return (
     <section
       id='hero'
-      className='relative min-h-screen w-full bg-[#020202] flex flex-col items-center justify-center overflow-hidden'
-      style={{ minHeight: '100svh', paddingTop: '60px', paddingBottom: '10px', gap: '16px' }}
+      className='relative min-h-screen w-full bg-[#020202] flex flex-col items-center justify-start overflow-hidden'
+      style={{ minHeight: '100svh', paddingTop: '140px', paddingBottom: '40px', gap: '16px' }}
     >
       <div className='absolute inset-0 z-50 pointer-events-none opacity-[0.03] hidden md:block'>
         <svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg' className='w-full h-full'>
