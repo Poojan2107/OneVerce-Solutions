@@ -128,7 +128,7 @@ We detected the following points:
                     // Otherwise, call the actual API logic
                     const { GoogleGenerativeAI } = await import('@google/generative-ai')
                     const genAI = new GoogleGenerativeAI(apiKey)
-                    const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' })
+                    const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' })
 
                     const AUDIT_PROMPT = (url: string) => `
 You are a world-class UX Strategist and Conversion Rate Optimization (CRO) expert.
