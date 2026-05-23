@@ -24,7 +24,7 @@ describe('Hero', () => {
   it('renders the CTA buttons', () => {
     render(<Hero />)
     expect(screen.getByText('Initiate Venture')).toBeInTheDocument()
-    expect(screen.getByText('Sector Archive')).toBeInTheDocument()
+    expect(screen.getByText(/sector[_ ]archive/i)).toBeInTheDocument()
   })
 
   it('renders the status badge', () => {

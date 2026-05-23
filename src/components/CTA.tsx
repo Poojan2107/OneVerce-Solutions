@@ -9,16 +9,16 @@ export default function CTA() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className='glass-card p-6 sm:p-12 md:p-20 rounded-3xl border border-white/5 text-center relative overflow-hidden group bg-white/[0.01]'
+          className='glass-card p-6 sm:p-12 md:p-20 rounded-3xl border border-white/5 text-center relative overflow-hidden group bg-white/1'
         >
           {/* Background Polish with Dynamic Colors */}
           <div className='absolute inset-0 z-0'>
-            <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-500/[0.02] rounded-full blur-[150px] group-hover:bg-blue-500/[0.04] transition-colors duration-1000' />
+            <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-500/2 rounded-full blur-[150px] group-hover:bg-blue-500/[0.04] transition-colors duration-1000' />
             <div className='absolute bottom-0 right-0 w-[400px] h-[400px] bg-red-500/[0.02] rounded-full blur-[100px]' />
           </div>
 
           <div className='relative z-10 space-y-8'>
-            <div className='inline-flex items-center gap-3 px-6 py-2.5 rounded-full bg-white/[0.03] border border-white/10 text-blue-500 font-bold uppercase tracking-[0.4em] text-[9px]'>
+            <div className='inline-flex items-center gap-3 px-6 py-2.5 rounded-full bg-white/3 border border-white/10 text-blue-500 font-bold uppercase tracking-[0.4em] text-[9px]'>
               <Sparkles size={12} className='animate-pulse' /> Final Call to Impact
             </div>
 

@@ -122,15 +122,15 @@ export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
   return (
     <div
       className='relative w-full h-full flex items-center justify-center overflow-hidden md:overflow-visible md:perspective-[2000px] pointer-events-none'
-      style={{ contain: 'layout style paint' }}
+      style={{ contain: 'layout style' }}
     >
       {/* 1. Deep Space Ambient Nebula */}
       <div className='absolute inset-0 flex items-center justify-center z-0'>
         <div
-          className='absolute w-[120vw] h-[120vw] md:w-[1800px] md:h-[1000px] rounded-full opacity-65 md:opacity-100 blur-[80px] md:blur-[200px]'
+          className='absolute w-[120vw] h-[120vw] md:w-[1800px] md:h-[1000px] rounded-full opacity-30 md:opacity-40 blur-[100px] md:blur-[250px]'
           style={{
             background:
-              'radial-gradient(circle, rgba(0, 240, 255, 0.15) 0%, rgba(214, 0, 255, 0.15) 50%, transparent 80%)',
+              'radial-gradient(circle, rgba(0, 240, 255, 0.04) 0%, rgba(214, 0, 255, 0.02) 50%, transparent 80%)',
           }}
         />
       </div>
@@ -288,13 +288,13 @@ export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
           <div
             className='absolute translate-x-[350px] w-[1000px] h-[700px] rounded-full'
             style={{
-              background: 'radial-gradient(circle, rgba(147, 51, 234, 0.05) 0%, transparent 70%)',
+              background: 'radial-gradient(circle, rgba(147, 51, 234, 0.01) 0%, transparent 70%)',
             }}
           />
           <div
             className='absolute -translate-x-[350px] w-[800px] h-[600px] rounded-full'
             style={{
-              background: 'radial-gradient(circle, rgba(0, 240, 240, 0.08) 0%, transparent 70%)',
+              background: 'radial-gradient(circle, rgba(0, 240, 240, 0.02) 0%, transparent 70%)',
             }}
           />
         </div>

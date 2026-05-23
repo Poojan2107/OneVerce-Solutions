@@ -131,7 +131,7 @@ export default function FeaturedWork() {
       {/* Background */}
       <div className='absolute inset-0 z-0 pointer-events-none'>
         <div className='absolute top-1/2 left-0 w-[600px] h-[600px] bg-blue-600/[0.025] rounded-full blur-[180px]' />
-        <div className='absolute bottom-0 right-0 w-[500px] h-[500px] bg-purple-600/[0.025] rounded-full blur-[180px]' />
+        <div className='absolute bottom-0 right-0 w-125 h-125 bg-purple-600/[0.025] rounded-full blur-[180px]' />
       </div>
 
       <div className='max-w-7xl mx-auto px-6 md:px-12 relative z-10'>
@@ -312,7 +312,7 @@ export default function FeaturedWork() {
                       e.stopPropagation()
                       setSelectedIdx(index)
                     }}
-                    className={`group/link flex items-center justify-center gap-2.5 px-6 py-3.5 min-h-[44px] rounded-full border text-white font-bold uppercase tracking-widest text-[10px] transition-all duration-400 bg-white/[0.03] hover:bg-white/[0.08] ${accentBorderClasses[project.accent]}`}
+                    className={`group/link flex items-center justify-center gap-2.5 px-6 py-3.5 min-h-[44px] rounded-full border text-white font-bold uppercase tracking-widest text-[10px] transition-all duration-400 bg-white/3 hover:bg-white/[0.08] ${accentBorderClasses[project.accent]}`}
                   >
                     View Project Details
                     <ArrowUpRight
@@ -368,7 +368,7 @@ export default function FeaturedWork() {
                   exit={{ scale: 0.95, opacity: 0, y: 30 }}
                   transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                   onClick={e => e.stopPropagation()}
-                  className='bg-[#0b0c0f] border border-white/10 rounded-[1.25rem] sm:rounded-[2rem] overflow-hidden shadow-2xl max-w-2xl w-full my-4 sm:my-8 max-h-[90vh] overflow-y-auto'
+                  className='bg-[#0b0c0f] border border-white/10 rounded-[1.25rem] sm:rounded-4xl overflow-hidden shadow-2xl max-w-2xl w-full my-4 sm:my-8 max-h-[90vh] overflow-y-auto'
                 >
                   {/* Cover Image & Header */}
                   <div className='relative aspect-[16/9] bg-zinc-950 border-b border-white/5'>
@@ -386,29 +386,31 @@ export default function FeaturedWork() {
                         setSelectedIdx(null)
                       }}
                       onMouseEnter={playHover}
-                      className='absolute top-6 right-6 w-11 h-11 rounded-full bg-black/60 border border-white/10 hover:border-white/25 text-white flex items-center justify-center hover:scale-105 transition-all cursor-pointer'
+                      className='absolute top-6 right-6 w-11 h-11 rounded-full bg-black/60 border border-white/10 hover:border-white/25 text-white flex items-center justify-center hover:scale-105 transition-all cursor-pointer z-10'
                       aria-label='Close details'
                     >
                       <X size={16} />
                     </button>
-
-                    {/* Badging */}
-                    <div className='absolute bottom-6 left-6 right-6 flex items-end justify-between flex-wrap gap-4'>
-                      <div>
-                        <span
-                          className={`text-[9px] font-black uppercase tracking-[0.3em] ${accentTextClasses[activeProject.accent]}`}
-                        >
-                          {activeProject.category}
-                        </span>
-                        <h4 className='text-2xl sm:text-3xl font-black text-white uppercase tracking-tighter mt-1 leading-none'>
-                          {activeProject.title}
-                        </h4>
-                      </div>
-                    </div>
                   </div>
 
                   {/* Modal Body */}
-                  <div className='p-6 sm:p-10 space-y-8'>
+                  <div className='p-6 sm:p-10 space-y-8 pb-16 sm:pb-24'>
+                    {/* Project Header (Title & Category) */}
+                    <div className='space-y-2 border-b border-white/5 pb-6'>
+                      <div className='flex items-center gap-3'>
+                        <div
+                          className={`w-8 h-px ${accentClasses[activeProject.accent] || 'bg-emerald-500'} opacity-60`}
+                        />
+                        <span
+                          className={`text-[9px] sm:text-[10px] font-black uppercase tracking-[0.4em] ${accentTextClasses[activeProject.accent]}`}
+                        >
+                          {activeProject.category}
+                        </span>
+                      </div>
+                      <h4 className='text-2xl sm:text-4xl font-black text-white uppercase tracking-tighter leading-tight'>
+                        {activeProject.title}
+                      </h4>
+                    </div>
                     {/* Metrics Row */}
                     <div className='grid grid-cols-3 gap-4 p-5 rounded-2xl bg-white/[0.02] border border-white/5'>
                       {Object.entries(activeProject.metrics).map(([key, value]) => (
@@ -492,7 +494,7 @@ export default function FeaturedWork() {
                         href={activeProject.liveLink}
                         target='_blank'
                         rel='noopener noreferrer'
-                        className={`flex-1 min-w-[140px] flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl border text-white font-black uppercase tracking-widest text-[10px] transition-all bg-white/[0.03] hover:bg-white/[0.08] ${accentBorderClasses[activeProject.accent]}`}
+                        className={`flex-1 min-w-[140px] flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl border text-white font-black uppercase tracking-widest text-[10px] transition-all bg-white/3 hover:bg-white/[0.08] ${accentBorderClasses[activeProject.accent]}`}
                       >
                         <ExternalLink size={14} />
                         Launch Live
@@ -502,7 +504,7 @@ export default function FeaturedWork() {
                           href={activeProject.githubLink}
                           target='_blank'
                           rel='noopener noreferrer'
-                          className='flex-1 min-w-[140px] flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl border border-white/[0.08] text-zinc-400 hover:text-white font-black uppercase tracking-widest text-[10px] transition-all bg-white/[0.01] hover:bg-white/[0.06] hover:border-white/20'
+                          className='flex-1 min-w-[140px] flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl border border-white/[0.08] text-zinc-400 hover:text-white font-black uppercase tracking-widest text-[10px] transition-all bg-white/1 hover:bg-white/[0.06] hover:border-white/20'
                         >
                           <Github size={14} />
                           Source Code

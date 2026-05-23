@@ -82,7 +82,7 @@ function ServiceCard({
       viewport={{ once: true }}
       transition={{ duration: 1.2, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
       onClick={onClick}
-      className={`group bg-[#0A0A0A] p-5 sm:p-10 rounded-[1.5rem] sm:rounded-[3rem] cursor-pointer hover:bg-white/[0.01] transition-all relative overflow-hidden flex flex-col justify-between h-full border border-white/[0.05] shadow-2xl md:preserve-3d ${getBorderColor(service.color)}`}
+      className={`group bg-[#0A0A0A] p-5 sm:p-10 rounded-[1.5rem] sm:rounded-[3rem] cursor-pointer hover:bg-white/1 transition-all relative overflow-hidden flex flex-col justify-between h-full border border-white/[0.05] shadow-2xl md:preserve-3d ${getBorderColor(service.color)}`}
     >
       {/* HUD Scanline overlay */}
       <div className='absolute inset-0 bg-[linear-gradient(to_bottom,transparent_50%,rgba(255,255,255,0.01)_50%)] bg-[size:100%_4px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none' />
@@ -90,7 +90,7 @@ function ServiceCard({
       <div style={{ transform: 'translateZ(60px)' }} className='z-10'>
         <div className='flex justify-between items-start mb-6 sm:mb-12'>
           <div
-            className={`w-16 h-16 rounded-[1.5rem] bg-white/[0.03] flex items-center justify-center group-hover:scale-110 transition-all duration-700 border border-white/5 ${getAccentColor(service.color)}`}
+            className={`w-16 h-16 rounded-[1.5rem] bg-white/3 flex items-center justify-center group-hover:scale-110 transition-all duration-700 border border-white/5 ${getAccentColor(service.color)}`}
           >
             {service.icon}
           </div>

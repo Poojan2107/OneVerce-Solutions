@@ -63,7 +63,7 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-[100] transition-[padding] duration-500 ease-out ${
+        className={`fixed top-0 left-0 right-0 z-100 transition-[padding] duration-500 ease-out ${
           isScrolled ? 'py-4' : 'py-4 md:py-8'
         }`}
       >
@@ -145,7 +145,7 @@ export default function Navbar() {
               className={`w-9 h-9 rounded-full border flex items-center justify-center transition-all duration-300 relative cursor-pointer ${
                 soundEnabled
                   ? 'border-emerald-500/30 text-emerald-400 bg-emerald-500/5 hover:border-emerald-400'
-                  : 'border-white/10 text-zinc-500 hover:text-white hover:border-white/20 bg-white/[0.01]'
+                  : 'border-white/10 text-zinc-500 hover:text-white hover:border-white/20 bg-white/1'
               }`}
               title={soundEnabled ? 'Mute Sounds' : 'Enable Sounds'}
               aria-label={soundEnabled ? 'Mute Sounds' : 'Enable Sounds'}
@@ -183,7 +183,7 @@ export default function Navbar() {
 
           <button
             type='button'
-            className='md:hidden min-w-[44px] min-h-[44px] w-11 h-11 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white transition-colors'
+            className='md:hidden min-w-[44px] min-h-[44px] w-11 h-11 rounded-xl bg-white/3 border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white transition-colors'
             onClick={() => {
               playClick()
               setMobileMenuOpen(!mobileMenuOpen)

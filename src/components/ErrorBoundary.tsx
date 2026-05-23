@@ -28,7 +28,7 @@ export default class ErrorBoundary extends Component<Props, State> {
     if (this.state.hasError) {
       return (
         this.props.fallback ?? (
-          <div className='min-h-[20rem] flex items-center justify-center text-zinc-500 text-sm'>
+          <div className='min-h-80 flex items-center justify-center text-zinc-500 text-sm'>
             <p>Section failed to load.</p>
           </div>
         )

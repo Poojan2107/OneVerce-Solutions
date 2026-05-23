@@ -79,7 +79,7 @@ const WhyChooseUs = memo(function WhyChooseUs() {
                   transition={{ duration: 1, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
                   className='group'
                 >
-                  <div className='mb-8 w-16 h-16 rounded-2xl bg-white/[0.03] border border-white/5 flex items-center justify-center group-hover:bg-white/10 transition-all duration-500 group-hover:scale-110 shadow-xl group-hover:border-blue-500/30'>
+                  <div className='mb-8 w-16 h-16 rounded-2xl bg-white/3 border border-white/5 flex items-center justify-center group-hover:bg-white/10 transition-all duration-500 group-hover:scale-110 shadow-xl group-hover:border-blue-500/30'>
                     {reason.icon}
                   </div>
                   <h4 className='text-base sm:text-2xl font-bold mb-2 sm:mb-4 text-white uppercase tracking-tighter group-hover:translate-x-2 transition-transform'>

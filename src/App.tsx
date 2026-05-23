@@ -36,7 +36,7 @@ const TechStack = lazy(() => import('./components/TechStack'))
 
 const LoadingFallback = () => (
   <div
-    className='min-h-[20rem] w-full flex items-center justify-center'
+    className='min-h-80 w-full flex items-center justify-center'
     role='status'
     aria-label='Loading section'
   >
@@ -130,8 +130,8 @@ export default function App() {
             </LoadableSection>
           )}
           <ScrollToTop />
-          <div className='fixed inset-0 pointer-events-none bg-noise opacity-[0.015] z-[100] hidden md:block' />
-          <div className='fixed inset-0 pointer-events-none bg-scanlines opacity-[0.04] z-[100] hidden md:block' />
+          <div className='fixed inset-0 pointer-events-none bg-noise opacity-[0.015] z-100 hidden md:block' />
+          <div className='fixed inset-0 pointer-events-none bg-scanlines opacity-[0.04] z-100 hidden md:block' />
 
           <StickyCTA />
 

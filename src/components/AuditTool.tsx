@@ -165,9 +165,9 @@ export default function AuditTool() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className='glass-card rounded-[2rem] sm:rounded-[4rem] overflow-hidden shadow-2xl relative border border-white/5 bg-white/[0.01]'
+              className='glass-card rounded-[2rem] sm:rounded-[4rem] overflow-hidden shadow-2xl relative border border-white/5 bg-white/1'
             >
-              <div className='bg-white/[0.03] px-6 sm:px-10 py-5 sm:py-6 border-b border-white/[0.05] flex items-center justify-between'>
+              <div className='bg-white/3 px-6 sm:px-10 py-5 sm:py-6 border-b border-white/[0.05] flex items-center justify-between'>
                 <div className='text-[9px] font-bold text-zinc-500 uppercase tracking-widest flex items-center gap-3'>
                   Intelligence Dashboard
                 </div>
@@ -273,7 +273,7 @@ export default function AuditTool() {
                       {Object.entries(scores).map(([key, value]) => (
                         <div
                           key={key}
-                          className='glass-card p-3 sm:p-4 rounded-2xl border border-white/10 text-center relative overflow-hidden group bg-white/[0.01]'
+                          className='glass-card p-3 sm:p-4 rounded-2xl border border-white/10 text-center relative overflow-hidden group bg-white/1'
                         >
                           <div className='absolute top-0 left-0 w-full h-1 bg-white/5 overflow-hidden'>
                             <motion.div
@@ -293,7 +293,7 @@ export default function AuditTool() {
                       ))}
                     </div>
 
-                    <div className='bg-white/[0.01] border border-white/5 rounded-[1.5rem] sm:rounded-[2.5rem] p-5 sm:p-8 text-sm text-zinc-500 leading-relaxed max-h-[350px] overflow-y-auto custom-scrollbar whitespace-pre-wrap font-medium text-left'>
+                    <div className='bg-white/1 border border-white/5 rounded-[1.5rem] sm:rounded-[2.5rem] p-5 sm:p-8 text-sm text-zinc-500 leading-relaxed max-h-[350px] overflow-y-auto custom-scrollbar whitespace-pre-wrap font-medium text-left'>
                       {result}
                     </div>
 
@@ -306,7 +306,7 @@ export default function AuditTool() {
                           setUrl('')
                         }}
                         onMouseEnter={playHover}
-                        className='flex-1 bg-white/[0.03] border border-white/10 text-white py-6 rounded-[1.5rem] font-bold uppercase tracking-widest text-[9px] hover:bg-white/[0.08] transition-all cursor-pointer'
+                        className='flex-1 bg-white/3 border border-white/10 text-white py-6 rounded-[1.5rem] font-bold uppercase tracking-widest text-[9px] hover:bg-white/[0.08] transition-all cursor-pointer'
                       >
                         New Audit
                       </button>

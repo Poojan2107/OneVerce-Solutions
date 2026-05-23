@@ -48,7 +48,7 @@ export default function Footer() {
                   href={social.link}
                   target='_blank'
                   rel='noopener noreferrer'
-                  className='w-12 h-12 rounded-xl border border-white/5 flex items-center justify-center text-zinc-400 hover:text-white hover:border-white/10 hover:bg-white/[0.02] transition-all duration-500'
+                  className='w-12 h-12 rounded-xl border border-white/5 flex items-center justify-center text-zinc-400 hover:text-white hover:border-white/10 hover:bg-white/2 transition-all duration-500'
                 >
                   {social.icon}
                 </a>
@@ -92,7 +92,7 @@ export default function Footer() {
               </ul>
             </div>
 
-            <div className='col-span-2 md:col-span-1 p-8 rounded-3xl bg-white/[0.01] border border-white/5 space-y-6'>
+            <div className='col-span-2 md:col-span-1 p-8 rounded-3xl bg-white/1 border border-white/5 space-y-6'>
               <h4 className='text-[10px] font-bold text-blue-500 uppercase tracking-[0.4em]'>
                 Status
               </h4>

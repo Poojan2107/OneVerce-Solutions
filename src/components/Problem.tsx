@@ -31,7 +31,7 @@ export default function Problem() {
       {/* Background */}
       <div className='absolute inset-0 z-0'>
         <div className='absolute top-1/4 right-0 w-[600px] h-[600px] bg-red-600/[0.03] rounded-full blur-[150px]' />
-        <div className='absolute bottom-1/4 left-0 w-[500px] h-[500px] bg-purple-600/[0.02] rounded-full blur-[150px]' />
+        <div className='absolute bottom-1/4 left-0 w-125 h-125 bg-purple-600/[0.02] rounded-full blur-[150px]' />
       </div>
 
       <div className='max-w-7xl mx-auto px-6 md:px-12 relative z-10'>
@@ -70,7 +70,7 @@ export default function Problem() {
                   &quot;CAC dropped by 65% post-architecture overhaul.&quot;
                 </p>
                 <div className='mt-4 sm:mt-6 flex items-center gap-3 sm:gap-4 pl-4 sm:pl-6'>
-                  <div className='w-10 h-10 rounded-full bg-white/[0.03] border border-white/10 flex items-center justify-center relative overflow-hidden group-hover:border-red-500/30 transition-all duration-500 flex-shrink-0'>
+                  <div className='w-10 h-10 rounded-full bg-white/3 border border-white/10 flex items-center justify-center relative overflow-hidden group-hover:border-red-500/30 transition-all duration-500 flex-shrink-0'>
                     <div className='absolute inset-0 bg-gradient-to-br from-red-500/10 to-purple-500/10 opacity-50' />
                     <span className='text-xs font-black text-white z-10 font-mono tracking-tighter uppercase'>
                       S
@@ -95,7 +95,7 @@ export default function Problem() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className='group glass-card p-6 sm:p-8 rounded-2xl hover:bg-white/[0.03] transition-all relative overflow-hidden border border-white/5'
+                className='group glass-card p-6 sm:p-8 rounded-2xl hover:bg-white/3 transition-all relative overflow-hidden border border-white/5'
               >
                 <div className='absolute -bottom-12 -right-12 w-40 h-40 border border-red-600/10 rounded-full group-hover:scale-150 transition-transform duration-700' />
 

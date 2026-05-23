@@ -133,7 +133,7 @@ export default function CaseStudies() {
               aria-label={`Open ${study.title} case study`}
               onClick={() => handleOpen(study.id)}
               onMouseEnter={playHover}
-              className='group text-left p-6 sm:p-8 rounded-[2rem] border border-white/5 bg-white/[0.01] hover:border-purple-500/30 hover:bg-white/[0.02] transition-all duration-500 cursor-pointer flex flex-col justify-between h-full relative'
+              className='group text-left p-6 sm:p-8 rounded-[2rem] border border-white/5 bg-white/1 hover:border-purple-500/30 hover:bg-white/2 transition-all duration-500 cursor-pointer flex flex-col justify-between h-full relative'
             >
               {/* Decorative accent */}
               <div className='absolute top-4 right-4 text-zinc-600 group-hover:text-purple-400 transition-colors'>
@@ -191,7 +191,7 @@ export default function CaseStudies() {
                   className='relative bg-[#090a0d] border border-white/10 rounded-[1.5rem] sm:rounded-[2.5rem] shadow-2xl max-w-2xl w-full my-4 sm:my-8 overflow-hidden'
                 >
                   {/* Header */}
-                  <div className='px-5 sm:px-10 pt-6 sm:pt-8 pb-4 flex items-start justify-between gap-3 border-b border-white/5 bg-white/[0.01]'>
+                  <div className='px-5 sm:px-10 pt-6 sm:pt-8 pb-4 flex items-start justify-between gap-3 border-b border-white/5 bg-white/1'>
                     <div>
                       <span className='text-[9px] font-black uppercase tracking-[0.4em] text-purple-400 block'>
                         {selectedStudy.category} Log

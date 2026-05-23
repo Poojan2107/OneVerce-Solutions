@@ -197,7 +197,7 @@ export default function Testimonials() {
             <button
               onClick={toggleAutoPlay}
               onMouseEnter={playHover}
-              className='w-8 h-8 rounded-full border border-white/5 bg-white/[0.01] hover:bg-white/[0.04] flex items-center justify-center text-zinc-500 hover:text-white transition-colors cursor-pointer'
+              className='w-8 h-8 rounded-full border border-white/5 bg-white/1 hover:bg-white/[0.04] flex items-center justify-center text-zinc-500 hover:text-white transition-colors cursor-pointer'
               title={isAutoPlaying ? 'Pause Auto Play' : 'Start Auto Play'}
             >
               {isAutoPlaying ? <Pause size={12} /> : <Play size={12} />}
@@ -225,7 +225,7 @@ export default function Testimonials() {
             <button
               onClick={handlePrev}
               onMouseEnter={playHover}
-              className='w-10 h-10 rounded-full border border-white/5 bg-white/[0.01] hover:bg-white/[0.04] flex items-center justify-center text-zinc-400 hover:text-white transition-colors cursor-pointer'
+              className='w-10 h-10 rounded-full border border-white/5 bg-white/1 hover:bg-white/[0.04] flex items-center justify-center text-zinc-400 hover:text-white transition-colors cursor-pointer'
               aria-label='Previous Slide'
             >
               <ChevronLeft size={16} />
@@ -233,7 +233,7 @@ export default function Testimonials() {
             <button
               onClick={handleNext}
               onMouseEnter={playHover}
-              className='w-10 h-10 rounded-full border border-white/5 bg-white/[0.01] hover:bg-white/[0.04] flex items-center justify-center text-zinc-400 hover:text-white transition-colors cursor-pointer'
+              className='w-10 h-10 rounded-full border border-white/5 bg-white/1 hover:bg-white/[0.04] flex items-center justify-center text-zinc-400 hover:text-white transition-colors cursor-pointer'
               aria-label='Next Slide'
             >
               <ChevronRight size={16} />

@@ -20,15 +20,38 @@ export default function Contact() {
     playClick()
     setIsTransmitting(true)
 
+    // Submit form via FormSubmit in the background
+    fetch('https://formsubmit.co/ajax/poojanshrivastav21@gmail.com', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({
+        name: formData.name,
+        email: formData.email,
+        message: formData.details,
+        _cc: 'prajapativansh512@gmail.com',
+        _subject: `New Oneverce Project Inquiry from ${formData.name}`,
+        _captcha: 'false',
+      }),
+    }).catch(err => {
+      console.error('Error submitting form via FormSubmit:', err)
+    })
+
+    // Open WhatsApp redirect synchronously to bypass popup blocker
+    const phoneNumber = '918401286822'
+    const message = encodeURIComponent(
+      `*ONEVERCE_PROJECT_INQUIRY*\n\n*Name:* ${formData.name}\n*Email:* ${formData.email}\n*Message:* ${formData.details}`,
+    )
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`
+    window.open(whatsappUrl, '_blank')
+
     setTimeout(() => {
-      const phoneNumber = '918401286822'
-      const message = `*ONEVERCE_PROJECT_INQUIRY*%0A%0A*Name:* ${formData.name}%0A*Email:* ${formData.email}%0A*Message:* ${formData.details}`
-      const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`
-      window.open(whatsappUrl, '_blank')
       setIsTransmitting(false)
       setIsSuccess(true)
       playSuccess()
-    }, 1500)
+    }, 1000)
   }
 
   const nextStep = () => {
@@ -105,7 +128,7 @@ export default function Contact() {
                         href={`mailto:${member.email}`}
                         className='flex items-start gap-4 group cursor-pointer w-full min-w-0'
                       >
-                        <div className='w-10 h-10 shrink-0 rounded-xl bg-white/[0.03] border border-white/5 flex items-center justify-center text-zinc-500 group-hover:text-[#00f0ff] group-hover:border-[#00f0ff]/30 transition-all duration-500'>
+                        <div className='w-10 h-10 shrink-0 rounded-xl bg-white/3 border border-white/5 flex items-center justify-center text-zinc-500 group-hover:text-[#00f0ff] group-hover:border-[#00f0ff]/30 transition-all duration-500'>
                           <Mail size={16} />
                         </div>
                         <div className='text-sm font-bold text-zinc-400 group-hover:text-white transition-colors lowercase tracking-wider break-all min-w-0'>
@@ -118,7 +141,7 @@ export default function Contact() {
                         rel='noopener noreferrer'
                         className='flex items-start gap-4 group cursor-pointer w-full min-w-0'
                       >
-                        <div className='w-10 h-10 shrink-0 rounded-xl bg-white/[0.03] border border-white/5 flex items-center justify-center text-zinc-500 group-hover:text-emerald-400 group-hover:border-emerald-400/30 transition-all duration-500'>
+                        <div className='w-10 h-10 shrink-0 rounded-xl bg-white/3 border border-white/5 flex items-center justify-center text-zinc-500 group-hover:text-emerald-400 group-hover:border-emerald-400/30 transition-all duration-500'>
                           <Phone size={16} />
                         </div>
                         <div className='text-sm font-bold text-zinc-400 group-hover:text-white transition-colors tracking-wider'>

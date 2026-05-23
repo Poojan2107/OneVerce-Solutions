@@ -47,7 +47,7 @@ export default function FAQ() {
     >
       {/* Background Polish */}
       <div className='absolute inset-0 z-0'>
-        <div className='absolute top-0 right-0 w-[500px] h-[500px] bg-blue-500/[0.02] rounded-full blur-[150px]' />
+        <div className='absolute top-0 right-0 w-125 h-125 bg-blue-500/2 rounded-full blur-[150px]' />
       </div>
 
       <div className='max-w-5xl mx-auto px-6 relative z-10'>
@@ -78,8 +78,8 @@ export default function FAQ() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1, duration: 0.8 }}
-              className={`glass-card rounded-[1.25rem] sm:rounded-[2rem] overflow-hidden transition-all duration-500 border border-white/5 ${
-                openIndex === index ? 'bg-white/[0.03] border-white/10' : 'hover:bg-white/[0.02]'
+              className={`glass-card rounded-[1.25rem] sm:rounded-4xl overflow-hidden transition-all duration-500 border border-white/5 ${
+                openIndex === index ? 'bg-white/3 border-white/10' : 'hover:bg-white/2'
               } ${focusedIndex === index ? 'ring-1 ring-white/10' : ''}`}
               role='listitem'
             >
@@ -139,7 +139,7 @@ export default function FAQ() {
                     role='region'
                   >
                     <div className='px-5 pb-6 sm:px-8 sm:pb-10 md:px-10'>
-                      <div className='p-4 sm:p-8 rounded-xl sm:rounded-2xl bg-white/[0.01] border border-white/[0.03] relative overflow-hidden'>
+                      <div className='p-4 sm:p-8 rounded-xl sm:rounded-2xl bg-white/1 border border-white/3 relative overflow-hidden'>
                         <div className='absolute top-0 right-0 w-16 h-16 bg-blueprint opacity-10 pointer-events-none' />
                         <p className='text-zinc-400 font-medium text-base sm:text-lg leading-relaxed tracking-tight relative z-10'>
                           {faq.answer}

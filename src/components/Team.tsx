@@ -139,7 +139,7 @@ export default function Team() {
       {/* Background radial effects */}
       <div className='absolute inset-0 pointer-events-none z-0'>
         <div className='absolute top-1/2 left-1/4 w-[600px] h-[600px] bg-blue-500/[0.015] rounded-full blur-[180px]' />
-        <div className='absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-purple-500/[0.015] rounded-full blur-[180px]' />
+        <div className='absolute bottom-0 right-1/4 w-125 h-125 bg-purple-500/[0.015] rounded-full blur-[180px]' />
       </div>
 
       <div className='max-w-7xl mx-auto px-6 relative z-10'>
@@ -170,7 +170,7 @@ export default function Team() {
                   ? founder.accent === 'blue'
                     ? 'bg-blue-600 border-blue-500 text-white shadow-xl shadow-blue-500/20'
                     : 'bg-purple-600 border-purple-500 text-white shadow-xl shadow-purple-500/20'
-                  : 'bg-white/[0.01] border-white/5 text-zinc-500 hover:border-white/15'
+                  : 'bg-white/1 border-white/5 text-zinc-500 hover:border-white/15'
               }`}
             >
               <span className='max-w-[120px] sm:max-w-none truncate block'>{founder.name}</span>
@@ -181,7 +181,7 @@ export default function Team() {
         <div className='grid lg:grid-cols-12 gap-6 sm:gap-8 items-start'>
           {/* Left panel: Founder overview + interactive timeline */}
           <div className='lg:col-span-7 space-y-6 sm:space-y-8'>
-            <div className='p-5 sm:p-10 rounded-[1.5rem] sm:rounded-[2rem] border border-white/5 bg-white/[0.01] relative overflow-hidden'>
+            <div className='p-5 sm:p-10 rounded-[1.5rem] sm:rounded-4xl border border-white/5 bg-white/1 relative overflow-hidden'>
               <div className='flex items-center justify-between gap-4 mb-6'>
                 <div>
                   <span
@@ -244,7 +244,7 @@ export default function Team() {
                     className={`p-4.5 rounded-xl border transition-all ${
                       activeEventIdx === idx
                         ? `${accentBorderClass} bg-white/[0.02]`
-                        : 'border-transparent bg-transparent hover:bg-white/[0.01]'
+                        : 'border-transparent bg-transparent hover:bg-white/1'
                     }`}
                   >
                     <div className='flex items-center justify-between flex-wrap gap-2'>

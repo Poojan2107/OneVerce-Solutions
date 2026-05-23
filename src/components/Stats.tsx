@@ -49,7 +49,7 @@ const Stats = memo(function Stats() {
             >
               <div className='flex items-center justify-between mb-5'>
                 <div
-                  className={`p-3 rounded-xl bg-white/[0.03] border border-white/5 group-hover:scale-110 transition-transform duration-500 ${stat.color}`}
+                  className={`p-3 rounded-xl bg-white/3 border border-white/5 group-hover:scale-110 transition-transform duration-500 ${stat.color}`}
                 >
                   {stat.icon}
                 </div>

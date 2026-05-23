@@ -74,14 +74,37 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
     e.preventDefault()
     setIsTransmitting(true)
 
+    // Submit form via FormSubmit in the background
+    fetch('https://formsubmit.co/ajax/poojanshrivastav21@gmail.com', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({
+        name: formData.name,
+        email: formData.email,
+        message: formData.details,
+        _cc: 'prajapativansh512@gmail.com',
+        _subject: `New Oneverce Project Inquiry from ${formData.name}`,
+        _captcha: 'false',
+      }),
+    }).catch(err => {
+      console.error('Error submitting form via FormSubmit:', err)
+    })
+
+    // Open WhatsApp redirect synchronously to bypass popup blocker
+    const phoneNumber = '918401286822'
+    const message = encodeURIComponent(
+      `*ONEVERCE_PROJECT_INQUIRY*\n\n*Name:* ${formData.name}\n*Email:* ${formData.email}\n*Message:* ${formData.details}`,
+    )
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`
+    window.open(whatsappUrl, '_blank')
+
     setTimeout(() => {
-      const phoneNumber = '918401286822'
-      const message = `*ONEVERCE_PROJECT_INQUIRY*%0A%0A*Name:* ${formData.name}%0A*Email:* ${formData.email}%0A*Message:* ${formData.details}`
-      const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`
-      window.open(whatsappUrl, '_blank')
       setIsTransmitting(false)
       setIsSuccess(true)
-    }, 1500)
+    }, 1000)
   }
 
   const nextStep = () => setStep(prev => Math.min(prev + 1, 2))
@@ -111,7 +134,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
             className='relative bg-[#090a0d] border border-white/10 rounded-[2.5rem] shadow-2xl max-w-xl w-full my-8 overflow-hidden'
           >
             {/* Header / Info bar */}
-            <div className='px-6 sm:px-10 pt-8 pb-4 flex items-center justify-between border-b border-white/5 bg-white/[0.01]'>
+            <div className='px-6 sm:px-10 pt-8 pb-4 flex items-center justify-between border-b border-white/5 bg-white/1'>
               <div>
                 <span className='text-[9px] font-black uppercase tracking-[0.4em] text-zinc-500 block'>
                   Mission Briefing
@@ -300,7 +323,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
             </div>
 
             {/* Quick Contacts Footer info */}
-            <div className='bg-white/[0.01] border-t border-white/5 px-6 sm:px-10 py-5 flex flex-wrap gap-4 items-center justify-between text-[9px] text-zinc-500'>
+            <div className='bg-white/1 border-t border-white/5 px-6 sm:px-10 py-5 flex flex-wrap gap-4 items-center justify-between text-[9px] text-zinc-500'>
               <div className='flex items-center gap-2'>
                 <Mail size={12} />
                 <span>poojanshrivastav21@gmail.com</span>

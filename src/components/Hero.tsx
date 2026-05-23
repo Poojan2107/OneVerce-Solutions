@@ -84,14 +84,14 @@ function MobileHero({
     <section
       id='hero'
       style={{
-        minHeight: '100svh',
+        minHeight: 'calc(100vh - 84px)',
         width: '100%',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'flex-start',
-        padding: '120px 20px 40px',
-        gap: '16px',
+        padding: '80px 20px 36px',
+        gap: '22px',
         overflow: 'hidden',
         background: '#050505',
         position: 'relative',
@@ -150,50 +150,52 @@ function MobileHero({
         style={{
           position: 'relative',
           width: '100%',
-          height: '280px',
+          height: '180px',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
         }}
       >
         {/* Planet */}
-        <div
-          className='planet-rotate'
-          style={{
-            position: 'absolute',
-            width: '85px',
-            height: '85px',
-            left: '50%',
-            top: '50%',
-            transform: 'translate(-50%, -50%)',
-            opacity: 0.65,
-          }}
-        >
+        {isPreloading && (
           <div
+            className='planet-rotate'
             style={{
-              width: '100%',
-              height: '100%',
-              borderRadius: '50%',
-              background:
-                'radial-gradient(circle at 40% 35%, rgba(0,180,255,.25), rgba(0,60,120,.1) 60%, transparent)',
+              position: 'absolute',
+              width: '85px',
+              height: '85px',
+              left: '50%',
+              top: '50%',
+              transform: 'translate(-50%, -50%)',
+              opacity: 0.65,
             }}
           >
             <div
               style={{
-                position: 'absolute',
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
-                width: '140px',
-                height: '30px',
-                border: '1px solid rgba(255,255,255,0.1)',
+                width: '100%',
+                height: '100%',
                 borderRadius: '50%',
-                rotate: '24deg',
-                opacity: 0.2,
+                background:
+                  'radial-gradient(circle at 40% 35%, rgba(0,180,255,.25), rgba(0,60,120,.1) 60%, transparent)',
               }}
-            />
+            >
+              <div
+                style={{
+                  position: 'absolute',
+                  top: '50%',
+                  left: '50%',
+                  transform: 'translate(-50%, -50%)',
+                  width: '140px',
+                  height: '30px',
+                  border: '1px solid rgba(255,255,255,0.1)',
+                  borderRadius: '50%',
+                  rotate: '24deg',
+                  opacity: 0.2,
+                }}
+              />
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Infinity loop */}
         <div
@@ -222,21 +224,19 @@ function MobileHero({
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          gap: '12px',
+          gap: '24px',
           zIndex: 5,
         }}
       >
         {/* ONEVERCE */}
         <motion.h1
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          initial={{ opacity: 0, y: 10, filter: 'blur(10px)', letterSpacing: '-0.05em' }}
+          animate={{ opacity: 1, y: 0, filter: 'none', letterSpacing: '-1.5px' }}
+          transition={{ duration: 4.0, ease: 'easeInOut' }}
           style={{
-            marginTop: '-10px',
             fontSize: 'clamp(34px, 10vw, 46px)',
             fontWeight: 900,
             lineHeight: 0.9,
-            letterSpacing: '-1.5px',
             whiteSpace: 'nowrap',
             width: 'auto',
             textAlign: 'center',
@@ -329,34 +329,299 @@ function DesktopHero({
   return (
     <section
       id='hero'
-      className='relative min-h-screen w-full bg-[#020202] flex flex-col items-center justify-start overflow-hidden'
-      style={{ minHeight: '100svh', paddingTop: '140px', paddingBottom: '40px', gap: '16px' }}
+      className='hero relative h-screen w-full overflow-hidden'
+      style={{ background: 'transparent' }}
     >
-      <div className='absolute inset-0 z-50 pointer-events-none opacity-[0.03] hidden md:block'>
-        <svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg' className='w-full h-full'>
-          <filter id='noiseFilter'>
-            <feTurbulence
-              type='fractalNoise'
-              baseFrequency='0.65'
-              numOctaves='3'
-              stitchTiles='stitch'
-            />
-          </filter>
-          <rect width='100%' height='100%' filter='url(#noiseFilter)' />
-        </svg>
-      </div>
-
+      {/* BackgroundGrid */}
       <div className='absolute inset-0 z-0 overflow-hidden'>
-        <div className='absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]' />
-
+        <div className='absolute inset-0 z-50 pointer-events-none opacity-[0.03] hidden md:block'>
+          <svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg' className='w-full h-full'>
+            <filter id='noiseFilter'>
+              <feTurbulence
+                type='fractalNoise'
+                baseFrequency='0.65'
+                numOctaves='3'
+                stitchTiles='stitch'
+              />
+            </filter>
+            <rect width='100%' height='100%' filter='url(#noiseFilter)' />
+          </svg>
+        </div>
+        <div className='absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-size-[40px_40px] mask-[radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]' />
         <div
-          className='absolute bottom-0 w-full h-[45vh] bg-[linear-gradient(to_right,#00f0f003_1px,transparent_1px),linear-gradient(to_bottom,#00f0f003_1px,transparent_1px)] bg-[size:60px_60px]'
+          className='absolute bottom-0 w-full h-[45vh] bg-[linear-gradient(to_right,#00f0f003_1px,transparent_1px),linear-gradient(to_bottom,#00f0f003_1px,transparent_1px)] bg-size-[60px_60px]'
           style={{
             transform: 'perspective(1200px) rotateX(72deg) scale(2.8)',
             transformOrigin: 'bottom',
           }}
         />
       </div>
+
+      {/* HeroVisual */}
+      <div className='hero-visual absolute inset-0 flex items-center justify-center z-[1]'>
+        {isPreloading && (
+          <div
+            className='planet'
+            style={{
+              position: 'absolute',
+              width: '160px',
+              height: '160px',
+              left: '39%',
+              top: '36%',
+              transform: 'translate(-50%, -50%)',
+              opacity: 0.85,
+            }}
+          >
+            <div className='w-full h-full rounded-full bg-gradient-to-br from-[#00f0ff] via-[#00b0d0] to-[#010101] shadow-[inset_-25px_-25px_50px_rgba(0,0,0,1),0_0_100px_rgba(0,240,255,0.4)] relative'>
+              <div className='absolute top-[12%] left-[18%] w-1/2 h-1/2 bg-white/30 rounded-full blur-[20px]' />
+            </div>
+            <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] h-[72px] border-[3px] border-[#00f0f0]/60 rounded-[100%] rotate-[24deg] blur-[0.5px] shadow-[0_0_45px_rgba(0,240,240,0.5)]' />
+            <div className='absolute top-1/2 left-1/2 -translate-x-[50.5%] -translate-y-[50.5%] w-[320px] h-[72px] border border-[#00d5ff]/25 rounded-[100%] rotate-[24.2deg] blur-[1px]' />
+          </div>
+        )}
+
+        <div className='infinity-loop' style={{ width: 'min(90vw, 1400px)', maxWidth: '1400px' }}>
+          {!isPreloading && (
+            <motion.div
+              animate={{ y: [-4, 4, -4] }}
+              transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+            >
+              <InfinityScene
+                mouseX={isCoarsePointer ? undefined : mouseX}
+                mouseY={isCoarsePointer ? undefined : mouseY}
+              />
+            </motion.div>
+          )}
+        </div>
+      </div>
+
+      {/* Layer 1: Title (In Front of the Loop) */}
+      <div
+        className='hero-title-layer'
+        style={{
+          position: 'absolute',
+          top: '50%',
+          left: 0,
+          right: 0,
+          transform: 'translateY(-50%)',
+          width: 'fit-content',
+          margin: '0 auto',
+          pointerEvents: 'none',
+          zIndex: 2,
+        }}
+      >
+        <motion.h1
+          initial={{ opacity: 0, filter: 'blur(20px)', letterSpacing: '-0.05em' }}
+          animate={{ opacity: 1, filter: 'none', letterSpacing: '0.04em' }}
+          transition={{ duration: 4.0, ease: 'easeInOut' }}
+          className='hero-title'
+          style={{
+            fontSize: 'clamp(110px, 9vw, 170px)',
+            lineHeight: 0.9,
+            whiteSpace: 'nowrap',
+            margin: 0,
+            maxWidth: 'none',
+            fontWeight: 900,
+            textAlign: 'center',
+            color: '#fff',
+            textTransform: 'uppercase',
+            textShadow: '0 0 40px rgba(0,240,255,0.1), 0 0 80px rgba(214,0,255,0.1)',
+          }}
+        >
+          Oneverce
+        </motion.h1>
+      </div>
+
+      {/* Layer 3: Content - Badge (In Front of the Loop) */}
+      <motion.div
+        style={{
+          ...motionStyle,
+          position: 'absolute',
+          bottom: 'calc(50% + 125px)',
+          left: 0,
+          right: 0,
+          width: 'fit-content',
+          margin: '0 auto',
+          pointerEvents: 'auto',
+          zIndex: 3,
+        }}
+        className='flex flex-col items-center gap-4'
+      >
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className='hero-badge'
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '12px',
+            padding: '8px 20px',
+            borderRadius: '999px',
+            border: '1px solid rgba(255,255,255,0.1)',
+            background: 'rgba(255,255,255,0.05)',
+            backdropFilter: 'blur(12px)',
+            boxShadow: '0 0 30px rgba(0,0,0,0.5)',
+          }}
+        >
+          <div
+            style={{
+              width: '6px',
+              height: '6px',
+              borderRadius: '50%',
+              background: '#00f0f0',
+              animation: 'pulse 2s ease-in-out infinite',
+              boxShadow: '0 0 15px #00f0f0',
+              flexShrink: 0,
+            }}
+          />
+          <span
+            style={{
+              fontSize: '12px',
+              fontFamily: '"JetBrains Mono", monospace',
+              textTransform: 'uppercase',
+              letterSpacing: '0.6em',
+              color: 'rgba(255,255,255,0.8)',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            Next Generation Studio
+          </span>
+        </motion.div>
+      </motion.div>
+
+      {/* Layer 3: Content - Description & CTA (In Front of the Loop) */}
+      <motion.div
+        style={{
+          ...motionStyle,
+          position: 'absolute',
+          top: 'calc(50% + 125px)',
+          left: 0,
+          right: 0,
+          width: 'fit-content',
+          margin: '0 auto',
+          pointerEvents: 'auto',
+          zIndex: 3,
+        }}
+        className='flex flex-col items-center gap-8'
+      >
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.2, delay: 1.2 }}
+          className='hero-description font-sans'
+          style={{
+            maxWidth: '720px',
+            fontSize: '18px',
+            lineHeight: 1.65,
+            textAlign: 'center',
+            color: 'rgba(255,255,255,0.75)',
+            fontWeight: 500,
+            textShadow: '0 2px 12px rgba(0,0,0,0.9), 0 4px 24px rgba(0,0,0,0.9)',
+          }}
+        >
+          We engineer{' '}
+          <span style={{ fontStyle: 'italic', color: '#fff' }}>
+            high-fidelity digital infrastructure
+          </span>{' '}
+          for organizations that <br className='hidden sm:inline' />
+          demand <span style={{ fontWeight: 700, color: '#fff' }}>total dominance.</span>
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.4 }}
+          className='hero-cta'
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            gap: '48px',
+          }}
+        >
+          <a
+            href='#contact'
+            style={{
+              position: 'relative',
+              padding: '20px 56px',
+              overflow: 'hidden',
+              textAlign: 'center',
+              textDecoration: 'none',
+              transition: 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+            }}
+            className='group clip-path-hero-btn hover:scale-[1.03] active:scale-[0.98]'
+          >
+            <div
+              style={{
+                position: 'absolute',
+                inset: 0,
+                background: '#fff',
+                transition: 'background 0.5s',
+              }}
+              className='group-hover:bg-[#00f0f0]'
+            />
+            <motion.div
+              animate={{ x: ['-100%', '200%'] }}
+              transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
+              style={{
+                position: 'absolute',
+                inset: 0,
+                background: 'linear-gradient(to right, transparent, rgba(0,0,0,0.1), transparent)',
+                transform: 'skewX(-12deg)',
+              }}
+            />
+            <span
+              style={{
+                position: 'relative',
+                zIndex: 10,
+                color: '#000',
+                fontWeight: 900,
+                fontSize: '12px',
+                letterSpacing: '0.4em',
+                textTransform: 'uppercase',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '12px',
+              }}
+            >
+              Initiate Venture <span style={{ fontSize: '16px', fontWeight: 'normal' }}>→</span>
+            </span>
+          </a>
+
+          <a
+            href='#work'
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '16px',
+              color: 'rgba(255,255,255,0.6)',
+              textDecoration: 'none',
+              textTransform: 'uppercase',
+              letterSpacing: '0.4em',
+              fontSize: '10px',
+              fontWeight: 700,
+              fontFamily: '"JetBrains Mono", monospace',
+              transition: 'color 0.5s',
+            }}
+            className='group'
+          >
+            <span
+              style={{
+                width: '32px',
+                height: '1px',
+                background: 'rgba(255,255,255,0.25)',
+                transition: 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
+              }}
+              className='group-hover:w-12 group-hover:bg-[#00f0f0]'
+            />
+            <span style={{ textAlign: 'center' }} className='group-hover:text-white'>
+              SECTOR_ARCHIVE
+            </span>
+          </a>
+        </motion.div>
+      </motion.div>
 
       <div className='absolute inset-0 z-20 pointer-events-none p-10 pt-40 pb-20 px-20 hidden md:flex flex-col justify-between'>
         <div className='flex justify-between items-start opacity-30 uppercase tracking-[0.4em] text-[9px] font-mono'>
@@ -372,7 +637,6 @@ function DesktopHero({
             <p className='opacity-50'>V_024.9.1</p>
           </div>
         </div>
-
         <div className='flex justify-between items-end opacity-30 uppercase tracking-[0.4em] text-[9px] font-mono'>
           <div className='space-y-1'>
             <p className='font-bold text-white'>Lat: 0.002ms // Flux: Stable</p>
@@ -380,106 +644,6 @@ function DesktopHero({
           </div>
         </div>
       </div>
-
-      <motion.div
-        style={motionStyle}
-        className='relative z-30 flex flex-col items-center text-center px-6 w-full max-w-7xl mx-auto preserve-3d'
-      >
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className='mb-10 flex items-center gap-3 px-5 py-2 rounded-full border border-white/10 bg-white/05 backdrop-blur-md shadow-[0_0_30px_rgba(0,0,0,0.5)]'
-        >
-          <div className='w-1.5 h-1.5 rounded-full bg-[#00f0f0] animate-pulse shadow-[0_0_15px_#00f0f0] shrink-0' />
-          <span className='text-xs font-mono uppercase tracking-[0.6em] text-white/80'>
-            Next Generation Studio
-          </span>
-        </motion.div>
-
-        <div className='flex flex-col items-center gap-10 w-full'>
-          <div
-            className='relative flex justify-center items-center w-full'
-            style={{ width: '100%', height: '280px' }}
-          >
-            <div style={{ width: '100%', maxWidth: '1200px' }}>
-              {!isPreloading && (
-                <InfinityScene
-                  mouseX={isCoarsePointer ? undefined : mouseX}
-                  mouseY={isCoarsePointer ? undefined : mouseY}
-                />
-              )}
-            </div>
-          </div>
-
-          <div className='flex flex-col items-center gap-12 z-30 px-6'>
-            <motion.h1
-              initial={{ opacity: 0, scale: 0.95, filter: 'blur(20px)' }}
-              animate={{ opacity: 1, scale: 1, filter: 'none' }}
-              transition={{ duration: 1.6, ease: 'easeOut' }}
-              style={{ width: 'auto', whiteSpace: 'nowrap', textAlign: 'center' }}
-              className='heading-hero uppercase tracking-tighter text-white select-none relative z-10 drop-shadow-[0_0_50px_rgba(255,255,255,0.2)]'
-            >
-              Oneverce
-            </motion.h1>
-
-            <div className='h-[2px] w-24 bg-white/10 mx-auto my-10'>
-              <motion.div
-                animate={{ x: ['-100%', '100%'] }}
-                transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-                className='h-full w-full bg-gradient-to-r from-transparent via-white/50 to-transparent'
-              />
-            </div>
-
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1.2, delay: 1.2 }}
-              className='max-w-[260px] text-center text-[13px] leading-[1.6] opacity-70 text-white font-medium'
-            >
-              We engineer{' '}
-              <span className='text-white italic'>high-fidelity digital infrastructure</span> for
-              organizations that demand{' '}
-              <span className='text-white font-bold'>total dominance.</span>
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.4 }}
-              className='flex flex-col md:flex-row items-stretch md:items-center gap-4 md:gap-12 w-full max-w-md md:max-w-none md:w-auto px-2 justify-center'
-            >
-              <a
-                href='#contact'
-                className='group relative w-full max-w-[300px] md:w-auto md:px-14 h-[56px] inline-flex items-center justify-center border-0 overflow-hidden text-center rounded-full'
-              >
-                <div className='absolute inset-0 bg-white group-hover:bg-[#00f0f0] transition-colors duration-500 clip-path-hero-btn' />
-                <motion.div
-                  animate={{ x: ['-100%', '200%'] }}
-                  transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
-                  className='absolute inset-0 bg-gradient-to-r from-transparent via-black/10 to-transparent skew-x-12'
-                />
-                <span className='relative z-10 text-black font-black text-xs tracking-[0.4em] uppercase flex items-center gap-2 transition-colors duration-500'>
-                  Initiate Venture <span>➔</span>
-                </span>
-              </a>
-
-              <a
-                href='#work'
-                className='group flex items-center justify-center gap-3 md:gap-5 text-white/20 hover:text-white transition-all duration-500 uppercase tracking-[0.15em] md:tracking-[0.4em] text-[9px] md:text-[10px] font-bold font-mono py-2 min-h-[44px]'
-              >
-                <span className='w-8 md:w-16 h-[1px] bg-white/10 group-hover:w-12 md:group-hover:w-24 group-hover:bg-[#00f0f0] transition-all duration-700 shrink-0' />
-                <span className='text-center'>Sector Archive</span>
-              </a>
-            </motion.div>
-          </div>
-        </div>
-      </motion.div>
-
-      <>
-        <div className='absolute top-0 right-0 w-[min(800px,100vw)] h-[min(800px,100vw)] bg-[#0070b0]/05 rounded-full blur-[200px] mix-blend-overlay pointer-events-none' />
-        <div className='absolute bottom-0 left-0 w-[min(800px,100vw)] h-[min(800px,100vw)] bg-[#9333ea]/05 rounded-full blur-[200px] mix-blend-overlay pointer-events-none' />
-      </>
     </section>
   )
 }

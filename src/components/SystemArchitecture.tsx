@@ -255,8 +255,8 @@ export const middleware = (req) =>
                     onMouseEnter={playHover}
                     className={`w-full text-left p-5 rounded-2xl border transition-all duration-300 flex items-center gap-4 cursor-pointer ${
                       isActive
-                        ? 'border-blue-500/40 bg-blue-500/[0.02] text-white shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]'
-                        : 'border-white/5 bg-white/[0.01] hover:border-white/15 text-zinc-400 hover:text-zinc-200'
+                        ? 'border-blue-500/40 bg-blue-500/2 text-white shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]'
+                        : 'border-white/5 bg-white/1 hover:border-white/15 text-zinc-400 hover:text-zinc-200'
                     }`}
                   >
                     <div

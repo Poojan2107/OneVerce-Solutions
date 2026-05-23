@@ -57,7 +57,7 @@ export default function Preloader({ onComplete }: PreloaderProps) {
               <motion.div
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
-                className='w-16 h-16 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-center relative overflow-hidden'
+                className='w-16 h-16 rounded-2xl bg-white/3 border border-white/10 flex items-center justify-center relative overflow-hidden'
               >
                 <div className='absolute inset-0 bg-blue-500/10 animate-pulse' />
                 <img

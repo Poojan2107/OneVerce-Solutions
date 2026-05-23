@@ -27,18 +27,18 @@ export default function ServiceModal({ service, onClose }: ServiceModalProps) {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: 20 }}
                 transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-                className='relative w-full max-w-4xl bg-[#050505] border border-white/10 rounded-2xl sm:rounded-[2rem] md:rounded-[2.5rem] overflow-y-auto max-h-[90vh] shadow-2xl custom-scrollbar z-10'
+                className='relative w-full max-w-4xl bg-[#050505] border border-white/10 rounded-2xl sm:rounded-4xl md:rounded-[2.5rem] overflow-y-auto max-h-[90vh] shadow-2xl custom-scrollbar z-10'
               >
                 <button
                   onClick={onClose}
-                  className='absolute top-4 right-4 md:top-8 md:right-8 p-3 min-w-[44px] min-h-[44px] rounded-full bg-white/[0.03] hover:bg-white/[0.08] text-zinc-400 hover:text-white transition-all z-20 border border-white/5 flex items-center justify-center'
+                  className='absolute top-4 right-4 md:top-8 md:right-8 p-3 min-w-[44px] min-h-[44px] rounded-full bg-white/3 hover:bg-white/[0.08] text-zinc-400 hover:text-white transition-all z-20 border border-white/5 flex items-center justify-center'
                 >
                   <X size={20} />
                 </button>
 
                 <div className='grid md:grid-cols-2 h-full'>
                   <div className='p-5 sm:p-8 md:p-16'>
-                    <div className='w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-white/[0.03] flex items-center justify-center mb-8 md:mb-12 text-white border border-white/5'>
+                    <div className='w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-white/3 flex items-center justify-center mb-8 md:mb-12 text-white border border-white/5'>
                       {service.icon}
                     </div>
                     <h2 className='text-3xl md:text-5xl font-bold mb-6 md:mb-8 tracking-tighter text-white'>
@@ -62,7 +62,7 @@ export default function ServiceModal({ service, onClose }: ServiceModalProps) {
                     </div>
                   </div>
 
-                  <div className='p-8 md:p-16 bg-white/[0.01] border-t md:border-t-0 md:border-l border-white/5'>
+                  <div className='p-8 md:p-16 bg-white/1 border-t md:border-t-0 md:border-l border-white/5'>
                     <h3 className='text-[10px] font-bold uppercase tracking-[0.4em] text-zinc-500 mb-8 md:mb-12'>
                       Core Capabilities
                     </h3>
