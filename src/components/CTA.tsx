@@ -19,9 +19,9 @@ export default function CTA() {
 
           <div className='relative z-10 space-y-8'>
             <div className='inline-flex items-center gap-3 px-6 py-2.5 rounded-full bg-white/3 border border-white/10 text-blue-500 font-bold uppercase tracking-[0.4em] text-[9px]'>
-              <Sparkles size={12} className='animate-pulse' /> Final Call to Impact
+              <Sparkles size={12} className='animate-pulse' /> Final Call to Impact{' '}
+              <Sparkles size={12} className='animate-pulse' />
             </div>
-
             <h2 className='text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white max-w-4xl mx-auto uppercase leading-tight'>
               Architect Your Operational Future.
             </h2>

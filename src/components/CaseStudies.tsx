@@ -118,6 +118,7 @@ export default function CaseStudies() {
             <span className='text-zinc-500 font-bold uppercase tracking-[0.5em] text-[10px]'>
               Technical Dossier
             </span>
+            <div className='w-2 h-2 bg-purple-500 rounded-full animate-pulse' />
           </div>
           <h2 className='heading-2xl text-white uppercase mb-6'>Transmission Logs</h2>
           <p className='text-zinc-400 text-base sm:text-xl max-w-xl mx-auto leading-relaxed font-medium'>

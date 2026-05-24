@@ -200,7 +200,7 @@ function MobileHero({
         {/* Infinity loop */}
         <div
           style={{
-            width: '105vw',
+            width: '100%',
             maxWidth: '430px',
           }}
         >
@@ -303,6 +303,43 @@ function MobileHero({
         >
           Initiate Venture <span style={{ fontSize: '18px' }}>→</span>
         </a>
+      </motion.div>
+
+      {/* Mobile Tech HUD Ticker */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.35 }}
+        transition={{ duration: 1.0, delay: 0.8 }}
+        style={{
+          width: '100%',
+          maxWidth: '320px',
+          marginTop: 'auto',
+          borderTop: '1px solid rgba(255,255,255,0.05)',
+          paddingTop: '16px',
+          display: 'grid',
+          gridTemplateColumns: 'repeat(3, 1fr)',
+          gap: '8px',
+          fontFamily: '"JetBrains Mono", monospace',
+          fontSize: '8px',
+          textTransform: 'uppercase',
+          letterSpacing: '0.15em',
+          zIndex: 5,
+        }}
+      >
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '3px' }}>
+          <span style={{ color: 'rgba(255,255,255,0.3)' }}>Lat // Flux</span>
+          <span style={{ color: '#00f0f0', fontWeight: 'bold' }}>0.002ms // Ok</span>
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '3px', alignItems: 'center' }}>
+          <span style={{ color: 'rgba(255,255,255,0.3)' }}>Security</span>
+          <span style={{ color: '#ffffff', fontWeight: 'bold' }}>Passed</span>
+        </div>
+        <div
+          style={{ display: 'flex', flexDirection: 'column', gap: '3px', alignItems: 'flex-end' }}
+        >
+          <span style={{ color: 'rgba(255,255,255,0.3)' }}>Engine</span>
+          <span style={{ color: '#ffffff', fontWeight: 'bold' }}>Neural_X1</span>
+        </div>
       </motion.div>
     </section>
   )

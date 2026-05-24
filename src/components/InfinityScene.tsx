@@ -129,7 +129,7 @@ export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
         <div
           className={
             isMobile
-              ? 'absolute w-[120vw] h-[120vw] rounded-full opacity-30 blur-none'
+              ? 'absolute w-[100vw] h-[100vw] rounded-full opacity-30 blur-none'
               : 'absolute w-[120vw] h-[120vw] md:w-[1800px] md:h-[1000px] rounded-full opacity-30 md:opacity-40 blur-[250px]'
           }
           style={{

@@ -35,23 +35,16 @@ export default function Contact() {
         _subject: `New Oneverce Project Inquiry from ${formData.name}`,
         _captcha: 'false',
       }),
-    }).catch(err => {
-      console.error('Error submitting form via FormSubmit:', err)
     })
-
-    // Open WhatsApp redirect synchronously to bypass popup blocker
-    const phoneNumber = '918401286822'
-    const message = encodeURIComponent(
-      `*ONEVERCE_PROJECT_INQUIRY*\n\n*Name:* ${formData.name}\n*Email:* ${formData.email}\n*Message:* ${formData.details}`,
-    )
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`
-    window.open(whatsappUrl, '_blank')
-
-    setTimeout(() => {
-      setIsTransmitting(false)
-      setIsSuccess(true)
-      playSuccess()
-    }, 1000)
+      .then(() => {
+        setIsTransmitting(false)
+        setIsSuccess(true)
+        playSuccess()
+      })
+      .catch(err => {
+        console.error('Error submitting form via FormSubmit:', err)
+        setIsTransmitting(false)
+      })
   }
 
   const nextStep = () => {

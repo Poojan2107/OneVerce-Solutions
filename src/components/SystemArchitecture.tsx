@@ -225,6 +225,7 @@ export const middleware = (req) =>
             <span className='text-zinc-500 font-bold uppercase tracking-[0.5em] text-[10px]'>
               Capabilities Matrix
             </span>
+            <div className='w-2 h-2 bg-blue-500 rounded-full animate-pulse' />
           </div>
           <h2 className='heading-2xl text-white uppercase mb-6 font-black tracking-tighter'>
             System Architecture

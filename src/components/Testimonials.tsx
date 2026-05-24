@@ -88,6 +88,7 @@ export default function Testimonials() {
             <span className='text-zinc-500 font-bold uppercase tracking-[0.4em] text-[10px]'>
               Proof of Impact
             </span>
+            <div className='w-2 h-2 bg-blue-500 rounded-full animate-pulse' />
           </div>
           <h2 id='testimonials-heading' className='heading-xl text-white uppercase mb-4'>
             Delivered Results

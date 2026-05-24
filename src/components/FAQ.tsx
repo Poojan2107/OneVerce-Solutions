@@ -62,6 +62,7 @@ export default function FAQ() {
               <span className='text-zinc-500 font-bold uppercase tracking-[0.4em] text-[10px]'>
                 Strategic FAQ
               </span>
+              <div className='w-2 h-2 bg-blue-500 rounded-full' />
             </div>
             <h2 className='heading-xl text-white uppercase mb-6'>Growth Clarified</h2>
             <p className='text-zinc-400 text-base sm:text-lg md:text-xl max-w-2xl mx-auto leading-relaxed sm:leading-loose font-medium tracking-wide'>
