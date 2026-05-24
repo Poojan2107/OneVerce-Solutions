@@ -225,7 +225,7 @@ function MobileHero({
       >
         {/* ONEVERCE */}
         <motion.h1
-          initial={{ opacity: 0, y: 10, filter: 'blur(10px)', letterSpacing: '-0.05em' }}
+          initial={{ opacity: 0, y: 10, filter: 'none', letterSpacing: '-0.05em' }}
           animate={{ opacity: 1, y: 0, filter: 'none', letterSpacing: '-1.5px' }}
           transition={{ duration: 4.0, ease: 'easeInOut' }}
           style={{
