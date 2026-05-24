@@ -97,7 +97,7 @@ export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
   }, [])
-  const particleCount: number = isMobile ? 12 : reducedMotion ? 20 : 40
+  const particleCount: number = isMobile ? 4 : reducedMotion ? 20 : 40
 
   // Synchronized Scene Tilting using stable motion value reference
   const rotateX = useTransform(mouseY || fallbackMotionValue, [-500, 500], [15, 10])
@@ -127,7 +127,11 @@ export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
       {/* 1. Deep Space Ambient Nebula */}
       <div className='absolute inset-0 flex items-center justify-center z-0'>
         <div
-          className='absolute w-[120vw] h-[120vw] md:w-[1800px] md:h-[1000px] rounded-full opacity-30 md:opacity-40 blur-[100px] md:blur-[250px]'
+          className={
+            isMobile
+              ? 'absolute w-[120vw] h-[120vw] rounded-full opacity-30 blur-none'
+              : 'absolute w-[120vw] h-[120vw] md:w-[1800px] md:h-[1000px] rounded-full opacity-30 md:opacity-40 blur-[250px]'
+          }
           style={{
             background:
               'radial-gradient(circle, rgba(0, 240, 255, 0.04) 0%, rgba(214, 0, 255, 0.02) 50%, transparent 80%)',
@@ -181,20 +185,8 @@ export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
           backfaceVisibility: 'hidden',
           scale: scale,
         }}
-        {...(isMobile
-          ? {
-              animate: {
-                y: [-10, 10, -10],
-                rotateX: [-3, 3, -3],
-                rotateY: [-5, 5, -5],
-              },
-              transition: {
-                duration: 12,
-                repeat: Infinity,
-                ease: 'easeInOut',
-              },
-            }
-          : {})}
+        animate={reducedMotion ? {} : { y: [-4, 4, -4] }}
+        transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
       >
         {/* The Volumetric Ribbon & Planet (Unified Layout) */}
         <div className='relative w-[1400px] h-[1000px] flex items-center justify-center md:preserve-3d'>
@@ -232,12 +224,12 @@ export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
               stroke='url(#ribbon-grad-v1)'
               strokeWidth={110}
               strokeOpacity={0.08}
-              className='blur-[24px]'
+              className={isMobile ? 'blur-[8px]' : 'blur-[24px]'}
             />
             <InfinityPath
               stroke='url(#ribbon-grad-v1)'
               strokeWidth={60}
-              className='blur-[12px]'
+              className={isMobile ? 'blur-[4px]' : 'blur-[12px]'}
               style={{ opacity: 0.75 }}
               initial={{ pathLength: 0 }}
               animate={{ pathLength: 1 }}
@@ -254,13 +246,13 @@ export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
               stroke='url(#ribbon-inner-shadow)'
               strokeWidth={28}
               strokeOpacity='0.8'
-              className='blur-[3px]'
+              className={isMobile ? 'blur-[1px]' : 'blur-[3px]'}
             />
             <InfinityPath
               stroke='#ffffff'
               strokeWidth={5}
               strokeOpacity='0.4'
-              className='blur-[1px] shimmer-path'
+              className={isMobile ? 'shimmer-path' : 'blur-[1px] shimmer-path'}
               style={{ strokeDasharray: '12 400' }}
             />
           </svg>
@@ -269,13 +261,33 @@ export default function InfinityScene({ mouseX, mouseY }: InfinitySceneProps) {
           <div className='absolute -translate-x-[300px] -translate-y-[150px] z-30 md:preserve-3d'>
             <div className='relative w-48 h-48 planet-float'>
               {/* Glossy Sphere */}
-              <div className='absolute inset-0 rounded-full bg-gradient-to-br from-[#00f0ff] via-[#00b0d0] to-[#010101] shadow-[inset_-25px_-25px_50px_rgba(0,0,0,1),0_0_100px_rgba(0,240,255,0.4)] overflow-hidden'>
-                <div className='absolute top-[12%] left-[18%] w-1/2 h-1/2 bg-white/30 rounded-full blur-[20px]' />
+              <div
+                className={`absolute inset-0 rounded-full bg-gradient-to-br from-[#00f0ff] via-[#00b0d0] to-[#010101] overflow-hidden ${
+                  isMobile
+                    ? 'shadow-[inset_-15px_-15px_30px_rgba(0,0,0,1),0_0_30px_rgba(0,240,255,0.3)]'
+                    : 'shadow-[inset_-25px_-25px_50px_rgba(0,0,0,1),0_0_100px_rgba(0,240,255,0.4)]'
+                }`}
+              >
+                <div
+                  className={`absolute top-[12%] left-[18%] w-1/2 h-1/2 bg-white/30 rounded-full ${
+                    isMobile ? 'blur-[6px]' : 'blur-[20px]'
+                  }`}
+                />
               </div>
 
               {/* Dynamic Planet Rings (Chromatic Effect) */}
-              <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] h-[80px] border-[5px] border-[#00f0f0]/75 rounded-[100%] rotate-[24deg] blur-[0.5px] shadow-[0_0_45px_rgba(0,240,240,0.7)]' />
-              <div className='absolute top-1/2 left-1/2 -translate-x-[50.5%] -translate-y-[50.5%] w-[340px] h-[80px] border border-[#9333ea]/35 rounded-[100%] rotate-[24.2deg] blur-[1px]' />
+              <div
+                className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] h-[80px] border-[5px] border-[#00f0f0]/75 rounded-[100%] rotate-[24deg] ${
+                  isMobile
+                    ? 'blur-none shadow-[0_0_15px_rgba(0,240,240,0.6)]'
+                    : 'blur-[0.5px] shadow-[0_0_45px_rgba(0,240,240,0.7)]'
+                }`}
+              />
+              <div
+                className={`absolute top-1/2 left-1/2 -translate-x-[50.5%] -translate-y-[50.5%] w-[340px] h-[80px] border border-[#9333ea]/35 rounded-[100%] rotate-[24.2deg] ${
+                  isMobile ? 'blur-none' : 'blur-[1px]'
+                }`}
+              />
 
               {/* Orbital Ring Pulse (Hardware-Accelerated CSS) */}
               <div className='absolute top-1/2 left-1/2 w-[330px] h-[75px] border border-white/35 rounded-[100%] border-dashed spin-dashed-ring' />

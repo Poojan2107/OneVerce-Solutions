@@ -298,6 +298,7 @@
 .particle-pulse {
   animation: particle-pulse var(--particle-duration) infinite ease-in-out;
   animation-delay: var(--particle-delay);
+  will-change: transform, opacity;
 }
 
 @keyframes shimmer-move {

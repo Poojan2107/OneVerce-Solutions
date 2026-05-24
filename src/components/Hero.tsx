@@ -205,15 +205,10 @@ function MobileHero({
           }}
         >
           {!isPreloading && (
-            <motion.div
-              animate={{ y: [-4, 4, -4] }}
-              transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-            >
-              <InfinityScene
-                mouseX={isCoarsePointer ? undefined : mouseX}
-                mouseY={isCoarsePointer ? undefined : mouseY}
-              />
-            </motion.div>
+            <InfinityScene
+              mouseX={isCoarsePointer ? undefined : mouseX}
+              mouseY={isCoarsePointer ? undefined : mouseY}
+            />
           )}
         </div>
       </div>
@@ -382,15 +377,10 @@ function DesktopHero({
 
         <div className='infinity-loop' style={{ width: 'min(90vw, 1400px)', maxWidth: '1400px' }}>
           {!isPreloading && (
-            <motion.div
-              animate={{ y: [-4, 4, -4] }}
-              transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-            >
-              <InfinityScene
-                mouseX={isCoarsePointer ? undefined : mouseX}
-                mouseY={isCoarsePointer ? undefined : mouseY}
-              />
-            </motion.div>
+            <InfinityScene
+              mouseX={isCoarsePointer ? undefined : mouseX}
+              mouseY={isCoarsePointer ? undefined : mouseY}
+            />
           )}
         </div>
       </div>
