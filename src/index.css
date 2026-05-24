@@ -223,7 +223,7 @@
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 3px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -233,7 +233,7 @@
 ::-webkit-scrollbar-thumb {
   background-color: var(--color-zinc-800);
   border-radius: 9999px;
-  border: 2px solid transparent;
+  border: 1.5px solid transparent;
   background-clip: padding-box;
 }
 

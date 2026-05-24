@@ -210,7 +210,10 @@ export default function CaseStudies() {
                   </div>
 
                   {/* Content body */}
-                  <div className='p-5 sm:p-10 space-y-6 max-h-[65vh] sm:max-h-[70vh] overflow-y-auto font-sans leading-relaxed text-zinc-400 text-sm'>
+                  <div
+                    data-lenis-prevent
+                    className='p-5 sm:p-10 space-y-6 max-h-[65vh] sm:max-h-[70vh] overflow-y-auto font-sans leading-relaxed text-zinc-400 text-sm'
+                  >
                     <div className='space-y-2'>
                       <div className='text-[9px] font-black uppercase tracking-widest text-zinc-500'>
                         The Challenge

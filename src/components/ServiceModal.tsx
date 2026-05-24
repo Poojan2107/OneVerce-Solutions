@@ -27,6 +27,7 @@ export default function ServiceModal({ service, onClose }: ServiceModalProps) {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: 20 }}
                 transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+                data-lenis-prevent
                 className='relative w-full max-w-4xl bg-[#050505] border border-white/10 rounded-2xl sm:rounded-4xl md:rounded-[2.5rem] overflow-y-auto max-h-[90vh] shadow-2xl custom-scrollbar z-10'
               >
                 <button
