@@ -17,6 +17,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
   })
   const [isTransmitting, setIsTransmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
+  const [errors, setErrors] = useState<{ name?: boolean; email?: boolean }>({})
   const modalRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -74,33 +75,42 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
     e.preventDefault()
     setIsTransmitting(true)
 
-    // Submit form via FormSubmit in the background
-    fetch('https://formsubmit.co/ajax/poojanshrivastav21@gmail.com', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-      body: JSON.stringify({
-        name: formData.name,
-        email: formData.email,
-        message: formData.details,
-        _cc: 'prajapativansh512@gmail.com',
-        _subject: `New Oneverce Project Inquiry from ${formData.name}`,
-        _captcha: 'false',
-      }),
-    })
-      .then(() => {
-        setIsTransmitting(false)
-        setIsSuccess(true)
-      })
-      .catch(err => {
-        console.error('Error submitting form via FormSubmit:', err)
-        setIsTransmitting(false)
-      })
+    const formattedMessage = `Hello Oneverce Team,
+
+I would like to initiate a new project briefing. Here are my details:
+
+Name: ${formData.name}
+Email: ${formData.email}
+Project Requirements: ${formData.details}
+
+Please let me know when we can synchronize on this mission.`
+
+    const whatsappUrl = `https://wa.me/919023362134?text=${encodeURIComponent(formattedMessage)}`
+
+    // Open WhatsApp in a new window
+    window.open(whatsappUrl, '_blank', 'noopener,noreferrer')
+
+    setIsTransmitting(false)
+    setIsSuccess(true)
   }
 
-  const nextStep = () => setStep(prev => Math.min(prev + 1, 2))
+  const nextStep = () => {
+    const newErrors: { name?: boolean; email?: boolean } = {}
+    if (!formData.name.trim()) newErrors.name = true
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!formData.email.trim() || !emailRegex.test(formData.email)) {
+      newErrors.email = true
+    }
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors)
+      return
+    }
+
+    setErrors({})
+    setStep(prev => Math.min(prev + 1, 2))
+  }
   const prevStep = () => setStep(prev => Math.max(prev - 1, 1))
 
   return (
@@ -184,10 +194,18 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                             type='text'
                             required
                             placeholder='John Doe'
-                            className='w-full bg-white/[0.02] border border-white/10 rounded-xl px-5 py-4 text-base focus:border-blue-500/50 outline-none transition-all placeholder:text-zinc-800 text-white'
+                            className={`w-full bg-white/[0.02] border ${errors.name ? 'border-red-500/50 focus:border-red-500' : 'border-white/10 focus:border-blue-500/50'} rounded-xl px-5 py-4 text-base outline-none transition-all placeholder:text-zinc-800 text-white`}
                             value={formData.name}
-                            onChange={e => setFormData({ ...formData, name: e.target.value })}
+                            onChange={e => {
+                              setFormData({ ...formData, name: e.target.value })
+                              if (errors.name) setErrors(prev => ({ ...prev, name: false }))
+                            }}
                           />
+                          {errors.name && (
+                            <p className='text-red-500 text-[10px] font-semibold uppercase tracking-wider mt-1'>
+                              Please enter your full name
+                            </p>
+                          )}
                         </div>
                         <div className='space-y-2'>
                           <label
@@ -201,10 +219,18 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                             type='email'
                             required
                             placeholder='john@example.com'
-                            className='w-full bg-white/[0.02] border border-white/10 rounded-xl px-5 py-4 text-base focus:border-blue-500/50 outline-none transition-all placeholder:text-zinc-800 text-white'
+                            className={`w-full bg-white/[0.02] border ${errors.email ? 'border-red-500/50 focus:border-red-500' : 'border-white/10 focus:border-blue-500/50'} rounded-xl px-5 py-4 text-base outline-none transition-all placeholder:text-zinc-800 text-white`}
                             value={formData.email}
-                            onChange={e => setFormData({ ...formData, email: e.target.value })}
+                            onChange={e => {
+                              setFormData({ ...formData, email: e.target.value })
+                              if (errors.email) setErrors(prev => ({ ...prev, email: false }))
+                            }}
                           />
+                          {errors.email && (
+                            <p className='text-red-500 text-[10px] font-semibold uppercase tracking-wider mt-1'>
+                              Please enter a valid email address
+                            </p>
+                          )}
                         </div>
                       </motion.div>
                     )}
@@ -296,21 +322,33 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                     <h3 className='text-xl font-bold tracking-tighter text-white uppercase'>
                       Uplink Success
                     </h3>
-                    <p className='text-zinc-500 text-xs font-medium max-w-xs mx-auto leading-relaxed'>
-                      Your mission profile has been received. Our technical team will synchronize
-                      shortly.
+                    <p className='text-zinc-400 text-xs font-medium max-w-xs mx-auto leading-relaxed'>
+                      Your WhatsApp message is ready! If the chat window did not open automatically,
+                      please click the button below to send your message.
                     </p>
                   </div>
-                  <button
-                    onClick={() => {
-                      setIsSuccess(false)
-                      setStep(1)
-                      onClose()
-                    }}
-                    className='text-[9px] font-bold text-blue-400 uppercase tracking-[0.3em] hover:text-white transition-colors'
-                  >
-                    Close Portal
-                  </button>
+                  <div className='flex flex-col items-center gap-3 w-full'>
+                    <a
+                      href={`https://wa.me/919023362134?text=${encodeURIComponent(
+                        `Hello Oneverce Team,\n\nI would like to initiate a new project briefing. Here are my details:\n\nName: ${formData.name}\nEmail: ${formData.email}\nProject Requirements: ${formData.details}\n\nPlease let me know when we can synchronize on this mission.`,
+                      )}`}
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      className='w-full flex items-center justify-center bg-emerald-500 hover:bg-emerald-600 text-black py-3 rounded-full font-bold uppercase tracking-widest text-[9px] hover:scale-105 transition-all shadow-lg shadow-emerald-500/20'
+                    >
+                      Send WhatsApp Message
+                    </a>
+                    <button
+                      onClick={() => {
+                        setIsSuccess(false)
+                        setStep(1)
+                        onClose()
+                      }}
+                      className='text-[9px] font-bold text-blue-400 uppercase tracking-[0.3em] hover:text-white transition-colors cursor-pointer'
+                    >
+                      Close Portal
+                    </button>
+                  </div>
                 </motion.div>
               )}
             </div>

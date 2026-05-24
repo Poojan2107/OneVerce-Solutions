@@ -254,7 +254,7 @@ export const middleware = (req) =>
                       setActiveLayerId(layer.id)
                     }}
                     onMouseEnter={playHover}
-                    className={`w-full text-left p-5 rounded-2xl border transition-all duration-300 flex items-center gap-4 cursor-pointer ${
+                    className={`w-full min-w-0 text-left p-4 sm:p-5 rounded-2xl border transition-all duration-300 flex items-center gap-3 sm:gap-4 cursor-pointer ${
                       isActive
                         ? 'border-blue-500/40 bg-blue-500/2 text-white shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]'
                         : 'border-white/5 bg-white/1 hover:border-white/15 text-zinc-400 hover:text-zinc-200'
