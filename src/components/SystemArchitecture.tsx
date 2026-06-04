@@ -238,7 +238,7 @@ export const middleware = (req) =>
 
         <div className='grid lg:grid-cols-12 gap-8 items-stretch'>
           {/* Layer selectors panel */}
-          <div className='lg:col-span-6 space-y-4'>
+          <div className='lg:col-span-6 space-y-4 min-w-0'>
             <div className='text-[10px] font-black uppercase tracking-widest text-zinc-500 mb-2'>
               Layer Stack Selection
             </div>
@@ -254,33 +254,35 @@ export const middleware = (req) =>
                       setActiveLayerId(layer.id)
                     }}
                     onMouseEnter={playHover}
-                    className={`w-full min-w-0 text-left p-4 sm:p-5 rounded-2xl border transition-all duration-300 flex items-center gap-3 sm:gap-4 cursor-pointer ${
+                    className={`w-full text-left p-4 sm:p-5 rounded-2xl border transition-all duration-300 block cursor-pointer ${
                       isActive
                         ? 'border-blue-500/40 bg-blue-500/2 text-white shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]'
                         : 'border-white/5 bg-white/1 hover:border-white/15 text-zinc-400 hover:text-zinc-200'
                     }`}
                   >
-                    <div
-                      className={`w-8 h-8 rounded-lg border flex items-center justify-center shrink-0 transition-colors ${
-                        isActive
-                          ? 'bg-blue-600 border-blue-500 text-white'
-                          : 'border-white/20 bg-white/[0.02]'
-                      }`}
-                    >
-                      {layer.icon}
-                    </div>
-                    <div className='min-w-0 flex-1'>
-                      <div className='text-sm font-bold tracking-tight mb-0.5 truncate'>
-                        {layer.name}
+                    <div className='flex items-center gap-3 sm:gap-4 w-full min-w-0'>
+                      <div
+                        className={`w-8 h-8 rounded-lg border flex items-center justify-center shrink-0 transition-colors ${
+                          isActive
+                            ? 'bg-blue-600 border-blue-500 text-white'
+                            : 'border-white/20 bg-white/[0.02]'
+                        }`}
+                      >
+                        {layer.icon}
                       </div>
-                      <div className='text-xs text-zinc-500 font-mono truncate'>{layer.tech}</div>
-                    </div>
-                    <div
-                      className={`text-[9px] font-black font-mono shrink-0 transition-colors ${
-                        isActive ? 'text-[#00f0ff]' : 'text-zinc-600'
-                      }`}
-                    >
-                      {layer.id.toUpperCase()}
+                      <div className='min-w-0 flex-1'>
+                        <div className='text-sm font-bold tracking-tight mb-0.5 truncate'>
+                          {layer.name}
+                        </div>
+                        <div className='text-xs text-zinc-500 font-mono truncate'>{layer.tech}</div>
+                      </div>
+                      <div
+                        className={`text-[9px] font-black font-mono shrink-0 transition-colors ${
+                          isActive ? 'text-[#00f0ff]' : 'text-zinc-600'
+                        }`}
+                      >
+                        {layer.id.toUpperCase()}
+                      </div>
                     </div>
                   </button>
                 )
@@ -289,7 +291,7 @@ export const middleware = (req) =>
           </div>
 
           {/* Configuration readout card */}
-          <div className='lg:col-span-6 flex flex-col justify-between p-6 sm:p-10 rounded-[2rem] border border-white/10 bg-[#090a0d] relative overflow-hidden'>
+          <div className='lg:col-span-6 flex flex-col justify-between p-6 sm:p-10 rounded-[2rem] border border-white/10 bg-[#090a0d] relative overflow-hidden min-w-0'>
             {/* Ambient glow */}
             <div className='absolute -top-12 -right-12 w-48 h-48 bg-blue-500/10 blur-[80px] rounded-full pointer-events-none' />
 
