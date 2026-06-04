@@ -19,7 +19,6 @@ export default function Contact() {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
     playClick()
-    setIsTransmitting(true)
 
     const formattedMessage = `Hello Oneverce Team,
 
@@ -31,11 +30,14 @@ Project Requirements: ${formData.details}
 
 Please let me know when we can synchronize on this mission.`
 
-    const whatsappUrl = `https://wa.me/919023362134?text=${encodeURIComponent(formattedMessage)}`
+    const whatsappUrl1 = `https://wa.me/919023362134?text=${encodeURIComponent(formattedMessage)}`
+    const whatsappUrl2 = `https://wa.me/918401286822?text=${encodeURIComponent(formattedMessage)}`
 
-    // Open WhatsApp in a new window
-    window.open(whatsappUrl, '_blank', 'noopener,noreferrer')
+    // Open both WhatsApp numbers in new tabs immediately to preserve the user-gesture context
+    window.open(whatsappUrl1, '_blank', 'noopener,noreferrer')
+    window.open(whatsappUrl2, '_blank', 'noopener,noreferrer')
 
+    setIsTransmitting(true)
     setIsTransmitting(false)
     setIsSuccess(true)
     playSuccess()
@@ -337,30 +339,45 @@ Please let me know when we can synchronize on this mission.`
                         Uplink Success
                       </h3>
                       <p className='text-zinc-400 text-base md:text-lg font-medium max-w-sm mx-auto leading-relaxed'>
-                        Your WhatsApp message is ready! If the chat window did not open
-                        automatically, please use the button below to send your message.
+                        Your WhatsApp messages are ready! If the chat windows did not open
+                        automatically, please use the buttons below to message Poojan and Vansh
+                        directly.
                       </p>
                     </div>
                     <div className='flex flex-col items-center gap-5 w-full'>
-                      <a
-                        href={`https://wa.me/919023362134?text=${encodeURIComponent(
-                          `Hello Oneverce Team,\n\nI would like to initiate a new project briefing. Here are my details:\n\nName: ${formData.name}\nEmail: ${formData.email}\nProject Requirements: ${formData.details}\n\nPlease let me know when we can synchronize on this mission.`,
-                        )}`}
-                        target='_blank'
-                        rel='noopener noreferrer'
-                        onMouseEnter={playHover}
-                        onClick={playClick}
-                        className='bg-emerald-500 hover:bg-emerald-600 text-black px-8 py-3.5 rounded-full font-bold uppercase tracking-widest text-[9px] hover:scale-105 transition-all shadow-lg shadow-emerald-500/20'
-                      >
-                        Send WhatsApp Message
-                      </a>
+                      <div className='flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-md mx-auto'>
+                        <a
+                          href={`https://wa.me/919023362134?text=${encodeURIComponent(
+                            `Hello Oneverce Team,\n\nI would like to initiate a new project briefing. Here are my details:\n\nName: ${formData.name}\nEmail: ${formData.email}\nProject Requirements: ${formData.details}\n\nPlease let me know when we can synchronize on this mission.`,
+                          )}`}
+                          target='_blank'
+                          rel='noopener noreferrer'
+                          onMouseEnter={playHover}
+                          onClick={playClick}
+                          className='w-full sm:w-1/2 flex items-center justify-center bg-emerald-500 hover:bg-emerald-600 text-black px-8 py-3.5 rounded-full font-bold uppercase tracking-widest text-[9px] hover:scale-105 transition-all shadow-lg shadow-emerald-500/20'
+                        >
+                          Message Poojan
+                        </a>
+                        <a
+                          href={`https://wa.me/918401286822?text=${encodeURIComponent(
+                            `Hello Oneverce Team,\n\nI would like to initiate a new project briefing. Here are my details:\n\nName: ${formData.name}\nEmail: ${formData.email}\nProject Requirements: ${formData.details}\n\nPlease let me know when we can synchronize on this mission.`,
+                          )}`}
+                          target='_blank'
+                          rel='noopener noreferrer'
+                          onMouseEnter={playHover}
+                          onClick={playClick}
+                          className='w-full sm:w-1/2 flex items-center justify-center bg-blue-600 hover:bg-blue-500 text-white px-8 py-3.5 rounded-full font-bold uppercase tracking-widest text-[9px] hover:scale-105 transition-all shadow-lg shadow-blue-500/20'
+                        >
+                          Message Vansh
+                        </a>
+                      </div>
                       <button
                         onClick={() => {
                           playClick()
                           setIsSuccess(false)
                           setStep(1)
                         }}
-                        className='text-[10px] font-bold text-blue-400 uppercase tracking-[0.3em] hover:text-white transition-colors cursor-pointer'
+                        className='text-[10px] font-bold text-blue-400 uppercase tracking-[0.3em] hover:text-white transition-colors cursor-pointer mt-2'
                       >
                         Establish_New_Link
                       </button>
