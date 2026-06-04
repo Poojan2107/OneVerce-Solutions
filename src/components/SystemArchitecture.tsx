@@ -243,48 +243,55 @@ export const middleware = (req) =>
               Layer Stack Selection
             </div>
 
-            <div className='space-y-3'>
+            <div className='space-y-3 w-full min-w-0'>
               {layers.map(layer => {
                 const isActive = layer.id === activeLayerId
                 return (
-                  <button
+                  <div
                     key={layer.id}
+                    role='button'
+                    tabIndex={0}
                     onClick={() => {
                       playClick()
                       setActiveLayerId(layer.id)
                     }}
+                    onKeyDown={e => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault()
+                        playClick()
+                        setActiveLayerId(layer.id)
+                      }
+                    }}
                     onMouseEnter={playHover}
-                    className={`w-full text-left p-4 sm:p-5 rounded-2xl border transition-all duration-300 block cursor-pointer ${
+                    className={`w-full min-w-0 text-left p-4 sm:p-5 rounded-2xl border transition-all duration-300 flex items-center gap-3 sm:gap-4 cursor-pointer select-none focus-visible:ring-2 focus-visible:ring-blue-500 outline-none ${
                       isActive
                         ? 'border-blue-500/40 bg-blue-500/2 text-white shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]'
                         : 'border-white/5 bg-white/1 hover:border-white/15 text-zinc-400 hover:text-zinc-200'
                     }`}
                   >
-                    <div className='flex items-center gap-3 sm:gap-4 w-full min-w-0'>
-                      <div
-                        className={`w-8 h-8 rounded-lg border flex items-center justify-center shrink-0 transition-colors ${
-                          isActive
-                            ? 'bg-blue-600 border-blue-500 text-white'
-                            : 'border-white/20 bg-white/[0.02]'
-                        }`}
-                      >
-                        {layer.icon}
-                      </div>
-                      <div className='min-w-0 flex-1'>
-                        <div className='text-sm font-bold tracking-tight mb-0.5 truncate'>
-                          {layer.name}
-                        </div>
-                        <div className='text-xs text-zinc-500 font-mono truncate'>{layer.tech}</div>
-                      </div>
-                      <div
-                        className={`text-[9px] font-black font-mono shrink-0 transition-colors ${
-                          isActive ? 'text-[#00f0ff]' : 'text-zinc-600'
-                        }`}
-                      >
-                        {layer.id.toUpperCase()}
-                      </div>
+                    <div
+                      className={`w-8 h-8 rounded-lg border flex items-center justify-center shrink-0 transition-colors ${
+                        isActive
+                          ? 'bg-blue-600 border-blue-500 text-white'
+                          : 'border-white/20 bg-white/[0.02]'
+                      }`}
+                    >
+                      {layer.icon}
                     </div>
-                  </button>
+                    <div className='min-w-0 flex-1'>
+                      <div className='text-sm font-bold tracking-tight mb-0.5 truncate'>
+                        {layer.name}
+                      </div>
+                      <div className='text-xs text-zinc-500 font-mono truncate'>{layer.tech}</div>
+                    </div>
+                    <div
+                      className={`text-[9px] font-black font-mono shrink-0 transition-colors ${
+                        isActive ? 'text-[#00f0ff]' : 'text-zinc-600'
+                      }`}
+                    >
+                      {layer.id.toUpperCase()}
+                    </div>
+                  </div>
                 )
               })}
             </div>
