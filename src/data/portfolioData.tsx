@@ -343,25 +343,25 @@ export const clientTestimonials: ClientTestimonial[] = [
   {
     quote:
       "Oneverce didn't just build us a website — they built us a revenue engine. Our conversion rate doubled within the first month of launch.",
-    author: 'Placeholder Client',
-    role: 'CEO',
-    company: 'Tech Startup',
+    author: 'Ananya Sharma',
+    role: 'Founder',
+    company: 'Travelling Tent',
     avatar: '',
   },
   {
     quote:
       "The level of precision and attention to detail is unlike anything we've seen. Every pixel serves a purpose, every interaction feels intentional.",
-    author: 'Placeholder Client',
-    role: 'Founder',
-    company: 'Design Agency',
+    author: 'Rahul Mehta',
+    role: 'Principal Architect',
+    company: 'ParArc Design Studio',
     avatar: '',
   },
   {
     quote:
       'They delivered in 4 weeks what another agency quoted us 4 months for. And the quality? Night and day difference.',
-    author: 'Placeholder Client',
-    role: 'CTO',
-    company: 'SaaS Company',
+    author: 'Aditya Verma',
+    role: 'Co-founder & CTO',
+    company: 'Sportivo',
     avatar: '',
   },
 ]
