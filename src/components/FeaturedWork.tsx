@@ -48,15 +48,15 @@ const projectHighlights: Record<
   string,
   { summary: string; challenges: string; outcomes: string[] }
 > = {
-  'ParArc Design Studio': {
+  OpenBridge: {
     summary:
-      'A bespoke architectural digital exhibit. Created to reflect ParArc\'s design philosophy—"Architecture as a Dialogue"—using a highly specialized, minimal typography scheme and context-aware transition curves.',
+      'An AI-powered onboarding companion for open-source newcomers. Profiles developer skills, recommends GitHub repositories, maps issues, and generates custom learning tracks.',
     challenges:
-      'Blending cinematic, low-frame-latency photo galleries with structured, readable portfolio items without exceeding Core Web Vitals performance thresholds.',
+      'Designing structured JSON outputs from Gemini AI to parse reliably into step-by-step roadmaps, and securing GitHub OAuth credentials with AES-256-CBC.',
     outcomes: [
-      'Sub-500ms initial contentful paint on high-resolution image payloads',
-      'Fully responsive cinematic slider modules supporting tactile gestures',
-      'Significant increase in client acquisition flow directly from search ranks',
+      'Successfully integrated 3 distinct Gemini AI developer assistance tools',
+      'Implemented offline-resilient roadmaps via Progressive Web App (PWA) cache structures',
+      'Built a custom XP-based gamification pipeline with dynamic SVG badge generators',
     ],
   },
   NeuralCredit: {

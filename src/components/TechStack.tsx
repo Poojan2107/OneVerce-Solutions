@@ -2,13 +2,17 @@ import { motion } from 'motion/react'
 
 const techStack = [
   { name: 'React 19', category: 'Frontend', icon: '⚛️' },
+  { name: 'Node.js', category: 'Backend', icon: '🟢' },
+  { name: 'Express.js', category: 'Backend', icon: '🚂' },
+  { name: 'MongoDB', category: 'Database', icon: '🍃' },
+  { name: 'Prisma ORM', category: 'Database', icon: '◮' },
+  { name: 'Python', category: 'AI & Language', icon: '🐍' },
+  { name: 'C/C++', category: 'Language', icon: '💻' },
   { name: 'TypeScript', category: 'Language', icon: '🔷' },
-  { name: 'Vite 6', category: 'Build Tool', icon: '⚡' },
   { name: 'Tailwind CSS', category: 'Styling', icon: '🎨' },
-  { name: 'Framer Motion', category: 'Animation', icon: '✨' },
-  { name: 'Lenis', category: 'Smooth Scroll', icon: '🌊' },
-  { name: 'Vercel', category: 'Deployment', icon: '▲' },
   { name: 'Gemini AI', category: 'Intelligence', icon: '🧠' },
+  { name: 'Git & GitHub', category: 'Version Control', icon: '🐙' },
+  { name: 'DSA', category: 'Computer Science', icon: '📊' },
 ]
 
 export default function TechStack() {

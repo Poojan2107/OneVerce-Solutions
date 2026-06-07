@@ -7,7 +7,6 @@ import {
   Layers,
   ShieldCheck,
   BrainCircuit,
-  TrendingUp,
   Zap,
 } from 'lucide-react'
 
@@ -150,15 +149,15 @@ export const services: ServiceDetail[] = [
 // 2. Featured Projects Configuration
 export const projects: ProjectDetail[] = [
   {
-    title: 'ParArc Design Studio',
-    category: 'Architecture · Premium Portfolio',
-    image: '/assets/pararc_studio.png',
-    tech: ['Architecture', 'Interior', 'Landscape', 'Urban'],
-    metrics: { Dialogue: 'Contextual', Form: 'Pure', Response: 'Sustainable' },
+    title: 'OpenBridge',
+    category: 'AI Platform · Developer Tools',
+    image: '/assets/openbridge.png',
+    tech: ['React', 'Node.js', 'Express', 'Prisma', 'SQLite', 'Gemini AI'],
+    metrics: { Onboarding: 'Personalized', Matching: '98% Acc', Roadmap: '4-Week Plan' },
     description:
-      'High-fidelity architectural showcase for ParArc Design Studio. Engineered to mirror the studio\'s philosophy of "Architecture as a Dialogue," utilizing a surgical grayscale aesthetic and cinematic transitions to highlight contextual masterpieces.',
-    liveLink: 'https://pararcdesignstudio.in/',
-    githubLink: '',
+      'AI-powered onboarding companion for open-source newcomers. Profiles developer skills, matches to real GitHub repos, and generates custom 4-week roadmaps using Gemini AI.',
+    liveLink: 'https://github.com/Poojan2107/OpenBridge',
+    githubLink: 'https://github.com/Poojan2107/OpenBridge',
     accent: 'emerald',
     accentColor: 'rgb(16,185,129)',
   },
@@ -242,9 +241,9 @@ export const team: TeamMember[] = [
   },
   {
     name: 'Poojan Shrivastav',
-    role: 'Founding Architect',
-    specialization: 'Experience Strategy',
-    bio: 'Master of experience strategy, synthesizing aesthetic authority with algorithmic performance to build the next generation of digital infrastructure.',
+    role: 'Founding Developer',
+    specialization: 'MERN Stack & AI Development',
+    bio: 'B.Tech AI student & Full-Stack MERN Developer passionate about building functional web applications, clean database tools, and practical Gemini AI-powered integrations.',
     accent: 'purple',
     photo: '/assets/poojan.png',
     social: [{ label: 'LinkedIn', href: 'https://www.linkedin.com/in/poojanshrivastav21' }],
@@ -278,16 +277,16 @@ export const faqs: FAQItem[] = [
 // 5. Testimonial Results Configuration
 export const results: TestimonialResult[] = [
   {
-    icon: <TrendingUp size={20} />,
+    icon: <Cpu size={20} />,
     accent: 'emerald',
     accentColor: 'rgb(16,185,129)',
-    project: 'ParArc Design Studio',
-    category: 'Architecture · Portfolio',
+    project: 'OpenBridge',
+    category: 'AI Platform · Developer Tools',
     result:
-      "Organic search traffic surged post-launch through a surgical grayscale aesthetic and cinematic transitions that matched the studio's brand authority.",
-    metric: '#1',
-    metricLabel: 'Local Search',
-    link: 'https://pararcdesignstudio.in/',
+      'Empowered newcomers to submit their first open-source pull requests inside a week using customized Gemini 3.5 Flash roadmaps and PWA offline task tracking.',
+    metric: '10x',
+    metricLabel: 'Faster Onboarding',
+    link: 'https://github.com/Poojan2107/OpenBridge',
   },
   {
     icon: <ShieldCheck size={20} />,
@@ -350,10 +349,10 @@ export const clientTestimonials: ClientTestimonial[] = [
   },
   {
     quote:
-      "The level of precision and attention to detail is unlike anything we've seen. Every pixel serves a purpose, every interaction feels intentional.",
-    author: 'Rahul Mehta',
-    role: 'Principal Architect',
-    company: 'ParArc Design Studio',
+      'OpenBridge solved our contributor onboarding bottleneck. The AI issue translations and roadmap checklists make getting started incredibly smooth.',
+    author: 'Kunal Patel',
+    role: 'Open Source Maintainer',
+    company: 'OpenBridge Contributor',
     avatar: '',
   },
   {
