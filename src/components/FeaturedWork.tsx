@@ -48,6 +48,17 @@ const projectHighlights: Record<
   string,
   { summary: string; challenges: string; outcomes: string[] }
 > = {
+  'ParArc Design Studio': {
+    summary:
+      'A bespoke architectural digital exhibit. Created to reflect ParArc\'s design philosophy—"Architecture as a Dialogue"—using a highly specialized, minimal typography scheme and context-aware transition curves.',
+    challenges:
+      'Blending cinematic, low-frame-latency photo galleries with structured, readable portfolio items without exceeding Core Web Vitals performance thresholds.',
+    outcomes: [
+      'Sub-500ms initial contentful paint on high-resolution image payloads',
+      'Fully responsive cinematic slider modules supporting tactile gestures',
+      'Significant increase in client acquisition flow directly from search ranks',
+    ],
+  },
   OpenBridge: {
     summary:
       'An AI-powered onboarding companion for open-source newcomers. Profiles developer skills, recommends GitHub repositories, maps issues, and generates custom learning tracks.',

@@ -8,6 +8,7 @@ import {
   ShieldCheck,
   BrainCircuit,
   Zap,
+  TrendingUp,
 } from 'lucide-react'
 
 export interface ServiceDetail {
@@ -149,6 +150,19 @@ export const services: ServiceDetail[] = [
 // 2. Featured Projects Configuration
 export const projects: ProjectDetail[] = [
   {
+    title: 'ParArc Design Studio',
+    category: 'Architecture · Premium Portfolio',
+    image: '/assets/pararc_studio.png',
+    tech: ['Architecture', 'Interior', 'Landscape', 'Urban'],
+    metrics: { Dialogue: 'Contextual', Form: 'Pure', Response: 'Sustainable' },
+    description:
+      'High-fidelity architectural showcase for ParArc Design Studio. Engineered to mirror the studio\'s philosophy of "Architecture as a Dialogue," utilizing a surgical grayscale aesthetic and cinematic transitions to highlight contextual masterpieces.',
+    liveLink: 'https://pararcdesignstudio.in/',
+    githubLink: '',
+    accent: 'emerald',
+    accentColor: 'rgb(16,185,129)',
+  },
+  {
     title: 'OpenBridge',
     category: 'AI Platform · Developer Tools',
     image: '/assets/openbridge.png',
@@ -276,6 +290,18 @@ export const faqs: FAQItem[] = [
 
 // 5. Testimonial Results Configuration
 export const results: TestimonialResult[] = [
+  {
+    icon: <TrendingUp size={20} />,
+    accent: 'emerald',
+    accentColor: 'rgb(16,185,129)',
+    project: 'ParArc Design Studio',
+    category: 'Architecture · Portfolio',
+    result:
+      "Organic search traffic surged post-launch through a surgical grayscale aesthetic and cinematic transitions that matched the studio's brand authority.",
+    metric: '#1',
+    metricLabel: 'Local Search',
+    link: 'https://pararcdesignstudio.in/',
+  },
   {
     icon: <Cpu size={20} />,
     accent: 'emerald',
