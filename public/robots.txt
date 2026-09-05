@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 # Sitemap Location
-Sitemap: https://onevercesolution.in/sitemap.xml
+Sitemap: https://oneverce.com/sitemap.xml
